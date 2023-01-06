@@ -1,5 +1,5 @@
-** Paquete de \LaTeX{} para usar la notación del curso de Álgebra Lineal (y Econometría)
-Este es un proyecto para generar un paquete de \LaTeX{} con las macros
+** Paquete de $\LaTeX{}$ para usar la notación del curso de Álgebra Lineal (y Econometría)
+Este es un proyecto para generar un paquete de $\LaTeX{}$ con las macros
 que diseñé al escribir el [[https://github.com/mbujosab/CursoDeAlgebraLineal/blob/master/libro.pdf][libro]] para el curso de Álgebra Lineal del
 [[https://www.ucm.es/estudios/grado-economia][Grado en Economía]] de la [[https://www.ucm.es/][UCM]].
 
@@ -30,23 +30,22 @@ repositorio de Jonathan Ortiz y Andrés Merino
 que me dio la pista de cómo lograr reproducir la notación del libro
 mediante el uso del paquete [[https://ctan.org/pkg/moodle][moodle.sty]] de Anders Hendrickson y
 Matthieu Guerquin-Kern. Al igual que hicieron Jonathan Ortiz y Andrés
-Merino, he creado dos paquetes. El paquete nacal.sty (de este
+Merino, he creado dos paquetes. El paquete [[https://github.com/mbujosab/nacal-latex-package][nacal.sty]] (de este
 repositorio) reproduce las macros del libro, y el paquete
 nacal-moodle.sty (en otro repositorio) indica al paquete [[https://ctan.org/pkg/moodle][moodle.sty]]
 cómo pintar los símbolos en los ficheros ~.xml~ que [[https://moodle.com/solutions/lms/][Moodle]] emplea en
 sus bancos de preguntas.
 
-Si tan solo quiere escribir con \LaTeX{} empleando la misma notación
-del [[https://github.com/mbujosab/CursoDeAlgebraLineal/blob/master/libro.pdf][libro]], basta con el paquete nacal.sty de este repositorio. Si
-desea generar bancos de preguntas para [[https://moodle.com/solutions/lms/][Moodle]], entonces también
-necesitará nacal-moodle.sty.
+Si tan solo quiere escribir con $\LaTeX{}$ empleando la misma notación
+del [[https://github.com/mbujosab/CursoDeAlgebraLineal/blob/master/libro.pdf][libro]], basta con el paquete [[https://github.com/mbujosab/nacal-latex-package][nacal.sty]]. Si desea generar bancos de
+preguntas para [[https://moodle.com/solutions/lms/][Moodle]], entonces también necesitará nacal-moodle.sty.
 
 *** Instalación
 
-Como cualquier paquete de \LaTeX{}, para crear debe incluir nacal.sty
-en el directorio de trabajo (o allí donde su instalación de \LaTeX{}
-busque los paquetes), y en el preámbulo de su documento debe incluir
-~\usepackage{nacal}~
+Como cualquier paquete de $\LaTeX{}$, para crear debe incluir
+nacal.sty en el directorio de trabajo (o allí donde su instalación de
+$\LaTeX{}$ busque los paquetes), y en el preámbulo de su documento
+debe incluir ~\usepackage{nacal}~
 
 Para obtener el fichero ~nacal.sty~ debe ejecutar ~latex nacal.ins~ y
 para compilar la documentación ~pdflatex nacal.dtx~.
