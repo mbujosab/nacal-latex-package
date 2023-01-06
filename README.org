@@ -1,7 +1,4 @@
-#+title:  Paquete de \LaTeX{} para usar la notación del curso de Álgebra Lineal (y Econometría)
-#+author: Marcos Bujosa
-
-* Paquete de \LaTeX{} para usar la notación del curso de Álgebra Lineal (y Econometría)
+** Paquete de \LaTeX{} para usar la notación del curso de Álgebra Lineal (y Econometría)
 Este es un proyecto para generar un paquete de \LaTeX{} con las macros
 que diseñé al escribir el [[https://github.com/mbujosab/CursoDeAlgebraLineal/blob/master/libro.pdf][libro]] para el curso de Álgebra Lineal del
 [[https://www.ucm.es/estudios/grado-economia][Grado en Economía]] de la [[https://www.ucm.es/][UCM]].
@@ -15,7 +12,7 @@ El libro de Álgebra Lineal se puede descargar desde
 [[https://github.com/mbujosab/CursoDeAlgebraLineal]].
 
 
-** Historia
+*** Historia
 
 Inicialmente generé un sencillo fichero con la definición de las
 macros. Dicho fichero era leído desde el preámbulo del fichero fuente
@@ -44,7 +41,7 @@ del [[https://github.com/mbujosab/CursoDeAlgebraLineal/blob/master/libro.pdf][li
 desea generar bancos de preguntas para [[https://moodle.com/solutions/lms/][Moodle]], entonces también
 necesitará nacal-moodle.sty.
 
-* Instalación
+*** Instalación
 
 Como cualquier paquete de \LaTeX{}, para crear debe incluir nacal.sty
 en el directorio de trabajo (o allí donde su instalación de \LaTeX{}
@@ -55,7 +52,7 @@ Para obtener el fichero ~nacal.sty~ debe ejecutar ~latex nacal.ins~ y
 para compilar la documentación ~pdflatex nacal.dtx~.
 
 
-* Licencia del paquete nacal.sty
+**** Licencia del paquete nacal.sty
 
 Este archivo puede ser distribuido y/o modificado bajo las condiciones
 de la Licencia Pública del Proyecto LaTeX, ya sea la versión 1.3 de
