@@ -1,0 +1,32 @@
+\documentclass{article}
+
+% General document formatting
+%\usepackage[margin=0.7in]{geometry}
+%\usepackage[parfill]{parskip}
+%\usepackage[utf8]{inputenc}
+
+% Related to math
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+
+\usepackage{nacal}
+
+\begin{document}
+
+\begin{itemize}
+\item Esto es un vector genérico:\; \vect{x}
+\item Esto es un vector de \R[n]:\; \Vect{x}
+\item Esto es un vector de \R[m\times n]:\; \Mat{A}
+\end{itemize}
+
+El operador selector de la columna $j$-ésima por la derecha de una matriz es
+\begin{displaymath}
+  \deffun{\getitemR{j}}{\R[m\times n]}{\R[m]}{\Mat{A}}{\VectC{A}{j}}
+\end{displaymath}
+
+
+La norma al cuadrado de un vector del espacio euclídeo \R[n] es
+\[
+  \norma[\R[n]]{\Vect{x}}^2=\dotprod{x}{x}=\dotProd{\prodhp{x}{x}}{\Vect{1}}=\sum_{i=1}^n\eleVRpE{x}{i}^2
+\]
+
+\end{document}
