@@ -4,7 +4,7 @@
 escribir el [[https://github.com/mbujosab/CursoDeAlgebraLineal/blob/master/libro.pdf][libro]] para el curso de Álgebra Lineal del [[https://www.ucm.es/estudios/grado-economia][Grado en
 Economía]] de la [[https://www.ucm.es/][UCM]].
 
-Cualquier error o sugerencia correspondiente al paquete nacal.sty debe
+Cualquier error o sugerencia correspondiente al paquete [[https://github.com/mbujosab/nacal-latex-package][nacal.sty]] debe
 ser enviada a:
 
 Marcos Bujosa (mbujosab@ucm.es) o indicada como un [[https://github.com/mbujosab/CursoDeAlgebraLineal/issues][issue]].
@@ -28,17 +28,33 @@ Andrés Merino) que me dio la pista de cómo lograr reproducir la
 notación del libro mediante el uso del paquete [[https://ctan.org/pkg/moodle][moodle.sty]] de Anders
 Hendrickson y Matthieu Guerquin-Kern.
 
-Al igual que hicieron Jonathan Ortiz y Andrés Merino, he creado dos
-paquetes. El paquete [[https://github.com/mbujosab/nacal-latex-package][nacal.sty]] (de este repositorio) contiene las
-macros del fichero original empleado en el libro. El paquete
-nacal-moodle.sty (en otro repositorio) indica al paquete [[https://ctan.org/pkg/moodle][moodle.sty]]
-cómo pintar los símbolos en los ficheros ~.xml~ que [[https://moodle.com/solutions/lms/][Moodle]] emplea en
-sus bancos de preguntas.
+Al igual que hicieron Jonathan Ortiz y Andrés Merino, he creado sendos
+paquetes de $\LaTeX{}$. El paquete [[https://github.com/mbujosab/nacal-latex-package][nacal.sty]] (de este repositorio)
+contiene las macros del fichero original empleado en el libro. El
+paquete nacal-moodle.sty (en otro repositorio) indica al paquete
+[[https://ctan.org/pkg/moodle][moodle.sty]] cómo pintar los símbolos en los ficheros ~.xml~ que [[https://moodle.com/solutions/lms/][Moodle]]
+emplea en sus bancos de preguntas.
 
 Si solo necesita emplear la misma notación del [[https://github.com/mbujosab/CursoDeAlgebraLineal/blob/master/libro.pdf][libro]] es sus documentos
 de $\LaTeX{}$, basta con el paquete [[https://github.com/mbujosab/nacal-latex-package][nacal.sty]] de este repositorio. Si
 también desea generar bancos de preguntas para [[https://moodle.com/solutions/lms/][Moodle]], entonces
-también necesitará nacal-moodle.sty.
+también necesitará [[https://github.com/mbujosab/nacal-moodle-latex-package][nacal-moodle.sty]].
+
+*** Paquetes  de \LaTeX{} requeridos
+Tenga en cuenta que [[https://github.com/mbujosab/nacal-latex-package][nacal.sty]] por defecto carga los siguientes
+paquetes:
+
+- [[https://www.ctan.org/pkg/amsmath][~amsmath~]]: que permite usar ~\DeclareMathOperator~ para definir los
+  nombres de los operadores para rango, traza, etc.
+- [[https://www.ctan.org/pkg/amssymb][~amssymb~]]: que permite usar ~\intercal~ para denotar la transpuesta de
+  una matriz.
+- [[https://ctan.org/pkg/esvect][~esvect~]]: para pintar vectores genéricos (los que llevan una flecha por encima).
+- [[https://www.ctan.org/pkg/leftidx][~leftidx~]]: para escribir subíndices por la izquierda
+- [[https://www.ctan.org/pkg/pict2e][~pict2e~]]: que permite hacer algunos pequeños dibujos (lo usaré para
+  dibujar el símbolo de concatenación).
+- [[https://www.ctan.org/pkg/stackengine][~stackengine~]]: permite sobreimponer un caracter sobre otro (para el span probabilístico).
+- [[https://www.ctan.org/pkg/xparse][~xparse~]]: para definir comandos robustos
+- [[https://www.ctan.org/pkg/xspace][~xspace~]]: para que LaTeX{} decida correctamente si intercalar un espacio en blanco o no después de un comando al terminar las definiciones de los símbolos matemáticos con ~\xspace~.
 
 *** Instalación
 
