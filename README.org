@@ -44,17 +44,21 @@ también necesitará [[https://github.com/mbujosab/nacal-moodle-latex-package][n
 Tenga en cuenta que [[https://github.com/mbujosab/nacal-latex-package][nacal.sty]] por defecto carga los siguientes
 paquetes:
 
-- [[https://www.ctan.org/pkg/amsmath][~amsmath~]]: que permite usar ~\DeclareMathOperator~ para definir los
+- [[https://www.ctan.org/pkg/amsmath][amsmath]]: que permite usar ~\DeclareMathOperator~ para definir los
   nombres de los operadores para rango, traza, etc.
-- [[https://www.ctan.org/pkg/amssymb][~amssymb~]]: que permite usar ~\intercal~ para denotar la transpuesta de
+- [[https://www.ctan.org/pkg/amssymb][amssymb]]: que permite usar ~\intercal~ para denotar la transpuesta de
   una matriz.
-- [[https://ctan.org/pkg/esvect][~esvect~]]: para pintar vectores genéricos (los que llevan una flecha por encima).
-- [[https://www.ctan.org/pkg/leftidx][~leftidx~]]: para escribir subíndices por la izquierda
-- [[https://www.ctan.org/pkg/pict2e][~pict2e~]]: que permite hacer algunos pequeños dibujos (lo usaré para
+- [[https://ctan.org/pkg/esvect][esvect]]: para pintar vectores genéricos (los que llevan una flecha
+  por encima).
+- [[https://www.ctan.org/pkg/leftidx][leftidx]]: para escribir subíndices por la izquierda
+- [[https://www.ctan.org/pkg/pict2e][pict2e]]: que permite hacer algunos pequeños dibujos (lo usaré para
   dibujar el símbolo de concatenación).
-- [[https://www.ctan.org/pkg/stackengine][~stackengine~]]: permite sobreimponer un caracter sobre otro (para el span probabilístico).
-- [[https://www.ctan.org/pkg/xparse][~xparse~]]: para definir comandos robustos
-- [[https://www.ctan.org/pkg/xspace][~xspace~]]: para que LaTeX{} decida correctamente si intercalar un espacio en blanco o no después de un comando al terminar las definiciones de los símbolos matemáticos con ~\xspace~.
+- [[https://www.ctan.org/pkg/stackengine][stackengine]]: permite sobreimponer un caracter sobre otro (para el
+  span probabilístico).
+- [[https://www.ctan.org/pkg/xparse][xparse]]: para definir comandos robustos
+- [[https://www.ctan.org/pkg/xspace][xspace]]: para que LaTeX{} decida correctamente si intercalar un
+  espacio en blanco o no después de un comando al terminar las
+  definiciones de los símbolos matemáticos con ~\xspace~.
 
 *** Instalación
 
