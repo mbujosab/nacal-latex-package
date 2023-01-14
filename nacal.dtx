@@ -49,7 +49,8 @@
 %</driver>
 % \fi
 %
-% \CheckSum{3692}
+% %\CheckSum{0}
+% \CheckSum{3986}
 % 
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -66,8 +67,10 @@
 %   Right bracket \]     Circumflex    \^     Underscore    \_
 %   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %   Right brace   \}     Tilde         \~}
+% 
 %
 % \changes{v1.0}{2022/12/04}{Versión inicial}
+% \changes{v1.1}{2023/01/14}{Añadidos más comandos y reimplementación de los subíndices de matrices}
 %
 % \GetFileInfo{nacal.sty}
 %
@@ -240,7 +243,16 @@
 % \subsection{Subíndices}
 % \subsubsection{Subíndices y exponente}
 % 
-% \DescribeMacro{\LRidxE} El comando \cs{LRidxE} tiene 4
+% \DescribeMacro{\LRidxE}
+% \DescribeMacro{\LRidxEp}
+% \DescribeMacro{\LRidxEp*}
+% \DescribeMacro{\LRidxEP}
+% \DescribeMacro{\LRidxEP*}
+% \DescribeMacro{\LRidxEpE}
+% \DescribeMacro{\LRidxEpE*}
+% \DescribeMacro{\LRidxEPE}
+% \DescribeMacro{\LRidxEPE*}
+% El comando \cs{LRidxE} tiene 4
 % argumentos,\;\cs{LRidxE}\marg{objeto}\marg{indIzda}\marg{indDcha}\marg{exponente},\; y
 % pone un subíndice a cada lado del objeto (con exponente)
 % \begin{center}
@@ -248,15 +260,73 @@
 %   \hspace{1.2cm}
 %   \fbox{$\LRidxE{\Mat{A}}{1}{7}{'}$}
 % \end{center}
+% \begin{center}
+%   |\LRidxEp{\Mat{A}}{1}{7}{'} \LRidxEp*{\Mat{A}}{1}{7}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\LRidxEp {\Mat{A}}{1}{7}{'}$}
+%   \fbox{$\LRidxEp*{\Mat{A}}{1}{7}{'}$}
+% \end{center}
+% \begin{center}
+%   |\LRidxEP{\Mat{A}}{1}{7}{'} \LRidxEP*{\Mat{A}}{1}{7}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\LRidxEP {\Mat{A}}{1}{7}{'}$}
+%   \fbox{$\LRidxEP*{\Mat{A}}{1}{7}{'}$}
+% \end{center}
+% \begin{center}
+%   |\LRidxEpE{\Mat{A}}{1}{7}{'} \LRidxEpE*{\Mat{A}}{1}{7}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\LRidxEpE {\Mat{A}}{1}{7}{'}$}
+%   \fbox{$\LRidxEpE*{\Mat{A}}{1}{7}{'}$}
+% \end{center}
+% \begin{center}
+%   |\LRidxEPE{\Mat{A}}{1}{7}{'} \LRidxEPE*{\Mat{A}}{1}{7}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\LRidxEPE {\Mat{A}}{1}{7}{'}$}
+%   \fbox{$\LRidxEPE*{\Mat{A}}{1}{7}{'}$}
+% \end{center}
 % 
-% \DescribeMacro{\LidxE} El comando \cs{LidxE} tiene 3
-% argumentos,\;\cs{LidxE}\marg{objeto}\marg{indIzda}\marg{exponente},\; y
-% pone un subíndice a la izquierda del objeto (con exponente)
+% \DescribeMacro{\LidxE}
+% \DescribeMacro{\LidxEp}
+% \DescribeMacro{\LidxEp*}
+% \DescribeMacro{\LidxEP}
+% \DescribeMacro{\LidxEP*}
+% \DescribeMacro{\LidxEpE}
+% \DescribeMacro{\LidxEpE*}
+% \DescribeMacro{\LidxEPE}
+% \DescribeMacro{\LidxEPE*}
+% El comando \cs{LidxE} tiene 3
+% argumentos,\;\cs{LidxE}\marg{objeto}\marg{indIzda}\marg{exponente},\;
+% y pone un subíndice a la izquierda del objeto (con exponente)
 % \begin{center}
 %   |\LidxE{\Mat{A}}{1}{'}|
 %   \hspace{1.2cm}
 %   \fbox{$\LidxE{\Mat{A}}{1}{'}$}
 % \end{center}
+% \begin{center}
+%   |\LidxEp{\Mat{A}}{1}{'} \LidxEp*{\Mat{A}}{1}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\LidxEp {\Mat{A}}{1}{'}$}
+%   \fbox{$\LidxEp*{\Mat{A}}{1}{'}$}
+% \end{center}
+% \begin{center}
+%   |\LidxEP{\Mat{A}}{1}{'} \LidxEP*{\Mat{A}}{1}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\LidxEP {\Mat{A}}{1}{'}$}
+%   \fbox{$\LidxEP*{\Mat{A}}{1}{'}$}
+% \end{center}
+% \begin{center}
+%   |\LidxEpE{\Mat{A}}{1}{'} \LidxEpE*{\Mat{A}}{1}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\LidxEpE {\Mat{A}}{1}{'}$}
+%   \fbox{$\LidxEpE*{\Mat{A}}{1}{'}$}
+% \end{center}
+% \begin{center}
+%   |\LidxEPE{\Mat{A}}{1}{'} \LidxEPE*{\Mat{A}}{1}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\LidxEPE {\Mat{A}}{1}{'}$}
+%   \fbox{$\LidxEPE*{\Mat{A}}{1}{'}$}
+% \end{center}
+% 
 % 
 % \DescribeMacro{\RidxE} El comando \cs{RidxE} tiene 3
 % argumentos,\;\cs{RidxE}\marg{objeto}\marg{indDcha}\marg{exponente},\; y
@@ -265,6 +335,30 @@
 %   |\RidxE{\Mat{A}}{7}{'}|
 %   \hspace{1.2cm}
 %   \fbox{$\RidxE{\Mat{A}}{7}{'}$}
+% \end{center}
+% \begin{center}
+%   |\RidxEp{\Mat{A}}{7}{'} \RidxEp*{\Mat{A}}{7}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\RidxEp {\Mat{A}}{7}{'}$}
+%   \fbox{$\RidxEp*{\Mat{A}}{7}{'}$}
+% \end{center}
+% \begin{center}
+%   |\RidxEP{\Mat{A}}{7}{'} \RidxEP*{\Mat{A}}{7}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\RidxEP {\Mat{A}}{7}{'}$}
+%   \fbox{$\RidxEP*{\Mat{A}}{7}{'}$}
+% \end{center}
+% \begin{center}
+%   |\RidxEpE{\Mat{A}}{7}{'} \RidxEpE*{\Mat{A}}{7}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\RidxEpE {\Mat{A}}{7}{'}$}
+%   \fbox{$\RidxEpE*{\Mat{A}}{7}{'}$}
+% \end{center}
+% \begin{center}
+%   |\RidxEPE{\Mat{A}}{7}{'} \RidxEPE*{\Mat{A}}{7}{'}|
+%   \hspace{1.2cm}
+%   \fbox{$\RidxEPE {\Mat{A}}{7}{'}$}
+%   \fbox{$\RidxEPE*{\Mat{A}}{7}{'}$}
 % \end{center}
 % 
 % \subsubsection{Solo subíndices}
@@ -483,9 +577,10 @@
 % El comando |Trans<XX*>| tiene 1 argumento,\;|Trans<XX*>|\marg{objeto},\; y
 % denota la transposición del \marg{objeto}
 % \begin{center}
-%   |\Trans{\Mat{A}}|
+%   |\Trans{\Mat{A}} \Trans{\Mat{M}}|
 %   \hspace{1.2cm}
 %   \fbox{$\Trans{\Mat{A}}$}
+%   \fbox{$\Trans{\Mat{M}}$}
 % \end{center}
 % \begin{center}
 %   |\Transp{\widehat{\Mat{A}}} \Transp*{\widehat{\Mat{A}}}|
@@ -3695,16 +3790,36 @@
 %   \fbox{$\VectP*[h]{a}$}
 % \end{center}
 % 
+% \DescribeMacro{\irvec}
+% tiene 3 argumentos,\;|irvec|\oarg{subíndiceInic}\oarg{subíndiceFin}\marg{nombre},\; y escribe  una sucesión de vectores de $\R[n]$
+% \begin{center}
+%   |\irvec{a} \irvec[p]{a} \irvec[p][q]{a}|
+%   \hspace{0.2cm}
+%   \fbox{$\irvec      {a}$}
+%   \fbox{$\irvec[p]   {a}$}
+%   \fbox{$\irvec[p][q]{a}$}
+% \end{center}
+% 
+% \DescribeMacro{\irvec}C
+% tiene 3 argumentos,\;|irvec|\oarg{subíndiceInic}\oarg{subíndiceFin}\marg{nombre},\; y escribe  una sucesión de columnas de una matriz
+% \begin{center}
+%   |\irvecC{a} \irvecC[p]{a} \irvecC[p][q]{a}|
+%   \hspace{0.2cm}
+%   \fbox{$\irvecC      {a}$}
+%   \fbox{$\irvecC[p]   {a}$}
+%   \fbox{$\irvecC[p][q]{a}$}
+% \end{center}
 % 
 % \subsubsection{Matrices}
 % 
 % \DescribeMacro{\Mat}
 % tiene 2 argumentos,\;|Mat<X*>|\oarg{subíndice}\marg{nombre},\; y denota una matriz
 % \begin{center}
-%   |\Mat{A} \Mat[h]{A}|
+%   |\Mat{A} \Mat[h]{A} \Mat[h]{A}^2|
 %   \hspace{1.2cm}
 %   \fbox{$\Mat   {A}$}
 %   \fbox{$\Mat[h]{A}$}
+%   \fbox{$\Mat[h]{A}^2$}
 % \end{center}
 % \begin{center}
 %   |\Matp{A} \Matp*{A} \MatP{A} \MatP*{A}|
@@ -3809,6 +3924,23 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \paragraph{Matrices columna}{\mbox{ }}
 % 
+% \DescribeMacro{\MVect}
+% \DescribeMacro{\MVect*}
+% El comando \cs{MVect} tiene 2 argumentos,\;\cs{MVect}\oarg{subíndice}\marg{nombre},\;
+% y denota una matriz columna creada a partir de un vector
+% \begin{center}
+%   |\MVect{a} \MVect*{a}|
+%   \hspace{1.2cm}
+%   \fbox{$\MVect {a}$}
+%   \fbox{$\MVect*{a}$}
+% \end{center}
+% \begin{center}
+%   |\MVectF[h]{a} \MVectF*[h]{a}|
+%   \hspace{1.2cm}
+%   \fbox{$\MVect [h]{a}$}
+%   \fbox{$\MVect*[h]{a}$}
+% \end{center}
+% 
 % \DescribeMacro{\MVectF}
 % \DescribeMacro{\MVectF*}
 % El comando \cs{MVectF} tiene 3 argumentos,\;\cs{MVectF}\oarg{subíndice}\marg{nombre}\marg{índice},\;
@@ -3845,6 +3977,24 @@
 % 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \paragraph{Matrices fila}{\mbox{ }}
+% 
+% \DescribeMacro{\MVectT}
+% \DescribeMacro{\MVectT*}
+% El comando \cs{MVectT} tiene 2 argumentos,\;\cs{MVectT}\oarg{subíndice}\marg{nombre},\;
+% y denota una matriz fila creada a partir de un vector
+% \begin{center}
+%   |\MVectT{a} \MVectT*{a}|
+%   \hspace{1.2cm}
+%   \fbox{$\MVectT {a}$}
+%   \fbox{$\MVectT*{a}$}
+% \end{center}
+% \begin{center}
+%   |\MVectT[h]{a} \MVectT*[h]{a}|
+%   \hspace{1.2cm}
+%   \fbox{$\MVectT [h]{a}$}
+%   \fbox{$\MVectT*[h]{a}$}
+% \end{center}
+% 
 % 
 % \DescribeMacro{\MVectFT}
 % \DescribeMacro{\MVectFT*}
@@ -4258,8 +4408,54 @@
 %   \fbox{$\MatdimPE*{x}{n}{m}$}
 % \end{center}
 % 
+% \DescribeMacro{\MatTdim}
+% \DescribeMacro{\MatTdim}
+% \DescribeMacro{\MatTdimp}
+% \DescribeMacro{\MatTdimp*}
+% \DescribeMacro{\MatTdimP}
+% \DescribeMacro{\MatTdimP*}
+% \DescribeMacro{\MatTdimpE}
+% \DescribeMacro{\MatTdimpE*}
+% \DescribeMacro{\MatTdimPE}
+% \DescribeMacro{\MatTdimPE*}
+% El comando \cs{Matdim} tiene 3
+% argumentos,\;|Matdim<XX*>|\marg{nombre}\marg{filas}\marg{columnas}
+% \begin{center}
+%   |\MatTdim{X}{n}{m}|
+%   \hspace{1.2cm}
+%   \fbox{$\MatTdim{xxx}{n}{m}$}
+% \end{center}
+% 
+% \begin{center}
+%   |\MatTdimp{x}{n}{m} \MatTdimp*{x}{n}{m}|
+%   \hspace{1.2cm}
+%   \fbox{$\MatTdimp {x}{n}{m}$}
+%   \fbox{$\MatTdimp*{x}{n}{m}$}
+% \end{center}
+% 
+% \begin{center}
+%   |\MatTdimP{x}{n}{m} \MatTdimP*{x}{n}{m}|
+%   \hspace{1.2cm}
+%   \fbox{$\MatTdimP {x}{n}{m}$}
+%   \fbox{$\MatTdimP*{x}{n}{m}$}
+% \end{center}
+% 
+% \begin{center}
+%   |\MatTdimpE{x}{n}{m} \MatTdimpE*{x}{n}{m}|
+%   \hspace{1.2cm}
+%   \fbox{$\MatTdimpE {x}{n}{m}$}
+%   \fbox{$\MatTdimpE*{x}{n}{m}$}
+% \end{center}
+% 
+% \begin{center}
+%   |\MatTdimPE{x}{n}{m} \MatTdimPE*{x}{n}{m}|
+%   \hspace{1.2cm}
+%   \fbox{$\MatTdimPE {x}{n}{m}$}
+%   \fbox{$\MatTdimPE*{x}{n}{m}$}
+% \end{center}
+% 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \paragraph{Matriz de autovalores}{\mbox{ } }
+% \paragraph{Nombre de la matriz de autovalores}{\mbox{ } }
 % 
 % \DescribeMacro{\MDaV}
 % \cs{MDaV} no  tiene
@@ -4270,6 +4466,45 @@
 %   \fbox{$\MDaV$}
 % \end{center}
 % 
+% \paragraph{Matriz triangular superior unitaria}  (según denominación de G. H. Golub y C. F. Van Loan)
+% 
+% \DescribeMacro{\UMat}
+% \DescribeMacro{\InvUMat}
+% \cs{Umat} y \cs{InvUmat} tienen 1 argumento opcional
+% \begin{center}
+%   |\UMat{A} \UMat[k]{A}|
+%   \hspace{1.2cm}
+%   \fbox{$\UMat{A}$}
+%   \fbox{$\UMat[k]{A}$}
+% \end{center}
+% \begin{center}
+%   |\InvUMat{A} \InvUMat[k]{A}|
+%   \hspace{1.2cm}
+%   \fbox{$\InvUMat{A}$}
+%   \fbox{$\InvUMat[k]{A}$}
+% \end{center}
+% 
+% \paragraph{Matriz triangular inferior unitaria}  (según denominación de G. H. Golub y C. F. Van Loan)
+% 
+% \DescribeMacro{\UMatT}
+% \cs{UMatT} tiene 1 argumento opcional
+% \begin{center}
+%   |\UMatT{A} \UMatT[k]{A}|
+%   \hspace{1.2cm}
+%   \fbox{$\UMatT{A}$}
+%   \fbox{$\UMatT[k]{A}$}
+% \end{center}
+% 
+% \paragraph{Matriz de eliminación gaussiana (por columnas)}
+% \DescribeMacro{\MatGC}
+% \DescribeMacro{\InvMatGC}
+% \cs{MatGC} e \cs{InvMatGC} tienen 1 argumento 
+% \begin{center}
+%   |\MatGC{h} \InvMatGC{h}|
+%   \hspace{1.2cm}
+%   \fbox{$\MatGC{h}$}
+%   \fbox{$\InvMatGC{h}$}
+% \end{center}
 % 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \subsection{Productos entre vectores}
@@ -4530,12 +4765,20 @@
 % \subsection{Matriz por matriz}
 % 
 % \DescribeMacro{\MN}
-% tiene 2 argumentos,\;\cs{MN}\marg{nombre}\marg{nombre},\; y
-% denota el producto matriz por matriz
+% tiene 4
+% argumentos,\;\cs{MN}\oarg{subíndice1}\marg{nombre1}\oarg{subíndice2}\marg{nombre1},\;
+% y denota el producto matriz por matriz
 % \begin{center}
 %   |\MN{A}{B}|
 %   \hspace{1.2cm}
 %   \fbox{$\MN{A}{B}$}
+% \end{center}
+% \begin{center}
+%   |\MN[h]{A}{B} \MN{A}[k]{B} \MN[h]{A}[k]{B}|
+%   \hspace{1.2cm}
+%   \fbox{$\MN[h]{A}{B}$}
+%   \fbox{$\MN{A}[k]{B}$}
+%   \fbox{$\MN[h]{A}[k]{B}$}
 % \end{center}
 % 
 % \DescribeMacro{\MTN}
@@ -4543,12 +4786,20 @@
 % \DescribeMacro{\MTNp*}
 % \DescribeMacro{\MTNP}
 % \DescribeMacro{\MTNP*}
-% tiene 2 argumentos,\;\cs{MTN}\marg{nombre}\marg{nombre},\; y
-% denota el producto matriz transpuesta por matriz
+% tiene 4
+% argumentos,\;\cs{MTN}\oarg{subíndice1}\marg{nombre1}\oarg{subíndice2}\marg{nombre1},\;
+% y denota el producto matriz transpuesta por matriz
 % \begin{center}
 %   |\MTN{A}{B}|
 %   \hspace{1.2cm}
 %   \fbox{$\MTN{A}{B}$}
+% \end{center}
+% \begin{center}
+%   |\MTN[h]{A}{B} \MTN{A}[k]{B} \MTN[h]{A}[k]{B}|
+%   \hspace{1.2cm}
+%   \fbox{$\MTN[h]{A}{B}$}
+%   \fbox{$\MTN{A}[k]{B}$}
+%   \fbox{$\MTN[h]{A}[k]{B}$}
 % \end{center}
 % \begin{center}
 %   |\MTNp{A}{B} \MTNp*{A}{B}|
@@ -4557,10 +4808,22 @@
 %   \fbox{$\MTNp*{A}{B}$}
 % \end{center}
 % \begin{center}
+%   |\MTNp[h]{A}[k]{B} \MTNp*[h]{A}[k]{B}|
+%   \hspace{1.2cm}
+%   \fbox{$\MTNp [h]{A}[k]{B}$}
+%   \fbox{$\MTNp*[h]{A}[k]{B}$}
+% \end{center}
+% \begin{center}
 %   |\MTNP{A}{B} \MTNP*{A}{B}|
 %   \hspace{1.2cm}
 %   \fbox{$\MTNP {A}{B}$}
 %   \fbox{$\MTNP*{A}{B}$}
+% \end{center}
+% \begin{center}
+%   |\MTNP[h]{A}[k]{B} \MTNP*[h]{A}[k]{B}|
+%   \hspace{1.2cm}
+%   \fbox{$\MTNP [h]{A}[k]{B}$}
+%   \fbox{$\MTNP*[h]{A}[k]{B}$}
 % \end{center}
 % 
 % \DescribeMacro{\MNT}
@@ -4568,12 +4831,20 @@
 % \DescribeMacro{\MNTp*}
 % \DescribeMacro{\MNTP}
 % \DescribeMacro{\MNTP*}
-% tiene 2 argumentos,\;\cs{MNT}\marg{nombre}\marg{nombre},\; y
-% denota el producto matriz por matriz transpuesta
+% tiene 4
+% argumentos,\;\cs{MNT}\oarg{subíndice1}\marg{nombre1}\oarg{subíndice2}\marg{nombre1},\;
+% y denota el producto matriz por matriz transpuesta
 % \begin{center}
 %   |\MNT{A}{B}|
 %   \hspace{1.2cm}
 %   \fbox{$\MNT{A}{B}$}
+% \end{center}
+% \begin{center}
+%   |\MNT[h]{A}{B} \MNT{A}[k]{B} \MNT[h]{A}[k]{B}|
+%   \hspace{1.2cm}
+%   \fbox{$\MNT[h]{A}{B}$}
+%   \fbox{$\MNT{A}[k]{B}$}
+%   \fbox{$\MNT[h]{A}[k]{B}$}
 % \end{center}
 % \begin{center}
 %   |\MNTp{A}{B} \MNTp*{A}{B}|
@@ -4582,10 +4853,22 @@
 %   \fbox{$\MNTp*{A}{B}$}
 % \end{center}
 % \begin{center}
+%   |\MNTp[h]{A}[k]{B} \MNTp*[h]{A}[k]{B}|
+%   \hspace{1.2cm}
+%   \fbox{$\MNTp [h]{A}[k]{B}$}
+%   \fbox{$\MNTp*[h]{A}[k]{B}$}
+% \end{center}
+% \begin{center}
 %   |\MNTP{A}{B} \MNTP*{A}{B}|
 %   \hspace{1.2cm}
 %   \fbox{$\MNTP {A}{B}$}
 %   \fbox{$\MNTP*{A}{B}$}
+% \end{center}
+% \begin{center}
+%   |\MNTP[h]{A}[k]{B} \MNTP*[h]{A}[k]{B}|
+%   \hspace{1.2cm}
+%   \fbox{$\MNTP [h]{A}[k]{B}$}
+%   \fbox{$\MNTP*[h]{A}[k]{B}$}
 % \end{center}
 % 
 % \DescribeMacro{\MTM}
@@ -4593,24 +4876,30 @@
 % \DescribeMacro{\MTMp*}
 % \DescribeMacro{\MTMP}
 % \DescribeMacro{\MTMP*}
-% tiene 2 argumentos,\;\cs{MTM}\marg{nombre}\marg{nombre},\; y
-% denota el producto matriz transpuesta por matriz
+% tiene 2
+% argumentos,\;\cs{MTM}\oarg{subíndice}\marg{nombre},\;
+% y denota el producto matriz transpuesta por matriz
 % \begin{center}
-%   |\MTM{A}|
+%   |\MTM{A} \MTM[h]{A}|
 %   \hspace{1.2cm}
-%   \fbox{$\MTM{A}$}
+%   \fbox{$\MTM   {A}$}
+%   \fbox{$\MTM[h]{A}$}
 % \end{center}
 % \begin{center}
-%   |\MTMp{A} \MTMp*{A}|
+%   |\MTMp{A} \MTMp*{A} \MTMp[h]{A} \MTMp*[h]{A}|
 %   \hspace{1.2cm}
 %   \fbox{$\MTMp {A}$}
 %   \fbox{$\MTMp*{A}$}
+%   \fbox{$\MTMp [h]{A}$}
+%   \fbox{$\MTMp*[h]{A}$}
 % \end{center}
 % \begin{center}
-%   |\MTMP{A} \MTMP*{A}|
+%   |\MTMP{A} \MTMP*{A} \MTMP[h]{A} \MTMP*[h]{A}|
 %   \hspace{1.2cm}
 %   \fbox{$\MTMP {A}$}
 %   \fbox{$\MTMP*{A}$}
+%   \fbox{$\MTMP [h]{A}$}
+%   \fbox{$\MTMP*[h]{A}$}
 % \end{center}
 % 
 % \DescribeMacro{\MMT}
@@ -4618,7 +4907,7 @@
 % \DescribeMacro{\MMTp*}
 % \DescribeMacro{\MMTP}
 % \DescribeMacro{\MMTP*}
-% tiene 2 argumentos,\;\cs{MMT}\marg{nombre}\marg{nombre},\; y
+% tiene 2 argumentos,\;\cs{MMT}\oarg{subíndice}\marg{nombre},\; y
 % denota el producto matriz por su transpuesta
 % \begin{center}
 %   |\MMT{A}|
@@ -4626,16 +4915,20 @@
 %   \fbox{$\MMT{A}$}
 % \end{center}
 % \begin{center}
-%   |\MMTp{A} \MMTp*{A}|
+%   |\MMTp{A} \MMTp*{A} \MMTp[h]{A} \MMTp*[h]{A}|
 %   \hspace{1.2cm}
 %   \fbox{$\MMTp {A}$}
 %   \fbox{$\MMTp*{A}$}
+%   \fbox{$\MMTp [h]{A}$}
+%   \fbox{$\MMTp*[h]{A}$}
 % \end{center}
 % \begin{center}
-%   |\MMTP{A} \MMTP*{A}|
+%   |\MMTP{A} \MMTP*{A} \MMTP[h]{A} \MMTP*[h]{A}|
 %   \hspace{1.2cm}
 %   \fbox{$\MMTP {A}$}
 %   \fbox{$\MMTP*{A}$}
+%   \fbox{$\MMTP [h]{A}$}
+%   \fbox{$\MMTP*[h]{A}$}
 % \end{center}
 % 
 % \DescribeMacro{\MNMT}
@@ -4643,12 +4936,14 @@
 % \DescribeMacro{\MNMTp*}
 % \DescribeMacro{\MNMTP}
 % \DescribeMacro{\MNMTP*}
-% tiene 2 argumentos,\;\cs{MNMT}\marg{nombre}\marg{nombre},\; y
-% denota el producto matriz por matriz por matriz transpuesta
+% tiene 4
+% argumentos,\;\cs{MNMT}\oarg{subíndice1}\marg{nombre1}\oarg{subíndice2}\marg{nombre1},\;
+% y denota el producto matriz por matriz por matriz transpuesta
 % \begin{center}
-%   |\MNMT{A}{D}|
+%   |\MNMT{A}{D} \MNMT[h]{A}[k]{D}|
 %   \hspace{1.2cm}
-%   \fbox{$\MNMT{A}{B}$}
+%   \fbox{$\MNMT   {A}   {B}$}
+%   \fbox{$\MNMT[h]{A}[k]{B}$}
 % \end{center}
 % \begin{center}
 %   |\MNMTp{A}{D} \MNMTp*{A}{D}|
@@ -4657,10 +4952,22 @@
 %   \fbox{$\MNMTp*{A}{B}$}
 % \end{center}
 % \begin{center}
+%   |\MNMTp[h]{A}[k]{D} \MNMTp*[h]{A}[k]{D}|
+%   \hspace{1.2cm}
+%   \fbox{$\MNMTp [h]{A}[k]{B}$}
+%   \fbox{$\MNMTp*[h]{A}[k]{B}$}
+% \end{center}
+% \begin{center}
 %   |\MNMTP{A}{D} \MNMTP*{A}{D}|
 %   \hspace{1.2cm}
 %   \fbox{$\MNMTP {A}{B}$}
 %   \fbox{$\MNMTP*{A}{B}$}
+% \end{center}
+% \begin{center}
+%   |\MNMTP[h]{A}[k]{D} \MNMTP*[h]{A}[k]{D}|
+%   \hspace{1.2cm}
+%   \fbox{$\MNMTP [h]{A}[k]{B}$}
+%   \fbox{$\MNMTP*[h]{A}[k]{B}$}
 % \end{center}
 % 
 % \DescribeMacro{\MTNM}
@@ -4668,12 +4975,15 @@
 % \DescribeMacro{\MTNMp*}
 % \DescribeMacro{\MTNMP}
 % \DescribeMacro{\MTNMP*}
-% tiene 2 argumentos,\;\cs{MTNM}\marg{nombre}\marg{nombre},\; y
-% denota el producto matriz transpuesta por matriz por matriz transpuesta
+% tiene 4 argumentos,
+% \;\cs{MNMT}\oarg{subíndice1}\marg{nombre1}\oarg{subíndice2}\marg{nombre1},\;
+% y denota el producto matriz transpuesta por matriz por matriz
+% transpuesta
 % \begin{center}
-%   |\MTNM{A}{D}|
+%   |\MTNM{A}{D} \MTNM[h]{A}[k]{D}|
 %   \hspace{1.2cm}
-%   \fbox{$\MTNM{A}{B}$}
+%   \fbox{$\MTNM   {A}   {B}$}
+%   \fbox{$\MTNM[h]{A}[k]{B}$}
 % \end{center}
 % \begin{center}
 %   |\MTNMp{A}{D} \MTNMp*{A}{D}|
@@ -4682,10 +4992,22 @@
 %   \fbox{$\MTNMp*{A}{B}$}
 % \end{center}
 % \begin{center}
+%   |\MTNMp[h]{A}[k]{D} \MTNMp*[h]{A}[k]{D}|
+%   \hspace{1.2cm}
+%   \fbox{$\MTNMp [h]{A}[k]{B}$}
+%   \fbox{$\MTNMp*[h]{A}[k]{B}$}
+% \end{center}
+% \begin{center}
 %   |\MTNMP{A}{D} \MTNMP*{A}{D}|
 %   \hspace{1.2cm}
 %   \fbox{$\MTNMP {A}{B}$}
 %   \fbox{$\MTNMP*{A}{B}$}
+% \end{center}
+% \begin{center}
+%   |\MTNMP[h]{A}[k]{D} \MTNMP*[h]{A}[k]{D}|
+%   \hspace{1.2cm}
+%   \fbox{$\MTNMP [h]{A}[k]{B}$}
+%   \fbox{$\MTNMP*[h]{A}[k]{B}$}
 % \end{center}
 % 
 % \subsection{Otros productos entre matrices y vectores}
@@ -4793,6 +5115,77 @@
 %   \hspace{1.2cm}
 %   \fbox{$\InvMTM {A}$}
 %   \fbox{$\InvMTM*{A}$}
+% \end{center}
+% \begin{center}
+%   |\InvMTM[h]{A} \InvMTM*[h]{A}|
+%   \hspace{1.2cm}
+%   \fbox{$\InvMTM [h]{A}$}
+%   \fbox{$\InvMTM*[h]{A}$}
+% \end{center}
+% 
+% \DescribeMacro{\InvXTX}
+% no tiene argumentos y
+% denota la inversa del producto de la matriz X transpuesta por ella misma
+% \begin{center}
+%   |\InvXTX|
+%   \hspace{1.2cm}
+%   \fbox{$\InvXTX$}
+% \end{center}
+% 
+% \DescribeMacro{\MInvMTMMT}
+% \DescribeMacro{\MInvMTMMT*}
+% tiene 2 argumentos,\;\cs{MInvMTMMT}\oarg{subíndice}\marg{nombre},\; y
+% denota la matriz proyección sobre el espacio columna de la matriz de rango completo por columnas indicada por su \marg{nombre}
+% \begin{center}
+%   |\MInvMTMMT{A} \MInvMTMMT*{a}|
+%   \hspace{1.2cm}
+%   \fbox{$\MInvMTMMT {A}$}
+%   \fbox{$\MInvMTMMT*{a}$}
+% \end{center}
+% \begin{center}
+%   |\MInvMTMMT[h]{A} \MInvMTMMT*[h]{a}|
+%   \hspace{1.2cm}
+%   \fbox{$\MInvMTMMT [h]{A}$}
+%   \fbox{$\MInvMTMMT*[h]{a}$}
+% \end{center}
+% 
+% \DescribeMacro{\VTW}
+% tiene 4 argumentos,\;\cs{VTW}\oarg{subíndice1}\marg{nombre1}\oarg{subíndice2}\marg{nombre2},\; y
+% denota el producto de una matriz fila por una matriz columna
+% \begin{center}
+%   |\VTW{a}{b} \VTW[h]{a}[k]{b}|
+%   \hspace{1.2cm}
+%   \fbox{$\VTW   {a}   {b}$}
+%   \fbox{$\VTW[h]{a}[k]{b}$}
+% \end{center}
+% 
+% \DescribeMacro{\VTV}
+% tiene 2 argumentos,\;\cs{VTV}\oarg{subíndice}\marg{nombre},\; y
+% denota el producto de una matriz fila por su transpuesta
+% \begin{center}
+%   |\VTV{a} \VTV[h]{a}|
+%   \hspace{1.2cm}
+%   \fbox{$\VTV   {a}$}
+%   \fbox{$\VTV[h]{a}$}
+% \end{center}
+% 
+% \DescribeMacro{\VWT}
+% tiene 2 argumentos,\;\cs{VWT}\marg{nombre}\marg{nombre},\; y
+% denota el producto de una matriz columna por una matriz fila
+% \begin{center}
+%   |\VWT{a}{b}|
+%   \hspace{1.2cm}
+%   \fbox{$\VWT{a}{b}$}
+% \end{center}
+% 
+% \DescribeMacro{\VVT}
+% tiene 2 argumentos,\;\cs{VVT}\oarg{subíndice}\marg{nombre},\; y
+% denota el producto de una matriz columna por su transpuesta
+% \begin{center}
+%   |\VVT{a} \VVT[h]{a}|
+%   \hspace{1.2cm}
+%   \fbox{$\VVT   {a}$}
+%   \fbox{$\VVT[h]{a}$}
 % \end{center}
 % 
 % \subsection{Sistemas de ecuaciones}
@@ -5034,6 +5427,15 @@
 %   \fbox{$\media{}$}
 % \end{center}
 % 
+% \DescribeMacro{res}
+% El comando \cs{res} no tiene
+% argumentos y pinta el vector de residuos de un ajuste MCO
+% \begin{center}
+%   |\res|
+%   \hspace{1.2cm}
+%   \fbox{$\res$}
+% \end{center}
+% 
 % 
 % \StopEventually{\PrintChanges\PrintIndex}
 %
@@ -5138,14 +5540,120 @@
 % \fi
 %
 % \begin{macro}{\LRidxE}
-% \begin{macro}{\LidxE}
-% \begin{macro}{\RidxE}
-% Comandos para escribir índices a derecha y/o izquierda de un objeto (con exponente)
+% \begin{macro}{\LRidxEp}
+% \begin{macro}{\LRidxEp*}
+% \begin{macro}{\LRidxEP}
+% \begin{macro}{\LRidxEP*}
+% \begin{macro}{\LRidxEpE}
+% \begin{macro}{\LRidxEpE*}
+% \begin{macro}{\LRidxEPE}
+% \begin{macro}{\LRidxEPE*}
+% Comandos para escribir índices a derecha e izquierda de un objeto (con exponente)
 %    \begin{macrocode}
 \NewDocumentCommand\LRidxE {mmmm}{\ensuremath{\leftidx{_{#2}^{}}{{#1}}{_{#3}^{#4}}}\xspace}
-\NewDocumentCommand\LidxE  { mmm}{\ensuremath{\leftidx{_{#2}^{}}{{#1}}{_{  }^{#3}}}\xspace}
-\NewDocumentCommand\RidxE  { mmm}{\ensuremath{\leftidx{        }{{#1}}{_{#2}^{#3}}}\xspace}
+
+\NewDocumentCommand\LRidxEp {smmmm}{\ensuremath{\IfBooleanTF#1
+                {\LRidxE{\parentesis*{#2}}{#3}{#4}{#5}}
+                {\LRidxE{\parentesis {#2}}{#3}{#4}{#5}}     }\xspace}
+
+\NewDocumentCommand\LRidxEP {smmmm}{\ensuremath{\IfBooleanTF#1
+                {\LRidxE{\Parentesis*{#2}}{#3}{#4}{#5}}
+                {\LRidxE{\Parentesis {#2}}{#3}{#4}{#5}}     }\xspace}
+
+\NewDocumentCommand\LRidxEpE {smmmm}{\ensuremath{\IfBooleanTF#1
+                {\parentesis*{\LRidxE{#2}{#3}{#4}{#5}}}
+                {\parentesis {\LRidxE{#2}{#3}{#4}{#5}}}     }\xspace}
+
+\NewDocumentCommand\LRidxEPE {smmmm}{\ensuremath{\IfBooleanTF#1
+                {\Parentesis*{\LRidxE{#2}{#3}{#4}{#5}}}
+                {\Parentesis {\LRidxE{#2}{#3}{#4}{#5}}}     }\xspace}
 %    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\LidxE}
+% \begin{macro}{\LidxEp}
+% \begin{macro}{\LidxEp*}
+% \begin{macro}{\LidxEP}
+% \begin{macro}{\LidxEP*}
+% \begin{macro}{\LidxEpE}
+% \begin{macro}{\LidxEpE*}
+% \begin{macro}{\LidxEPE}
+% \begin{macro}{\LidxEPE*}
+% Comandos para escribir índices a la izquierda de un objeto (con exponente)
+%    \begin{macrocode}
+\NewDocumentCommand\LidxE  { mmm}{\ensuremath{{\leftidx{_{#2}^{}}{{#1}}{_{  }^{#3}}}}\xspace}
+
+\NewDocumentCommand\LidxEp {smmm}{\ensuremath{\IfBooleanTF#1
+                {\LidxE{\parentesis*{#2}}{#3}{#4}}
+                {\LidxE{\parentesis {#2}}{#3}{#4}}     }\xspace}
+
+\NewDocumentCommand\LidxEP {smmm}{\ensuremath{\IfBooleanTF#1
+                {\LidxE{\Parentesis*{#2}}{#3}{#4}}
+                {\LidxE{\Parentesis {#2}}{#3}{#4}}     }\xspace}
+
+\NewDocumentCommand\LidxEpE {smmm}{\ensuremath{\IfBooleanTF#1
+                {\parentesis*{\LidxE{#2}{#3}{#4}}}
+                {\parentesis {\LidxE{#2}{#3}{#4}}}     }\xspace}
+
+\NewDocumentCommand\LidxEPE {smmm}{\ensuremath{\IfBooleanTF#1
+                {\Parentesis*{\LidxE{#2}{#3}{#4}}}
+                {\Parentesis {\LidxE{#2}{#3}{#4}}}     }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\RidxE}
+% \begin{macro}{\RidxEp}
+% \begin{macro}{\RidxEp*}
+% \begin{macro}{\RidxEP}
+% \begin{macro}{\RidxEP*}
+% \begin{macro}{\RidxEpE}
+% \begin{macro}{\RidxEpE*}
+% \begin{macro}{\RidxEPE}
+% \begin{macro}{\RidxEPE*}
+% Comandos para escribir índices a la derecha de un objeto (con exponente)
+%    \begin{macrocode}
+\NewDocumentCommand\RidxE  { mmm}{\ensuremath{{\leftidx{        }{{#1}}{_{#2}^{#3}}}}\xspace}
+
+\NewDocumentCommand\RidxEp {smmm}{\ensuremath{\IfBooleanTF#1
+                {\RidxE{\parentesis*{#2}}{#3}{#4}}
+                {\RidxE{\parentesis {#2}}{#3}{#4}}     }\xspace}
+
+\NewDocumentCommand\RidxEP {smmm}{\ensuremath{\IfBooleanTF#1
+                {\RidxE{\Parentesis*{#2}}{#3}{#4}}
+                {\RidxE{\Parentesis {#2}}{#3}{#4}}     }\xspace}
+
+\NewDocumentCommand\RidxEpE {smmm}{\ensuremath{\IfBooleanTF#1
+                {\parentesis*{\RidxE{#2}{#3}{#4}}}
+                {\parentesis {\RidxE{#2}{#3}{#4}}}     }\xspace}
+
+\NewDocumentCommand\RidxEPE {smmm}{\ensuremath{\IfBooleanTF#1
+                {\Parentesis*{\RidxE{#2}{#3}{#4}}}
+                {\Parentesis {\RidxE{#2}{#3}{#4}}}     }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
 % \end{macro}
 % \end{macro}
 % \end{macro}
@@ -5155,7 +5663,7 @@
 % \begin{macro}{\LRidx}
 % Comando para escribir un índice a la derecha y otro a la izquierda de un objeto
 %    \begin{macrocode}
-\NewDocumentCommand\LRidx  { mmm}{\ensuremath{\LRidxE{#1}{#2}{#3}{}}\xspace}
+\NewDocumentCommand\LRidx  { mmm}{\ensuremath{{\LRidxE{#1}{#2}{#3}{}}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -5411,8 +5919,8 @@
 % Transposición
 %    \begin{macrocode}
 \NewDocumentCommand\Trans  {sm}{\ensuremath{\IfBooleanTF#1
-        {{#2\big.}^{\T} }
-        { #2^{\T}      }                  }\xspace}
+        {\RidxE{#2\big.}{}{\T} }
+        {\RidxE{#2}{}{\T}      }                  }\xspace}
 
 \NewDocumentCommand\Transp {sm}{\ensuremath{\IfBooleanTF#1
        {\Trans{{\parentesis*{#2}}}}
@@ -5467,7 +5975,7 @@
 % \begin{macro}{\InvPE*}
 % Notación de la inversa
 %    \begin{macrocode}
-\NewDocumentCommand\Inv     {m    }{\ensuremath{ #1^{\minus1} }\xspace}
+\NewDocumentCommand\Inv     {m    }{\ensuremath{ \RidxE{#1}{}{\minus1} }\xspace}
 
 \NewDocumentCommand\Invp    {sm   }{\ensuremath{\IfBooleanTF#1
             {\Inv{{\parentesis*{#2}}}}
@@ -7548,6 +8056,21 @@
 % \end{macro}
 % \end{macro}
 %
+%
+% \begin{macro}{\irvec}
+% Sucesión de vectores de Rn
+%    \begin{macrocode}
+\NewDocumentCommand\irvec{O{1}O{n}m}{\ensuremath{\Vect[#1]{#3},\ldots,\Vect[#2]{#3} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\irvecC}
+% Sucesión de columnas de una matriz
+%    \begin{macrocode}
+\NewDocumentCommand\irvecC{O{1}O{n}m}{\ensuremath{\VectC{#3}{#1},\ldots,\VectC{#3}{#2} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \subsubsection{Matrices}
 %
@@ -7559,7 +8082,7 @@
 % Matriz
 %    \begin{macrocode}
 \NewDocumentCommand\Mat    {O{}m}{\ensuremath{%
-                       \boldsymbol{ \mathsf{\MakeUppercase{#2}} }_{#1}     }\xspace}
+                       \Ridx{\boldsymbol{\mathsf{\MakeUppercase{#2}}}}{#1}   }\xspace}
 
 \NewDocumentCommand\Matp  {som}{\ensuremath{\IfBooleanTF#1
     {\parentesis*{\IfNoValueTF{#2}{\Mat{#3}}{\Mat[#2]{#3}}}}
@@ -7589,7 +8112,7 @@
 % \begin{macro}{\MatTPE*}
 % Matriz transpuesta
 %    \begin{macrocode}
-\NewDocumentCommand\MatT{om}{\ensuremath{\Trans{\Mat[#1]{#2}}}\xspace}
+\NewDocumentCommand\MatT{O{}m}{\ensuremath{\RidxE{\Mat{#2}}{#1}{\T}}\xspace}
 
 \NewDocumentCommand\MatTp  {som}{\ensuremath{\IfBooleanTF#1
        {\Transp* {\Mat[#2]{#3}}}
@@ -7599,13 +8122,13 @@
        {\TransP* {\Mat[#2]{#3}}}
        {\TransP  {\Mat[#2]{#3}}}            }\xspace}
 
-\NewDocumentCommand\MatTpE {som}{\ensuremath{\IfBooleanTF#1
-       {\TranspE*{\Mat[#2]{#3}}}
-       {\TranspE {\Mat[#2]{#3}}}           }\xspace}
+\NewDocumentCommand\MatTpE {sO{}m}{\ensuremath{\IfBooleanTF#1
+       {\RidxEpE*{\Mat{#3}}{#2}{\T}}
+       {\RidxEpE*{\Mat{#3}}{#2}{\T}}     }\xspace}
 
-\NewDocumentCommand\MatTPE {som}{\ensuremath{\IfBooleanTF#1
-       {\TransPE*{\Mat[#2]{#3}}}
-       {\TransPE {\Mat[#2]{#3}}}           }\xspace}
+\NewDocumentCommand\MatTPE {sO{}m}{\ensuremath{\IfBooleanTF#1
+       {\RidxEPE*{\Mat{#3}}{#2}{\T}}
+       {\RidxEPE*{\Mat{#3}}{#2}{\T}}     }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -7641,6 +8164,30 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \textbf{Matrices columna}
+%
+% \begin{macro}{\MVect}
+% \begin{macro}{\MVect*}
+% Matriz columna creada con un vector
+%    \begin{macrocode}
+\NewDocumentCommand\MVect{som}{\ensuremath{\IfBooleanTF#1
+              {\left[\Vect[#2]{#3}\vphantom{\Big.}\right]}
+              { \big[\Vect[#2]{#3}                \big  ]}   }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\MVectT}
+% \begin{macro}{\MVectT*}
+% Matriz fila creada con un vector
+%    \begin{macrocode}
+\NewDocumentCommand\MVectT{som}{\ensuremath{\IfBooleanTF#1
+              {\Trans{\MVect*[#2]{#3}} }
+              {\Trans{\MVect [#2]{#3}} }                     }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
 %
 % \begin{macro}{\MVectF}
 % Matriz columna creada con una fila
@@ -7881,6 +8428,46 @@
 % \end{macro}
 % \end{macro}
 %
+%
+% \begin{macro}{\MatTdim}
+% \begin{macro}{\MatTdimp}
+% \begin{macro}{\MatTdimp*}
+% \begin{macro}{\MatTdimP}
+% \begin{macro}{\MatTdimP*}
+% \begin{macro}{\MatTdimpE}
+% \begin{macro}{\MatTdimpE*}
+% \begin{macro}{\MatTdimPE}
+% \begin{macro}{\MatTdimPE*}
+% Matriz con el orden por debajo
+%    \begin{macrocode}
+\NewDocumentCommand\MatTdim{ommm}{\ensuremath{ \Dim{\MatT[#1]{#2}}{#3}{#4} }\xspace}
+
+\NewDocumentCommand\MatTdimp {sommm}{\ensuremath{\IfBooleanTF#1
+       {\Dimp*{\MatT[#2]{#3}}{#4}{#5}}
+       {\Dimp {\MatT[#2]{#3}}{#4}{#5}}        }\xspace}
+
+\NewDocumentCommand\MatTdimP {sommm}{\ensuremath{\IfBooleanTF#1
+       {\DimP*{\MatT[#2]{#3}}{#4}{#5}}
+       {\DimP {\MatT[#2]{#3}}{#4}{#5}}        }\xspace}
+
+\NewDocumentCommand\MatTdimpE{sommm}{\ensuremath{\IfBooleanTF#1
+       {\DimpE*{\MatT[#2]{#3}}{#4}{#5}}
+       {\DimpE {\MatT[#2]{#3}}{#4}{#5}}       }\xspace}
+
+\NewDocumentCommand\MatTdimPE{sommm}{\ensuremath{\IfBooleanTF#1
+       {\DimPE*{\MatTpE*[#2]{#3}}{#4}{#5}}
+       {\DimPE {\MatTpE*[#2]{#3}}{#4}{#5}}       }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
 % \textbf{Matriz de autovalores}
 %
 % \begin{macro}{\MDaV}
@@ -7888,6 +8475,45 @@
 %    \begin{macrocode}
 \def\MDaV{D}
 %    \end{macrocode}
+% \end{macro}
+%
+%
+% \textbf{Matriz triangular superior unitaria} (según denominación de G. H. Golub y C. F. Van Loan)
+%
+% \begin{macro}{\Umat}
+% Matriz triangular superior unitaria
+%    \begin{macrocode}
+\NewDocumentCommand\UMat{O{}m}{\ensuremath{ \Mat[#1]{\Dot{#2}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\InvUmat}
+% Inversa de matriz triangular superior unitaria
+%    \begin{macrocode}
+\NewDocumentCommand\InvUMat{O{}m}{\ensuremath{\RidxE{\Mat{\Dot{#2}}}{#1}{\minus1} }\xspace}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \textbf{Matriz triangular inferior unitaria} (según denominación de G. H. Golub y C. F. Van Loan)
+%
+% \begin{macro}{\UmatT}
+% Matriz triangular inferior unitaria
+%    \begin{macrocode}
+\NewDocumentCommand\UMatT{O{}m}{\ensuremath{\RidxE{\Mat{\Dot{#2}}}{#1}{\T} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+% \textbf{Matriz de eliminación gaussiana (por columnas) y su inversa}
+%
+% \begin{macro}{\MatGC}
+% \begin{macro}{\InvMatGC}
+% Matriz de eliminación gaussiana (por columnas)
+%    \begin{macrocode}
+\NewDocumentCommand\MatGC   {m}{\ensuremath{       \UMat[#1\triangleright]{G}           }\xspace}
+\NewDocumentCommand\InvMatGC{m}{\ensuremath{\RidxE{\UMat{G}}{#1\triangleright}{\minus1} }\xspace}
+%    \end{macrocode}
+% \end{macro}
 % \end{macro}
 %
 %
@@ -8140,7 +8766,7 @@
 % \begin{macro}{\MN}
 % Producto de matriz por matriz
 %    \begin{macrocode}
-\NewDocumentCommand\MN  {mm}{\ensuremath{ \Mat {#1}\Mat {#2} }\xspace}
+\NewDocumentCommand\MN  {O{}mO{}m}{\ensuremath{ \Mat[#1]{#2}\Mat[#3]{#4} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -8152,15 +8778,15 @@
 % \begin{macro}{\MTNP*}
 % Producto de matriz transpuesta por matriz
 %    \begin{macrocode}
-\NewDocumentCommand\MTN {mm}{\ensuremath{ \MatT{#1}\Mat {#2} }\xspace}
+\NewDocumentCommand\MTN {O{}mO{}m}{\ensuremath{ \MatT[#1]{#2}\Mat[#3]{#4} }\xspace}
 
-\NewDocumentCommand\MTNp {smm}{\ensuremath{\IfBooleanTF#1
-            {\MatTpE*{#2}\Mat    {#3}}
-            {\MatTpE {#2}\Mat    {#3}}                             }\xspace}
+\NewDocumentCommand\MTNp {sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\MatTpE*[#2]{#3}\Mat[#4]{#5}}
+            {\MatTpE [#2]{#3}\Mat[#4]{#5}}                         }\xspace}
 
-\NewDocumentCommand\MTNP {smm}{\ensuremath{\IfBooleanTF#1
-            {\MatTPE*{#2}\Mat    {#3}}
-            {\MatTPE {#2}\Mat    {#3}}                             }\xspace}
+\NewDocumentCommand\MTNP {sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\MatTPE*[#2]{#3}\Mat[#4]{#5}}
+            {\MatTPE [#2]{#3}\Mat[#4]{#5}}                         }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8176,15 +8802,15 @@
 % \begin{macro}{\MNTP*}
 % Producto de matriz por matriz transpuesta
 %    \begin{macrocode}
-\NewDocumentCommand\MNT {mm}{\ensuremath{ \Mat {#1}\MatT{#2} }\xspace}
+\NewDocumentCommand\MNT {O{}mO{}m}{\ensuremath{ \Mat[#1]{#2}\MatT[#3]{#4} }\xspace}
 
-\NewDocumentCommand\MNTp {smm}{\ensuremath{\IfBooleanTF#1
-            {\Mat    {#2}\MatTpE*{#3}}
-            {\Mat    {#2}\MatTpE {#3}}                             }\xspace}
+\NewDocumentCommand\MNTp {sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Mat[#2]{#3}\MatTpE*[#4]{#5}}
+            {\Mat[#2]{#3}\MatTpE [#4]{#5}}                         }\xspace}
 
-\NewDocumentCommand\MNTP {smm}{\ensuremath{\IfBooleanTF#1
-            {\Mat    {#2}\MatTPE*{#3}}
-            {\Mat    {#2}\MatTPE {#3}}                             }\xspace}
+\NewDocumentCommand\MNTP {sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Mat[#2]{#3}\MatTPE*[#4]{#5}}
+            {\Mat[#2]{#3}\MatTPE [#4]{#5}}                         }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8200,15 +8826,15 @@
 % \begin{macro}{\MTMP*}
 % Producto de matriz transpuesta por matriz
 %    \begin{macrocode}
-\NewDocumentCommand\MTM {m }{\ensuremath{ \MTN{#1}{#1}       }\xspace}
-                            
-\NewDocumentCommand\MTMp{sm}{\ensuremath{\IfBooleanTF#1
-                             {\MTNp*{#2}{#2}}
-                             {\MTNp {#2}{#2}}                      }\xspace}
+\NewDocumentCommand\MTM {O{}m }{\ensuremath{ \MTN[#1]{#2}[#1]{#2}    }\xspace}
 
-\NewDocumentCommand\MTMP{sm}{\ensuremath{\IfBooleanTF#1
-                             {\MTNP*{#2}{#2}}
-                             {\MTNP {#2}{#2}}                      }\xspace}
+\NewDocumentCommand\MTMp{som}{\ensuremath{\IfBooleanTF#1
+                             {\MTNp*[#2]{#3}[#2]{#3}}
+                             {\MTNp [#2]{#3}[#2]{#3}}              }\xspace}
+
+\NewDocumentCommand\MTMP{som}{\ensuremath{\IfBooleanTF#1
+                             {\MTNP*[#2]{#3}[#2]{#3}}
+                             {\MTNP [#2]{#3}[#2]{#3}}              }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8224,15 +8850,15 @@
 % \begin{macro}{\MMTP*}
 % Producto de matriz por su transpuesta
 %    \begin{macrocode}
-\NewDocumentCommand\MMT {m }{\ensuremath{ \MNT{#1}{#1}       }\xspace}
+\NewDocumentCommand\MMT {O{}m }{\ensuremath{ \MNT[#1]{#2}[#1]{#2}    }\xspace}
 
-\NewDocumentCommand\MMTp{sm}{\ensuremath{\IfBooleanTF#1
-                             {\MNTp*{#2}{#2}}
-                             {\MNTp {#2}{#2}}                      }\xspace}
+\NewDocumentCommand\MMTp{som}{\ensuremath{\IfBooleanTF#1
+                             {\MNTp*[#2]{#3}[#2]{#3}}
+                             {\MNTp [#2]{#3}[#2]{#3}}              }\xspace}
 
-\NewDocumentCommand\MMTP{sm}{\ensuremath{\IfBooleanTF#1
-                             {\MNTP*{#2}{#2}}
-                             {\MNTP {#2}{#2}}                      }\xspace}
+\NewDocumentCommand\MMTP{som}{\ensuremath{\IfBooleanTF#1
+                             {\MNTP*[#2]{#3}[#2]{#3}}
+                             {\MNTP [#2]{#3}[#2]{#3}}              }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8249,15 +8875,15 @@
 % \begin{macro}{\MNMTP*}
 % Producto de matriz por matriz por matriz transpuesta
 %    \begin{macrocode}
-\NewDocumentCommand\MNMT{mm}{\ensuremath{ \MN{#1}{#2}\MatT{#1} }\xspace}
+\NewDocumentCommand\MNMT{O{}mO{}m}{\ensuremath{ \MN[#1]{#2}[#3]{#4}\MatT[#1]{#2} }\xspace}
 
-\NewDocumentCommand\MNMTp{smm}{\ensuremath{\IfBooleanTF#1
-                             {\MN{#2}{#3}\MatTpE*{#2}}
-                             {\MN{#2}{#3}\MatTpE {#2}}             }\xspace}
+\NewDocumentCommand\MNMTp{somom}{\ensuremath{\IfBooleanTF#1
+                             {\MN[#2]{#3}[#4]{#5}\MatTpE*[#2]{#3}}
+                             {\MN[#2]{#3}[#4]{#5}\MatTpE [#2]{#3}} }\xspace}
 
-\NewDocumentCommand\MNMTP{smm}{\ensuremath{\IfBooleanTF#1
-                             {\MN{#2}{#3}\MatTPE*{#2}}
-                             {\MN{#2}{#3}\MatTPE {#2}}             }\xspace}
+\NewDocumentCommand\MNMTP{somom}{\ensuremath{\IfBooleanTF#1
+                             {\MN[#2]{#3}[#4]{#5}\MatTPE*[#2]{#3}}
+                             {\MN[#2]{#3}[#4]{#5}\MatTPE [#2]{#3}} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8273,15 +8899,15 @@
 % \begin{macro}{\MTNMP*}
 % Producto de matriz transpuesta por matriz por matriz
 %    \begin{macrocode}
-\NewDocumentCommand\MTNM{mm}{\ensuremath{ \MTN{#1}{#2}\Mat{#1} }\xspace}
+\NewDocumentCommand\MTNM{O{}mO{}m}{\ensuremath{ \MTN[#1]{#2}[#3]{#4}\Mat[#1]{#2} }\xspace}
 
-\NewDocumentCommand\MTNMp{smm}{\ensuremath{\IfBooleanTF#1
-                             {\MTNp*{#2}{#3}\Mat{#2}}
-                             {\MTNp {#2}{#3}\Mat{#2}}              }\xspace}
+\NewDocumentCommand\MTNMp{somom}{\ensuremath{\IfBooleanTF#1
+                             {\MTNp*[#2]{#3}[#4]{#5}\Mat[#2]{#3}}
+                             {\MTNp [#2]{#3}[#4]{#5}\Mat[#2]{#3}}              }\xspace}
 
-\NewDocumentCommand\MTNMP{smm}{\ensuremath{\IfBooleanTF#1
-                             {\MTNP*{#2}{#3}\Mat{#2}}
-                             {\MTNP {#2}{#3}\Mat{#2}}              }\xspace}
+\NewDocumentCommand\MTNMP{somom}{\ensuremath{\IfBooleanTF#1
+                             {\MTNP*[#2]{#3}[#4]{#5}\Mat[#2]{#3}}
+                             {\MTNP [#2]{#3}[#4]{#5}\Mat[#2]{#3}}              }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8310,7 +8936,7 @@
 % \begin{macro}{\InvMatPE*}
 % Inversa de una matriz
 %    \begin{macrocode}
-\NewDocumentCommand\InvMat  { om}{\ensuremath{ \Inv  {\Mat[#1]{#2}} }\xspace}
+\NewDocumentCommand\InvMat  { O{}m}{\ensuremath{\RidxE{\Mat{#2}}{#1}{\minus1} }\xspace}
 
 \NewDocumentCommand\InvMatp {som}{\ensuremath{\IfBooleanTF#1
             {\Invp*{\Mat[#2]{#3}}}
@@ -8320,13 +8946,14 @@
             {\InvP*{\Mat[#2]{#3}}}
             {\InvP {\Mat[#2]{#3}}}              }\xspace}
 
-\NewDocumentCommand\InvMatpE{som}{\ensuremath{\IfBooleanTF#1
-            {\InvpE*{\Mat[#2]{#3}}}
-            {\InvpE {\Mat[#2]{#3}}}             }\xspace}
+\NewDocumentCommand\InvMatpE{sO{}m}{\ensuremath{\IfBooleanTF#1
+            {\RidxEpE*{\Mat{#3}}{#2}{\minus1}}
+            {\RidxEpE*{\Mat{#3}}{#2}{\minus1}}  }\xspace}
 
-\NewDocumentCommand\InvMatPE{som}{\ensuremath{\IfBooleanTF#1
-            {\InvPE*{\Mat[#2]{#3}}}
-            {\InvPE {\Mat[#2]{#3}}}             }\xspace}
+\NewDocumentCommand\InvMatPE{sO{}m}{\ensuremath{\IfBooleanTF#1
+            {\RidxEPE*{\Mat{#3}}{#2}{\minus1}}
+            {\RidxEPE*{\Mat{#3}}{#2}{\minus1}}  }\xspace}
+
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8496,11 +9123,65 @@
 % \begin{macro}{\InvMTM*}
 % Inversa del producto de una matriz transpuesta por ella misma
 %    \begin{macrocode}
-\NewDocumentCommand\InvMTM  {sm }{\ensuremath{\IfBooleanTF#1
-            {\InvP*{ \MTM{#2} }}
-            {\Invp { \MTM{#2} }}                }\xspace}
+\NewDocumentCommand\InvMTM  {som }{\ensuremath{\IfBooleanTF#1
+            {\InvP*{ \MTM[#2]{#3} }}
+            {\Invp { \MTM[#2]{#3} }}                }\xspace}
 %    \end{macrocode}
 % \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\InvXTX}
+% Inversa del producto de la matriz X transpuesta por ella misma
+%    \begin{macrocode}
+\NewDocumentCommand\InvXTX{}{\ensuremath{\InvMTM{X}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\MInvMTMMT}
+% \begin{macro}{\MInvMTMMT}
+% Matriz proyección sobre el espacio columna de la matriz de rango completo por columnas indicada
+%    \begin{macrocode}
+\NewDocumentCommand\MInvMTMMT{sO{}m}{\ensuremath{\IfBooleanTF#1
+            {\MVect[#2]{#3}\Invp{\VTV[#2]{#3}}\MVectT[#2]{#3}}
+            {\Mat[#2]{#3}\InvMTM[#2]{#3}\MatT[#2]{#3}}         }\xspace}
+                            
+\NewDocumentCommand\MInvMTMMTkk{sO{}m}{\ensuremath{\Mat[#1]{#2}\InvMTM[#1]{#2}\MatT[#1]{#2}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\VTW}
+% Matriz fila por matriz columna
+%    \begin{macrocode}
+\NewDocumentCommand\VTW{omom}{\ensuremath{\MVectT[#1]{#2}\!\MVect[#3]{#4}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VTV}
+% Matriz fila por su transpuesta
+%    \begin{macrocode}
+\NewDocumentCommand\VTV{om}{\ensuremath{\MVectT[#1]{#2}\!\MVect[#1]{#2}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VWT}
+% Matriz columna por matriz fila
+%    \begin{macrocode}
+\NewDocumentCommand\VWT{mm}{\ensuremath{\MVect{#1}\!\MVectT{#2}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VVT}
+% Matriz columna por su transpuesta
+%    \begin{macrocode}
+\NewDocumentCommand\VVT{om}{\ensuremath{\MVect[#1]{#2}\!\MVectT[#1]{#2}}\xspace}
+%    \end{macrocode}
 % \end{macro}
 %
 %
@@ -8757,6 +9438,13 @@
 %    \end{macrocode}
 % \end{macro}
 %
+%
+% \begin{macro}{\res}
+% Valor medio
+%    \begin{macrocode}
+\NewDocumentCommand\res{} {\ensuremath{ \Estmc{\Vect{e}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
 %
 %
 % \Finale
