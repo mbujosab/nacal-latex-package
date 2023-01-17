@@ -1000,7 +1000,7 @@
     {\Parentesis {\IfNoValueTF{#2}{\vect{#3}}{\vect[#2]{#3}}}}  }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand\Vect   {O{}m}{\ensuremath{%
-                       \boldsymbol{         \MakeLowercase{#2}  }_{#1}     }\xspace}
+                       \Ridx{\boldsymbol{\MakeLowercase{#2}}}{#1}   }\xspace}
 
 \NewDocumentCommand\Vectp {som}{\ensuremath{\IfBooleanTF#1
     {\parentesis*{\IfNoValueTF{#2}{\Vect{#3}}{\Vect[#2]{#3}}}}
@@ -1203,42 +1203,42 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Matriz por vector y vector por matriz
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\NewDocumentCommand\MV { mm}{\ensuremath{ \Mat {#1}\Vect{#2} }\xspace}
+\NewDocumentCommand\MV { O{}mO{}m}{\ensuremath{ \Mat[#1]{#2}\Vect[#3]{#4} }\xspace}
 
-\NewDocumentCommand\MVpE{smm}{\ensuremath{\IfBooleanTF#1
-            {\parentesis*{\MV{#2}{#3}}}
-            {\parentesis {\MV{#2}{#3}}}   }\xspace}
+\NewDocumentCommand\MVpE{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\parentesis*{\MV[#2]{#3}[#4]{#5}}}
+            {\parentesis {\MV[#2]{#3}[#4]{#5}}}   }\xspace}
 
-\NewDocumentCommand\MVPE{smm}{\ensuremath{\IfBooleanTF#1
-            {\Parentesis*{\MV{#2}{#3}}}
-            {\Parentesis {\MV{#2}{#3}}}   }\xspace}
-\NewDocumentCommand\VM { mm}{\ensuremath{ \Vect{#1}\Mat {#2} }\xspace}
+\NewDocumentCommand\MVPE{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Parentesis*{\MV[#2]{#3}[#4]{#5}}}
+            {\Parentesis {\MV[#2]{#3}[#4]{#5}}}   }\xspace}
+\NewDocumentCommand\VM { O{}mO{}m}{\ensuremath{ \Vect[#1]{#2}\Mat[#3]{#4} }\xspace}
 
-\NewDocumentCommand\VMpE{smm}{\ensuremath{\IfBooleanTF#1
-            {\parentesis*{\VM{#2}{#3}}}
-            {\parentesis {\VM{#2}{#3}}}   }\xspace}
+\NewDocumentCommand\VMpE{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\parentesis*{\VM[#2]{#3}[#4]{#5}}}
+            {\parentesis {\VM[#2]{#3}[#4]{#5}}}   }\xspace}
 
-\NewDocumentCommand\VMPE{smm}{\ensuremath{\IfBooleanTF#1
-            {\Parentesis*{\VM{#2}{#3}}}
-            {\Parentesis {\VM{#2}{#3}}}   }\xspace}
-\NewDocumentCommand\MTV{ mm}{\ensuremath{ \MatT{#1}\Vect{#2} }\xspace}
+\NewDocumentCommand\VMPE{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Parentesis*{\VM[#2]{#3}[#4]{#5}}}
+            {\Parentesis {\VM[#2]{#3}[#4]{#5}}}   }\xspace}
+\NewDocumentCommand\MTV{ O{}mO{}m}{\ensuremath{ \MatT[#1]{#2}\Vect[#3]{#4} }\xspace}
 
-\NewDocumentCommand\MTVp{smm}{\ensuremath{\IfBooleanTF#1
-            {\MatTpE*{#2}\Vect{#3}}
-            {\MatTpE {#2}\Vect{#3}}        }\xspace}
+\NewDocumentCommand\MTVp{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\MatTpE*[#2]{#3}\Vect[#4]{#5}}
+            {\MatTpE [#2]{#3}\Vect[#4]{#5}}  }\xspace}
 
-\NewDocumentCommand\MTVP{smm}{\ensuremath{\IfBooleanTF#1
-            {\MatTPE*{#2}\Vect{#3}}
-            {\MatTPE {#2}\Vect{#3}}        }\xspace}
-\NewDocumentCommand\VMT{ mm}{\ensuremath{ \Vect{#1}\MatT{#2} }\xspace}
+\NewDocumentCommand\MTVP{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\MatTPE*[#2]{#3}\Vect[#4]{#5}}
+            {\MatTPE [#2]{#3}\Vect[#4]{#5}}  }\xspace}
+\NewDocumentCommand\VMT{ O{}mO{}m}{\ensuremath{ \Vect[#1]{#2}\MatT[#3]{#4} }\xspace}
 
-\NewDocumentCommand\VMTp{smm}{\ensuremath{\IfBooleanTF#1
-            {\Vect{#2}\MatTpE*{#3}}
-            {\Vect{#2}\MatTpE {#3}}        }\xspace}
+\NewDocumentCommand\VMTp{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Vect[#2]{#3}\MatTpE*[#4]{#5}}
+            {\Vect[#2]{#3}\MatTpE [#4]{#5}}        }\xspace}
 
-\NewDocumentCommand\VMTP{smm}{\ensuremath{\IfBooleanTF#1
-            {\Vect{#2}\MatTPE*{#3}}
-            {\Vect{#2}\MatTPE {#3}}        }\xspace}
+\NewDocumentCommand\VMTP{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Vect[#2]{#3}\MatTPE*[#4]{#5}}
+            {\Vect[#2]{#3}\MatTPE [#4]{#5}}        }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Matriz por matriz
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
