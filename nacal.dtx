@@ -41,7 +41,7 @@
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
-%\OnlyDescription
+% \OnlyDescription
 \setcounter{tocdepth}{4}
 \begin{document}
   \DocInput{nacal.dtx}
@@ -50,7 +50,7 @@
 % \fi
 %
 % %\CheckSum{0}
-% \CheckSum{3986}
+% \CheckSum{3987}
 % 
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -4667,24 +4667,28 @@
 % \DescribeMacro{\MVpE*}
 % \DescribeMacro{\MVPE}
 % \DescribeMacro{\MVPE*}
-% tiene 2 argumentos,\;\cs{MV}\marg{nombre}\marg{nombre},\; y
+% tiene 4 argumentos,\;
+% \cs{MV}\oarg{indMatriz}\marg{nombre}\oarg{indVector}\marg{nombre},\; y
 % denota el producto de una matriz por un vector de $\R[n]$
 % \begin{center}
-%   |\MV{A}{b}|
+%   |\MV{A}{b} \MV[j]{A}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\MV{A}{b}$}
+%   \fbox{$\MV[j]{A}[k]{b}$}
 % \end{center}
 % \begin{center}
-%   |\MVpE{A}{b} \MVpE*{A}{b}|
+%   |\MVpE{A}{b} \MVpE*{A}{b} \MVpE*[j]{A}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\MVpE {A}{b}$}
 %   \fbox{$\MVpE*{A}{b}$}
+%   \fbox{$\MVpE*[j]{A}[k]{b}$}
 % \end{center}
 % \begin{center}
-%   |\MVPE{A}{b} \MVPE*{A}{b}|
+%   |\MVPE{A}{b} \MVPE*{A}{b} \MVPE*[j]{A}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\MVPE {A}{b}$}
 %   \fbox{$\MVPE*{A}{b}$}
+%   \fbox{$\MVPE*[j]{A}[k]{b}$}
 % \end{center}
 % 
 % \DescribeMacro{\VM}
@@ -4692,24 +4696,28 @@
 % \DescribeMacro{\VMpE*}
 % \DescribeMacro{\VMPE}
 % \DescribeMacro{\VMPE*}
-% tiene 2 argumentos,\;\cs{MV}\marg{nombre}\marg{nombre},\; y
+% tiene 4 argumentos,\;
+% \cs{VM}\oarg{indVector}\marg{nombre}\oarg{indMatriz}\marg{nombre},\; y
 % denota el producto de un vector de $\R[n]$ por una matriz
 % \begin{center}
-%   |\VM{a}{B}|
+%   |\VM{a}{B} \VM[k]{a}[j]{B}|
 %   \hspace{1.2cm}
 %   \fbox{$\VM{a}{B}$}
+%   \fbox{$\VM[k]{a}[j]{B}$}
 % \end{center}
 % \begin{center}
-%   |\VMpE{a}{B} \VMpE*{a}{B}|
+%   |\VMpE{a}{B} \VMpE*{a}{B} \VMpE*[j]{A}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\VMpE {a}{B}$}
 %   \fbox{$\VMpE*{a}{B}$}
+%   \fbox{$\VMpE*[k]{A}[j]{b}$}
 % \end{center}
 % \begin{center}
-%   |\VMPE{a}{B} \VMPE*{a}{B}|
+%   |\VMPE{a}{B} \VMPE*{a}{B} \VMpE*[j]{A}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\VMPE {a}{B}$}
 %   \fbox{$\VMPE*{a}{B}$}
+%   \fbox{$\VMPE*[k]{A}[j]{b}$}
 % \end{center}
 % 
 % \DescribeMacro{\MTV}
@@ -4717,24 +4725,28 @@
 % \DescribeMacro{\MTVp*}
 % \DescribeMacro{\MTVP}
 % \DescribeMacro{\MTVP*}
-% tiene 2 argumentos,\;\cs{MTV}\marg{nombre}\marg{nombre},\; y
+% tiene 4 argumentos,\;
+% \cs{MTV}\oarg{indMatriz}\marg{nombre}\oarg{indVector}\marg{nombre},\; y
 % denota el producto de una matriz transpuesta por un vector de $\R[n]$
 % \begin{center}
-%   |\MTV{A}{b}|
+%   |\MTV{A}{b} \MTV[j]{A}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\MTV{A}{b}$}
+%   \fbox{$\MTV[j]{A}[k]{b}$}
 % \end{center}
 % \begin{center}
-%   |\MTVp{A}{b} \MTVp*{A}{b}|
+%   |\MTVp{A}{b} \MTVp*{A}{b} \MTVp*[j]{A}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\MTVp {A}{b}$}
 %   \fbox{$\MTVp*{A}{b}$}
+%   \fbox{$\MTVp*[j]{A}[k]{b}$}
 % \end{center}
 % \begin{center}
-%   |\MTVP{A}{b} \MTVP*{A}{b}|
+%   |\MTVP{A}{b} \MTVP*{A}{b} \MTVP*[j]{A}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\MTVP {A}{b}$}
 %   \fbox{$\MTVP*{A}{b}$}
+%   \fbox{$\MTVP*[j]{A}[k]{b}$}
 % \end{center}
 % 
 % \DescribeMacro{\VMT}
@@ -4742,24 +4754,28 @@
 % \DescribeMacro{\VMTp*}
 % \DescribeMacro{\VMTP}
 % \DescribeMacro{\VMTP*}
-% tiene 2 argumentos,\;\cs{MTV}\marg{nombre}\marg{nombre},\; y
+% tiene 4 argumentos,\;
+% \cs{VMT}\oarg{indVector}\marg{nombre}\oarg{indMatriz}\marg{nombre},\; y
 % denota el producto de un vector de $\R[n]$ por una matriz transpuesta
 % \begin{center}
-%   |\VMT{a}{B}|
+%   |\VMT{a}{B} \VMT[k]{a}[j]{B}|
 %   \hspace{1.2cm}
 %   \fbox{$\VMT{a}{B}$}
+%   \fbox{$\VMT[k]{a}[j]{B}$}
 % \end{center}
 % \begin{center}
-%   |\VMTp{a}{B} \VMTp*{a}{B}|
+%   |\VMTp{a}{B} \VMTp*{a}{B} \VMTp*[j]{A}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\VMTp {a}{B}$}
 %   \fbox{$\VMTp*{a}{B}$}
+%   \fbox{$\VMTp*[k]{A}[j]{b}$}
 % \end{center}
 % \begin{center}
-%   |\VMTP{a}{B} \VMTP*{a}{B}|
+%   |\VMTP{a}{B} \VMTP*{a}{B} \VMTP*[j]{A}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\VMTP {a}{B}$}
 %   \fbox{$\VMTP*{a}{B}$}
+%   \fbox{$\VMTP*[k]{A}[j]{b}$}
 % \end{center}
 % 
 % \subsection{Matriz por matriz}
@@ -8042,7 +8058,7 @@
 % Vector de $\mathbb{R}^n$
 %    \begin{macrocode}
 \NewDocumentCommand\Vect   {O{}m}{\ensuremath{%
-                       \boldsymbol{         \MakeLowercase{#2}  }_{#1}     }\xspace}
+                       \Ridx{\boldsymbol{\MakeLowercase{#2}}}{#1}   }\xspace}
 
 \NewDocumentCommand\Vectp {som}{\ensuremath{\IfBooleanTF#1
     {\parentesis*{\IfNoValueTF{#2}{\Vect{#3}}{\Vect[#2]{#3}}}}
@@ -8666,15 +8682,15 @@
 % \begin{macro}{\MVPE*}
 % Producto de matriz por vector
 %    \begin{macrocode}
-\NewDocumentCommand\MV { mm}{\ensuremath{ \Mat {#1}\Vect{#2} }\xspace}
+\NewDocumentCommand\MV { O{}mO{}m}{\ensuremath{ \Mat[#1]{#2}\Vect[#3]{#4} }\xspace}
 
-\NewDocumentCommand\MVpE{smm}{\ensuremath{\IfBooleanTF#1
-            {\parentesis*{\MV{#2}{#3}}}
-            {\parentesis {\MV{#2}{#3}}}   }\xspace}
+\NewDocumentCommand\MVpE{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\parentesis*{\MV[#2]{#3}[#4]{#5}}}
+            {\parentesis {\MV[#2]{#3}[#4]{#5}}}   }\xspace}
 
-\NewDocumentCommand\MVPE{smm}{\ensuremath{\IfBooleanTF#1
-            {\Parentesis*{\MV{#2}{#3}}}
-            {\Parentesis {\MV{#2}{#3}}}   }\xspace}
+\NewDocumentCommand\MVPE{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Parentesis*{\MV[#2]{#3}[#4]{#5}}}
+            {\Parentesis {\MV[#2]{#3}[#4]{#5}}}   }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8690,15 +8706,15 @@
 % \begin{macro}{\VMPE*}
 % Producto de vector por matriz
 %    \begin{macrocode}
-\NewDocumentCommand\VM { mm}{\ensuremath{ \Vect{#1}\Mat {#2} }\xspace}
+\NewDocumentCommand\VM { O{}mO{}m}{\ensuremath{ \Vect[#1]{#2}\Mat[#3]{#4} }\xspace}
 
-\NewDocumentCommand\VMpE{smm}{\ensuremath{\IfBooleanTF#1
-            {\parentesis*{\VM{#2}{#3}}}
-            {\parentesis {\VM{#2}{#3}}}   }\xspace}
+\NewDocumentCommand\VMpE{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\parentesis*{\VM[#2]{#3}[#4]{#5}}}
+            {\parentesis {\VM[#2]{#3}[#4]{#5}}}   }\xspace}
 
-\NewDocumentCommand\VMPE{smm}{\ensuremath{\IfBooleanTF#1
-            {\Parentesis*{\VM{#2}{#3}}}
-            {\Parentesis {\VM{#2}{#3}}}   }\xspace}
+\NewDocumentCommand\VMPE{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Parentesis*{\VM[#2]{#3}[#4]{#5}}}
+            {\Parentesis {\VM[#2]{#3}[#4]{#5}}}   }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8714,15 +8730,15 @@
 % \begin{macro}{\MTVP*}
 % Producto de matriz por vector
 %    \begin{macrocode}
-\NewDocumentCommand\MTV{ mm}{\ensuremath{ \MatT{#1}\Vect{#2} }\xspace}
+\NewDocumentCommand\MTV{ O{}mO{}m}{\ensuremath{ \MatT[#1]{#2}\Vect[#3]{#4} }\xspace}
 
-\NewDocumentCommand\MTVp{smm}{\ensuremath{\IfBooleanTF#1
-            {\MatTpE*{#2}\Vect{#3}}
-            {\MatTpE {#2}\Vect{#3}}        }\xspace}
+\NewDocumentCommand\MTVp{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\MatTpE*[#2]{#3}\Vect[#4]{#5}}
+            {\MatTpE [#2]{#3}\Vect[#4]{#5}}  }\xspace}
 
-\NewDocumentCommand\MTVP{smm}{\ensuremath{\IfBooleanTF#1
-            {\MatTPE*{#2}\Vect{#3}}
-            {\MatTPE {#2}\Vect{#3}}        }\xspace}
+\NewDocumentCommand\MTVP{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\MatTPE*[#2]{#3}\Vect[#4]{#5}}
+            {\MatTPE [#2]{#3}\Vect[#4]{#5}}  }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8738,15 +8754,15 @@
 % \begin{macro}{\VMTP*}
 % Producto de vector por matriz
 %    \begin{macrocode}
-\NewDocumentCommand\VMT{ mm}{\ensuremath{ \Vect{#1}\MatT{#2} }\xspace}
+\NewDocumentCommand\VMT{ O{}mO{}m}{\ensuremath{ \Vect[#1]{#2}\MatT[#3]{#4} }\xspace}
 
-\NewDocumentCommand\VMTp{smm}{\ensuremath{\IfBooleanTF#1
-            {\Vect{#2}\MatTpE*{#3}}
-            {\Vect{#2}\MatTpE {#3}}        }\xspace}
+\NewDocumentCommand\VMTp{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Vect[#2]{#3}\MatTpE*[#4]{#5}}
+            {\Vect[#2]{#3}\MatTpE [#4]{#5}}        }\xspace}
 
-\NewDocumentCommand\VMTP{smm}{\ensuremath{\IfBooleanTF#1
-            {\Vect{#2}\MatTPE*{#3}}
-            {\Vect{#2}\MatTPE {#3}}        }\xspace}
+\NewDocumentCommand\VMTP{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Vect[#2]{#3}\MatTPE*[#4]{#5}}
+            {\Vect[#2]{#3}\MatTPE [#4]{#5}}        }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
