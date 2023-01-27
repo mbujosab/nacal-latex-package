@@ -27,7 +27,11 @@
 %<package>\RequirePackage{pict2e}
 %<package>\RequirePackage{esvect} %\RequirePackage[b]{esvect} %\RequirePackage[e]{esvect}
 %<package>\RequirePackage{stackengine}
-%
+%<package>\newcommand{\eng}[2]{#1}
+%<package>\DeclareOption{esp}{\renewcommand{\eng}[2]{#1}}
+%<package>\DeclareOption{eng}{\renewcommand{\eng}[2]{#2}}
+%<package>\DeclareOption*{\PackageWarning{nacal}{Unknown ‘\CurrentOption’}}
+%<package>\ProcessOptions\relax%
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage[dvipsnames,svgnames]{xcolor}
@@ -50,7 +54,7 @@
 % \fi
 %
 % %\CheckSum{0}
-% \CheckSum{3987}
+% \CheckSum{3989}
 % 
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -7972,8 +7976,8 @@
 % \begin{macro}{\VectFFFT}
 % Selección de una columna de una matriz
 %    \begin{macrocode}
-\NewDocumentCommand\VectFFF {mm}{\ensuremath{\textrm{fila}_{#2}\MatP*  {#1}}\xspace}
-\NewDocumentCommand\VectFFFT{mm}{\ensuremath{\textrm{fila}_{#2}\MatTPE*{#1}}\xspace}
+\NewDocumentCommand\VectFFF {mm}{\ensuremath{\textrm{\eng{fila}{row}}_{#2}\MatP*  {#1}}\xspace}
+\NewDocumentCommand\VectFFFT{mm}{\ensuremath{\textrm{\eng{fila}{row}}_{#2}\MatTPE*{#1}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}

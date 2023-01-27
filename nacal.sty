@@ -31,6 +31,11 @@
 \RequirePackage{pict2e}
 \RequirePackage{esvect} %\RequirePackage[b]{esvect} %\RequirePackage[e]{esvect}
 \RequirePackage{stackengine}
+\newcommand{\eng}[2]{#1}
+\DeclareOption{esp}{\renewcommand{\eng}[2]{#1}}
+\DeclareOption{eng}{\renewcommand{\eng}[2]{#2}}
+\DeclareOption*{\PackageWarning{nacal}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Conjuntos de números
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -973,8 +978,8 @@
 \NewDocumentCommand\elemUUU {mm}{\ensuremath{\textrm{elem}_{#2}\Parentesis*{#1}}\xspace}
 \NewDocumentCommand\VectCCC {mm}{\ensuremath{\textrm{col}_{#2}\MatP*  {#1}}\xspace}
 \NewDocumentCommand\VectCCCT{mm}{\ensuremath{\textrm{col}_{#2}\MatTPE*{#1}}\xspace}
-\NewDocumentCommand\VectFFF {mm}{\ensuremath{\textrm{fila}_{#2}\MatP*  {#1}}\xspace}
-\NewDocumentCommand\VectFFFT{mm}{\ensuremath{\textrm{fila}_{#2}\MatTPE*{#1}}\xspace}
+\NewDocumentCommand\VectFFF {mm}{\ensuremath{\textrm{\eng{fila}{row}}_{#2}\MatP*  {#1}}\xspace}
+\NewDocumentCommand\VectFFFT{mm}{\ensuremath{\textrm{\eng{fila}{row}}_{#2}\MatTPE*{#1}}\xspace}
 \NewDocumentCommand\eleMMM {mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatP*  {#1}}}\xspace}
 \NewDocumentCommand\eleMMMT{mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatTPE*{#1}}}\xspace}
 \NewDocumentCommand\eleMM  {mmm}{\ensuremath{\MakeLowercase{#1}_{{#2}{#3}}     }\xspace}
