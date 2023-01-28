@@ -26,8 +26,12 @@
 %<package>\RequirePackage{leftidx}
 %<package>\RequirePackage{pict2e}
 %<package>\RequirePackage{esvect} %\RequirePackage[b]{esvect} %\RequirePackage[e]{esvect}
-%<package>\RequirePackage{stackengine}
-%
+%<package>%\RequirePackage{stackengine} % para PSpanNew
+%<package>\providecommand{\eng}[2]{#1}
+%<package>\DeclareOption{esp}{\renewcommand{\eng}[2]{#1}}
+%<package>\DeclareOption{eng}{\renewcommand{\eng}[2]{#2}}
+%<package>\DeclareOption*{\PackageWarning{nacal}{Unknown ‘\CurrentOption’}}
+%<package>\ProcessOptions\relax%
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage[dvipsnames,svgnames]{xcolor}
@@ -50,7 +54,7 @@
 % \fi
 %
 % %\CheckSum{0}
-% \CheckSum{3987}
+% \CheckSum{4007}
 % 
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -7972,8 +7976,8 @@
 % \begin{macro}{\VectFFFT}
 % Selección de una columna de una matriz
 %    \begin{macrocode}
-\NewDocumentCommand\VectFFF {mm}{\ensuremath{\textrm{fila}_{#2}\MatP*  {#1}}\xspace}
-\NewDocumentCommand\VectFFFT{mm}{\ensuremath{\textrm{fila}_{#2}\MatTPE*{#1}}\xspace}
+\NewDocumentCommand\VectFFF {mm}{\ensuremath{\textrm{\eng{fila}{row}}_{#2}\MatP*  {#1}}\xspace}
+\NewDocumentCommand\VectFFFT{mm}{\ensuremath{\textrm{\eng{fila}{row}}_{#2}\MatTPE*{#1}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -9336,6 +9340,18 @@
 % Espacio semi-euclídeo de probabilidad generado por un sistema
 %    \begin{macrocode}
 \NewDocumentCommand\PSpan{sm}{\ensuremath{\,\IfBooleanTF#1
+        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\Parentesis*{#2}}
+        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\Parentesis {#2}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\PSpanNew}
+% \begin{macro}{\PSpanNew*}
+% Espacio semi-euclídeo de probabilidad generado por un sistema
+%    \begin{macrocode}
+\NewDocumentCommand\PSpanNew{sm}{\ensuremath{\,\IfBooleanTF#1
         {\topinset{\tiny\EV{P}}{\EV{L}}{2pt}{2pt}\Parentesis*{#2}}
         {\topinset{\tiny\EV{P}}{\EV{L}}{2pt}{2pt}\parentesis {#2}} }\xspace}
 %    \end{macrocode}
