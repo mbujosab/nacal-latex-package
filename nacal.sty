@@ -30,8 +30,8 @@
 \RequirePackage{leftidx}
 \RequirePackage{pict2e}
 \RequirePackage{esvect} %\RequirePackage[b]{esvect} %\RequirePackage[e]{esvect}
-\RequirePackage{stackengine}
-\newcommand{\eng}[2]{#1}
+%\RequirePackage{stackengine} % para PSpanNew
+\providecommand{\eng}[2]{#1}
 \DeclareOption{esp}{\renewcommand{\eng}[2]{#1}}
 \DeclareOption{eng}{\renewcommand{\eng}[2]{#2}}
 \DeclareOption*{\PackageWarning{nacal}{Unknown ‘\CurrentOption’}}
@@ -1421,6 +1421,9 @@
         {\EV{L}\Parentesis*{#2}}
         {\EV{L}\parentesis {#2}}             }\xspace}
 \NewDocumentCommand\PSpan{sm}{\ensuremath{\,\IfBooleanTF#1
+        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\Parentesis*{#2}}
+        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\Parentesis {#2}} }\xspace}
+\NewDocumentCommand\PSpanNew{sm}{\ensuremath{\,\IfBooleanTF#1
         {\topinset{\tiny\EV{P}}{\EV{L}}{2pt}{2pt}\Parentesis*{#2}}
         {\topinset{\tiny\EV{P}}{\EV{L}}{2pt}{2pt}\parentesis {#2}} }\xspace}
 \NewDocumentCommand\coord  {m m}{\ensuremath{
