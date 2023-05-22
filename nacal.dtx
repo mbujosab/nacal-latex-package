@@ -54,7 +54,7 @@
 % \fi
 %
 % %\CheckSum{0}
-% \CheckSum{4007}
+% \CheckSum{4035}
 % 
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -113,27 +113,31 @@
 % \section{Uso}
 % 
 % \subsection{Conjuntos de números}
-% Respecto a estos comandos, véase el párrafo explicativo de la
-% Sección~\ref{sec:TransfElem}
 % 
 % \DescribeMacro{\Nn}
 % \DescribeMacro{\Zz}
 % \DescribeMacro{\Rr}
-% \DescribeMacro{\CC}
-% Los comandos \cs{Nn}, \cs{Zz}, \cs{Rr} y \cs{CC} no tienen argumentos
+% \DescribeMacro{\Kk}
+% \DescribeMacro{\Cc}
+% Respecto a estos comandos, véase el párrafo explicativo de la
+% Sección~\ref{sec:TransfElem}
+% 
+% Los comandos \cs{Nn}, \cs{Zz}, \cs{Rr}, \cs{Kk} y \cs{Cc} no tienen argumentos
 % y denotan el conjunto de números naturales, de números enteros, de números reales y
 % números complejos respectivamente
 % \begin{center}
-%   |\Nn \Zz \Rr \CC|
+%   |\Nn \Zz \Rr \Kk \Cc|
 %   \hspace{1.2cm}
-%   \fbox{$\Nn\ \Zz\ \Rr\ \CC$}
+%   \fbox{$\Nn\ \Zz\ \Rr\ \Kk\ \Cc$}
 % \end{center}
+% \bigskip
 % 
 % \DescribeMacro{\N}
 % \DescribeMacro{\Z}
 % \DescribeMacro{\R}
-% \DescribeMacro{\Cc}
-% Los comandos \cs{N}, \cs{Z}, \cs{R}, \cs{Cc},  tienen 1 argumento
+% \DescribeMacro{\K}
+% \DescribeMacro{\CC}
+% Los comandos \cs{N}, \cs{Z}, \cs{R}, \cs{K}, \cs{CC},  tienen 1 argumento
 % opcional correspondiente a un superíndice
 % \begin{center}
 %   |\N \N[5]|
@@ -152,10 +156,16 @@
 %   \fbox{$\R[(\R[n])]$}
 % \end{center}
 % \begin{center}
-%   |\Cc \Cc[n]|
+%   |\K \K[(\R[n])]|
 %   \hspace{1.2cm}
-%   \fbox{$\Cc$}
-%   \fbox{$\Cc[n]$}
+%   \fbox{$\K$}
+%   \fbox{$\K[(\R[n])]$}
+% \end{center}
+% \begin{center}
+%   |\Cc \CC[n]|
+%   \hspace{1.2cm}
+%   \fbox{$\CC$}
+%   \fbox{$\CC[n]$}
 % \end{center}
 % 
 % \subsection{Paréntesis y corchetes}
@@ -541,9 +551,9 @@
 %   \fbox{$\norma*{\int\limits_a^b h(x) dx}$}
 % \end{center}
 % \begin{center}
-%   |\norma[L_2]{f} \norma*[L_1]{\int\limits_a^b h(x) dx}|
+%   |\norma[L_2]{f}^2 \norma*[L_1]{\int\limits_a^b h(x) dx}|
 %   \hspace{1.2cm}
-%   \fbox{$\norma[L_2] {f}$}
+%   \fbox{$\norma[L_2] {f}^2$}
 %   \fbox{$\norma*[L_1]{\int\limits_a^b h(x) dx}$}
 % \end{center}
 % 
@@ -558,6 +568,19 @@
 %   \hspace{1.2cm}
 %   \fbox{$\modulus {f}$}
 %   \fbox{$\modulus*{\int\limits_a^b h(x) dx}$}
+% \end{center}
+% 
+% \DescribeMacro{\abs}
+% \DescribeMacro{\abs*}
+% El comando \cs{abs} tiene 1
+% argumento,\;\cs{abs}\marg{objeto},\; y denota el valor absoluto
+% del \marg{objeto}. En la versión con estrella las barras verticales se
+% ajustan al tamaño del \marg{objeto}.
+% \begin{center}
+%   |\abs{A} \abs{ \int\limits_a^b h(x) dx }|
+%   \hspace{1.2cm}
+%   \fbox{$\abs {f}$}
+%   \fbox{$\abs*{\int\limits_a^b h(x) dx}$}
 % \end{center}
 % 
 % \subsubsection{Transposición}
@@ -1638,10 +1661,10 @@
 % El criterio de nomenclatura que he adoptado ha sido repetir la letra
 % del comando pero en minúscula (salvo en el caso de los complejos); es
 % decir, los comandos definidos para el libro son: |\N|, |\Z|, |\R| y
-% |\Cc| (debido a que |\C| ya es un comando del paquete
+% |\CC| (debido a que |\C| ya es un comando del paquete
 % \textsf{hyperref}). Así, que los nuevos comandos que he creado para
 % duplicar los anteriores pero sin argumentos opcionales son |\Nn|,
-% |\Zz|, |\Rr| y |\CC|.
+% |\Zz|, |\Rr| y |\Cc|.
 % 
 % Ahora tengo que pensar en un criterio análogo para que sea fácil pasar
 % del comando original a duplicado sin argumentos opcionales. No lo
@@ -4588,12 +4611,12 @@
 % \DescribeMacro{\dotprodp*}
 % \DescribeMacro{\dotprodP}
 % \DescribeMacro{\dotprodP*}
-% tiene 2 argumentos,\;\cs{dotprod}\marg{nombre}\marg{nombre},\; y
+% tiene 2 argumentos,\;\cs{dotprod}\oarg{subíndice1}\marg{nombre}\oarg{subíndice2}\marg{nombre},\; y
 % denota el producto punto entre dos vectores de $\R[n]$
 % \begin{center}
-%   |\dotprod{a}{b}|
+%   |\dotprod[k]{a}[h]{b}|
 %   \hspace{1.2cm}
-%   \fbox{$\dotprod{a}{b}$}
+%   \fbox{$\dotprod[k]{a}[h]{b}$}
 % \end{center}
 % 
 % \begin{center}
@@ -4604,10 +4627,10 @@
 % \end{center}
 % 
 % \begin{center}
-%   |\dotprodP{a}{b} \dotprodP*{a}{b}|
+%   |\dotprodP{a}{b} \dotprodP*[h]{a}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\dotprodP {a}{b}$}
-%   \fbox{$\dotprodP*{a}{b}$}
+%   \fbox{$\dotprodP*[h]{a}[k]{b}$}
 % \end{center}
 % 
 % \subsubsection{Producto punto a punto o \emph{Hadamard}}
@@ -5191,12 +5214,12 @@
 % \end{center}
 % 
 % \DescribeMacro{\VWT}
-% tiene 2 argumentos,\;\cs{VWT}\marg{nombre}\marg{nombre},\; y
+% tiene 2 argumentos,\;\cs{VWT}\oarg{subíndice1}\marg{nombre}\oarg{subíndice2}\marg{nombre},\; y
 % denota el producto de una matriz columna por una matriz fila
 % \begin{center}
-%   |\VWT{a}{b}|
+%   |\VWT[h]{a}[k]{b}|
 %   \hspace{1.2cm}
-%   \fbox{$\VWT{a}{b}$}
+%   \fbox{$\VWT[h]{a}[k]{b}$}
 % \end{center}
 % 
 % \DescribeMacro{\VVT}
@@ -5257,13 +5280,13 @@
 % \subsection{Espacios vectoriales}
 % 
 % \DescribeMacro{\EV}
-% tiene 1
-% argumento,\;\cs{EV}\marg{nombre},\; y
+% tiene 3
+% argumentos,\;\cs{EV}\oarg{subíndice}\oarg{superíndice}\marg{nombre},\; y
 % denota un espacio vectorial
 % \begin{center}
-%   |\EV{A} \EV{V} \EV{E}|
+%   |\EV{A} \EV{V} \EV[\R]{E}  \EV[\R][*]{E}|
 %   \hspace{1.2cm}
-%   \fbox{$\EV{A} \EV{V} \EV{E}$}
+%   \fbox{$\EV{A} \EV{V} \EV[\R]{E} \EV[\R][*]{E}$}
 % \end{center}
 % 
 % \DescribeMacro{\EspacioNul}
@@ -5410,6 +5433,15 @@
 % 
 % \subsection{Estadística}
 % 
+% \DescribeMacro{\ind}
+% El comando \cs{ind}\marg{conjunto} tiene 1
+% argumento y denota la función indicatriz del \marg{conjunto}
+% \begin{center}
+%   |\ind{\Omega}|
+%   \hspace{1.2cm}
+%   \fbox{$\ind{\Omega}$}
+% \end{center}
+% 
 % \DescribeMacro{\Estmc}
 % El comando \cs{Estmc}\marg{objeto} tiene 1
 % argumento y denota el ajuste MCO del \marg{objeto}\begin{center}
@@ -5474,14 +5506,17 @@
 % \begin{macro}{\Nn}
 % \begin{macro}{\Zz}
 % \begin{macro}{\Rr}
-% \begin{macro}{\CC}
+% \begin{macro}{\Cc}
+% \begin{macro}{\Kk}
 % Números naturales, enteros, reales y complejos
 %    \begin{macrocode}
 \NewDocumentCommand\Nn{     }{\ensuremath{ {\mathbb{N}} }\xspace}
 \NewDocumentCommand\Zz{     }{\ensuremath{ {\mathbb{Z}} }\xspace}
 \NewDocumentCommand\Rr{     }{\ensuremath{ {\mathbb{R}} }\xspace}
-\NewDocumentCommand\CC{     }{\ensuremath{ {\mathbb{C}} }\xspace}
+\NewDocumentCommand\Cc{     }{\ensuremath{ {\mathbb{C}} }\xspace}
+\NewDocumentCommand\Kk{     }{\ensuremath{ {\mathbb{K}} }\xspace}
 %    \end{macrocode}
+% \end{macro}
 % \end{macro}
 % \end{macro}
 % \end{macro}
@@ -5491,14 +5526,17 @@
 % \begin{macro}{\N}
 % \begin{macro}{\Z}
 % \begin{macro}{\R}
-% \begin{macro}{\Cc}
+% \begin{macro}{\CC}
+% \begin{macro}{\K}
 % Números naturales, enteros, reales y complejos con exponente opcional
 %    \begin{macrocode}
 \NewDocumentCommand\N { O{} }{\ensuremath{ {\Nn}^{#1} }\xspace}
 \NewDocumentCommand\Z { O{} }{\ensuremath{ {\Zz}^{#1} }\xspace}
 \NewDocumentCommand\R { O{} }{\ensuremath{ {\Rr}^{#1} }\xspace}
-\NewDocumentCommand\Cc{ O{} }{\ensuremath{ {\CC}^{#1} }\xspace}
+\NewDocumentCommand\CC{ O{} }{\ensuremath{ {\Cc}^{#1} }\xspace}
+\NewDocumentCommand\K { O{} }{\ensuremath{ {\Kk}^{#1} }\xspace}
 %    \end{macrocode}
+% \end{macro}
 % \end{macro}
 % \end{macro}
 % \end{macro}
@@ -5890,9 +5928,9 @@
 % \begin{macro}{\norma*}
 % Norma de un objeto
 %    \begin{macrocode}
-\NewDocumentCommand\norma{sO{}m}{\ensuremath{{\IfBooleanTF#1
-            {\left\lVert{#3}\right\rVert}
-            {     \rVert{#3}      \rVert}}_{#2}      }\xspace}
+\NewDocumentCommand\norma{sO{}m}{\ensuremath{\IfBooleanTF#1
+            {{\left\lVert{#3}\right\rVert}_{\scriptstyle{#2}}}
+            {{     \lVert{#3}      \rVert}_{\scriptstyle{#2}}}  }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -5903,6 +5941,18 @@
 % Valor absoluto
 %    \begin{macrocode}
 \NewDocumentCommand\modulus{sm}{\ensuremath{\IfBooleanTF#1
+            {\left|{#2}\right|}
+            {     |{#2}      |}                }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\abs}
+% \begin{macro}{\abs*}
+% Valor absoluto
+%    \begin{macrocode}
+\NewDocumentCommand\abs{sm}{\ensuremath{\IfBooleanTF#1
             {\left|{#2}\right|}
             {     |{#2}      |}                }\xspace}
 %    \end{macrocode}
@@ -8605,15 +8655,15 @@
 % \begin{macro}{\dotprodP*}
 % Producto punto
 %    \begin{macrocode}
-\NewDocumentCommand\dotprod{mm}{\ensuremath{\dotProd{\Vect{#1}}{\Vect{#2}}}\xspace}
+\NewDocumentCommand\dotprod{O{}mO{}m}{\ensuremath{\dotProd{\Vect[#1]{#2}}{\Vect[#3]{#4}}}\xspace}
 
-\NewDocumentCommand\dotprodp{smm}{\ensuremath{\IfBooleanTF#1
-            {\parentesis*{\dotprod{#2}{#3}}}
-            {\parentesis {\dotprod{#2}{#3}}}           }\xspace}
+\NewDocumentCommand\dotprodp{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\parentesis*{\dotprod[#2]{#3}[#4]{#5}}}
+            {\parentesis {\dotprod[#2]{#3}[#4]{#5}}}           }\xspace}
 
-\NewDocumentCommand\dotprodP{smm}{\ensuremath{\IfBooleanTF#1
-            {\Parentesis*{\dotprod{#2}{#3}}}
-            {\Parentesis {\dotprod{#2}{#3}}}           }\xspace}
+\NewDocumentCommand\dotprodP{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Parentesis*{\dotprod[#2]{#3}[#4]{#5}}}
+            {\Parentesis {\dotprod[#2]{#3}[#4]{#5}}}           }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -9193,7 +9243,7 @@
 % \begin{macro}{\VWT}
 % Matriz columna por matriz fila
 %    \begin{macrocode}
-\NewDocumentCommand\VWT{mm}{\ensuremath{\MVect{#1}\!\MVectT{#2}}\xspace}
+\NewDocumentCommand\VWT{omom}{\ensuremath{\MVect[#1]{#2}\!\MVectT[#3]{#4}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -9254,7 +9304,7 @@
 % \begin{macro}{\EV}
 % Sistema de ecuaciones lineales con notación matricial (matriz de coef. transpuesta)
 %    \begin{macrocode}
-\NewDocumentCommand\EV{m}{\ensuremath{\mathcal{#1}}\xspace}
+\NewDocumentCommand\EV{O{}O{}m}{\ensuremath{\RidxE{\mathcal{#3}}{\scriptscriptstyle{#1}}{#2}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -9436,6 +9486,17 @@
 % \fi
 %
 % \subsection{Estadística}
+%
+%    \begin{macrocode}
+\DeclareMathAlphabet{\mathbbmsl}{U}{bbm}{m}{sl}
+%    \end{macrocode}
+%
+% \begin{macro}{\ind}
+% Función indicatriz
+%    \begin{macrocode}
+\NewDocumentCommand\ind{m}{\ensuremath{{\mathbbmsl{1}}_{{#1}}}\xspace}
+%    \end{macrocode}
+% \end{macro}
 %
 %
 % \begin{macro}{\Estmc}
