@@ -53,17 +53,23 @@
 %% --- Paréntesis y corchetes
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand\parentesis{sm}{\ensuremath{\IfBooleanTF#1
-       {(#2)}
-       { \big(#2  \big)}    }\xspace}
+       {     ( #2  )    }
+       { \big( #2  \big)}    }\xspace}
 \NewDocumentCommand\Parentesis{sm}{\ensuremath{\IfBooleanTF#1
-       {\left(#2\right)}
-       { \Big(#2  \Big)}    }\xspace}
+       {\left( #2 \right)}
+       { \Big( #2   \Big)}    }\xspace}
 \NewDocumentCommand\corchetes{sm}{\ensuremath{\IfBooleanTF#1
        {[#2]}
        { \big[#2  \big]}    }\xspace}
 \NewDocumentCommand\Corchetes{sm}{\ensuremath{\IfBooleanTF#1
        {\left[#2\right]}
        { \Big[#2  \Big]}    }\xspace}
+\NewDocumentCommand\angulos{sm}{\ensuremath{\IfBooleanTF#1
+        {    \langle #2     \rangle}
+        {\big\langle #2 \big\rangle} }\xspace}
+\NewDocumentCommand\Angulos{sm}{\ensuremath{\IfBooleanTF#1
+        {\left\langle #2 \right\rangle}
+        { \Big\langle #2   \Big\rangle} }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Algunos operadores (subíndices a derecha e izquierda)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1167,7 +1173,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Productos entre vectores
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\NewDocumentCommand\eSc{sO{}mm}{\ensuremath{{\IfBooleanTF#1
+\NewDocumentCommand\eSc{sO{}mm}{\ensuremath{\IfBooleanTF#1
+    {\Ridx{\Angulos*{\left.#3 \right| #4}}{\!#2}}
+    {\Ridx{\angulos {      #3   \big| #4}}{\!#2}}     }\xspace}
+\NewDocumentCommand\eSckk{sO{}mm}{\ensuremath{{\IfBooleanTF#1
              {\left< {#3} , {#4} \right>}
              {\big\langle{{#3} , {#4}\big\rangle}}}_{\!#2}  }\xspace}
 \NewDocumentCommand\esc{sO{}mm}{\ensuremath{{\IfBooleanTF#1
@@ -1200,16 +1209,16 @@
 \NewDocumentCommand\prodHP{smm}{\ensuremath{\IfBooleanTF#1
             {\Parentesis*{\prodH{#2}{#3}}}
             {\Parentesis {\prodH{#2}{#3}}}           }\xspace}
-\NewDocumentCommand\prodh{mm}{\ensuremath{
-            \prodH{\Vect{#1}}{\Vect{#2}} }\xspace}
+\NewDocumentCommand\prodh{O{}mO{}m}{\ensuremath{
+            \prodH{\Vect[#1]{#2}}{\Vect[#3]{#4}} }\xspace}
 
-\NewDocumentCommand\prodhp{smm}{\ensuremath{\IfBooleanTF#1
-            {\parentesis*{\prodh{#2}{#3}}}
-            {\parentesis {\prodh{#2}{#3}}}           }\xspace}
+\NewDocumentCommand\prodhp{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\parentesis*{\prodh[#2]{#3}[#4]{#5}}}
+            {\parentesis {\prodh[#2]{#3}[#4]{#5}}}           }\xspace}
 
-\NewDocumentCommand\prodhP{smm}{\ensuremath{\IfBooleanTF#1
-            {\Parentesis*{\prodh{#2}{#3}}}
-            {\Parentesis {\prodh{#2}{#3}}}           }\xspace}
+\NewDocumentCommand\prodhP{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Parentesis*{\prodh[#2]{#3}[#4]{#5}}}
+            {\Parentesis {\prodh[#2]{#3}[#4]{#5}}}           }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Matriz por vector y vector por matriz
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1425,9 +1434,6 @@
 \NewDocumentCommand\Span{sm}{\ensuremath{\IfBooleanTF#1
         {\EV{L}\Parentesis*{#2}}
         {\EV{L}\parentesis {#2}}             }\xspace}
-\NewDocumentCommand\PSpan{sm}{\ensuremath{\,\IfBooleanTF#1
-        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\Parentesis*{#2}}
-        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\Parentesis {#2}} }\xspace}
 \NewDocumentCommand\PSpanNew{sm}{\ensuremath{\,\IfBooleanTF#1
         {\topinset{\tiny\EV{P}}{\EV{L}}{2pt}{2pt}\Parentesis*{#2}}
         {\topinset{\tiny\EV{P}}{\EV{L}}{2pt}{2pt}\parentesis {#2}} }\xspace}
@@ -1457,19 +1463,165 @@
                  & #4 & \longmapsto & #5
       \end{array}}
     \endgroup}\xspace}
+\DeclareMathOperator{\sproy}{proj}
+\NewDocumentCommand\proy{sO{}m}{\ensuremath{\IfBooleanTF#1
+                         {\Ridx{\sproy}{#2}\!\Parentesis*{#3}} {\Ridx{\sproy}{#2}\!\parentesis{#3}}
+                            }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% --- Estadística
+%% --- Probabilidad
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\DeclareMathAlphabet{\mathbbmsl}{U}{bbm}{m}{sl}
-\NewDocumentCommand\ind{m}{\ensuremath{{\mathbbmsl{1}}_{{#1}}}\xspace}
+\DeclareMathAlphabet{\mymathbb}{U}{BOONDOX-ds}{m}{n}
+\NewDocumentCommand\ind{m}{\ensuremath{{\mymathbb{1}}_{{#1}}}\xspace}
+\NewDocumentCommand\indCero{}{\ensuremath{{\mymathbb{0}}}\xspace}
+\NewDocumentCommand\indUno{} {\ensuremath{\ind{}}\xspace}
+\NewDocumentCommand\Ind{} {\ensuremath{\ind{}}\xspace}
+\NewDocumentCommand\sspi{O{}O{}}{\ensuremath{\RidxE{\eta}{\scriptscriptstyle{#1}}{#2}}\xspace}
+\NewDocumentCommand\SPI{sO{}O{}mm}{\ensuremath{\IfBooleanTF#1
+    {\Ridx{\Angulos*{\left.#4 \right| #5}}{\!\sspi[#2][#3]}}
+    {\Ridx{\angulos {      #4   \big| #5}}{\!\sspi[#2][#3]}}     }\xspace}
+\NewDocumentCommand\sesp{O{}}{\ensuremath{\Ridx{\mathbb{S}}{{#1}}}\xspace}
+\NewDocumentCommand\ESP{sO{}m}{\ensuremath{\IfBooleanTF#1
+                        {\sesp[#2]\Parentesis*{#3}} {\sesp[#2]\parentesis{#3}}
+                          } \xspace}
+\NewDocumentCommand\domesp{m}{\ensuremath{\Ridx{L}{\scriptstyle#1}}\xspace}
+\NewDocumentCommand\spro{O{}}{\ensuremath{\Ridx{\mathbb{P}}{{\!#1}}}\xspace}
+\NewDocumentCommand\PRO{sO{}m}{\ensuremath{\IfBooleanTF#1
+                         {\spro[#2]\Parentesis*{#3}} {\spro[#2]\parentesis{#3}}
+                            }\xspace}
+\newcommand{\pindep}{\mathbin{\mathpalette\PindeP@t\relax}}
+\newcommand{\PindeP@t}[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$\m@th#1-$}%
+    \setlength{\unitlength}{\wd\z@}%
+    \begin{picture}(.7,1)
+    \roundcap
+    \put(0.1,0.2){\line(5,0){0.5}}
+    \put(0.4,0.6){\line(5,0){0.3}}
+    \put(0.1,0.2){\line(0,1){0.7}}
+    \put(0.4,0.6){\line(0,1){0.5}}
+    \put(0.1,0.2){\line(5,6.5){0.3}}
+    \end{picture}%
+  }} }
+\newcommand{\dperp}{\mathbin{\mathpalette\Dperp@t\relax}}
+\newcommand{\Dperp@t}[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$\m@th#1-$}%
+    \setlength{\unitlength}{\wd\z@}%
+    \begin{picture}(1,1)
+    \roundcap
+    \put(0.1,0.2){\line(1,0){0.8}}
+    \put(0.40,0.2){\line(0,1){0.8}}
+    \put(0.60,0.2){\line(0,1){0.8}}
+    \end{picture}%
+  }} }
+\NewDocumentCommand\PSpan{sm}{\ensuremath{\,\IfBooleanTF#1
+        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\Parentesis*{#2}}
+        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\parentesis {#2}} }\xspace}
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{ <-6> matha5 <6-7> matha6 <7-8>
+matha7 <8-9> matha8 <9-10> matha9 <10-12> matha10 <12-> matha12 }{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{ <-6> mathx5 <6-7> mathx6 <7-8>
+mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareMathDelimiter{\ldbrack} {4}{matha}{"76}{mathx}{"30}
+\DeclareMathDelimiter{\rdbrack} {5}{matha}{"77}{mathx}{"38}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareMathSymbol{\bigtimes}{\mathop}{mathx}{"91}
+\NewDocumentCommand\Clase {m}{\ensuremath{ \ldbrack #1 \rdbrack }\xspace}
 \NewDocumentCommand\Estmc {m}{\ensuremath{ \widehat{#1} }\xspace}
 \NewDocumentCommand\Media {m}{\ensuremath{ \widebar{#1} }\xspace}
+
+\NewDocumentCommand\Mediap{sm}{\ensuremath{\IfBooleanTF#1
+                             {\Media{\parentesis*{#2}}}
+                             {\Media{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\MediaP{sm}{\ensuremath{\IfBooleanTF#1
+                             {\Media{\Parentesis*{#2}}}
+                             {\Media{\Parentesis {#2}}} }\xspace}
 \NewDocumentCommand\Smedia {}{\mu}
+\NewDocumentCommand\Scov   {}{\sigma}
+\NewDocumentCommand\Scorr   {}{\rho}
 \NewDocumentCommand\media {m}{\ensuremath{\IfNoValueTF{#1}%
      {  \Smedia       }
      { {\Smedia}_{#1} } }\xspace}
+
+\NewDocumentCommand\mediap{sm}{\ensuremath{\IfBooleanTF#1
+                     {\media{\parentesis*{#2}}}
+                     {\media{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\mediaP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\media{\Parentesis*{#2}}}
+                     {\media{\Parentesis {#2}}} }\xspace}
+\NewDocumentCommand\imrec {mm}{\ensuremath{%
+    \RidxE{#1}{}{{\lfloor{\scriptscriptstyle\!#2}}} }\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Econometría
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NewDocumentCommand\TM{} {\ensuremath{N}\xspace}
 \NewDocumentCommand\res{} {\ensuremath{ \Estmc{\Vect{e}} }\xspace}
+\NewDocumentCommand\VAn{mm}{\ensuremath{ %
+         {\color{violet}{\MakeUppercase{#1}_{#2}}}
+                                            }\xspace}
+\NewDocumentCommand\VAi{O{}m}{\ensuremath{ \VAn{#2}{#1} }\xspace}
+\NewDocumentCommand\VA{O{}m}{\ensuremath{ \VAn{#2}{#1} }\xspace}
+\NewDocumentCommand\VAind{m}{\ensuremath{ \VA{\ind{#1}} }\xspace}
+\NewDocumentCommand\VAindCero{}{\ensuremath{ \VA{\indCero} }\xspace}
+\NewDocumentCommand\VAindUno{}{\ensuremath{ \VA{\indUno} }\xspace}
+\NewDocumentCommand\cteVA{m}{\ensuremath{ \VA{{\mathit{#1}}} }\xspace}
+\NewDocumentCommand\VVA{O{} m}{\ensuremath{ \VA{\Vect[{\MakeLowercase {#1}}]{#2}} }\xspace}
+\NewDocumentCommand\MVA{O{} m}{\ensuremath{ \VA{\Mat[{\MakeLowercase {#1}}]{#2}} }\xspace}
+\NewDocumentCommand\SVA{m}{\ensuremath{{\color{violet}{\MakeUppercase{\mathsf{#1}}}} }\xspace}
+\NewDocumentCommand\SVAT{m}{\ensuremath{ \Trans{{\SVA{#1}}} }\xspace}
+\def\perturbacion{\MakeUppercase{u}}
+\NewDocumentCommand\per{}{\ensuremath{\VA{\perturbacion}}\xspace}
+\NewDocumentCommand\peri{O{n}}{\ensuremath{\VAi[#1]{\perturbacion}}\xspace}
+\NewDocumentCommand\Vper{}{\ensuremath{\VVA{\perturbacion}}\xspace}
+\DeclareMathOperator{\esperanza}{E}
+\NewDocumentCommand\E{sm}{\ensuremath{\IfBooleanTF#1
+                        {\esperanza\Parentesis*{#2}} {\esperanza\parentesis{#2}}
+                          } \xspace}
+\DeclareMathOperator{\desviaciontipica}{Dt}
+\NewDocumentCommand\Dt{sm}{\ensuremath{\IfBooleanTF#1
+                        {\desviaciontipica\Parentesis*{#2}} {\desviaciontipica\parentesis{#2}}
+                          } \xspace}
+\DeclareMathOperator{\varianza}{Var}
+\NewDocumentCommand\Var{sm}{\ensuremath{\IfBooleanTF#1
+                        {\varianza\Parentesis*{#2}} {\varianza\parentesis{#2}}
+                          } \xspace}
+\DeclareMathOperator{\covarianza}{Cov}
+\NewDocumentCommand\Cov{smm}{\ensuremath{\IfBooleanTF#1
+                        {\covarianza\Parentesis*{#2,#3}} {\covarianza\parentesis{#2,#3}}
+                          } \xspace}
+\DeclareMathOperator{\correlacion}{Corr}
+\NewDocumentCommand\Corr{smm}{\ensuremath{\IfBooleanTF#1
+                        {\correlacion\Parentesis*{#2,#3}} {\correlacion\parentesis{#2,#3}}
+                          } \xspace}
+\NewDocumentCommand\ECond{smm}{\ensuremath{{\color{violet} \mathbb{E}} \IfBooleanTF#1
+                     {\Parentesis*{#2\left|\,#3\right.}}
+                     {\parentesis {#2 \mid   #3       }} }\xspace}
+\NewDocumentCommand\ECondYX{smm}{\ensuremath{ \IfBooleanTF#1
+                     {\ECond*{#2}{\SVA{#3}}}
+                     {\ECond {#2}{\SVA{#3}}} }\xspace}
+\NewDocumentCommand\VarCond{smm}{\ensuremath{{\color{violet} \mathbb{V}\!ar} \IfBooleanTF#1
+                     {\Parentesis*{#2\left|\,#3\right.}}
+                     {\parentesis {#2 \mid   #3       }} }\xspace}
+\NewDocumentCommand\VarCondYX{smm}{\ensuremath{ \IfBooleanTF#1
+                     {\VarCond*{#2}{\SVA{#3}}}
+                     {\VarCond {#2}{\SVA{#3}}} }\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Sucesiones
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NewDocumentCommand\suc {sO{n}O{\N}m }{\ensuremath{\IfBooleanTF#1
+                         {{\{\esuc*[#2]{#4}\}}_{#2\in#3}} {\boldsymbol{\ddot{#4}}}
+                           }\xspace}
+\NewDocumentCommand\esuc{sO{n}m      }{\ensuremath{\IfBooleanTF#1
+                         {{#3}_{#2}} {\elemR{\boldsymbol{\ddot{#3}}}{#2}}
+                           }\xspace}
 \endinput
 %%
 %% End of file `nacal.sty'.
