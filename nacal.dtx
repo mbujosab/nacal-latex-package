@@ -53,8 +53,6 @@
 %</driver>
 % \fi
 %
-% %\CheckSum{0}
-% \CheckSum{4035}
 % 
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -204,7 +202,7 @@
 % 
 % \DescribeMacro{\corchetes}
 % \DescribeMacro{\corchetes*}
-% El comando \cs{corchetes} tiene 1 argumentos, y es similar a
+% El comando \cs{corchetes} tiene 1 argumento, y es similar a
 % \cs{parentesis}, pero escribe el \marg{contenido} entre corchetes
 % \begin{center}
 %   |\corchetes{A} \corchetes*{A}| \hspace{1.2cm} \fbox{$\corchetes{A}$}
@@ -213,12 +211,30 @@
 % 
 % \DescribeMacro{\Corchetes}
 % \DescribeMacro{\Corchetes*}
-% El comando \cs{Corchetes} tiene 1 argumentos, y es similar a
+% El comando \cs{Corchetes} tiene 1 argumento, y es similar a
 % \cs{Parentesis}, pero escribe el \marg{contenido} entre corchetes
 % \begin{center}
 %   |\Corchetes{A} \Corchetes*{A}|
 %   \hspace{1.2cm} \fbox{$\Corchetes{A}$}
 %   \fbox{$\Corchetes*{A}$}
+% \end{center}
+% 
+% \DescribeMacro{\angulos}
+% \DescribeMacro{\angulos*}
+% El comando \cs{angulos} tiene 1 argumento, y es similar a
+% \cs{parentesis}, pero escribe el \marg{contenido} entre angulos
+% \begin{center}
+%   |\angulos{A} \angulos*{A}| \hspace{1.2cm} \fbox{$\angulos{A}$}
+%   \fbox{$\angulos*{A}$}
+% \end{center}
+% 
+% \DescribeMacro{\Angulos}
+% \DescribeMacro{\Angulos*}
+% El comando \cs{Angulos} tiene 1 argumento, y es similar a
+% \cs{parentesis}, pero escribe el \marg{contenido} entre angulos
+% \begin{center}
+%   |\Angulos{A} \Angulos*{A}| \hspace{1.2cm} \fbox{$\angulos{A}$}
+%   \fbox{$\Angulos*{A}$}
 % \end{center}
 % \bigskip
 % 
@@ -536,6 +552,17 @@
 %   |\concat|
 %   \hspace{1.2cm}
 %   \fbox{$\concat$}
+% \end{center}
+% 
+% Con el comando \cs{bigtimes} denotaremos el rpoductorio cartesiano
+% \DescribeMacro{\bigtimes}
+% El comando \cs{bigtimes} no tiene argumentos,\;\cs{bigtimes}.
+% \begin{center}
+%   |\bigtimes \bigtimes_{i=1}^n a_i \bigtimes\limits_{i=1}^n a_i|
+%   
+%   \fbox{$\bigtimes$}
+%   \fbox{$\bigtimes_{i=J} a_i$}
+%   \fbox{$\bigtimes\limits_{i=J} a_i$}
 % \end{center}
 % 
 % \subsubsection{Norma y valor absoluto}
@@ -4666,12 +4693,13 @@
 % \DescribeMacro{\prodhp*}
 % \DescribeMacro{\prodhP}
 % \DescribeMacro{\prodhP*}
-% tiene 2 argumentos,\;\cs{prodh}\marg{nombre}\marg{nombre},\; y
+% tiene 4 argumentos,\;\cs{prodh}\oarg{índice}\marg{nombre}\oarg{índice}\marg{nombre},\; y
 % denota el producto punto a punto entre dos vectores de $\R[n]$
 % \begin{center}
-%   |\prodh{a}{b}|
+%   |\prodh{a}{b} \prodh[j]{a}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\prodh{a}{b}$}
+%   \fbox{$\prodh[j]{a}[k]{b}$}
 % \end{center}
 % 
 % \begin{center}
@@ -4682,10 +4710,10 @@
 % \end{center}
 % 
 % \begin{center}
-%   |\prodhP{a}{b} \prodhP*{a}{b}|
+%   |\prodhP{a}{b} \prodhP*[j]{a}[k]{b}|
 %   \hspace{1.2cm}
 %   \fbox{$\prodhP {a}{b}$}
-%   \fbox{$\prodhP*{a}{b}$}
+%   \fbox{$\prodhP*[j]{a}[k]{b}$}
 % \end{center}
 % 
 % \subsection{Matriz por vector y vector por matriz}
@@ -5360,16 +5388,6 @@
 %   \fbox{$\Span*{\SV{Z}}$}
 % \end{center}
 % 
-% \DescribeMacro{\PSpan}
-% \DescribeMacro{\PSpan*}
-% tiene 1 argumento,\;\cs{PSpan}\marg{sistema},\; y denota el espacio semi-euclídeo de probabilidad generado con los elementos del \marg{sistema} o conjunto
-% \begin{center}
-%   |\PSpan{\SV{Z}} \PSpan*{\SV{Z}}|
-%   \hspace{1.2cm}
-%   \fbox{$\PSpan {\SV{Z}}$}
-%   \fbox{$\PSpan*{\SV{Z}}$}
-% \end{center}
-% 
 % \DescribeMacro{\coord}
 % \DescribeMacro{\coordP}
 % \DescribeMacro{\coordP*}
@@ -5406,6 +5424,17 @@
 %   \fbox{$\dom(f)$}
 % \end{center}
 % 
+% \DescribeMacro{\imrec}
+% El comando \cs{imrec} tiene 2 argumentos
+% ,\;\cs{imrec}\marg{funcion}\marg{valor},\;
+% y denota la \emph{imagen inversa}
+% \begin{center}
+%   |\imrec{f}{\lambda}=\{x\mid f(x)=\lambda\}  \imrec{\Vect{a}}{\lambda}=\{i\mid \eleVR{a}{i}=\lambda\}|
+%   \hspace{1.2cm}
+%   \fbox{$\imrec{f}{\lambda}=\{x\mid f(x)=\lambda\}$}
+%   \fbox{$\imrec{\Vect{a}}{\lambda}=\{i\mid \eleVR{a}{i}=\lambda\}$}
+% \end{center}
+% 
 % \DescribeMacro{\mifun}
 % tiene 3
 % argumentos,\;\cs{mifun}\marg{nombre}\marg{dominio}\marg{conjLlegada},\;
@@ -5429,9 +5458,31 @@
 %   \fbox{$\deffun{f}{\Z}{\N}{x}{x^2}$}
 % \end{center}
 % 
+% \DescribeMacro{\sproy}
+% El comando \cs{sproy} no  tiene
+% argumentos y denota el \emph{operador proyecciçon ortogonal}
+% \begin{center}
+%   |\sproy|
+%   \hspace{1.2cm}
+%   \fbox{$\sproy$}
+% \end{center}
+% 
+% 
+% \DescribeMacro{\proy}
+% \DescribeMacro{\proy*}
+% El comando \cs{proy}\oarg{subespacio}\marg{vector} tiene 2
+% argumentos y denota la proyección ortogonal de un \marg{vector} sobre un \oarg{subespacio}
+% \begin{center}
+%   |\proy{\vect{x}} \proy*[\cols*{X}]{\Vect{y}} \proy[\indUno]{\ind{A}}|
+%   
+%   \fbox{$\proy{\vect{x}}$}
+%   \fbox{$\proy*[\cols*{X}]{\Vect{y}}$}
+%   \fbox{$\proy[\indUno]{\ind{A}}$}
+% \end{center}
+% 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
-% \subsection{Estadística}
+% \subsection{Probabilidad}
 % 
 % \DescribeMacro{\ind}
 % El comando \cs{ind}\marg{conjunto} tiene 1
@@ -5440,6 +5491,158 @@
 %   |\ind{\Omega}|
 %   \hspace{1.2cm}
 %   \fbox{$\ind{\Omega}$}
+% \end{center}
+% 
+% \DescribeMacro{\indCero}
+% El comando \cs{indCero} no tiene 
+% argumentos denota la función indicatriz nula
+% \begin{center}
+%   |\indCero|
+%   \hspace{1.2cm}
+%   \fbox{$\indCero$}
+% \end{center}
+% 
+% \DescribeMacro{\indUno}
+% El comando \cs{indUno} no tiene 
+% argumentos denota la función indicatriz constante uno
+% \begin{center}
+%   |\indUno|
+%   \hspace{1.2cm}
+%   \fbox{$\indUno$}
+% \end{center}
+% 
+% \DescribeMacro{Ind}
+% El comando \cs{Ind} no tiene
+% argumentos y denota la función indicatriz constante uno
+% \begin{center}
+%   |\Ind|
+%   \hspace{1.2cm}
+%   \fbox{$\Ind$}
+% \end{center}
+% 
+% 
+% \DescribeMacro{\sspi}
+% El comando \cs{sspi}\oarg{espacio}\oarg{exponente} tiene 2 argumentos
+% y especifica el símbolo para el semi-producto interior definido en un
+% \oarg{espacio} concreto
+% \begin{center}
+%   |\sspi \sspi[\EV{E}] \sspi[\EV{E}][*]|
+%   \hspace{1.2cm}
+%   \fbox{$\sspi$}
+%   \fbox{$\sspi[\EV{E}]$}
+%   \fbox{$\sspi[\EV{E}][*]$}
+% \end{center}
+% 
+% 
+% \DescribeMacro{\SPI}
+% \DescribeMacro{\SPI*}
+% El comando \cs{SPI}\oarg{semi-producto int.}\oarg{exponente semi-producto int.}\marg{objeto}\marg{objeto} tiene 4
+% argumentos y denota el semi-producto interios entre los dos objetos
+% \begin{center}
+%   |\SPI{X}{Y} \SPI*{X}{Y} \SPI[\EV{E}]{X}{Y} \SPI*[\EV{E}][*]{\sum_{n=1}^k \esuc*{f}}{Y}|
+% 
+%   \fbox{$\SPI{X}{Y}$}
+%   \fbox{$\SPI*{X}{Y}$}
+%   \fbox{$\SPI[\EV{E}]{X}{Y}$}
+%   \fbox{$\SPI*[\EV{E}][*]{\sum_{n=1}^k \esuc*{f}}{Y}$}
+% \end{center}
+% 
+% \DescribeMacro{\sesp}
+% El comando \cs{sesp}\oarg{semi-producto int.} tiene 1
+% argumento y especifica el símbolo para la esperanza (la integral de Lebesgue)
+% \begin{center}
+%   |\sesp \sesp[\sspi]|
+%   \hspace{1.2cm}
+%   \fbox{$\sesp$}
+%   \fbox{$\sesp[\sspi]$}
+% \end{center}
+% 
+% 
+% \DescribeMacro{\ESP}
+% \DescribeMacro{\ESP*}
+% El comando \cs{ESP}\oarg{semi-producto int.}\marg{objeto} tiene 2
+% argumentos y denota la esperanza (la integral de Lebesgue) de un
+% \marg{objeto}
+% \begin{center}
+%   |\ESP{X} \ESP[\sspi]{X} \ESP*[\sspi]{\sum\limits_{i=1}^n \esuc{f}}|
+% 
+%   \fbox{$\ESP{X}$}
+%   \fbox{$\ESP[\sspi]{X}$}
+%   \fbox{$\ESP*[\sspi]{\sum\limits_{i=1}^n \esuc{f}}$}
+% \end{center}
+% 
+% 
+% \DescribeMacro{\domesp}
+% El comando \cs{domesp}\marg{espacio} tiene 1
+% argumento y denota es dominio de la función esperanza (integral de Legesgue)
+% en un \marg{espacio} concreto
+% \begin{center}
+%   |\domesp{\EV{E}}|
+%   \hspace{1.2cm}
+%   \fbox{$\domesp{\EV{E}}$}
+% \end{center}
+% 
+% 
+% \DescribeMacro{\spro}
+% El comando \cs{spro}\oarg{semi-producto int.} tiene 1
+% argumento y especifica el símbolo para la probabilidad
+% \begin{center}
+%   |\spro \spro[\sspi]|
+%   \hspace{1.2cm}
+%   \fbox{$\spro$}
+%   \fbox{$\spro[\sspi]$}
+% \end{center}
+% 
+% 
+% \DescribeMacro{\PRO}
+% \DescribeMacro{\PRO*}
+% El comando \cs{PRO}\oarg{semi-producto int.}\marg{suceso} tiene 2
+% argumentos y denota la probabilidad de un \marg{suceso}
+% \begin{center}
+%   |\PRO{A} \PRO*[\sspi]{A}|
+%   \hspace{1.2cm}
+%   \fbox{$\PRO{A}$}
+%   \fbox{$\PRO*[\sspi]{A}$}
+% \end{center}
+% 
+% 
+% Con el comando \cs{pindep} denotaremos la independencia probabilística\\
+% \DescribeMacro{\pindep}
+% El comando \cs{pindep} no tiene argumentos,\;\cs{pindep}.
+% \begin{center}
+%   |A \pindep B|
+%   \hspace{1.2cm}
+%   \fbox{$A \pindep B$}
+% \end{center}
+% 
+% El comando \cs{dperp} es otra alternativa para denotar la independencia probabilística\\
+% \DescribeMacro{\dperp}
+% El comando \cs{dperp} no tiene argumentos,\;\cs{dperp}.
+% \begin{center}
+%   |A \dperp B|
+%   \hspace{1.2cm}
+%   \fbox{$A \dperp B$}
+% \end{center}
+% 
+% 
+% \DescribeMacro{\PSpan}
+% \DescribeMacro{\PSpan*}
+% tiene 1 argumento,\;\cs{PSpan}\marg{sistema},\; y denota el espacio semi-euclídeo de probabilidad generado con los elementos del \marg{sistema} o conjunto
+% \begin{center}
+%   |\PSpan{\SV{Z}} \PSpan*{\SV{Z}}|
+%   \hspace{1.2cm}
+%   \fbox{$\PSpan {\SV{Z}}$}
+%   \fbox{$\PSpan*{\SV{Z}}$}
+% \end{center}
+% 
+% \DescribeMacro{\Clase}
+% tiene 1 argumento,\;\cs{Clase}\marg{representante},\; y denota la
+% clase de equivalencia  del \marg{representante}
+% \begin{center}
+%   |\Clase{\VA{Z}} \Clase{\cteVA{1}}|
+%   \hspace{1.2cm}
+%   \fbox{$\Clase{\VA{Z}}$}
+%   \fbox{$\Clase{\cteVA{1}}$}
 % \end{center}
 % 
 % \DescribeMacro{\Estmc}
@@ -5451,12 +5654,18 @@
 % \end{center}
 % 
 % \DescribeMacro{\Media}
+% \DescribeMacro{\Mediap}
+% \DescribeMacro{\Mediap*}
+% \DescribeMacro{\MediaP}
+% \DescribeMacro{\MediaP*}
 % El comando \cs{Media}\marg{objeto} tiene 1
 % argumento y pinta una barra horizontal que denota la media (proyección ortogonal sobre los vectores contantes) del \marg{objeto}
 % \begin{center}
-%   |\Media{\Vect{x}}|
-%   \hspace{1.2cm}
+%   |\Media{\Vect{x}} \Mediap{\Vect{x}+\Vect{y}} \MediaP*{\Vect{x}+\Vect{y}}|
+% 
 %   \fbox{$\Media{\Vect{x}}$}
+%   \fbox{$\Mediap{\Vect{x}+\Vect{y}}$}
+%   \fbox{$\MediaP*{\Vect{x}+\Vect{y}}$}
 % \end{center}
 % 
 % 
@@ -5469,7 +5678,29 @@
 %   \fbox{$\Smedia$}
 % \end{center}
 % 
+% \DescribeMacro{\Smedia}
+% El comando \cs{Scov} no tiene
+% argumentos y pinta el símbolo de la covarianza
+% \begin{center}
+%   |\Scov|
+%   \hspace{1.2cm}
+%   \fbox{$\Scov$}
+% \end{center}
+% 
+% \DescribeMacro{\Scorr}
+% El comando \cs{Scorr} no tiene
+% argumentos y pinta el símbolo de la correlación
+% \begin{center}
+%   |\Scorr|
+%   \hspace{1.2cm}
+%   \fbox{$\Scorr$}
+% \end{center}
+% 
 % \DescribeMacro{\media}
+% \DescribeMacro{\mediap}
+% \DescribeMacro{\mediap*}
+% \DescribeMacro{\mediaP}
+% \DescribeMacro{\mediaP*}
 % El comando \cs{media} tiene 1 argumento, \cs{Media}\marg{objeto}, y
 % denota el valor medio del objeto.
 % \begin{center}
@@ -5478,6 +5709,26 @@
 %   \fbox{$\media{\Vect{x}}$}
 %   \fbox{$\media{\Vect{x}}^2$}
 %   \fbox{$\media{}$}
+% \end{center}
+% \begin{center}
+%   |\mediap{\Vect{x}^2} \mediap*{\Vect{x}^2} \mediaP*{\Vect{x}^2}^2 |
+%   \hspace{1.2cm}
+%   \fbox{$\mediap{\Vect{x}^2}$}
+%   \fbox{$\mediap*{\Vect{x}^2}$}
+%   \fbox{$\mediaP*{\Vect{x}^2}^2$}
+% \end{center}
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% \subsection{Econometría}
+% 
+% \DescribeMacro{TM}
+% El comando \cs{TM} no tiene
+% argumentos y denota el tamaño muestral
+% \begin{center}
+%   |\TM|
+%   \hspace{1.2cm}
+%   \fbox{$\TM$}
 % \end{center}
 % 
 % \DescribeMacro{res}
@@ -5489,6 +5740,314 @@
 %   \fbox{$\res$}
 % \end{center}
 % 
+% \DescribeMacro{Van}
+% El comando \cs{VAi} tiene 2
+% argumentos, \cs{VAi}\marg{nombre}\marg{índice}, y denota una variable aleatoria con subíndice
+% \begin{center}
+%   |\VAn{x}{k}|
+%   \hspace{1.2cm}
+%   \fbox{$\VAn{x}{k}$}
+% \end{center}
+% 
+% \DescribeMacro{VAi}
+% El comando \cs{VAi} tiene 2
+% argumentos, \cs{VAi}\oarg{índice}\marg{nombre}, y denota una variable aleatoria
+% \begin{center}
+%   |\VAi{x} \VAi[k]{x}|
+%   \hspace{1.2cm}
+%   \fbox{$\VAi{x}$} \fbox{$\VAi[k]{x}$}
+% \end{center}
+% 
+% \DescribeMacro{VA}
+% El comando \cs{VA} tiene 2
+% argumentos, \cs{VA}\oarg{índice}\marg{nombre}, y denota una variable aleatoria
+% \begin{center}
+%   |\VA{x} \VA[k]{x}|
+%   \hspace{1.2cm}
+%   \fbox{$\VA{x}$} \fbox{$\VA[k]{x}$}
+% \end{center}
+% 
+% \DescribeMacro{VAind}
+% El comando \cs{VAind} tiene 1
+% argumento, \cs{VAind}\marg{suceso}, y denota una variable aleatoria indicatriz
+% \begin{center}
+%   |\VAind{\Omega}|
+%   \hspace{1.2cm}
+%   \fbox{$\VAind{\Omega}$} 
+% \end{center}
+% 
+% \DescribeMacro{VAindCero}
+% El comando \cs{VAindCero} no tiene
+% argumentos, \cs{VAindCero}, y denota la variable aleatoria cero
+% \begin{center}
+%   |\VAindCero|
+%   \hspace{1.2cm}
+%   \fbox{$\VAindCero$} 
+% \end{center}
+% 
+% \DescribeMacro{VAindUno}
+% El comando \cs{VAindUno} no tiene
+% argumentos, \cs{VAindUno}, y denota la variable aleatoria constante uno
+% \begin{center}
+%   |\VAindUno|
+%   \hspace{1.2cm}
+%   \fbox{$\VAindUno$} 
+% \end{center}
+% 
+% \DescribeMacro{cteVA}
+% El comando \cs{cteVA} tiene 1
+% argumento, \cs{cteVA}\marg{número}, y denota la variable aleatoria constante casi seguro
+% \begin{center}
+%   |\cteVA{0} \cteVA{1} \cteVA{2}|
+%   \hspace{1.2cm}
+%   \fbox{$\cteVA{0}$} 
+%   \fbox{$\cteVA{1}$} 
+%   \fbox{$\cteVA{2}$} 
+% \end{center}
+% 
+% \DescribeMacro{VVA}
+% El comando \cs{VVA} tiene 2
+% argumentos, \cs{VVA}\oarg{índice}\marg{nombre}, y denota un vector aleatorio
+% \begin{center}
+%   |\VVA{y} \VVA[k]{y}|
+%   \hspace{1.2cm}
+%   \fbox{$\VVA{y}$} \fbox{$\VVA[k]{y}$}
+% \end{center}
+% 
+% \DescribeMacro{MVA}
+% El comando \cs{MVA} tiene 2
+% argumentos, \cs{MVA}\oarg{índice}\marg{nombre}, y denota una matriz aleatoria
+% \begin{center}
+%   |\MVA{X} \MVA[k]{X}|
+%   \hspace{1.2cm}
+%   \fbox{$\MVA{X}$} \fbox{$\MVA[k]{X}$}
+% \end{center}
+% 
+% \DescribeMacro{SVA}
+% El comando \cs{SVA} tiene 1
+% argumento, \cs{SVA}\marg{nombre}, y denota un sistema de variables aleatorias
+% \begin{center}
+%   |\SVA{X}|
+%   \hspace{1.2cm}
+%   \fbox{$\SVA{X}$}
+% \end{center}
+% 
+% \DescribeMacro{SVAT}
+% El comando \cs{SVAT} tiene 1
+% argumento, \cs{SVAT}\marg{nombre}, y denota un sistema de variables aleatorias
+% transpuesto
+% \begin{center}
+%   |\SVAT{X}|
+%   \hspace{1.2cm}
+%   \fbox{$\SVAT{X}$}
+% \end{center}
+% 
+% \DescribeMacro{\per}
+% El comando \cs{per} no tiene argumentos y
+% denota el término de perturbación de un modelo
+% \begin{center}
+%   |\per|
+%   \hspace{1.2cm}
+%   \fbox{$\per$}
+% \end{center}
+% 
+% \DescribeMacro{\peri}
+% El comando \cs{peri} tiene 1 argumento, \cs{peri}\oarg{índice}, y
+% denota el término de perturbación (con un subíndice) de un modelo
+% \begin{center}
+%   |\peri \peri[t]|
+%   \hspace{1.2cm}
+%   \fbox{$\peri$} \fbox{$\peri[t]$}
+% \end{center}
+% 
+% \DescribeMacro{\Vper}
+% El comando \cs{Vper} no tiene argumento y
+% denota un vector de perturbaciones
+% \begin{center}
+%   |\Vper|
+%   \hspace{1.2cm}
+%   \fbox{$\Vper$}
+% \end{center}
+% 
+% \DescribeMacro{\esperanza}
+% El comando \cs{esperanza} no tiene 
+% argumentos y especifica el símbolo para el operador esperanza
+% \begin{center}
+%   |\esperanza|
+%   \hspace{1.2cm}
+%   \fbox{$\esperanza$}
+% \end{center}
+% 
+% 
+% \DescribeMacro{\E}
+% \DescribeMacro{\E*}
+% El comando \cs{E}\marg{variable aleatoria} tiene 1
+% argumento y denota la esperanza de una \marg{variable aleatoria}
+% \begin{center}
+%   |\E{\VA{X}} \E*{\sum\limits_{i=1}^n \VAn{X}{i}}|
+% 
+%   \fbox{$\E{\VA{X}}$}
+%   \fbox{$\E*{\sum\limits_{i=1}^n \VAn{X}{i}}$}
+% \end{center}
+% 
+% \DescribeMacro{\desviaciontipica}
+% El comando \cs{desviaciontipica} no tiene 
+% argumentos y especifica el símbolo para la desviación típica
+% \begin{center}
+%   |\desviaciontipica|
+%   \hspace{1.2cm}
+%   \fbox{$\desviaciontipica$}
+% \end{center}
+% 
+% \DescribeMacro{\Dt}
+% \DescribeMacro{\Dt*}
+% El comando \cs{Dt}\marg{variable aleatoria} tiene 1
+% argumento y denota la desviación típica de una \marg{variable aleatoria}
+% \begin{center}
+%   |\Dt{\VA{X}} \Dt*{\sum\limits_{i=1}^n \VAn{X}{i}}|
+% 
+%   \fbox{$\Dt{\VA{X}}$}
+%   \fbox{$\Dt*{\sum\limits_{i=1}^n \VAn{X}{i}}$}
+% \end{center}
+% 
+% \DescribeMacro{\varianza}
+% El comando \cs{varianza} no tiene 
+% argumentos y especifica el símbolo para la varianza
+% \begin{center}
+%   |\varianza|
+%   \hspace{1.2cm}
+%   \fbox{$\varianza$}
+% \end{center}
+% 
+% \DescribeMacro{\Var}
+% \DescribeMacro{\Var*}
+% El comando \cs{Var}\marg{variable aleatoria} tiene 1
+% argumento y denota la varianza de una \marg{variable aleatoria}
+% \begin{center}
+%   |\Var{\VA{X}} \Var*{\sum\limits_{i=1}^n \VAn{X}{i}}|
+% 
+%   \fbox{$\Var{\VA{X}}$}
+%   \fbox{$\Var*{\sum\limits_{i=1}^n \VAn{X}{i}}$}
+% \end{center}
+% 
+% \DescribeMacro{\covarianza}
+% El comando \cs{covarianza} no tiene 
+% argumentos y especifica el símbolo para la covarianza
+% \begin{center}
+%   |\covarianza|
+%   \hspace{1.2cm}
+%   \fbox{$\covarianza$}
+% \end{center}
+% 
+% 
+% \DescribeMacro{\Cov}
+% \DescribeMacro{\Cov*}
+% El comando \cs{Cov}\marg{variable aleatoria}\marg{variable aleatoria} tiene 2
+% argumentos y denota la covarianza entre dos variables aleatorias
+% \begin{center}
+%   |\Cov{\VA{X}}{\VA{Y}} \Cov*{\VA{Y}}{\sum\limits_{i=1}^n \VAn{X}{i}}|
+% 
+%   \fbox{$\Cov{\VA{X}}{\VA{Y}}$}
+%   \fbox{$\Cov*{\VA{Y}}{\sum\limits_{i=1}^n \VAn{X}{i}}$}
+% \end{center}
+% 
+% \DescribeMacro{\correlacion}
+% El comando \cs{correlacion} no tiene 
+% argumentos y especifica el símbolo para la correlación
+% \begin{center}
+%   |\correlacion|
+%   \hspace{1.2cm}
+%   \fbox{$\correlacion$}
+% \end{center}
+% 
+% 
+% \DescribeMacro{\Corr}
+% \DescribeMacro{\Corr*}
+% El comando \cs{Corr}\marg{variable aleatoria}\marg{variable aleatoria} tiene 2
+% argumentos y denota la correlación entre dos variables aleatorias
+% \begin{center}
+%   |\Corr{\VA{X}}{\VA{Y}} \Corr*{\VA{Y}}{\sum\limits_{i=1}^n \VAn{X}{i}}|
+% 
+%   \fbox{$\Corr{\VA{X}}{\VA{Y}}$}
+%   \fbox{$\Corr*{\VA{Y}}{\sum\limits_{i=1}^n \VAn{X}{i}}$}
+% \end{center}
+% 
+% \DescribeMacro{\ECond}
+% \DescribeMacro{\ECond*}
+% El comando \cs{ECond} tiene 2 argumentos, \cs{ECond}\marg{V. aleatoria}\marg{V. aleatoria o sistema} y denota la esperanza de \marg{V. aleatoria} condicionada a una VA o sistema de variables aleatorias
+% \begin{center}
+%   |\ECond{\VA{Y}}{\VA{X}} \ECond*{\VA{Y}}{\SVA{Z}}|
+%   \hspace{1.2cm}
+%   \fbox{$\ECond{\VA{Y}}{\VA{X}}$}
+%   \fbox{$\ECond*{\VA{Y}}{\SVA{Z}}$}
+% \end{center}
+% 
+% \DescribeMacro{\ECondYX}
+% \DescribeMacro{\ECondYX*}
+% El comando \cs{ECondYX} tiene 2 argumentos, \cs{ECondYX}\marg{V. aleatoria}\marg{Sist. VA} y denota la esperanza de \marg{V. aleatoria} condicionada a un sistema de variables aleatorias
+% \begin{center}
+%   |\ECondYX{\VA{Y}}{X} \ECondYX*{\VA{Y}}{Z}|
+%   \hspace{1.2cm}
+%   \fbox{$\ECondYX{\VA{Y}}{X}$}
+%   \fbox{$\ECondYX*{\VA{Y}}{Z}$}
+% \end{center}
+% 
+% \DescribeMacro{\VarCond}
+% \DescribeMacro{\VarCond*}
+% El comando \cs{VarCond} tiene 2 argumentos, \cs{VarCond}\marg{V. aleatoria}\marg{V. aleatoria o sistema} y denota la varianza de \marg{V. aleatoria} condicionada a una VA o sistema de variables aleatorias
+% \begin{center}
+%   |\VarCond{\VA{Y}}{\VA{X}} \VarCond*{\VA{Y}}{\SVA{Z}}|
+%   \hspace{1.2cm}
+%   \fbox{$\VarCond {\VA{Y}}{\VA{X}}$}
+%   \fbox{$\VarCond*{\VA{Y}}{\SVA{Z}}$}
+% \end{center}
+% 
+% \DescribeMacro{\VarCondYX}
+% \DescribeMacro{\VarCondYX*}
+% El comando \cs{VarCondYX} tiene 2 argumentos, \cs{VarCondYX}\marg{V. aleatoria}\marg{Sist. VA} y denota la esperanza de \marg{V. aleatoria} condicionada a un sistema de variables aleatorias
+% \begin{center}
+%   |\VarCondYX{\VA{Y}}{X} \VarCondYX*{\VA{Y}}{Z}|
+%   \hspace{1.2cm}
+%   \fbox{$\VarCondYX{\VA{Y}}{X}$}
+%   \fbox{$\VarCondYX*{\VA{Y}}{Z}$}
+% \end{center}
+% 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% \subsection{Sucesiones}
+% 
+% \DescribeMacro{suc}
+% \DescribeMacro{suc*}
+% El comando \cs{suc} tiene tres argumentos
+% ,\;\cs{esuc}\oarg{ind}\oarg{conjunto}\marg{nombre},\; y denota una
+% sucesión. La versión con estrella emplea la notación tradicional y la
+% versión sin estrella uso con una notación compacta (que omite los
+% detalles relativos a los índides)
+% \begin{center}
+%   |\suc*{f} \suc*[j]{f} \suc*[j][\Z]{f} \esuc{f} \esuc[j]{f} \esuc[j][\Z]{f}|
+%   \hspace{1.2cm}
+%   \fbox{$\suc*{f}$}
+%   \fbox{$\suc*[j]{f}$}
+%   \fbox{$\suc*[j][\Z]{f}$}
+%   \fbox{$\suc{f}$}
+%   \fbox{$\suc[j]{f}$}
+%   \fbox{$\suc[j][\Z]{f}$}
+% \end{center}
+% 
+% \DescribeMacro{esuc}
+% \DescribeMacro{esuc*}
+% El comando \cs{esuc} tiene dos argumentos
+% ,\;\cs{esuc}\oarg{ind}\marg{nombre},\; y denota el elemento de una
+% sucesión. La versión con estrella emplea la notación tradicional y la
+% versión sin estrella uso con una notación compacta
+% \begin{center}
+%   |\esuc*{f} \esuc*[j]{f} \esuc{f} \esuc[j]{f}|
+%   \hspace{1.2cm}
+%   \fbox{$\esuc*{f}$}
+%   \fbox{$\esuc*[j]{f}$}
+%   \fbox{$\esuc{f}$}
+%   \fbox{$\esuc[j]{f}$}
+% \end{center}
 % 
 % \StopEventually{\PrintChanges\PrintIndex}
 %
@@ -5552,25 +6111,30 @@
 % \fi
 %
 % \begin{macro}{\parentesis}
+% \begin{macro}{\parentesis*}
 % Paréntesis pequeños
 %    \begin{macrocode}
 \NewDocumentCommand\parentesis{sm}{\ensuremath{\IfBooleanTF#1
-       {(#2)}
-       { \big(#2  \big)}    }\xspace}
+       {     ( #2  )    }
+       { \big( #2  \big)}    }\xspace}
 %    \end{macrocode}
+% \end{macro}
 % \end{macro}
 %
 % \begin{macro}{\Parentesis}
+% \begin{macro}{\Parentesis*}
 % Paréntesis de tamaño variable
 %    \begin{macrocode}
 \NewDocumentCommand\Parentesis{sm}{\ensuremath{\IfBooleanTF#1
-       {\left(#2\right)}
-       { \Big(#2  \Big)}    }\xspace}
+       {\left( #2 \right)}
+       { \Big( #2   \Big)}    }\xspace}
 %    \end{macrocode}
+% \end{macro}
 % \end{macro}
 %
 %
 % \begin{macro}{\corchetes}
+% \begin{macro}{\corchetes*}
 % Corchetes pequeños
 %    \begin{macrocode}
 \NewDocumentCommand\corchetes{sm}{\ensuremath{\IfBooleanTF#1
@@ -5578,15 +6142,42 @@
        { \big[#2  \big]}    }\xspace}
 %    \end{macrocode}
 % \end{macro}
+% \end{macro}
 %
 %
 % \begin{macro}{\Corchetes}
+% \begin{macro}{\Corchetes*}
 % Corchetes de tamaño variable
 %    \begin{macrocode}
 \NewDocumentCommand\Corchetes{sm}{\ensuremath{\IfBooleanTF#1
        {\left[#2\right]}
        { \Big[#2  \Big]}    }\xspace}
 %    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\angulos}
+% \begin{macro}{\angulos*}
+% Angulos de tamaño variable
+%    \begin{macrocode}
+\NewDocumentCommand\angulos{sm}{\ensuremath{\IfBooleanTF#1
+        {    \langle #2     \rangle}
+        {\big\langle #2 \big\rangle} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\Angulos}
+% \begin{macro}{\Angulos*}
+% Angulos de tamaño variable
+%    \begin{macrocode}
+\NewDocumentCommand\Angulos{sm}{\ensuremath{\IfBooleanTF#1
+        {\left\langle #2 \right\rangle}
+        { \Big\langle #2   \Big\rangle} }\xspace}
+%    \end{macrocode}
+% \end{macro}
 % \end{macro}
 %
 %
@@ -8602,7 +9193,10 @@
 % \begin{macro}{\eSc*}
 % Producto escalar
 %    \begin{macrocode}
-\NewDocumentCommand\eSc{sO{}mm}{\ensuremath{{\IfBooleanTF#1
+\NewDocumentCommand\eSc{sO{}mm}{\ensuremath{\IfBooleanTF#1
+    {\Ridx{\Angulos*{\left.#3 \right| #4}}{\!#2}}
+    {\Ridx{\angulos {      #3   \big| #4}}{\!#2}}     }\xspace}
+\NewDocumentCommand\eSckk{sO{}mm}{\ensuremath{{\IfBooleanTF#1
              {\left< {#3} , {#4} \right>}
              {\big\langle{{#3} , {#4}\big\rangle}}}_{\!#2}  }\xspace}
 %    \end{macrocode}
@@ -8704,16 +9298,16 @@
 % \begin{macro}{\prodhP*}
 % Producto punto a punto o \emph{Hadamard}
 %    \begin{macrocode}
-\NewDocumentCommand\prodh{mm}{\ensuremath{
-            \prodH{\Vect{#1}}{\Vect{#2}} }\xspace}
+\NewDocumentCommand\prodh{O{}mO{}m}{\ensuremath{
+            \prodH{\Vect[#1]{#2}}{\Vect[#3]{#4}} }\xspace}
 
-\NewDocumentCommand\prodhp{smm}{\ensuremath{\IfBooleanTF#1
-            {\parentesis*{\prodh{#2}{#3}}}
-            {\parentesis {\prodh{#2}{#3}}}           }\xspace}
+\NewDocumentCommand\prodhp{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\parentesis*{\prodh[#2]{#3}[#4]{#5}}}
+            {\parentesis {\prodh[#2]{#3}[#4]{#5}}}           }\xspace}
 
-\NewDocumentCommand\prodhP{smm}{\ensuremath{\IfBooleanTF#1
-            {\Parentesis*{\prodh{#2}{#3}}}
-            {\Parentesis {\prodh{#2}{#3}}}           }\xspace}
+\NewDocumentCommand\prodhP{sO{}mO{}m}{\ensuremath{\IfBooleanTF#1
+            {\Parentesis*{\prodh[#2]{#3}[#4]{#5}}}
+            {\Parentesis {\prodh[#2]{#3}[#4]{#5}}}           }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -9385,18 +9979,6 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\PSpan}
-% \begin{macro}{\PSpan*}
-% Espacio semi-euclídeo de probabilidad generado por un sistema
-%    \begin{macrocode}
-\NewDocumentCommand\PSpan{sm}{\ensuremath{\,\IfBooleanTF#1
-        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\Parentesis*{#2}}
-        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\Parentesis {#2}} }\xspace}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-%
-%
 % \begin{macro}{\PSpanNew}
 % \begin{macro}{\PSpanNew*}
 % Espacio semi-euclídeo de probabilidad generado por un sistema
@@ -9477,24 +10059,213 @@
 %    \end{macrocode}
 % \end{macro}
 %
+%
+% \begin{macro}{\sproy}
+% Operador proyección ortogonal
+%    \begin{macrocode}
+\DeclareMathOperator{\sproy}{proj}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\proy}
+% \begin{macro}{\proy*}
+% Proyección ortogonal
+%    \begin{macrocode}
+\NewDocumentCommand\proy{sO{}m}{\ensuremath{\IfBooleanTF#1
+                         {\Ridx{\sproy}{#2}\!\Parentesis*{#3}} {\Ridx{\sproy}{#2}\!\parentesis{#3}}
+                            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % \iffalse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% --- Estadística
+%% --- Probabilidad
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \fi
 %
-% \subsection{Estadística}
+% \subsection{Probabilidad}
 %
 %    \begin{macrocode}
-\DeclareMathAlphabet{\mathbbmsl}{U}{bbm}{m}{sl}
+% % %\DeclareMathAlphabet{\mathbbmsl}{U}{bbm}{m}{sl}
+\DeclareMathAlphabet{\mymathbb}{U}{BOONDOX-ds}{m}{n}
 %    \end{macrocode}
+%
 %
 % \begin{macro}{\ind}
 % Función indicatriz
 %    \begin{macrocode}
-\NewDocumentCommand\ind{m}{\ensuremath{{\mathbbmsl{1}}_{{#1}}}\xspace}
+\NewDocumentCommand\ind{m}{\ensuremath{{\mymathbb{1}}_{{#1}}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\indCero}
+% Función indicatriz nula
+%    \begin{macrocode}
+\NewDocumentCommand\indCero{}{\ensuremath{{\mymathbb{0}}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Ind}
+% Función indicatriz constante uno
+%    \begin{macrocode}
+\NewDocumentCommand\indUno{} {\ensuremath{\ind{}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Ind}
+% Función indicatriz constante uno
+%    \begin{macrocode}
+\NewDocumentCommand\Ind{} {\ensuremath{\ind{}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\sspi}
+% Símbolo del semi-producto interior
+%    \begin{macrocode}
+\NewDocumentCommand\sspi{O{}O{}}{\ensuremath{\RidxE{\eta}{\scriptscriptstyle{#1}}{#2}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SPI}
+% Símbolo del semi-producto interior
+%    \begin{macrocode}
+\NewDocumentCommand\SPI{sO{}O{}mm}{\ensuremath{\IfBooleanTF#1
+    {\Ridx{\Angulos*{\left.#4 \right| #5}}{\!\sspi[#2][#3]}}
+    {\Ridx{\angulos {      #4   \big| #5}}{\!\sspi[#2][#3]}}     }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\sesp}
+% Símbolo de la esperanza (integral de Lebesgue)
+%    \begin{macrocode}
+\NewDocumentCommand\sesp{O{}}{\ensuremath{\Ridx{\mathbb{S}}{{#1}}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ESP}
+% \begin{macro}{\ESP*}
+% Esperanza (integral de Lebesgue) de un objeto
+%    \begin{macrocode}
+\NewDocumentCommand\ESP{sO{}m}{\ensuremath{\IfBooleanTF#1
+                        {\sesp[#2]\Parentesis*{#3}} {\sesp[#2]\parentesis{#3}}
+                          } \xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\domesp}
+% Dominio de la esperanza (integral de Lebesgue)
+%    \begin{macrocode}
+\NewDocumentCommand\domesp{m}{\ensuremath{\Ridx{L}{\scriptstyle#1}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\spro}
+% Símbolo de la probabilidad
+%    \begin{macrocode}
+\NewDocumentCommand\spro{O{}}{\ensuremath{\Ridx{\mathbb{P}}{{\!#1}}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\PRO}
+% \begin{macro}{\PRO*}
+% Probabilidad de un suceso
+%    \begin{macrocode}
+\NewDocumentCommand\PRO{sO{}m}{\ensuremath{\IfBooleanTF#1
+                         {\spro[#2]\Parentesis*{#3}} {\spro[#2]\parentesis{#3}}
+                            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% 
+% \begin{macro}{\pindep}
+% Símbolo de independencia probabilística 
+%    \begin{macrocode}
+\newcommand{\pindep}{\mathbin{\mathpalette\PindeP@t\relax}}
+\newcommand{\PindeP@t}[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$\m@th#1-$}%
+    \setlength{\unitlength}{\wd\z@}%
+    \begin{picture}(.7,1)
+    \roundcap
+    \put(0.1,0.2){\line(5,0){0.5}}
+    \put(0.4,0.6){\line(5,0){0.3}}
+    \put(0.1,0.2){\line(0,1){0.7}}
+    \put(0.4,0.6){\line(0,1){0.5}}
+    \put(0.1,0.2){\line(5,6.5){0.3}}
+    \end{picture}%
+  }} }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\dperp}
+% Símbolo alternativo de independencia probabilística 
+%    \begin{macrocode}
+\newcommand{\dperp}{\mathbin{\mathpalette\Dperp@t\relax}}
+\newcommand{\Dperp@t}[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$\m@th#1-$}%
+    \setlength{\unitlength}{\wd\z@}%
+    \begin{picture}(1,1)
+    \roundcap
+    \put(0.1,0.2){\line(1,0){0.8}}
+    \put(0.40,0.2){\line(0,1){0.8}}
+    \put(0.60,0.2){\line(0,1){0.8}}
+    \end{picture}%
+  }} }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\PSpan}
+% \begin{macro}{\PSpan*}
+% Espacio semi-euclídeo de probabilidad generado por un sistema
+%    \begin{macrocode}
+\NewDocumentCommand\PSpan{sm}{\ensuremath{\,\IfBooleanTF#1
+        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\Parentesis*{#2}}
+        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\parentesis {#2}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%    \begin{macrocode}
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{ <-6> matha5 <6-7> matha6 <7-8>
+matha7 <8-9> matha8 <9-10> matha9 <10-12> matha10 <12-> matha12 }{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+%
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{ <-6> mathx5 <6-7> mathx6 <7-8>
+mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+%
+\DeclareMathDelimiter{\ldbrack} {4}{matha}{"76}{mathx}{"30}
+\DeclareMathDelimiter{\rdbrack} {5}{matha}{"77}{mathx}{"38}
+%
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareMathSymbol{\bigtimes}{\mathop}{mathx}{"91}
+%    \end{macrocode}
+%
+% \begin{macro}{\Clase}
+% Clase de equivalencia
+%    \begin{macrocode}
+\NewDocumentCommand\Clase {m}{\ensuremath{ \ldbrack #1 \rdbrack }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -9508,10 +10279,22 @@
 %
 %
 % \begin{macro}{\Media}
+% \begin{macro}{\Mediap}
+% \begin{macro}{\MediaP}
 % Media (proyección ortogonal sobre los vectores contantes)
 %    \begin{macrocode}
 \NewDocumentCommand\Media {m}{\ensuremath{ \widebar{#1} }\xspace}
+
+\NewDocumentCommand\Mediap{sm}{\ensuremath{\IfBooleanTF#1
+                             {\Media{\parentesis*{#2}}}
+                             {\Media{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\MediaP{sm}{\ensuremath{\IfBooleanTF#1
+                             {\Media{\Parentesis*{#2}}}
+                             {\Media{\Parentesis {#2}}} }\xspace}
 %    \end{macrocode}
+% \end{macro}
+% \end{macro}
 % \end{macro}
 %
 %
@@ -9523,12 +10306,67 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\Scov}
+% Símbolo para covarianza
+%    \begin{macrocode}
+\NewDocumentCommand\Scov   {}{\sigma}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Scorr}
+% Símbolo para correlación
+%    \begin{macrocode}
+\NewDocumentCommand\Scorr   {}{\rho}
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\media}
+% \begin{macro}{\mediap}
+% \begin{macro}{\mediaP}
 % Valor medio
 %    \begin{macrocode}
 \NewDocumentCommand\media {m}{\ensuremath{\IfNoValueTF{#1}%
      {  \Smedia       }
      { {\Smedia}_{#1} } }\xspace}
+
+\NewDocumentCommand\mediap{sm}{\ensuremath{\IfBooleanTF#1
+                     {\media{\parentesis*{#2}}}
+                     {\media{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\mediaP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\media{\Parentesis*{#2}}}
+                     {\media{\Parentesis {#2}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\imrec}
+% Imagen inversa
+%    \begin{macrocode}
+\NewDocumentCommand\imrec {mm}{\ensuremath{%
+    \RidxE{#1}{}{{\lfloor{\scriptscriptstyle\!#2}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Econometría
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \fi
+%
+% \subsection{Econometría}
+%
+%
+% \begin{macro}{\TM}
+% Tamaño muestral
+%    \begin{macrocode}
+\NewDocumentCommand\TM{} {\ensuremath{N}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -9539,6 +10377,311 @@
 \NewDocumentCommand\res{} {\ensuremath{ \Estmc{\Vect{e}} }\xspace}
 %    \end{macrocode}
 % \end{macro}
+%
+%
+% \begin{macro}{\VAn}
+% Variable aleatoria con subíndice
+%    \begin{macrocode}
+\NewDocumentCommand\VAn{mm}{\ensuremath{ %
+         {\color{violet}{\MakeUppercase{#1}_{#2}}}
+                                            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VAi}
+% Variable aleatoria (con subíndice opcional)
+%    \begin{macrocode}
+\NewDocumentCommand\VAi{O{}m}{\ensuremath{ \VAn{#2}{#1} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VA}
+% Variable aleatoria
+%    \begin{macrocode}
+\NewDocumentCommand\VA{O{}m}{\ensuremath{ \VAn{#2}{#1} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VAind}
+% Variable aleatoria
+%    \begin{macrocode}
+\NewDocumentCommand\VAind{m}{\ensuremath{ \VA{\ind{#1}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VAindCero}
+% Variable aleatoria
+%    \begin{macrocode}
+\NewDocumentCommand\VAindCero{}{\ensuremath{ \VA{\indCero} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VAindUno}
+% Variable aleatoria
+%    \begin{macrocode}
+\NewDocumentCommand\VAindUno{}{\ensuremath{ \VA{\indUno} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\cteVA}
+% Variable aleatoria
+%    \begin{macrocode}
+\NewDocumentCommand\cteVA{m}{\ensuremath{ \VA{{\mathit{#1}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VVA}
+% Vector aleatorio
+%    \begin{macrocode}
+\NewDocumentCommand\VVA{O{} m}{\ensuremath{ \VA{\Vect[{\MakeLowercase {#1}}]{#2}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\MVA}
+% Matriz aleatoria
+%    \begin{macrocode}
+\NewDocumentCommand\MVA{O{} m}{\ensuremath{ \VA{\Mat[{\MakeLowercase {#1}}]{#2}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SVA}
+% Sistema de variables aleatorias
+%    \begin{macrocode}
+\NewDocumentCommand\SVA{m}{\ensuremath{{\color{violet}{\MakeUppercase{\mathsf{#1}}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SVAT}
+% Sistema de variables aleatorias transpuesto
+%    \begin{macrocode}
+\NewDocumentCommand\SVAT{m}{\ensuremath{ \Trans{{\SVA{#1}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\perturbacion}
+% Símbolo para el término de perturbación
+%    \begin{macrocode}
+\def\perturbacion{\MakeUppercase{u}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\per}
+% Perturbación de un modelo
+%    \begin{macrocode}
+\NewDocumentCommand\per{}{\ensuremath{\VA{\perturbacion}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\peri}
+% Perturbación con subíndice de un modelo
+%    \begin{macrocode}
+\NewDocumentCommand\peri{O{n}}{\ensuremath{\VAi[#1]{\perturbacion}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Vper}
+% Vector de perturbaciones
+%    \begin{macrocode}
+\NewDocumentCommand\Vper{}{\ensuremath{\VVA{\perturbacion}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\esperanza}
+% Símbolo de la esperanza matemática
+%    \begin{macrocode}
+\DeclareMathOperator{\esperanza}{E}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\E}
+% \begin{macro}{\E*}
+% Esperanza de una variable aleatoria
+%    \begin{macrocode}
+\NewDocumentCommand\E{sm}{\ensuremath{\IfBooleanTF#1
+                        {\esperanza\Parentesis*{#2}} {\esperanza\parentesis{#2}}
+                          } \xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\desviaciontipica}
+% Símbolo de la desviación típica
+%    \begin{macrocode}
+\DeclareMathOperator{\desviaciontipica}{Dt}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Dt}
+% \begin{macro}{\Dt*}
+% Desviación típica de una variable aleatoria
+%    \begin{macrocode}
+\NewDocumentCommand\Dt{sm}{\ensuremath{\IfBooleanTF#1
+                        {\desviaciontipica\Parentesis*{#2}} {\desviaciontipica\parentesis{#2}}
+                          } \xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\varianza}
+% Símbolo de la varianza
+%    \begin{macrocode}
+\DeclareMathOperator{\varianza}{Var}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Var}
+% \begin{macro}{\Var*}
+% Varianza de una variable aleatoria
+%    \begin{macrocode}
+\NewDocumentCommand\Var{sm}{\ensuremath{\IfBooleanTF#1
+                        {\varianza\Parentesis*{#2}} {\varianza\parentesis{#2}}
+                          } \xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\covarianza}
+% Símbolo de la covarianza
+%    \begin{macrocode}
+\DeclareMathOperator{\covarianza}{Cov}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Cov}
+% \begin{macro}{\Cov*}
+% Covarianza de dos variables aleatorias
+%    \begin{macrocode}
+\NewDocumentCommand\Cov{smm}{\ensuremath{\IfBooleanTF#1
+                        {\covarianza\Parentesis*{#2,#3}} {\covarianza\parentesis{#2,#3}}
+                          } \xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\correlacion}
+% Símbolo de la correlacion
+%    \begin{macrocode}
+\DeclareMathOperator{\correlacion}{Corr}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Corr}
+% \begin{macro}{\Corr*}
+% Correlación ente dos variables aleatorias
+%    \begin{macrocode}
+\NewDocumentCommand\Corr{smm}{\ensuremath{\IfBooleanTF#1
+                        {\correlacion\Parentesis*{#2,#3}} {\correlacion\parentesis{#2,#3}}
+                          } \xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\ECond}
+% \begin{macro}{\ECond*}
+% Esperanza condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\ECond{smm}{\ensuremath{{\color{violet} \mathbb{E}} \IfBooleanTF#1
+                     {\Parentesis*{#2\left|\,#3\right.}}
+                     {\parentesis {#2 \mid   #3       }} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\ECondYX}
+% \begin{macro}{\ECondYX*}
+% Esperanza condicionada a un sistema de variables aleatorias
+%    \begin{macrocode}
+\NewDocumentCommand\ECondYX{smm}{\ensuremath{ \IfBooleanTF#1
+                     {\ECond*{#2}{\SVA{#3}}} 
+                     {\ECond {#2}{\SVA{#3}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\VarCond}
+% \begin{macro}{\VarCond*}
+% Varianza condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\VarCond{smm}{\ensuremath{{\color{violet} \mathbb{V}\!ar} \IfBooleanTF#1
+                     {\Parentesis*{#2\left|\,#3\right.}}
+                     {\parentesis {#2 \mid   #3       }} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\VarCondYX}
+% \begin{macro}{\VarCondYX*}
+% Varianza condicionada a un sistema de variables aleatorias 
+%    \begin{macrocode}
+\NewDocumentCommand\VarCondYX{smm}{\ensuremath{ \IfBooleanTF#1
+                     {\VarCond*{#2}{\SVA{#3}}} 
+                     {\VarCond {#2}{\SVA{#3}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% \iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Sucesiones
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \fi
+%
+% \subsection{Sucesiones}
+%
+%
+% \begin{macro}{\suc}
+% \begin{macro}{\suc*}
+% Sucesión
+%    \begin{macrocode}
+\NewDocumentCommand\suc {sO{n}O{\N}m }{\ensuremath{\IfBooleanTF#1
+                         {{\{\esuc*[#2]{#4}\}}_{#2\in#3}} {\boldsymbol{\ddot{#4}}}
+                           }\xspace}     
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\esuc}
+% \begin{macro}{\esuc*}
+% Elemento de una sucesión
+%    \begin{macrocode}
+\NewDocumentCommand\esuc{sO{n}m      }{\ensuremath{\IfBooleanTF#1
+                         {{#3}_{#2}} {\elemR{\boldsymbol{\ddot{#3}}}{#2}}
+                           }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
 %
 %
 % \Finale
