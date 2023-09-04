@@ -3735,12 +3735,24 @@
 %   \fbox{$\VectCCCT{A}{i}$}
 % \end{center}
 % 
+% \DescribeMacro{\eleVVV}
+% \DescribeMacro{\eleVV}
+%  tiene 2
+% argumentos,\;\marg{nombre}\marg{indice},\; y denota la
+% selección del elemento de un vector correspondiente al índice indicado
+% \begin{center}
+%   |\eleVVV{A}{i} \eleVV{A}{i}|
+%   \hspace{1.2cm}
+%   \fbox{$\eleVVV {A}{i}$}
+%   \fbox{$\eleVV  {A}{i}$}
+% \end{center}
+% 
 % \DescribeMacro{\eleMMM}
 % \DescribeMacro{\eleMMMT}
 % \DescribeMacro{\eleMM}
 %  tiene 3
 % argumentos,\;\marg{nombre}\marg{indiceFil}\marg{indiceCol},\; y denota la
-% selección del elemento correspondiente a los índices indicados
+% selección del elemento de una matriz correspondiente a los índices indicados
 % \begin{center}
 %   |\eleMMM{A}{i}{j} \eleMMMT{A}{i}{j} \eleMM{A}{i}{j}|
 %   \hspace{1.2cm}
@@ -3818,29 +3830,30 @@
 % \DescribeMacro{\Vectp*}
 % \DescribeMacro{\VectP}
 % \DescribeMacro{\VectP*}
-% tiene 2 argumentos,\;|Vect<X*>|\oarg{subíndice}\marg{nombre},\; y denota un vector de
+% tiene 3 argumentos,\;|Vect<X*>|\oarg{subíndice}\oarg{superíndice}\marg{nombre},\; y denota un vector de
 % $\R[n]$
 % \begin{center}
-%   |\Vect{a} \Vect[h]{a}|
+%   |\Vect{a} \Vect[h]{a}  \Vect[h][2]{a}|
 %   \hspace{1.2cm}
-%   \fbox{$\Vect   {a}$}
-%   \fbox{$\Vect[h]{a}$}
+%   \fbox{$\Vect      {a}$}
+%   \fbox{$\Vect[h]   {a}$}
+%   \fbox{$\Vect[h][2]{a}$}
 % \end{center}
 % 
 % \begin{center}
-%   |\Vectp{a} \Vectp*{a} \VectP{a} \VectP*{a}|
+%   |\Vectp{a} \Vectp*[][2]{a} \VectP{a} \VectP*{a}|
 %   \hspace{1.2cm}
 %   \fbox{$\Vectp {a}$}
-%   \fbox{$\Vectp*{a}$}
+%   \fbox{$\Vectp*[][2]{a}$}
 %   \fbox{$\VectP {a}$}
 %   \fbox{$\VectP*{a}$}
 % \end{center}
 % 
 % \begin{center}
-%   |\Vectp[h]{a} \Vectp*[h]{a} \VectP[h]{a} \VectP*[h]{a}|
-%   \hspace{1.2cm}
+%   |\Vectp[h]{a} \Vectp*[h][2]{a} \VectP[h]{a} \VectP*[h]{a}|
+%   
 %   \fbox{$\Vectp [h]{a}$}
-%   \fbox{$\Vectp*[h]{a}$}
+%   \fbox{$\Vectp*[h][2]{a}$}
 %   \fbox{$\VectP [h]{a}$}
 %   \fbox{$\VectP*[h]{a}$}
 % \end{center}
@@ -5645,14 +5658,6 @@
 %   \fbox{$\Clase{\cteVA{1}}$}
 % \end{center}
 % 
-% \DescribeMacro{\Estmc}
-% El comando \cs{Estmc}\marg{objeto} tiene 1
-% argumento y denota el ajuste MCO del \marg{objeto}\begin{center}
-%   |\Estmc{A}|
-%   \hspace{1.2cm}
-%   \fbox{$\Estmc{A}$}
-% \end{center}
-% 
 % \DescribeMacro{\Media}
 % \DescribeMacro{\Mediap}
 % \DescribeMacro{\Mediap*}
@@ -5678,13 +5683,49 @@
 %   \fbox{$\Smedia$}
 % \end{center}
 % 
-% \DescribeMacro{\Smedia}
+% \DescribeMacro{\SmediaM}
+% El comando \cs{SmediaM} no tiene
+% argumentos y pinta el símbolo de la media muestral
+% \begin{center}
+%   |\SmediaM|
+%   \hspace{1.2cm}
+%   \fbox{$\SmediaM$}
+% \end{center}
+% 
+% \DescribeMacro{\Svar}
+% El comando \cs{Svar} no tiene
+% argumentos y pinta el símbolo de la varianza
+% \begin{center}
+%   |\Svar|
+%   \hspace{1.2cm}
+%   \fbox{$\Svar$}
+% \end{center}
+% 
+% \DescribeMacro{\SvarM}
+% El comando \cs{SvarM} no tiene
+% argumentos y pinta el símbolo de la varianza muestral
+% \begin{center}
+%   |\SvarM|
+%   \hspace{1.2cm}
+%   \fbox{$\SvarM$}
+% \end{center}
+% 
+% \DescribeMacro{\Scov}
 % El comando \cs{Scov} no tiene
 % argumentos y pinta el símbolo de la covarianza
 % \begin{center}
 %   |\Scov|
 %   \hspace{1.2cm}
 %   \fbox{$\Scov$}
+% \end{center}
+% 
+% \DescribeMacro{\ScovM}
+% El comando \cs{ScovM} no tiene
+% argumentos y pinta el símbolo de la covarianza muestral
+% \begin{center}
+%   |\ScovM|
+%   \hspace{1.2cm}
+%   \fbox{$\ScovM$}
 % \end{center}
 % 
 % \DescribeMacro{\Scorr}
@@ -5696,12 +5737,21 @@
 %   \fbox{$\Scorr$}
 % \end{center}
 % 
+% \DescribeMacro{\ScorrM}
+% El comando \cs{ScorrM} no tiene
+% argumentos y pinta el símbolo de la correlación muestral
+% \begin{center}
+%   |\ScorrM|
+%   \hspace{1.2cm}
+%   \fbox{$\ScorrM$}
+% \end{center}
+% 
 % \DescribeMacro{\media}
 % \DescribeMacro{\mediap}
 % \DescribeMacro{\mediap*}
 % \DescribeMacro{\mediaP}
 % \DescribeMacro{\mediaP*}
-% El comando \cs{media} tiene 1 argumento, \cs{Media}\marg{objeto}, y
+% El comando \cs{media} tiene 1 argumento, \cs{media}\marg{objeto}, y
 % denota el valor medio del objeto.
 % \begin{center}
 %   |\media{\Vect{x}} \media{\Vect{x}}^2 \media{} |
@@ -5718,6 +5768,208 @@
 %   \fbox{$\mediaP*{\Vect{x}^2}^2$}
 % \end{center}
 % 
+% \DescribeMacro{\mediaM}
+% \DescribeMacro{\mediaMp}
+% \DescribeMacro{\mediaMp*}
+% \DescribeMacro{\mediaMP}
+% \DescribeMacro{\mediaMP*}
+% El comando \cs{mediaM} tiene 1 argumento, \cs{mediaM}\marg{muestra}, y
+% denota la media muestral.
+% \begin{center}
+%   |\mediaM{\Vect{x}} \mediaM{\Vect{x}}^2 \mediaM{} |
+%   \hspace{1.2cm}
+%   \fbox{$\mediaM{\Vect{x}}$}
+%   \fbox{$\mediaM{\Vect{x}}^2$}
+%   \fbox{$\mediaM{}$}
+% \end{center}
+% \begin{center}
+%   |\mediaMp{\Vect{x}^2} \mediaMp*{\Vect{x}^2} \mediaMP*{\Vect{x}^2}^2 |
+%   \hspace{1.2cm}
+%   \fbox{$\mediaMp{\Vect{x}^2}$}
+%   \fbox{$\mediaMp*{\Vect{x}^2}$}
+%   \fbox{$\mediaMP*{\Vect{x}^2}^2$}
+% \end{center}
+% 
+% \DescribeMacro{\dt}
+% \DescribeMacro{\dtp}
+% \DescribeMacro{\dtp*}
+% \DescribeMacro{\dtP}
+% \DescribeMacro{\dtP*}
+% El comando \cs{dt} tiene 1 argumento, \cs{dt}\marg{objeto}, y
+% denota la desviación típica del objeto.
+% \begin{center}
+%   |\dt{\Vect{x}} \dt{} |
+%   \hspace{1.2cm}
+%   \fbox{$\dt{\Vect{x}}$}
+%   \fbox{$\dt{}$}
+% \end{center}
+% \begin{center}
+%   |\dtp{\Vect{x}^2} \dtp*{\Vect{x}^2} |
+%   \hspace{1.2cm}
+%   \fbox{$\dtp{\Vect{x}^2}$}
+%   \fbox{$\dtp*{\Vect{x}^2}$}
+% \end{center}
+% 
+% \DescribeMacro{\dtM}
+% \DescribeMacro{\dtMp}
+% \DescribeMacro{\dtMp*}
+% \DescribeMacro{\dtMP}
+% \DescribeMacro{\dtMP*}
+% El comando \cs{dtM} tiene 1 argumento, \cs{dtM}\marg{muestra}, y
+% denota la desviación típica muestral.
+% \begin{center}
+%   |\dtM{\Vect{x}} \dtM{} |
+%   \hspace{1.2cm}
+%   \fbox{$\dtM{\Vect{x}}$}
+%   \fbox{$\dtM{}$}
+% \end{center}
+% \begin{center}
+%   |\dtMp{\Vect{x}^2} \dtMp*{\Vect{x}^2} |
+%   \hspace{1.2cm}
+%   \fbox{$\dtMp{\Vect{x}^2}$}
+%   \fbox{$\dtMp*{\Vect{x}^2}$}
+% \end{center}
+% 
+% \DescribeMacro{\var}
+% \DescribeMacro{\varp}
+% \DescribeMacro{\varp*}
+% \DescribeMacro{\varP}
+% \DescribeMacro{\varP*}
+% El comando \cs{var} tiene 1 argumento, \cs{var}\marg{objeto}, y
+% denota la varianza del objeto.
+% \begin{center}
+%   |\var{\Vect{x}} \var{} |
+%   \hspace{1.2cm}
+%   \fbox{$\var{\Vect{x}}$}
+%   \fbox{$\var{}$}
+% \end{center}
+% \begin{center}
+%   |\varp{\Vect{x}^2} \varp*{\Vect{x}^2} |
+%   \hspace{1.2cm}
+%   \fbox{$\varp{\Vect{x}^2}$}
+%   \fbox{$\varp*{\Vect{x}^2}$}
+% \end{center}
+% 
+% \DescribeMacro{\varM}
+% \DescribeMacro{\varMp}
+% \DescribeMacro{\varMp*}
+% \DescribeMacro{\varMP}
+% \DescribeMacro{\varMP*}
+% El comando \cs{varM} tiene 1 argumento, \cs{varM}\marg{muestra}, y
+% denota la varianza muestral.
+% \begin{center}
+%   |\varM{\Vect{x}} \varM{} |
+%   \hspace{1.2cm}
+%   \fbox{$\varM{\Vect{x}}$}
+%   \fbox{$\varM{}$}
+% \end{center}
+% \begin{center}
+%   |\varMp{\Vect{x}^2} \varMp*{\Vect{x}^2} |
+%   \hspace{1.2cm}
+%   \fbox{$\varMp{\Vect{x}^2}$}
+%   \fbox{$\varMp*{\Vect{x}^2}$}
+% \end{center}
+% 
+% \DescribeMacro{\cvarM}
+% \DescribeMacro{\cvarMp}
+% \DescribeMacro{\cvarMp*}
+% \DescribeMacro{\cvarMP}
+% \DescribeMacro{\cvarMP*}
+% El comando \cs{cvarM} tiene 1 argumento, \cs{cvarM}\marg{muestra}, y
+% denota la cuasi-varianza muestral.
+% \begin{center}
+%   |\cvarM{\Vect{x}} \cvarM{} |
+%   \hspace{1.2cm}
+%   \fbox{$\cvarM{\Vect{x}}$}
+%   \fbox{$\cvarM{}$}
+% \end{center}
+% \begin{center}
+%   |\cvarMp{\Vect{x}^2} \cvarMp*{\Vect{x}^2} |
+%   \hspace{1.2cm}
+%   \fbox{$\cvarMp{\Vect{x}^2}$}
+%   \fbox{$\cvarMp*{\Vect{x}^2}$}
+% \end{center}
+% 
+% \DescribeMacro{\cov}
+% \DescribeMacro{\covp}
+% \DescribeMacro{\covp*}
+% \DescribeMacro{\covP}
+% \DescribeMacro{\covP*}
+% El comando \cs{cov} tiene 2 argumentos, \cs{cov}\marg{objeto1}\marg{objeto2}, y
+% denota la covarianza entre \marg{objeto1} y \marg{objeto2}.
+% \begin{center}
+%   |\cov{\Vect{x}}{\Vect{y}} \cov{}{} |
+%   \hspace{1.2cm}
+%   \fbox{$\cov{\Vect{x}}{\Vect{y}}$}
+%   \fbox{$\cov{}{}$}
+% \end{center}
+% \begin{center}
+%   |\covp{\Vect{x}^2}{\Vect{y}} \covp*{\Vect{x}}{\Vect{y}} |
+%   \hspace{1.2cm}
+%   \fbox{$\covp{\Vect{x}^2}{\Vect{y}}$}
+%   \fbox{$\covp*{\Vect{x}}{\Vect{y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\covM}
+% \DescribeMacro{\covMp}
+% \DescribeMacro{\covMp*}
+% \DescribeMacro{\covMP}
+% \DescribeMacro{\covMP*}
+% El comando \cs{covM} tiene 2 argumentos, \cs{covM}\marg{muestra1}\marg{muestra2}, y
+% denota la covarianza muestral.
+% \begin{center}
+%   |\covM{\Vect{x}}{\Vect{y}} \covM{}{} |
+%   \hspace{1.2cm}
+%   \fbox{$\covM{\Vect{x}}{\Vect{y}}$}
+%   \fbox{$\covM{}{}$}
+% \end{center}
+% \begin{center}
+%   |\covMp{\Vect{x}^2}{\Vect{y}} \covMp*{\Vect{x}}{\Vect{y}} |
+%   \hspace{1.2cm}
+%   \fbox{$\covMp{\Vect{x}^2}{\Vect{y}}$}
+%   \fbox{$\covMp*{\Vect{x}}{\Vect{y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\corr}
+% \DescribeMacro{\corrp}
+% \DescribeMacro{\corrp*}
+% \DescribeMacro{\corrP}
+% \DescribeMacro{\corrP*}
+% El comando \cs{corr} tiene 2 argumentos, \cs{corr}\marg{objeto1}\marg{objeto2}, y
+% denota la correlación entre \marg{objeto1} y \marg{objeto2}.
+% \begin{center}
+%   |\corr{\Vect{x}}{\Vect{y}} \corr{}{} |
+%   \hspace{1.2cm}
+%   \fbox{$\corr{\Vect{x}}{\Vect{y}}$}
+%   \fbox{$\corr{}{}$}
+% \end{center}
+% \begin{center}
+%   |\corrp{\Vect{x}^2}{\Vect{y}} \corrp*{\Vect{x}}{\Vect{y}} |
+%   \hspace{1.2cm}
+%   \fbox{$\corrp{\Vect{x}^2}{\Vect{y}}$}
+%   \fbox{$\corrp*{\Vect{x}}{\Vect{y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\corrM}
+% \DescribeMacro{\corrMp}
+% \DescribeMacro{\corrMp*}
+% \DescribeMacro{\corrMP}
+% \DescribeMacro{\corrMP*}
+% El comando \cs{corrM} tiene 2 argumentos, \cs{corrM}\marg{muestra1}\marg{muestra2}, y
+% denota la correlación muestral.
+% \begin{center}
+%   |\corrM{\Vect{x}}{\Vect{y}} \corrM{}{} |
+%   \hspace{1.2cm}
+%   \fbox{$\corrM{\Vect{x}}{\Vect{y}}$}
+%   \fbox{$\corrM{}{}$}
+% \end{center}
+% \begin{center}
+%   |\corrMp{\Vect{x}^2}{\Vect{y}} \corrMp*{\Vect{x}}{\Vect{y}} |
+%   \hspace{1.2cm}
+%   \fbox{$\corrMp{\Vect{x}^2}{\Vect{y}}$}
+%   \fbox{$\corrMp*{\Vect{x}}{\Vect{y}}$}
+% \end{center}
+% 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
 % \subsection{Econometría}
@@ -5731,6 +5983,15 @@
 %   \fbox{$\TM$}
 % \end{center}
 % 
+% \DescribeMacro{resi}
+% El comando \cs{resi} tiene 1 
+% argumento \cs{resi}\marg{índice} y pinta error de ajuste MCO correspondiente al índice 
+% \begin{center}
+%   |\resi{j}|
+%   \hspace{1.2cm}
+%   \fbox{$\resi{j}$}
+% \end{center}
+% 
 % \DescribeMacro{res}
 % El comando \cs{res} no tiene
 % argumentos y pinta el vector de residuos de un ajuste MCO
@@ -5740,9 +6001,36 @@
 %   \fbox{$\res$}
 % \end{center}
 % 
-% \DescribeMacro{Van}
-% El comando \cs{VAi} tiene 2
-% argumentos, \cs{VAi}\marg{nombre}\marg{índice}, y denota una variable aleatoria con subíndice
+% \DescribeMacro{SRC}
+% El comando \cs{SRC} no tiene
+% argumentos y denota la suma de residuos MCO al cuadrado
+% \begin{center}
+%   |\SRC|
+%   \hspace{1.2cm}
+%   \fbox{$\SRC$}
+% \end{center}
+% 
+% \DescribeMacro{ColorA}
+% El comando \cs{ColorA} tiene 1
+% argumento, \cs{ColorA}\marg{objeto}, y denota con color que el \marg{objeto} es una variable aleatoria (vector de un espacio euclídeo probabilístico)
+% \begin{center}
+%   |\ColorA{X}|
+%   \hspace{1.2cm}
+%   \fbox{$\ColorA{X}$}
+% \end{center}
+% 
+% \DescribeMacro{VColorA}
+% El comando \cs{VColorA} tiene 1
+% argumento, \cs{VColorA}\marg{objeto}, y denota un vector con color que indica que está formado por variables aleatorias
+% \begin{center}
+%   |\VColorA{y}|
+%   \hspace{1.2cm}
+%   \fbox{$\VColorA{y}$}
+% \end{center}
+% 
+% \DescribeMacro{VAn}
+% El comando \cs{VAn} tiene 2
+% argumentos, \cs{VAn}\marg{nombre}\marg{índice}, y denota una variable aleatoria con subíndice
 % \begin{center}
 %   |\VAn{x}{k}|
 %   \hspace{1.2cm}
@@ -5815,31 +6103,45 @@
 % \end{center}
 % 
 % \DescribeMacro{MVA}
+% \DescribeMacro{MVAp}
+% \DescribeMacro{MVAP}
 % El comando \cs{MVA} tiene 2
 % argumentos, \cs{MVA}\oarg{índice}\marg{nombre}, y denota una matriz aleatoria
 % \begin{center}
-%   |\MVA{X} \MVA[k]{X}|
+%   |\MVA{X} \MVA[k]{X} \MVAp*[k]{X}|
 %   \hspace{1.2cm}
-%   \fbox{$\MVA{X}$} \fbox{$\MVA[k]{X}$}
+%   \fbox{$\MVA{X}$} \fbox{$\MVA[k]{X}$} \fbox{$\MVAp*[k]{X}$}
+% \end{center}
+% 
+% \DescribeMacro{MVAT}
+% \DescribeMacro{MVATp}
+% \DescribeMacro{MVATP}
+% El comando \cs{MVAT} tiene 2
+% argumentos, \cs{MVAT}\oarg{índice}\marg{nombre}, y denota una matriz aleatoria
+% \begin{center}
+%   |\MVAT{X} \MVAT[k]{X} \MVATp*[k]{X} \MVATpE[k]{X}|
+%   \hspace{1.2cm}
+%   \fbox{$\MVAT{X}$} \fbox{$\MVAT[k]{X}$} \fbox{$\MVATp*[k]{X}$} \fbox{$\MVATpE[k]{X}$}
 % \end{center}
 % 
 % \DescribeMacro{SVA}
-% El comando \cs{SVA} tiene 1
-% argumento, \cs{SVA}\marg{nombre}, y denota un sistema de variables aleatorias
+% El comando \cs{SVA} tiene 2
+% argumento2, \cs{SVA}\oarg{índice}\marg{nombre}, y denota un sistema de variables aleatorias
 % \begin{center}
-%   |\SVA{X}|
+%   |\SVA{X} \SVA[n]{X}|
 %   \hspace{1.2cm}
-%   \fbox{$\SVA{X}$}
+%   \fbox{$\SVA{X}$}\fbox{$\SVA[n]{X}$}
 % \end{center}
 % 
 % \DescribeMacro{SVAT}
-% El comando \cs{SVAT} tiene 1
-% argumento, \cs{SVAT}\marg{nombre}, y denota un sistema de variables aleatorias
+% El comando \cs{SVAT} tiene 2
+% argumentos, \cs{SVAT}\oarg{índice}\marg{nombre}, y denota un sistema de variables aleatorias
 % transpuesto
 % \begin{center}
-%   |\SVAT{X}|
+%   |\SVAT{X} \SVAT[j]{X}|
 %   \hspace{1.2cm}
 %   \fbox{$\SVAT{X}$}
+%   \fbox{$\SVAT[j]{X}$}
 % \end{center}
 % 
 % \DescribeMacro{\per}
@@ -6002,15 +6304,593 @@
 %   \fbox{$\VarCond*{\VA{Y}}{\SVA{Z}}$}
 % \end{center}
 % 
+% \DescribeMacro{\DtCond}
+% \DescribeMacro{\DtCond*}
+% El comando \cs{DtCond} tiene 2 argumentos, \cs{DtCond}\marg{V. aleatoria}\marg{V. aleatoria o sistema} y denota la desviación típica de \marg{V. aleatoria} condicionada a una VA o sistema de variables aleatorias
+% \begin{center}
+%   |\DtCond{\VA{Y}}{\VA{X}} \DtCond*{\VA{Y}}{\SVA{Z}}|
+%   \hspace{1.2cm}
+%   \fbox{$\DtCond {\VA{Y}}{\VA{X}}$}
+%   \fbox{$\DtCond*{\VA{Y}}{\SVA{Z}}$}
+% \end{center}
+% 
 % \DescribeMacro{\VarCondYX}
 % \DescribeMacro{\VarCondYX*}
-% El comando \cs{VarCondYX} tiene 2 argumentos, \cs{VarCondYX}\marg{V. aleatoria}\marg{Sist. VA} y denota la esperanza de \marg{V. aleatoria} condicionada a un sistema de variables aleatorias
+% El comando \cs{VarCondYX} tiene 2 argumentos, \cs{VarCondYX}\marg{V. aleatoria}\marg{Sist. VA} y denota la varianza de \marg{V. aleatoria} condicionada a un sistema de variables aleatorias
 % \begin{center}
 %   |\VarCondYX{\VA{Y}}{X} \VarCondYX*{\VA{Y}}{Z}|
 %   \hspace{1.2cm}
 %   \fbox{$\VarCondYX{\VA{Y}}{X}$}
 %   \fbox{$\VarCondYX*{\VA{Y}}{Z}$}
 % \end{center}
+% 
+% \DescribeMacro{\CovCond}
+% \DescribeMacro{\CovCond*}
+% El comando \cs{CovCond} tiene 3 argumentos, \cs{CovCond}\marg{V. aleatoria1}\marg{V. aleatoria2}\marg{V. aleatoria o sistema} y denota la covarianza entre \marg{V. aleatoria1} y \marg{V. aleatoria2} condicionada a una VA o sistema de variables aleatorias
+% \begin{center}
+%   |\CovCond{\VA{X}}{\VA{Y}}{\SVA{Z}} \CovCond*{\VA{X}}{\VA{Y}}{\SVA{Z}}|
+%   \hspace{1.2cm}
+%   \fbox{$\CovCond {\VA{X}}{\VA{Y}}{\SVA{Z}}$}
+%   \fbox{$\CovCond*{\VA{X}}{\VA{Y}}{\SVA{Z}}$}
+% \end{center}
+% 
+% \DescribeMacro{\CovCondXYZ}
+% \DescribeMacro{\CovCondXYZ*}
+% El comando \cs{CovCondXYZ} tiene 3 argumentos, \cs{CovCondXYZ}\marg{V. aleatoria1}\marg{V. aleatoria2}\marg{Sist. VA} y denota la covarianza entre \marg{V. aleatoria1} y \marg{V. aleatoria2} condicionada a un sistema de variables aleatorias
+% \begin{center}
+%   |\CovCondXYZ{\VA{X}}{\VA{Y}}{Z} \CovCondXYZ*{\VA{X}}{\VA{Y}}{Z}|
+%   \hspace{1.2cm}
+%   \fbox{$\CovCondXYZ {\VA{X}}{\VA{Y}}{Z}$}
+%   \fbox{$\CovCondXYZ*{\VA{X}}{\VA{Y}}{Z}$}
+% \end{center}
+% 
+% \DescribeMacro{\Estmc}
+% El comando \cs{Estmc}\marg{objeto} tiene 1
+% argumento y denota el ajuste MCO del \marg{objeto}\begin{center}
+%   |\Estmc{A}|
+%   \hspace{1.2cm}
+%   \fbox{$\Estmc{A}$}
+% \end{center}
+% 
+% \DescribeMacro{\VEstmc}
+% El comando \cs{VEstmc}\marg{objeto} tiene 1
+% argumento y denota el ajuste MCO del \marg{vector} de \R[n]
+% \begin{center}
+%   |\VEstmc{\beta}|
+%   \hspace{1.2cm}
+%   \fbox{$\VEstmc{\beta}$}
+% \end{center}
+% 
+% \DescribeMacro{\Estmd}
+% El comando \cs{Estmd}\marg{objeto} tiene 1
+% argumento y denota el estimador por MCO del \marg{objeto}\begin{center}
+%   |\Estmd{A}|
+%   \hspace{1.2cm}
+%   \fbox{$\Estmd{A}$}
+% \end{center}
+% 
+% \DescribeMacro{\VEstmd}
+% El comando \cs{VEstmd}\marg{vector} tiene 1
+% argumento y denota el estimador por MCO del \marg{vector} de \R[n]
+% \begin{center}
+%   |\VEstmd{\beta}|
+%   \hspace{1.2cm}
+%   \fbox{$\VEstmd{\beta}$}
+% \end{center}
+% 
+% \DescribeMacro{\MLT}
+% El comando \cs{MLT} no tieneargumentos  y denota el modelo cuyo único regresor es \VAindUno
+% \begin{center}
+%   |\MLT|
+%   \hspace{1.2cm}
+%   \fbox{$\MLT$}
+% \end{center}
+% 
+% \DescribeMacro{\MLS}
+% El comando \cs{MLS} no tieneargumentos  y denota el modelo lineal simple
+% \begin{center}
+%   |\MLS|
+%   \hspace{1.2cm}
+%   \fbox{$\MLS$}
+% \end{center}
+% 
+% \DescribeMacro{\MLG}
+% El comando \cs{MLG} no tiene argumentos y escribe el Modelo Lineal General
+% \begin{center}
+%   |\MLG|
+%   \hspace{1.2cm}
+%   \fbox{$\MLG$}
+% \end{center}
+% 
+% \DescribeMacro{\masMLT}
+% El comando \cs{masMLT} no tieneargumentos  y denota el modelo muestral cuyo único regresor es \VVA{1}
+% \begin{center}
+%   |\masMLT|
+%   \hspace{1.2cm}
+%   \fbox{$\masMLT$}
+% \end{center}
+% 
+% \DescribeMacro{\masMLS}
+% El comando \cs{masMLS} no tieneargumentos  y denota el modelo muestral lineal simple
+% \begin{center}
+%   |\masMLS|
+%   \hspace{1.2cm}
+%   \fbox{$\masMLS$}
+% \end{center}
+% 
+% \DescribeMacro{\masMLG}
+% El comando \cs{masMLG} no tiene argumentos y escribe el Modelo muestral Lineal General
+% \begin{center}
+%   |\masMLG|
+%   \hspace{1.2cm}
+%   \fbox{$\masMLG$}
+% \end{center}
+% 
+% \DescribeMacro{\MCO}
+% El comando \cs{MCO} tiene 2 argumentos \cs{MCO}\marg{regresando}\marg{regresor} y escribe el cálculo de los parámetros del ajuste MCO
+% \begin{center}
+%   |\MCO{Y}{X}|
+%   \hspace{1.2cm}
+%   \fbox{$\MCO{Y}{X}$}
+% \end{center}
+% 
+% \DescribeMacro{\MCOc}
+% El comando \cs{MCOc} no tiene y escribe el cálculo de los parámetros del ajuste MCO del vector \Vect{y} sobre \cols{X}
+% \begin{center}
+%   |\MCOc|
+%   \hspace{1.2cm}
+%   \fbox{$\MCOc$}
+% \end{center}
+% 
+% \DescribeMacro{\MCOd}
+% El comando \cs{MCOd} no tiene y escribe el estimador de los parámetros del juste MCO
+% \begin{center}
+%   |\MCOd|
+%   \hspace{1.2cm}
+%   \fbox{$\MCOd$}
+% \end{center}
+% 
+% \DescribeMacro{\ajusteMLT}
+% El comando \cs{ajusteMLT} no tieneargumentos  y denota el ajuste del modelo cuyo único regresor es \VAindUno
+% \begin{center}
+%   |\ajusteMLT|
+%   \hspace{1.2cm}
+%   \fbox{$\ajusteMLT$}
+% \end{center}
+% 
+% \DescribeMacro{\ajusteMLS}
+% El comando \cs{ajusteMLS} no tieneargumentos  y denota el ajuste del modelo lineal simple
+% \begin{center}
+%   |\ajusteMLS|
+%   \hspace{1.2cm}
+%   \fbox{$\ajusteMLS$}
+% \end{center}
+% 
+% \DescribeMacro{\ajusteMLG}
+% El comando \cs{ajusteMLG} no tiene argumentos y escribe el ajuste del Modelo Lineal General
+% \begin{center}
+%   |\ajusteMLG|
+%   \hspace{1.2cm}
+%   \fbox{$\ajusteMLG$}
+% \end{center}
+% 
+% \DescribeMacro{\SupI}
+% El comando \cs{SupI} no tiene argumentos y escribe el primer supuesto del Modelo Lineal General
+% \begin{center}
+%   |\SupI|
+%   \hspace{1.2cm}
+%   \fbox{$\SupI$}
+% \end{center}
+% 
+% \DescribeMacro{\SupII}
+% El comando \cs{SupII} no tiene argumentos y escribe el segundo supuesto del Modelo Lineal General
+% \begin{center}
+%   |\SupII|
+%   \hspace{1.2cm}
+%   \fbox{$\SupII$}
+% \end{center}
+% 
+% \DescribeMacro{\SupIII}
+% El comando \cs{SupIII} no tiene argumentos y escribe el tercer supuesto del Modelo Lineal General
+% \begin{center}
+%   |\SupIII|
+%   \hspace{1.2cm}
+%   \fbox{$\SupIII$}
+% \end{center}
+% 
+% \DescribeMacro{\SupIV}
+% El comando \cs{SupIV} no tiene argumentos y escribe el cuarto supuesto del Modelo Lineal General
+% \begin{center}
+%   |\SupIV|
+%   \hspace{1.2cm}
+%   \fbox{$\SupIV$}
+% \end{center}
+% 
+% \DescribeMacro{\SupIImas}
+% El comando \cs{SupIImas} no tiene argumentos y escribe el segundo supuesto muestral del Modelo Lineal General
+% \begin{center}
+%   |\SupIImas|
+%   \hspace{1.2cm}
+%   \fbox{$\SupIImas$}
+% \end{center}
+% 
+% \DescribeMacro{\SupIIImas}
+% El comando \cs{SupIIImas} no tiene argumentos y escribe el tercer supuesto muestral del Modelo Lineal General
+% \begin{center}
+%   |\SupIIImas|
+%   \hspace{1.2cm}
+%   \fbox{$\SupIIImas$}
+% \end{center}
+% 
+% \DescribeMacro{\SupIVmas}
+% El comando \cs{SupIVmas} no tiene argumentos y escribe el cuarto supuesto muestral del Modelo Lineal General
+% \begin{center}
+%   |\SupIVmas|
+%   \hspace{1.2cm}
+%   \fbox{$\SupIVmas$}
+% \end{center}
+% 
+% \DescribeMacro{\SupVmas}
+% El comando \cs{SupVmas} no tiene argumentos y escribe el quinto supuesto muestral del Modelo Lineal General
+% \begin{center}
+%   |\SupVmas|
+%   \hspace{1.2cm}
+%   \fbox{$\SupVmas$}
+% \end{center}
+% 
+% \DescribeMacro{\MVAR}
+% El comando \cs{MVAR} tiene 1 argumento \cs{MVAR}\marg{regresores} y denota la matriz de varianzas y covarianzas de los \marg{regresores}
+% \begin{center}
+%   |\MVAR{X}|
+%   \hspace{1.2cm}
+%   \fbox{$\MVAR{X}$}
+% \end{center}
+% 
+% \DescribeMacro{\VCOV}
+% El comando \cs{VCOV} tiene 2 argumentos \cs{VCOV}\marg{regresores}\marg{regresando} y denota el vector de covarianzas entre los \marg{regresores} y el \marg{regresando}
+% \begin{center}
+%   |\VCOV{X}{y}|
+%   \hspace{1.2cm}
+%   \fbox{$\VCOV{X}{y}$}
+% \end{center}
+% 
+% \DescribeMacro{\MVARM}
+% El comando \cs{MVARM} tiene 1 argumento \cs{MVARM}\marg{regresores} y denota la matriz de varianzas y covarianzas muestral
+% \begin{center}
+%   |\MVARM{X}|
+%   \hspace{1.2cm}
+%   \fbox{$\MVARM{X}$}
+% \end{center}
+% 
+% \DescribeMacro{\VCOVM}
+% El comando \cs{VCOVM} tiene 2 argumentos \cs{VCOVM}\marg{regresores}\marg{regresando} y denota el vector de covarianzas muestral
+% \begin{center}
+%   |\VCOVM{X}{y}|
+%   \hspace{1.2cm}
+%   \fbox{$\VCOVM{X}{y}$}
+% \end{center}
+% 
+% \DescribeMacro{\Normal}
+% El comando \cs{Normal} tiene 2 argumentos \cs{Normal}\marg{esperanza}\marg{varianza} y denota la distribución de probabilidad Normal
+% \begin{center}
+%   |\Normal{\mu}{\sigma^2}|
+%   \hspace{1.2cm}
+%   \fbox{$\Normal{\mu}{\sigma^2}$}
+% \end{center}
+% 
+% \DescribeMacro{\TStudent}
+% El comando \cs{TStudent} tiene 1 argumento \cs{TStudent}\marg{gl} y denota la distribución de probabilidad t de Student
+% \begin{center}
+%   |\TStudent{N-k}|
+%   \hspace{1.2cm}
+%   \fbox{$\TStudent{N-k}$}
+% \end{center}
+% 
+% \DescribeMacro{\FSnedecor}
+% El comando \cs{FSnedecor} tiene 2 argumentos \cs{FSnedecor}\marg{gl}\marg{gl} y denota la distribución de probabilidad F de Snedecor
+% \begin{center}
+%   |\FSnedecor{N-k}{r}|
+%   \hspace{1.2cm}
+%   \fbox{$\FSnedecor{N-k}{r}$}
+% \end{center}
+% 
+% \DescribeMacro{\ChiCuadrado}
+% El comando \cs{ChiCuadrado} tiene 1 argumento \cs{ChiCuadrado}\marg{gl} y denota la distribución de probabilidad Chi cuadrado
+% \begin{center}
+%   |\ChiCuadrado{k}|
+%   \hspace{1.2cm}
+%   \fbox{$\ChiCuadrado{k}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmcE}
+% El comando \cs{EstmcE} tiene 1 argumento \cs{EstmcE}\marg{objeto} y denota la estimación de la  esperanza del \marg{objeto}
+% \begin{center}
+%   |\EstmcE{\VA{Y}} \EstmcE*{\VA{Y}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmcE {\VA{Y}}$}
+%   \fbox{$\EstmcE*{\VA{Y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmdE}
+% El comando \cs{EstmdE} tiene 1 argumento \cs{EstmdE}\marg{objeto} y denota un estimador de la  esperanza del \marg{objeto}
+% \begin{center}
+%   |\EstmdE{\VA{Y}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmdE{\VA{Y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmcECond}
+% El comando \cs{EstmcECond} tiene 2 argumentos
+% \cs{EstmcECond}\marg{objeto1}\marg{objeto1}\marg{objeto2} y denota la
+% estimación de esperanza del \marg{objeto1} condicionada al
+% \marg{objeto2}
+% \begin{center}
+%   |\EstmcECond{\VA{Y}}{\SVA{X}} \EstmcECond*{\VA{Y}}{\SVA{X}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmcECond {\VA{Y}}{\SVA{X}}$}
+%   \fbox{$\EstmcECond*{\VA{Y}}{\SVA{X}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmdECond}
+% El comando \cs{EstmdECond} tiene 2 argumentos
+% \cs{EstmcECond}\marg{objeto1}\marg{objeto1}\marg{objeto2} y denota un 
+% estimador de la esperanza del \marg{objeto1} condicionada al
+% \marg{objeto2}
+% \begin{center}
+%   |\EstmdECond{\VA{Y}}{\SVA{X}} \EstmdECond*{\VA{Y}}{\SVA{X}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmdECond {\VA{Y}}{\SVA{X}}$}
+%   \fbox{$\EstmdECond*{\VA{Y}}{\SVA{X}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmcDt}
+% El comando \cs{EstmcDt} tiene 1 argumento \cs{EstmcDt}\marg{objeto} y denota la estimación de la  desviación típica del \marg{objeto}
+% \begin{center}
+%   |\EstmcDt{\VA{Y}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmcDt{\VA{Y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmdDt}
+% El comando \cs{EstmdDt} tiene 1 argumento \cs{EstmdDt}\marg{objeto} y denota un estimador de la  desviación típica del \marg{objeto}
+% \begin{center}
+%   |\EstmdDt{\VA{Y}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmdDt{\VA{Y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmcDtCond}
+% El comando \cs{EstmcDtCond} tiene 2 argumentos
+% \cs{EstmcDtCond}\marg{objeto1}\marg{objeto1}\marg{objeto2} y denota la
+% estimación de la desviación típica del \marg{objeto1} condicionada al
+% \marg{objeto2}
+% \begin{center}
+%   |\EstmcDtCond{\VA{Y}}{\SVA{X}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmcDtCond {\VA{Y}}{\SVA{X}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmdDtCond}
+% El comando \cs{EstmdDtCond} tiene 2 argumentos
+% \cs{EstmcDtCond}\marg{objeto1}\marg{objeto1}\marg{objeto2} y denota un 
+% estimador de la desviación típica del \marg{objeto1} condicionada al
+% \marg{objeto2}
+% \begin{center}
+%   |\EstmdDtCond{\VA{Y}}{\SVA{X}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmdDtCond {\VA{Y}}{\SVA{X}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmcVar}
+% El comando \cs{EstmcVar} tiene 1 argumento \cs{EstmcVar}\marg{objeto} y denota la estimación de la varianza del \marg{objeto}
+% \begin{center}
+%   |\EstmcVar{\VA{Y}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmcVar{\VA{Y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmdVar}
+% El comando \cs{EstmdVar} tiene 1 argumento \cs{EstmdVar}\marg{objeto} y denota un estimador de la varianza del \marg{objeto}
+% \begin{center}
+%   |\EstmdVar{\VA{Y}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmdVar{\VA{Y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmcVarCond}
+% El comando \cs{EstmcVarCond} tiene 2 argumentos \cs{EstmcVar}\marg{objeto1}\marg{objeto2} y denota la estimación de la varianza del \marg{objeto1} condicionada al \marg{objeto2}
+% \begin{center}
+%   |\EstmcVarCond{\VA{Y}}{\SVA{X}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmcVarCond{\VA{Y}}{\SVA{X}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmcVarCond}
+% El comando \cs{EstmdVarCond} tiene 2 argumentos \cs{EstmcVar}\marg{objeto1}\marg{objeto2} y denota un estimador de la varianza del \marg{objeto1} condicionada al \marg{objeto2}
+% \begin{center}
+%   |\EstmdVarCond{\VA{Y}}{\SVA{X}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmdVarCond{\VA{Y}}{\SVA{X}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmcCov}
+% El comando \cs{EstmcCov} tiene 2 argumentos \cs{EstmcCov}\marg{objeto1}\marg{objeto2} y denota la estimación de la covarianza entre ambos objetos
+% \begin{center}
+%   |\EstmcCov{\VA{X}}{\VA{Y}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmcCov{\VA{X}}{\VA{Y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmdCov}
+% El comando \cs{EstmdCov} tiene 2 argumentos \cs{EstmdCov}\marg{objeto1}\marg{objeto2} y denota un estimador de la covarianza entre ambos objetos
+% \begin{center}
+%   |\EstmdCov{\VA{X}}{\VA{Y}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmdCov{\VA{X}}{\VA{Y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmcCovCond}
+% El comando \cs{EstmcCovCond} tiene 2 argumentos \cs{EstmcCovCond}\marg{objeto1}\marg{objeto2}\marg{objeto3} y denota la estimación de la covarianza entre \marg{objeto1} y \marg{objeto2} condicionanda al \marg{objeto3}
+% \begin{center}
+%   |\EstmcCovCond{\VA{X}}{\VA{Y}}{\SVA{Z}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmcCovCond{\VA{X}}{\VA{Y}}{\SVA{Z}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmdCovCond}
+% El comando \cs{EstmdCovCond} tiene 2 argumentos \cs{EstmdCovCond}\marg{objeto1}\marg{objeto2}\marg{objeto3} y denota un estimador de la covarianza entre \marg{objeto1} y \marg{objeto2} condicionanda al \marg{objeto3}
+% \begin{center}
+%   |\EstmdCovCond{\VA{X}}{\VA{Y}}{\SVA{Z}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmdCovCond{\VA{X}}{\VA{Y}}{\SVA{Z}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmcCorr}
+% El comando \cs{EstmcCorr} tiene 2 argumentos \cs{EstmcCorr}\marg{objeto1}\marg{objeto2} y denota la estimación de la correlación entre ambos objetos
+% \begin{center}
+%   |\EstmcCorr{\VA{X}}{\VA{Y}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmcCorr{\VA{X}}{\VA{Y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmdCorr}
+% El comando \cs{EstmdCorr} tiene 2 argumentos \cs{EstmdCorr}\marg{objeto1}\marg{objeto2} y denota un estimador de la correlación entre ambos objetos
+% \begin{center}
+%   |\EstmdCorr{\VA{X}}{\VA{Y}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmdCorr{\VA{X}}{\VA{Y}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmcCorrCond}
+% El comando \cs{EstmcCorrCond} tiene 2 argumentos \cs{EstmcCorrCond}\marg{objeto1}\marg{objeto2}\marg{objeto3} y denota la estimación de la correlación entre \marg{objeto1} y \marg{objeto2} condicionanda al \marg{objeto3}
+% \begin{center}
+%   |\EstmcCorrCond{\VA{X}}{\VA{Y}}{\SVA{Z}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmcCorrCond{\VA{X}}{\VA{Y}}{\SVA{Z}}$}
+% \end{center}
+% 
+% \DescribeMacro{\EstmdCorrCond}
+% El comando \cs{EstmdCorrCond} tiene 2 argumentos \cs{EstmdCorrCond}\marg{objeto1}\marg{objeto2}\marg{objeto3} y denota un estimador de la correlación entre \marg{objeto1} y \marg{objeto2} condicionanda al \marg{objeto3}
+% \begin{center}
+%   |\EstmdCorrCond{\VA{X}}{\VA{Y}}{\SVA{Z}}|
+%   \hspace{1.2cm}
+%   \fbox{$\EstmdCorrCond{\VA{X}}{\VA{Y}}{\SVA{Z}}$}
+% \end{center}
+% 
+% \DescribeMacro{\estimEcond}
+% El comando \cs{estimEcond} tiene 2 argumentos \cs{estimEcond}\marg{regresando}\marg{regresores} y denota la estimación de la esperanza condicional
+% \begin{center}
+%   |\estimEcond{\VA{P}}{\text{superficie}}|
+%   \hspace{1.2cm}
+%   \fbox{$\estimEcond{\VA{P}}{\text{superficie}}$}
+% \end{center}
+% 
+% \DescribeMacro{\Hnula}
+% El comando \cs{Hnula} no tiene argumentos y denota una hipótesis nula
+% \begin{center}
+%   |\Hnula|
+%   \hspace{1.2cm}
+%   \fbox{$\Hnula$}
+% \end{center}
+% 
+% \DescribeMacro{\Halt}
+% El comando \cs{Halt} no tiene argumentos y denota la hipótesis alternativa
+% \begin{center}
+%   |\Halt|
+%   \hspace{1.2cm}
+%   \fbox{$\Halt$}
+% \end{center}
+% 
+% \DescribeMacro{\Rcritica}
+% El comando \cs{Rcritica} no tiene argumentos y denota la región crítica
+% \begin{center}
+%   |\Rcritica|
+%   \hspace{1.2cm}
+%   \fbox{$\Rcritica$}
+% \end{center}
+% 
+% \DescribeMacro{\Racept}
+% El comando \cs{Racept} no tiene argumentos y denota la región complementaria a la región crítica
+% \begin{center}
+%   |\Racept|
+%   \hspace{1.2cm}
+%   \fbox{$\Racept$}
+% \end{center}
+% 
+% \DescribeMacro{\fdppar}
+% El comando \cs{fdppar} tiene 2 argumentos \cs{fpdpar}\oarg{parámetros}\marg{variable} y denota la función de densidad de la \marg{variable}
+% \begin{center}
+%   |\fdppar{X} \fdppar[\beta]{X}|
+%   \hspace{1.2cm}
+%   \fbox{$\fdppar       {X}$}
+%   \fbox{$\fdppar[\beta]{X}$}
+% \end{center}
+% 
+% \DescribeMacro{\testadistico}
+% El comando \cs{testadistico} no tiene argumentos y denota el valor tomado por el estadístico t de student
+% \begin{center}
+%   |\testadistico|
+%   \hspace{1.2cm}
+%   \fbox{$\testadistico$}
+% \end{center}
+% 
+% \DescribeMacro{\Testadistico}
+% El comando \cs{Testadistico} no tiene argumentos y denota el estadístico t de student
+% \begin{center}
+%   |\Testadistico|
+%   \hspace{1.2cm}
+%   \fbox{$\Testadistico$}
+% \end{center}
+% 
+% \DescribeMacro{\festadistico}
+% El comando \cs{festadistico} no tiene argumentos y denota el valor tomado por el estadístico F de Snedecor
+% \begin{center}
+%   |\festadistico|
+%   \hspace{1.2cm}
+%   \fbox{$\festadistico$}
+% \end{center}
+% 
+% \DescribeMacro{\Festadistico}
+% El comando \cs{Festadistico} no tiene argumentos y denota el estadístico F de Snedecor
+% \begin{center}
+%   |\Festadistico|
+%   \hspace{1.2cm}
+%   \fbox{$\Festadistico$}
+% \end{center}
+% 
+% \DescribeMacro{\simBajoCond}
+% El comando \cs{simBajoCond} tiene 1 argumento \cs{simBajoCond}\marg{condición} y denota "distribución bajo condición"
+% \begin{center}
+%   |\simBajoCond{x=1}|
+%   \hspace{1.2cm}
+%   \fbox{$\simBajoCond{x=1}$}
+% \end{center}
+% 
+% \DescribeMacro{\simnula}
+% El comando \cs{simnula} no tiene argumentos y denota "distribución bajo \Hnula"
+% \begin{center}
+%   |\simnula|
+%   \hspace{1.2cm}
+%   \fbox{$\simnula$}
+% \end{center}
+% 
+% \DescribeMacro{\simNula}
+% El comando \cs{simNula} tiene 1 argumento \cs{simNula}\marg{hipótesis} y denota "distribución bajo cierta hipótesis nula"
+% \begin{center}
+%   |\simNula{\sigma=1}|
+%   \hspace{1.2cm}
+%   \fbox{$\simNula{\sigma=1}$}
+% \end{center}
+% 
+% \DescribeMacro{\IConfc}
+% El comando \cs{IConfc} tiene 2 argumentos \cs{IConfc}\marg{confianza}\marg{objeto} y denota el intervalo de \marg{confianza} del \marg{objeto}
+% \begin{center}
+%   |\IConfc{1-\alpha}{\MV{R}{\Estmd{\beta}}} \IConfd{1-\alpha}{\MV{R}{\Estmd{\beta}}}|
+%   \hspace{1.2cm}
+%   \fbox{$\IConfc{1-\alpha}{\MV{R}{\Estmd{\beta}}}$}
+%   \fbox{$\IConfd{1-\alpha}{\MV{R}{\Estmd{\beta}}}$}
+% \end{center}
+% 
 % 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
@@ -8624,6 +9504,17 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\eleVVV}
+% \begin{macro}{\eleVV}
+% Selección de un elemento de un vector
+%    \begin{macrocode}
+\NewDocumentCommand\eleVVV {mm}{\ensuremath{\textrm{elem}_{#2}{\VectP*  {#1}}}\xspace}
+\NewDocumentCommand\eleVV  {mm}{\ensuremath{\MakeLowercase{#1}_{{#2}}        }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
 % \begin{macro}{\eleMMM}
 % \begin{macro}{\eleMMMT}
 % \begin{macro}{\eleMM}
@@ -8703,14 +9594,22 @@
 % \begin{macro}{\VectP}
 % Vector de $\mathbb{R}^n$
 %    \begin{macrocode}
-\NewDocumentCommand\Vect   {O{}m}{\ensuremath{%
-                       \Ridx{\boldsymbol{\MakeLowercase{#2}}}{#1}   }\xspace}
+\NewDocumentCommand\Vect   {O{}O{}m}{\ensuremath{%
+                       \RidxE{\boldsymbol{\MakeLowercase{#3}}}{#1}{\boldsymbol{#2}}   }\xspace}
 
-\NewDocumentCommand\Vectp {som}{\ensuremath{\IfBooleanTF#1
+\NewDocumentCommand\Vectp {sO{}O{}m}{\ensuremath{\IfBooleanTF#1
+    {\parentesis*{\Vect[#2][#3]{#4}}}
+    {\parentesis {\Vect[#2][#3]{#4}}} }\xspace}
+
+\NewDocumentCommand\VectP {sO{}O{}m}{\ensuremath{\IfBooleanTF#1
+    {\Parentesis*{\Vect[#2][#3]{#4}}}
+    {\Parentesis {\Vect[#2][#3]{#4}}} }\xspace}
+
+\NewDocumentCommand\VectpKK {som}{\ensuremath{\IfBooleanTF#1
     {\parentesis*{\IfNoValueTF{#2}{\Vect{#3}}{\Vect[#2]{#3}}}}
     {\parentesis {\IfNoValueTF{#2}{\Vect{#3}}{\Vect[#2]{#3}}}} }\xspace}
 
-\NewDocumentCommand\VectP {som}{\ensuremath{\IfBooleanTF#1
+\NewDocumentCommand\VectPKK {som}{\ensuremath{\IfBooleanTF#1
     {\Parentesis*{\IfNoValueTF{#2}{\Vect{#3}}{\Vect[#2]{#3}}}}
     {\Parentesis {\IfNoValueTF{#2}{\Vect{#3}}{\Vect[#2]{#3}}}} }\xspace}
 %    \end{macrocode}
@@ -9898,7 +10797,7 @@
 % \begin{macro}{\EV}
 % Sistema de ecuaciones lineales con notación matricial (matriz de coef. transpuesta)
 %    \begin{macrocode}
-\NewDocumentCommand\EV{O{}O{}m}{\ensuremath{\RidxE{\mathcal{#3}}{\scriptscriptstyle{#1}}{#2}}\xspace}
+\NewDocumentCommand\EV{O{}O{}m}{\ensuremath{\RidxE{\mathcal{#3}}{\scriptstyle{#1}}{#2}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -10060,10 +10959,19 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\imrec}
+% Imagen inversa
+%    \begin{macrocode}
+\NewDocumentCommand\imrec {mm}{\ensuremath{%
+    \RidxE{#1}{}{{\lfloor{\scriptscriptstyle\!#2}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\sproy}
 % Operador proyección ortogonal
 %    \begin{macrocode}
-\DeclareMathOperator{\sproy}{proj}
+\DeclareMathOperator{\sproy}{Prj}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -10130,7 +11038,7 @@
 % \begin{macro}{\sspi}
 % Símbolo del semi-producto interior
 %    \begin{macrocode}
-\NewDocumentCommand\sspi{O{}O{}}{\ensuremath{\RidxE{\eta}{\scriptscriptstyle{#1}}{#2}}\xspace}
+\NewDocumentCommand\sspi{O{}O{}}{\ensuremath{\RidxE{\eta}{\scriptstyle{#1}}{#2}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -10148,7 +11056,7 @@
 % \begin{macro}{\sesp}
 % Símbolo de la esperanza (integral de Lebesgue)
 %    \begin{macrocode}
-\NewDocumentCommand\sesp{O{}}{\ensuremath{\Ridx{\mathbb{S}}{{#1}}}\xspace}
+\NewDocumentCommand\sesp{O{}}{\ensuremath{\Ridx{\mathbb{S}}{{#1\!}}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -10158,7 +11066,7 @@
 % Esperanza (integral de Lebesgue) de un objeto
 %    \begin{macrocode}
 \NewDocumentCommand\ESP{sO{}m}{\ensuremath{\IfBooleanTF#1
-                        {\sesp[#2]\Parentesis*{#3}} {\sesp[#2]\parentesis{#3}}
+                        {\sesp[#2\!]\Parentesis*{#3}} {\sesp[#2]\parentesis{#3}}
                           } \xspace}
 %    \end{macrocode}
 % \end{macro}
@@ -10270,14 +11178,6 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \end{macro}
 %
 %
-% \begin{macro}{\Estmc}
-% Ajuste por MCO
-%    \begin{macrocode}
-\NewDocumentCommand\Estmc {m}{\ensuremath{ \widehat{#1} }\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
 % \begin{macro}{\Media}
 % \begin{macro}{\Mediap}
 % \begin{macro}{\MediaP}
@@ -10306,6 +11206,14 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \end{macro}
 %
 %
+% \begin{macro}{\SmediaM}
+% Símbolo para la media muestral
+%    \begin{macrocode}
+\NewDocumentCommand\SmediaM {}{m}
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\Scov}
 % Símbolo para covarianza
 %    \begin{macrocode}
@@ -10314,10 +11222,50 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \end{macro}
 %
 %
+% \begin{macro}{\ScovM}
+% Símbolo para covarianza muestral
+%    \begin{macrocode}
+\NewDocumentCommand\ScovM  {}{s}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Svar}
+% Símbolo para varianza
+%    \begin{macrocode}
+\NewDocumentCommand\Svar   {}{\sigma^2}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SvarM}
+% Símbolo para varianza muestral
+%    \begin{macrocode}
+\NewDocumentCommand\SvarM  {}{s^2}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ScvarM}
+% Símbolo para cuasivarianza muestral
+%    \begin{macrocode}
+\NewDocumentCommand\ScvarM  {}{\mathfrak{s}^2}
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\Scorr}
 % Símbolo para correlación
 %    \begin{macrocode}
 \NewDocumentCommand\Scorr   {}{\rho}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ScorrM}
+% Símbolo para correlación muestral
+%    \begin{macrocode}
+\NewDocumentCommand\ScorrM   {}{r}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -10344,12 +11292,222 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \end{macro}
 %
 %
-% \begin{macro}{\imrec}
-% Imagen inversa
+% \begin{macro}{\mediaM}
+% \begin{macro}{\mediaMp}
+% \begin{macro}{\mediaMP}
+% Media muestral
 %    \begin{macrocode}
-\NewDocumentCommand\imrec {mm}{\ensuremath{%
-    \RidxE{#1}{}{{\lfloor{\scriptscriptstyle\!#2}}} }\xspace}
+\NewDocumentCommand\mediaM {m}{\ensuremath{\IfNoValueTF{#1}%
+     {  \SmediaM       }
+     { {\SmediaM}_{#1} } }\xspace}
+
+\NewDocumentCommand\mediaMp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\mediaM{\parentesis*{#2}}}
+                     {\mediaM{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\mediaMP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\mediaM{\Parentesis*{#2}}}
+                     {\mediaM{\Parentesis {#2}}} }\xspace}
 %    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\dt}
+% \begin{macro}{\dtp}
+% \begin{macro}{\dtP}
+% Desviación típica
+%    \begin{macrocode}
+\NewDocumentCommand\dt {m}{\ensuremath{\IfNoValueTF{#1}%
+     {  \Scov       }
+     { {\Scov_{#1}} } }\xspace}
+
+\NewDocumentCommand\dtp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\dt{\parentesis*{#2}}}
+                     {\dt{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\dtP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\dt{\Parentesis*{#2}}}
+                     {\dt{\Parentesis {#2}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\dtM}
+% \begin{macro}{\dtMp}
+% \begin{macro}{\dtMP}
+% Desviación típica muestral
+%    \begin{macrocode}
+\NewDocumentCommand\dtM {m}{\ensuremath{\IfNoValueTF{#1}%
+     {  \ScovM       }
+     { {\ScovM_{#1}} } }\xspace}
+
+\NewDocumentCommand\dtMp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\dtM{\parentesis*{#2}}}
+                     {\dtM{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\dtMP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\dtM{\Parentesis*{#2}}}
+                     {\dtM{\Parentesis {#2}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\var}
+% \begin{macro}{\varp}
+% \begin{macro}{\varP}
+% Varianza
+%    \begin{macrocode}
+\NewDocumentCommand\var {m}{\ensuremath{\IfNoValueTF{#1}%
+     {  \Svar       }
+     { {\Svar_{#1}} } }\xspace}
+
+\NewDocumentCommand\varp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\var{\parentesis*{#2}}}
+                     {\var{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\varP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\var{\Parentesis*{#2}}}
+                     {\var{\Parentesis {#2}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\varM}
+% \begin{macro}{\varMp}
+% \begin{macro}{\varMP}
+% Varianza muestral
+%    \begin{macrocode}
+\NewDocumentCommand\varM {m}{\ensuremath{\IfNoValueTF{#1}%
+     {  \SvarM       }
+     { {\SvarM_{#1}} } }\xspace}
+
+\NewDocumentCommand\varMp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\varM{\parentesis*{#2}}}
+                     {\varM{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\varMP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\varM{\Parentesis*{#2}}}
+                     {\varM{\Parentesis {#2}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\cvarM}
+% \begin{macro}{\cvarMp}
+% \begin{macro}{\cvarMP}
+% Cuasi-varianza muestral
+%    \begin{macrocode}
+\NewDocumentCommand\cvarM {m}{\ensuremath{\IfNoValueTF{#1}%
+     {  \ScvarM       }
+     { {\ScvarM_{#1}} } }\xspace}
+
+\NewDocumentCommand\cvarMp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\cvarM{\parentesis*{#2}}}
+                     {\cvarM{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\cvarMP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\cvarM{\Parentesis*{#2}}}
+                     {\cvarM{\Parentesis {#2}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\cov}
+% \begin{macro}{\covp}
+% \begin{macro}{\covP}
+% Covarianza
+%    \begin{macrocode}
+\NewDocumentCommand\cov {mm}{\ensuremath{\IfNoValueTF{#1}%
+     {  \Scov       }
+     { {\Scov_{#1#2}} } }\xspace}
+
+\NewDocumentCommand\covp{smm}{\ensuremath{\IfBooleanTF#1
+                     {\cov{\parentesis*{#2#3}}}
+                     {\cov{\parentesis {#2#3}}} }\xspace}
+
+\NewDocumentCommand\covP{smm}{\ensuremath{\IfBooleanTF#1
+                     {\cov{\Parentesis*{#2#3}}}
+                     {\cov{\Parentesis {#2#3}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\covM}
+% \begin{macro}{\covMp}
+% \begin{macro}{\covMP}
+% Covarianza muestral
+%    \begin{macrocode}
+\NewDocumentCommand\covM {mm}{\ensuremath{\IfNoValueTF{#1}%
+     {  \ScovM       }
+     { {\ScovM_{#1#2}} } }\xspace}
+
+\NewDocumentCommand\covMp{smm}{\ensuremath{\IfBooleanTF#1
+                     {\covM{\parentesis*{#2#3}}}
+                     {\covM{\parentesis {#2#3}}} }\xspace}
+
+\NewDocumentCommand\covMP{smm}{\ensuremath{\IfBooleanTF#1
+                     {\covM{\Parentesis*{#2#3}}}
+                     {\covM{\Parentesis {#2#3}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\corr}
+% \begin{macro}{\corrp}
+% \begin{macro}{\corrP}
+% Correlación
+%    \begin{macrocode}
+\NewDocumentCommand\corr {mm}{\ensuremath{\IfNoValueTF{#1}%
+     {  \Scorr       }
+     { {\Scorr_{#1#2}} } }\xspace}
+
+\NewDocumentCommand\corrp{smm}{\ensuremath{\IfBooleanTF#1
+                     {\corr{\parentesis*{#2#3}}}
+                     {\corr{\parentesis {#2#3}}} }\xspace}
+
+\NewDocumentCommand\corrP{smm}{\ensuremath{\IfBooleanTF#1
+                     {\corr{\Parentesis*{#2#3}}}
+                     {\corr{\Parentesis {#2#3}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\corrM}
+% \begin{macro}{\corrMp}
+% \begin{macro}{\corrMP}
+% Correlación muestral
+%    \begin{macrocode}
+\NewDocumentCommand\corrM {mm}{\ensuremath{\IfNoValueTF{#1}%
+     {  \ScorrM       }
+     { {\ScorrM_{#1#2}} } }\xspace}
+
+\NewDocumentCommand\corrMp{smm}{\ensuremath{\IfBooleanTF#1
+                     {\corrM{\parentesis*{#2#3}}}
+                     {\corrM{\parentesis {#2#3}}} }\xspace}
+
+\NewDocumentCommand\corrMP{smm}{\ensuremath{\IfBooleanTF#1
+                     {\corrM{\Parentesis*{#2#3}}}
+                     {\corrM{\Parentesis {#2#3}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
 % \end{macro}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10371,10 +11529,50 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \end{macro}
 %
 %
-% \begin{macro}{\res}
-% Valor medio
+% \begin{macro}{\Serror}
+% Símbolo del error de ajuste
 %    \begin{macrocode}
-\NewDocumentCommand\res{} {\ensuremath{ \Estmc{\Vect{e}} }\xspace}
+\NewDocumentCommand\Serror{} {\ensuremath{e}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\resi}
+% Error de ajuste MCO
+%    \begin{macrocode}
+\NewDocumentCommand\resi{m} {\ensuremath{ \Estmc{\Serror}_{#1} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\res}
+% Vector de errores de ajuste MCO
+%    \begin{macrocode}
+\NewDocumentCommand\res{} {\ensuremath{ \Estmc{\Vect{\Serror}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SRC}
+% Suma de residuos al cuadrado
+%    \begin{macrocode}
+\NewDocumentCommand\SRC{} {\ensuremath{ \dotprod{\res}{\res} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ColorA}
+% Color objeto aleatorio (vector de un espacio euclídeo probabilístico)
+%    \begin{macrocode}
+\NewDocumentCommand\ColorA {m}{\ensuremath{ {\color{violet}{#1}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VColorA}
+% Vector de aleatorio (vector de un espacio euclídeo probabilístico)
+%    \begin{macrocode}
+\NewDocumentCommand\VColorA {m}{\ensuremath{ \Vect{\ColorA{#1}} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -10382,9 +11580,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\VAn}
 % Variable aleatoria con subíndice
 %    \begin{macrocode}
-\NewDocumentCommand\VAn{mm}{\ensuremath{ %
-         {\color{violet}{\MakeUppercase{#1}_{#2}}}
-                                            }\xspace}
+\NewDocumentCommand\VAn{mm}{\ensuremath{ \ColorA{\MakeUppercase{#1}_{#2}} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -10440,15 +11636,88 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\VVA}
 % Vector aleatorio
 %    \begin{macrocode}
-\NewDocumentCommand\VVA{O{} m}{\ensuremath{ \VA{\Vect[{\MakeLowercase {#1}}]{#2}} }\xspace}
+\NewDocumentCommand\VVA{O{} m}{\ensuremath{ \Vect[\ColorA{#1}]{\VA{#2}} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
 %
 % \begin{macro}{\MVA}
+% \begin{macro}{\MVAp}
+% \begin{macro}{\MVAp*}
+% \begin{macro}{\MVAP}
+% \begin{macro}{\MVAP*}
+% Matriz
+%    \begin{macrocode}
+\NewDocumentCommand\MVA    {O{}m}{\ensuremath{ %
+              \ColorA{\Ridx{\mathbf{\MakeUppercase{#2}}}{#1}}  }\xspace}
+
+\NewDocumentCommand\MVAp  {som}{\ensuremath{\IfBooleanTF#1
+    {\parentesis*{\IfNoValueTF{#2}{\MVA{#3}}{\MVA[#2]{#3}}}}
+    {\parentesis {\IfNoValueTF{#2}{\MVA{#3}}{\MVA[#2]{#3}}}}   }\xspace}
+
+\NewDocumentCommand\MVAP  {som}{\ensuremath{\IfBooleanTF#1
+    {\Parentesis*{\IfNoValueTF{#2}{\MVA{#3}}{\MVA[#2]{#3}}}}
+    {\Parentesis {\IfNoValueTF{#2}{\MVA{#3}}{\MVA[#2]{#3}}}}   }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\MVAT}
+% \begin{macro}{\MVATp}
+% \begin{macro}{\MVATp*}
+% \begin{macro}{\MVATP}
+% \begin{macro}{\MVATP*}
+% \begin{macro}{\MVATpE}
+% \begin{macro}{\MVATpE*}
+% \begin{macro}{\MVATPE}
+% \begin{macro}{\MVATPE*}
+% Matriz transpuesta
+%    \begin{macrocode}
+\NewDocumentCommand\MVAT{O{\vphantom{k}}m}{\ensuremath{\RidxE{\MVA{#2}}{\ColorA{#1}}{\T}}\xspace}
+
+\NewDocumentCommand\MVATp  {som}{\ensuremath{\IfBooleanTF#1
+       {\Transp* {\MVA[#2]{#3}}}
+       {\Transp  {\MVA[#2]{#3}}}            }\xspace}
+
+\NewDocumentCommand\MVATP  {som}{\ensuremath{\IfBooleanTF#1
+       {\TransP* {\MVA[#2]{#3}}}
+       {\TransP  {\MVA[#2]{#3}}}            }\xspace}
+
+\NewDocumentCommand\MVATpE {sO{}m}{\ensuremath{\IfBooleanTF#1
+       {\RidxEpE*{\MVA{#3}}{\ColorA{#2}}{\T}}
+       {\RidxEpE*{\MVA{#3}}{\ColorA{#2}}{\T}}     }\xspace}
+
+\NewDocumentCommand\MVATPE {sO{}m}{\ensuremath{\IfBooleanTF#1
+       {\RidxEPE*{\MVA{#3}}{\ColorA{#2}}{\T}}
+       {\RidxEPE*{\MVA{#3}}{\ColorA{#2}}{\T}}     }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\VVAKK}
+% Vector aleatorio
+%    \begin{macrocode}
+\NewDocumentCommand\VVAKK{O{} m}{\ensuremath{ \VA{\Vect[{\MakeLowercase {#1}}]{#2}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\MVAKK}
 % Matriz aleatoria
 %    \begin{macrocode}
-\NewDocumentCommand\MVA{O{} m}{\ensuremath{ \VA{\Mat[{\MakeLowercase {#1}}]{#2}} }\xspace}
+\NewDocumentCommand\MVAKK{O{} m}{\ensuremath{ \VA{\Mat[{\MakeLowercase {#1}}]{#2}} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -10456,7 +11725,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\SVA}
 % Sistema de variables aleatorias
 %    \begin{macrocode}
-\NewDocumentCommand\SVA{m}{\ensuremath{{\color{violet}{\MakeUppercase{\mathsf{#1}}}} }\xspace}
+\NewDocumentCommand\SVA{O{}m}{\ensuremath{ \ColorA{\MakeUppercase{\mathsf{#2}}_{#1}} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -10464,7 +11733,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\SVAT}
 % Sistema de variables aleatorias transpuesto
 %    \begin{macrocode}
-\NewDocumentCommand\SVAT{m}{\ensuremath{ \Trans{{\SVA{#1}}} }\xspace}
+\NewDocumentCommand\SVAT{O{}m}{\ensuremath{ \Trans{{\SVA[#1]{#2}}} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -10605,8 +11874,8 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\ECond*}
 % Esperanza condicionada
 %    \begin{macrocode}
-\NewDocumentCommand\ECond{smm}{\ensuremath{{\color{violet} \mathbb{E}} \IfBooleanTF#1
-                     {\Parentesis*{#2\left|\,#3\right.}}
+\NewDocumentCommand\ECond{smm}{\ensuremath{ \ColorA{\mathbb{E}} \IfBooleanTF#1
+                     {\Parentesis*{\left.#2\,\right|#3}}
                      {\parentesis {#2 \mid   #3       }} }\xspace}
 %    \end{macrocode}
 % \end{macro}
@@ -10625,11 +11894,23 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \end{macro}
 %
 %
+% \begin{macro}{\DtCond}
+% \begin{macro}{\DtCond*}
+% Desviación típica condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\DtCond{smm}{\ensuremath{ \ColorA{\mathbb{D}t} \IfBooleanTF#1
+                     {\Parentesis*{#2\left|\,#3\right.}}
+                     {\parentesis {#2 \mid   #3       }} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
 % \begin{macro}{\VarCond}
 % \begin{macro}{\VarCond*}
 % Varianza condicionada
 %    \begin{macrocode}
-\NewDocumentCommand\VarCond{smm}{\ensuremath{{\color{violet} \mathbb{V}\!ar} \IfBooleanTF#1
+\NewDocumentCommand\VarCond{smm}{\ensuremath{ \ColorA{\mathbb{V}\!ar} \IfBooleanTF#1
                      {\Parentesis*{#2\left|\,#3\right.}}
                      {\parentesis {#2 \mid   #3       }} }\xspace}
 %    \end{macrocode}
@@ -10644,6 +11925,556 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\VarCondYX{smm}{\ensuremath{ \IfBooleanTF#1
                      {\VarCond*{#2}{\SVA{#3}}} 
                      {\VarCond {#2}{\SVA{#3}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\CovCond}
+% \begin{macro}{\CovCond*}
+% Covarianza condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\CovCond{smmm}{\ensuremath{ \ColorA{\mathbb{C}\!ov} \IfBooleanTF#1
+                     {\Parentesis*{#2,#3\left|\,#4\right.}}
+                     {\parentesis {#2,#3 \mid   #4       }} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\CovCondXYZ}
+% \begin{macro}{\CovCondXYZ*}
+% Covarianza condicionada a un sistema de variables aleatorias 
+%    \begin{macrocode}
+\NewDocumentCommand\CovCondXYZ{smmm}{\ensuremath{ \IfBooleanTF#1
+                     {\CovCond*{#2}{#3}{\SVA{#4}}} 
+                     {\CovCond {#2}{#3}{\SVA{#4}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\Estmc}
+% \begin{macro}{\VEstmc}
+% Ajuste por MCO
+%    \begin{macrocode}
+\NewDocumentCommand\Estmc {m}{\ensuremath{ \widehat{#1}      }\xspace}
+\NewDocumentCommand\VEstmc{m}{\ensuremath{ \Vect{\Estmc{#1}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\Estmd}
+% \begin{macro}{\VEstmd}
+% Estimador MCO
+%    \begin{macrocode}
+\NewDocumentCommand\Estmd {m}{\ensuremath{ \ColorA{\Estmc{#1}} }\xspace}
+\NewDocumentCommand\VEstmd{m}{\ensuremath{ \Vect{\Estmd{#1}}   }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\MCO}
+% Ajuste por MCO
+%    \begin{macrocode}
+\NewDocumentCommand\MCO{mm}{\ensuremath{ \InvMTM*{#2}\MTV{#2}{#1} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\MCOc}
+% Parametros del ajuste por MCO del regresor de Rn y sobre X
+%    \begin{macrocode}
+\NewDocumentCommand\MCOc{}{\ensuremath{ \MCO{y}{X} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\MCOd}
+% Estimador parámetros ajuste por MCO con muestra Y y X
+%    \begin{macrocode}
+\NewDocumentCommand\MCOd{}{\ensuremath{ \MCO{\VVA{y}}{\MVA{X}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\MLT}
+% \begin{macro}{\MLS}
+% \begin{macro}{\MLG}
+% Modelo lineal trivial, simple y general
+%    \begin{macrocode}
+\NewDocumentCommand\MLT{}{\ensuremath{ \VA{Y} = \beta_1\VAindUno + \VA{U} }\xspace}
+\NewDocumentCommand\MLS{}{\ensuremath{ \VA{Y} = \beta_1\VAindUno + \beta_2\VA{X} + \VA{U} }\xspace}
+\NewDocumentCommand\MLG{}{\ensuremath{ \VA{Y} = \SVA{X}\Vect{\beta} + \VA{U} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\masMLT}
+% \begin{macro}{\masMLS}
+% \begin{macro}{\masMLG}
+% Modelos muestrales lineal trivial, simple y general
+%    \begin{macrocode}
+\NewDocumentCommand\masMLT{}{\ensuremath{ \VVA{Y} = \beta_1\VVA{1} + \VVA{U} }\xspace}
+\NewDocumentCommand\masMLS{}{\ensuremath{ \VVA{Y} = \beta_1\VVA{1} + \beta_2\VVA{X} + \VVA{U} }\xspace}
+\NewDocumentCommand\masMLG{}{\ensuremath{ \VVA{Y} = \MVA{X}\Vect{\beta} + \VVA{U} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\ajusteMLT}
+% \begin{macro}{\ajusteMLS}
+% \begin{macro}{\ajusteMLG}
+% Ajueste modelos lineal trivial, simple y general
+%    \begin{macrocode}
+\NewDocumentCommand\ajusteMLT{}{\ensuremath{ \Vect{y} = \Estmc{\beta_1}\Vect{1} + \res }\xspace}
+\NewDocumentCommand\ajusteMLS{}{\ensuremath{ \Vect{y} = \Estmc{\beta_1}\Vect{1} + \Estmc{\beta_2}\Vect{x} + \res }\xspace}
+\NewDocumentCommand\ajusteMLG{}{\ensuremath{ \Vect{y} = \MV{x}{\Estmc{\beta}} + \res }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\SupI}
+% Primer supuesto del Modelo Lineal General
+%    \begin{macrocode}
+\NewDocumentCommand\SupI{}{\ensuremath{ \MLG }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SupII}
+% Segundo supuesto del Modelo Lineal General
+%    \begin{macrocode}
+\NewDocumentCommand\SupII{}{\ensuremath{ \ECondYX*{\per}{X}=\VAindCero }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SupIII}
+% Tercer supuesto del Modelo Lineal General
+%    \begin{macrocode}
+\NewDocumentCommand\SupIII{}{\ensuremath{ \ECondYX*{\per^2}{X}=\sigma^2\VAindUno }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SupIV}
+% Cuarto supuesto del Modelo Lineal General
+%    \begin{macrocode}
+\NewDocumentCommand\SupIV{}{\ensuremath{ \E*{\SVAT{X}\SVA{X}} \textrm{ es invertible} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SupIImas}
+% Segundo supuesto muestral del Modelo Lineal General
+%    \begin{macrocode}
+\NewDocumentCommand\SupIImas{}{\ensuremath{ \ECondYX*{\VVA{\per}}{\MVA{X}}=\VVA{0} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SupIIImas}
+% Tercer supuesto muestral del Modelo Lineal General
+%    \begin{macrocode}
+\NewDocumentCommand\SupIIImas{}{\ensuremath{ \VarCondYX*{\VVA{\per}}{\MVA{X}}=\sigma^2\MVA{I} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SupIVmas}
+% Cuarto supuesto muestral del Modelo Lineal General
+%    \begin{macrocode}
+\NewDocumentCommand\SupIVmas{}{\ensuremath{ \E*{\MVAT{X}\MVA{X}} \textrm{ es invertible} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\SupVmas}
+% Quinto supuesto muestral del Modelo Lineal General
+%    \begin{macrocode}
+\NewDocumentCommand\SupVmas{}{\ensuremath{ \VVA{\per}\sim\Normal{\Vect{0}}{\sigma^2\Mat{I}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\MVAR}
+% Matriz de varianzas y covarianzas
+%    \begin{macrocode}
+\NewDocumentCommand\MVAR{m}{\ensuremath{ {\pmb{\Sigma}}_{\scriptscriptstyle\Mat{#1#1}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VCOV}
+% Vector de covarianzas
+%    \begin{macrocode}
+\NewDocumentCommand\VCOV{mm}{\ensuremath{ {\pmb{\sigma}}_{\scriptscriptstyle\MV{#1}{#2}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\MVARM}
+% Matriz de varianzas y covarianzas muestrales
+%    \begin{macrocode}
+\NewDocumentCommand\MVARM{m}{\ensuremath{ \Mat[_{\Mat{#1#1}}]{S} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\VCOVM}
+% Vector de covarianzas muestrales
+%    \begin{macrocode}
+\NewDocumentCommand\VCOVM{mm}{\ensuremath{ \Vect[_{\MV{#1}{#2}}]{s} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\normal}
+% Símbolo de la distribución normal
+%    \begin{macrocode}
+\DeclareMathOperator{\normal}{\it N\/}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\tstudent}
+% Símbolo de la distribución t de student
+%    \begin{macrocode}
+\DeclareMathOperator{\tstudent}{\it t\/}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\fsnedecor}
+% Símbolo de la distribución F de Snedecor
+%    \begin{macrocode}
+\DeclareMathOperator{\fsnedecor}{\it F\/}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Normal}
+% Distribución Normal
+%    \begin{macrocode}
+\NewDocumentCommand\Normal{mm}{\ensuremath{ \normal\left(#1,\,#2\right) }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\TStudent}
+% Distribución t de Student
+%    \begin{macrocode}
+\NewDocumentCommand\TStudent{m}{\ensuremath{ \tstudent_{\left\{#1\right\}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\FSnedecor}
+% Distribución t de FSnedecor
+%    \begin{macrocode}
+\NewDocumentCommand\FSnedecor{mm}{\ensuremath{ \fsnedecor_{\!\left\{#1,#2\right\}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ChiCuadrado}
+% Distribución Chi cuadrado
+%    \begin{macrocode}
+\NewDocumentCommand\ChiCuadrado{m}{\ensuremath{ {\chi^2_{\left\{ #1\right\}}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmcE}
+% Estimación de la esperanza
+%    \begin{macrocode}
+\NewDocumentCommand\EstmcE  {sm   }{\ensuremath{\IfBooleanTF#1
+            {\Estmc{\esperanza}\Parentesis*{#2}}
+            {\Estmc{\esperanza}\parentesis {#2}}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmdE}
+% Estimador de la esperanza
+%    \begin{macrocode}
+\NewDocumentCommand\EstmdE  {sm   }{\ensuremath{\IfBooleanTF#1
+            {\Estmd{\esperanza}\Parentesis*{#2}}
+            {\Estmd{\esperanza}\parentesis {#2}}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmcECond}
+% Estimación de la esperanza condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\EstmcECond  {smm  }{\ensuremath{\IfBooleanTF#1
+            {\Estmc{\esperanza}\Parentesis*{#2\left|\,#3\right.}}
+            {\Estmc{\esperanza}\parentesis {#2 \mid   #3       }}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmdECond}
+% Estimador de la esperanza condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\EstmdECond  {smm  }{\ensuremath{\IfBooleanTF#1
+            {\Estmd{\esperanza}\Parentesis*{#2\left|\,#3\right.}}
+            {\Estmd{\esperanza}\parentesis {#2 \mid   #3       }}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmcDt}
+% Estimación de la desviación típica
+%    \begin{macrocode}
+\NewDocumentCommand\EstmcDt  {sm   }{\ensuremath{\IfBooleanTF#1
+            {\Estmc{\desviaciontipica}\Parentesis*{#2}}
+            {\Estmc{\desviaciontipica}\parentesis {#2}}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmdDt}
+% Estimador de la desviación típica
+%    \begin{macrocode}
+\NewDocumentCommand\EstmdDt  {sm   }{\ensuremath{\IfBooleanTF#1
+            {\Estmd{\desviaciontipica}\Parentesis*{#2}}
+            {\Estmd{\desviaciontipica}\parentesis {#2}}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmcDtCond}
+% Estimación de la desviación típica condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\EstmcDtCond  {smm  }{\ensuremath{\IfBooleanTF#1
+            {\Estmc{\desviaciontipica}\Parentesis*{#2\left|\,#3\right.}}
+            {\Estmc{\desviaciontipica}\parentesis {#2 \mid   #3       }}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmdDtCond}
+% Estimador de la desviación típica condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\EstmdDtCond  {smm  }{\ensuremath{\IfBooleanTF#1
+            {\Estmd{\desviaciontipica}\Parentesis*{#2\left|\,#3\right.}}
+            {\Estmd{\desviaciontipica}\parentesis {#2 \mid   #3       }}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmcVar}
+% Estimación de la varianza
+%    \begin{macrocode}
+\NewDocumentCommand\EstmcVar  {sm   }{\ensuremath{\IfBooleanTF#1
+            {\Estmc{\varianza}\Parentesis*{#2}}
+            {\Estmc{\varianza}\parentesis {#2}}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmdVar}
+% Estimador de la varianza
+%    \begin{macrocode}
+\NewDocumentCommand\EstmdVar  {sm   }{\ensuremath{\IfBooleanTF#1
+            {\Estmd{\varianza}\Parentesis*{#2}}
+            {\Estmd{\varianza}\parentesis {#2}}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmcVarCond}
+% Estimación de la varianza condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\EstmcVarCond  {smm  }{\ensuremath{\IfBooleanTF#1
+            {\Estmc{\varianza}\Parentesis*{#2\left|\,#3\right.}}
+            {\Estmc{\varianza}\parentesis {#2 \mid   #3       }}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmdVarCond}
+% Estimador de la varianza condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\EstmdVarCond  {smm  }{\ensuremath{\IfBooleanTF#1
+            {\Estmd{\varianza}\Parentesis*{#2\left|\,#3\right.}}
+            {\Estmd{\varianza}\parentesis {#2 \mid   #3       }}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmcCov}
+% Estimación de la covarianza
+%    \begin{macrocode}
+\NewDocumentCommand\EstmcCov  {smm   }{\ensuremath{\IfBooleanTF#1
+            {\Estmc{\covarianza}\Parentesis*{#2,#3}}
+            {\Estmc{\covarianza}\parentesis {#2,#3}}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmdCov}
+% Estimador de la covarianza
+%    \begin{macrocode}
+\NewDocumentCommand\EstmdCov  {smm   }{\ensuremath{\IfBooleanTF#1
+            {\Estmd{\covarianza}\Parentesis*{#2,#3}}
+            {\Estmd{\covarianza}\parentesis {#2,#3}}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmcCovCond}
+% Estimación de la covarianza condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\EstmcCovCond  {smmm  }{\ensuremath{\IfBooleanTF#1
+            {\Estmc{\covarianza}\Parentesis*{#2,#3\left|\,#4\right.}}
+            {\Estmc{\covarianza}\parentesis {#2,#3 \mid   #4       }}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmdCovCond}
+% Estimador de la covarianza condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\EstmdCovCond  {smmm  }{\ensuremath{\IfBooleanTF#1
+            {\Estmd{\covarianza}\Parentesis*{#2,#3\left|\,#4\right.}}
+            {\Estmd{\covarianza}\parentesis {#2,#3 \mid   #4       }}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmcCorr}
+% Estimación de la correlación
+%    \begin{macrocode}
+\NewDocumentCommand\EstmcCorr  {smm   }{\ensuremath{\IfBooleanTF#1
+            {\Estmc{\correlacion}\Parentesis*{#2,#3}}
+            {\Estmc{\correlacion}\parentesis {#2,#3}}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmdCorr}
+% Estimador de la correlación
+%    \begin{macrocode}
+\NewDocumentCommand\EstmdCorr  {smm   }{\ensuremath{\IfBooleanTF#1
+            {\Estmd{\correlacion}\Parentesis*{#2,#3}}
+            {\Estmd{\correlacion}\parentesis {#2,#3}}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmcCorrCond}
+% Estimación de la correlación condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\EstmcCorrCond  {smmm  }{\ensuremath{\IfBooleanTF#1
+            {\Estmc{\correlacion}\Parentesis*{#2,#3\left|\,#4\right.}}
+            {\Estmc{\correlacion}\parentesis {#2,#3 \mid   #4       }}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\EstmdCorrCond}
+% Estimador de la correlación condicionada
+%    \begin{macrocode}
+\NewDocumentCommand\EstmdCorrCond  {smmm  }{\ensuremath{\IfBooleanTF#1
+            {\Estmd{\correlacion}\Parentesis*{#2,#3\left|\,#4\right.}}
+            {\Estmd{\correlacion}\parentesis {#2,#3 \mid   #4       }}            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\estimEcond}
+% Estimación de la esperanza condicionada 
+%    \begin{macrocode}
+\NewDocumentCommand\estimEcond{mm}{\ensuremath{ \EstmcE{#1 \mid #2} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Hnula}
+% \begin{macro}{\Halt}
+% \begin{macro}{\Rcritica}
+% \begin{macro}{\Racept}
+% Hipótesis nula, hipótesis alternativa, región crítica y regiónde aceptación
+%    \begin{macrocode}
+\NewDocumentCommand\Hnula   {}{\ensuremath{ H_0 }\xspace}
+\NewDocumentCommand\Halt    {}{\ensuremath{ H_1 }\xspace}
+\NewDocumentCommand\Rcritica{}{\ensuremath{ RC  }\xspace}
+\NewDocumentCommand\Racept  {}{\ensuremath{ RA  }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\fdppar}
+% Función de densidad paramétrica
+%    \begin{macrocode}
+\NewDocumentCommand\fdppar{O{\theta}m}{\ensuremath{ f_{\VA{#2}}(\MakeLowercase{#2};\Vect{#1}) }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\testad}
+% \begin{macro}{\testadistico}
+% \begin{macro}{\Testadistico}
+% Estadístico t de student
+%    \begin{macrocode}
+\NewDocumentCommand\testad{}{\ensuremath{ \mathcal{T} }\xspace}
+\NewDocumentCommand\testadistico{}{\ensuremath{ \Estmc{\testad} }\xspace}
+\NewDocumentCommand\Testadistico{}{\ensuremath{ \ColorA{\testad} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\festad}
+% \begin{macro}{\festadistico}
+% \begin{macro}{\Festadistico}
+% Estadístico t de student
+%    \begin{macrocode}
+\NewDocumentCommand\festad{}{\ensuremath{ \mathcal{F} }\xspace}
+\NewDocumentCommand\festadistico{}{\ensuremath{ \Estmc{\festad} }\xspace}
+\NewDocumentCommand\Festadistico{}{\ensuremath{ \ColorA{\festad} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\simBajoCond}
+% \begin{macro}{\simnula}
+% \begin{macro}{\simNula}
+% Distribución bajo hipótesis nula
+%    \begin{macrocode}
+\NewDocumentCommand\simBajoCond{m}{\ensuremath{ \mathop{\sim}\limits_{#1}}\xspace}
+\NewDocumentCommand\simnula{ }{\ensuremath{ \simBajoCond{\Hnula}         }\xspace}
+\NewDocumentCommand\simNula{m}{\ensuremath{ \simBajoCond{\Hnula:\, #1}     }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\IConfc}
+% \begin{macro}{\IConfd}
+% Intervalo de confianza
+%    \begin{macrocode}
+\NewDocumentCommand\IConfc{mm}{\ensuremath{ \Estmc{\text{IC}}_{#1}^{#2} }\xspace}
+\NewDocumentCommand\IConfd{mm}{\ensuremath{ \Estmd{\text{IC}}_{#1}^{#2} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
