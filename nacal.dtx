@@ -18,7 +18,8 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
 %<package>\ProvidesPackage{nacal}
-%<package>    [2023/01/05 v1.0 Notacion Asociativa para un Curso de Álgebra Lineal]
+%<package>    [2023/01/05 v1.0
+%<package>    [2023/09/22 v1.3 Notacion Asociativa para un Curso de Álgebra Lineal]
 %<package>\RequirePackage{amsmath,amssymb}
 %<package>\RequirePackage{xcolor}
 %<package>\RequirePackage{xparse}
@@ -74,6 +75,7 @@
 % \changes{v1.0}{2022/12/04}{Versión inicial}
 % \changes{v1.1}{2023/01/14}{Añadidos más comandos y reimplementación de los subíndices de matrices}
 % \changes{v1.2}{2023/01/14}{Inclusión opcional índices en matriz por vector y vector por matriz}
+% \changes{v1.3}{2023/09/22}{Inclusión de notación para Econometría}
 %
 % \GetFileInfo{nacal.sty}
 %
@@ -5524,7 +5526,7 @@
 %   \fbox{$\indUno$}
 % \end{center}
 % 
-% \DescribeMacro{Ind}
+% \DescribeMacro{\Ind}
 % El comando \cs{Ind} no tiene
 % argumentos y denota la función indicatriz constante uno
 % \begin{center}
@@ -5618,6 +5620,16 @@
 %   \fbox{$\PRO*[\sspi]{A}$}
 % \end{center}
 % 
+% \DescribeMacro{\PRObh}
+% \DescribeMacro{\PRObh*}
+% El comando \cs{PRObh}\marg{suceso}\marg{hipótesis} tiene 2
+% argumentos y denota la probabilidad de un \marg{suceso} bajo cierta hipótesis
+% \begin{center}
+%   |\PRObh{A}{\Hnula} \PRObh*{A}{\Hnula}|
+%   \hspace{1.2cm}
+%   \fbox{$\PRObh{A}{\Hnula}$}
+%   \fbox{$\PRObh*{A}{\Hnula}$}
+% \end{center}
 % 
 % Con el comando \cs{pindep} denotaremos la independencia probabilística\\
 % \DescribeMacro{\pindep}
@@ -6451,7 +6463,7 @@
 % \end{center}
 % 
 % \DescribeMacro{\ajusteMLT}
-% El comando \cs{ajusteMLT} no tieneargumentos  y denota el ajuste del modelo cuyo único regresor es \VAindUno
+% El comando \cs{ajusteMLT} no tieneargumentos  y denota el ajuste del modelo cuyo único regresor el vector constante
 % \begin{center}
 %   |\ajusteMLT|
 %   \hspace{1.2cm}
@@ -6591,7 +6603,7 @@
 % \begin{center}
 %   |\FSnedecor{N-k}{r}|
 %   \hspace{1.2cm}
-%   \fbox{$\FSnedecor{N-k}{r}$}
+%   \fbox{$\FSnedecor{r}{N-k}$}
 % \end{center}
 % 
 % \DescribeMacro{\ChiCuadrado}
@@ -6600,6 +6612,17 @@
 %   |\ChiCuadrado{k}|
 %   \hspace{1.2cm}
 %   \fbox{$\ChiCuadrado{k}$}
+% \end{center}
+% 
+% \DescribeMacro{\ValorC}
+% El comando \cs{ValorCritico} tiene 3 argumentos
+% \cs{ValorCritico}\marg{dist}\marg{grados}\marg{prob} y
+% denota el valor crítico para una \marg{prob} dada
+% \begin{center}
+%   |\ValorC{t}{N-k}{\alpha} \ValorC{F}{\! r,N-k}{1-\alpha}|
+% 
+%   \fbox{$\ValorC{t}{N-k}{\alpha}$}
+%   \fbox{$\ValorC{F}{\!r,N-k}{1-\alpha}$}
 % \end{center}
 % 
 % \DescribeMacro{\EstmcE}
@@ -11100,6 +11123,18 @@
 % \end{macro}
 % \end{macro}
 %
+%
+% \begin{macro}{\PRObh}
+% \begin{macro}{\PRObh*}
+% Probabilidad de un suceso bajo hipótesis
+%    \begin{macrocode}
+\NewDocumentCommand\PRObh{smm}{\ensuremath{\IfBooleanTF#1
+                         {\spro[_{#3}\!]\Parentesis*{#2}} {\spro[_{#3}\!]\parentesis{#2}}
+                            }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
 % 
 % \begin{macro}{\pindep}
 % Símbolo de independencia probabilística 
@@ -11233,7 +11268,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\Svar}
 % Símbolo para varianza
 %    \begin{macrocode}
-\NewDocumentCommand\Svar   {}{\sigma^2}
+\NewDocumentCommand\Svar   {}{\Scov^2}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -11241,7 +11276,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\SvarM}
 % Símbolo para varianza muestral
 %    \begin{macrocode}
-\NewDocumentCommand\SvarM  {}{s^2}
+\NewDocumentCommand\SvarM  {}{\ScovM^2}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -11467,6 +11502,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \end{macro}
 % \end{macro}
 %
+%
 % \begin{macro}{\corr}
 % \begin{macro}{\corrp}
 % \begin{macro}{\corrP}
@@ -11646,7 +11682,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\MVAp*}
 % \begin{macro}{\MVAP}
 % \begin{macro}{\MVAP*}
-% Matriz
+% Matriz aleatoria
 %    \begin{macrocode}
 \NewDocumentCommand\MVA    {O{}m}{\ensuremath{ %
               \ColorA{\Ridx{\mathbf{\MakeUppercase{#2}}}{#1}}  }\xspace}
@@ -12033,7 +12069,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\ajusteMLG}
 % Ajueste modelos lineal trivial, simple y general
 %    \begin{macrocode}
-\NewDocumentCommand\ajusteMLT{}{\ensuremath{ \Vect{y} = \Estmc{\beta_1}\Vect{1} + \res }\xspace}
+\NewDocumentCommand\ajusteMLT{}{\ensuremath{ \Vect{y} = \Estmc{\beta}\Vect{1} + \res }\xspace}
 \NewDocumentCommand\ajusteMLS{}{\ensuremath{ \Vect{y} = \Estmc{\beta_1}\Vect{1} + \Estmc{\beta_2}\Vect{x} + \res }\xspace}
 \NewDocumentCommand\ajusteMLG{}{\ensuremath{ \Vect{y} = \MV{x}{\Estmc{\beta}} + \res }\xspace}
 %    \end{macrocode}
@@ -12077,7 +12113,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\SupIImas}
 % Segundo supuesto muestral del Modelo Lineal General
 %    \begin{macrocode}
-\NewDocumentCommand\SupIImas{}{\ensuremath{ \ECondYX*{\VVA{\per}}{\MVA{X}}=\VVA{0} }\xspace}
+\NewDocumentCommand\SupIImas{}{\ensuremath{ \ECond*{\VVA{\per}}{\MVA{X}}=\VVA{0} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -12085,7 +12121,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\SupIIImas}
 % Tercer supuesto muestral del Modelo Lineal General
 %    \begin{macrocode}
-\NewDocumentCommand\SupIIImas{}{\ensuremath{ \VarCondYX*{\VVA{\per}}{\MVA{X}}=\sigma^2\MVA{I} }\xspace}
+\NewDocumentCommand\SupIIImas{}{\ensuremath{ \VarCond*{\VVA{\per}}{\MVA{X}}=\sigma^2\MVA{I} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -12173,7 +12209,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\TStudent}
 % Distribución t de Student
 %    \begin{macrocode}
-\NewDocumentCommand\TStudent{m}{\ensuremath{ \tstudent_{\left\{#1\right\}} }\xspace}
+\NewDocumentCommand\TStudent{m}{\ensuremath{ \tstudent_{#1} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -12181,7 +12217,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\FSnedecor}
 % Distribución t de FSnedecor
 %    \begin{macrocode}
-\NewDocumentCommand\FSnedecor{mm}{\ensuremath{ \fsnedecor_{\!\left\{#1,#2\right\}} }\xspace}
+\NewDocumentCommand\FSnedecor{mm}{\ensuremath{ \fsnedecor_{\!{#1,#2}} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -12189,7 +12225,15 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\ChiCuadrado}
 % Distribución Chi cuadrado
 %    \begin{macrocode}
-\NewDocumentCommand\ChiCuadrado{m}{\ensuremath{ {\chi^2_{\left\{ #1\right\}}} }\xspace}
+\NewDocumentCommand\ChiCuadrado{m}{\ensuremath{ {\chi^2_{#1}} }\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ValorC}
+% Valor Critico
+%    \begin{macrocode}
+\NewDocumentCommand\ValorC{mmm}{\ensuremath{ {\it #1\/}_{_{#2}}^{\langle#3\rangle} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %

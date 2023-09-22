@@ -22,7 +22,8 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
 \ProvidesPackage{nacal}
-    [2023/01/05 v1.0 Notacion Asociativa para un Curso de Álgebra Lineal]
+    [2023/01/05 v1.0
+    [2023/09/22 v1.3 Notacion Asociativa para un Curso de Álgebra Lineal]
 \RequirePackage{amsmath,amssymb}
 \RequirePackage{xcolor}
 \RequirePackage{xparse}
@@ -1501,6 +1502,9 @@
 \NewDocumentCommand\PRO{sO{}m}{\ensuremath{\IfBooleanTF#1
                          {\spro[#2]\Parentesis*{#3}} {\spro[#2]\parentesis{#3}}
                             }\xspace}
+\NewDocumentCommand\PRObh{smm}{\ensuremath{\IfBooleanTF#1
+                         {\spro[_{#3}\!]\Parentesis*{#2}} {\spro[_{#3}\!]\parentesis{#2}}
+                            }\xspace}
 \newcommand{\pindep}{\mathbin{\mathpalette\PindeP@t\relax}}
 \newcommand{\PindeP@t}[2]{%
   \vcenter{\hbox{%
@@ -1556,8 +1560,8 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\SmediaM {}{m}
 \NewDocumentCommand\Scov   {}{\sigma}
 \NewDocumentCommand\ScovM  {}{s}
-\NewDocumentCommand\Svar   {}{\sigma^2}
-\NewDocumentCommand\SvarM  {}{s^2}
+\NewDocumentCommand\Svar   {}{\Scov^2}
+\NewDocumentCommand\SvarM  {}{\ScovM^2}
 \NewDocumentCommand\ScvarM  {}{\mathfrak{s}^2}
 \NewDocumentCommand\Scorr   {}{\rho}
 \NewDocumentCommand\ScorrM   {}{r}
@@ -1790,15 +1794,15 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\masMLT{}{\ensuremath{ \VVA{Y} = \beta_1\VVA{1} + \VVA{U} }\xspace}
 \NewDocumentCommand\masMLS{}{\ensuremath{ \VVA{Y} = \beta_1\VVA{1} + \beta_2\VVA{X} + \VVA{U} }\xspace}
 \NewDocumentCommand\masMLG{}{\ensuremath{ \VVA{Y} = \MVA{X}\Vect{\beta} + \VVA{U} }\xspace}
-\NewDocumentCommand\ajusteMLT{}{\ensuremath{ \Vect{y} = \Estmc{\beta_1}\Vect{1} + \res }\xspace}
+\NewDocumentCommand\ajusteMLT{}{\ensuremath{ \Vect{y} = \Estmc{\beta}\Vect{1} + \res }\xspace}
 \NewDocumentCommand\ajusteMLS{}{\ensuremath{ \Vect{y} = \Estmc{\beta_1}\Vect{1} + \Estmc{\beta_2}\Vect{x} + \res }\xspace}
 \NewDocumentCommand\ajusteMLG{}{\ensuremath{ \Vect{y} = \MV{x}{\Estmc{\beta}} + \res }\xspace}
 \NewDocumentCommand\SupI{}{\ensuremath{ \MLG }\xspace}
 \NewDocumentCommand\SupII{}{\ensuremath{ \ECondYX*{\per}{X}=\VAindCero }\xspace}
 \NewDocumentCommand\SupIII{}{\ensuremath{ \ECondYX*{\per^2}{X}=\sigma^2\VAindUno }\xspace}
 \NewDocumentCommand\SupIV{}{\ensuremath{ \E*{\SVAT{X}\SVA{X}} \textrm{ es invertible} }\xspace}
-\NewDocumentCommand\SupIImas{}{\ensuremath{ \ECondYX*{\VVA{\per}}{\MVA{X}}=\VVA{0} }\xspace}
-\NewDocumentCommand\SupIIImas{}{\ensuremath{ \VarCondYX*{\VVA{\per}}{\MVA{X}}=\sigma^2\MVA{I} }\xspace}
+\NewDocumentCommand\SupIImas{}{\ensuremath{ \ECond*{\VVA{\per}}{\MVA{X}}=\VVA{0} }\xspace}
+\NewDocumentCommand\SupIIImas{}{\ensuremath{ \VarCond*{\VVA{\per}}{\MVA{X}}=\sigma^2\MVA{I} }\xspace}
 \NewDocumentCommand\SupIVmas{}{\ensuremath{ \E*{\MVAT{X}\MVA{X}} \textrm{ es invertible} }\xspace}
 \NewDocumentCommand\SupVmas{}{\ensuremath{ \VVA{\per}\sim\Normal{\Vect{0}}{\sigma^2\Mat{I}} }\xspace}
 \NewDocumentCommand\MVAR{m}{\ensuremath{ {\pmb{\Sigma}}_{\scriptscriptstyle\Mat{#1#1}} }\xspace}
@@ -1809,9 +1813,10 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \DeclareMathOperator{\tstudent}{\it t\/}
 \DeclareMathOperator{\fsnedecor}{\it F\/}
 \NewDocumentCommand\Normal{mm}{\ensuremath{ \normal\left(#1,\,#2\right) }\xspace}
-\NewDocumentCommand\TStudent{m}{\ensuremath{ \tstudent_{\left\{#1\right\}} }\xspace}
-\NewDocumentCommand\FSnedecor{mm}{\ensuremath{ \fsnedecor_{\!\left\{#1,#2\right\}} }\xspace}
-\NewDocumentCommand\ChiCuadrado{m}{\ensuremath{ {\chi^2_{\left\{ #1\right\}}} }\xspace}
+\NewDocumentCommand\TStudent{m}{\ensuremath{ \tstudent_{#1} }\xspace}
+\NewDocumentCommand\FSnedecor{mm}{\ensuremath{ \fsnedecor_{\!{#1,#2}} }\xspace}
+\NewDocumentCommand\ChiCuadrado{m}{\ensuremath{ {\chi^2_{#1}} }\xspace}
+\NewDocumentCommand\ValorC{mmm}{\ensuremath{ {\it #1\/}_{_{#2}}^{\langle#3\rangle} }\xspace}
 \NewDocumentCommand\EstmcE  {sm   }{\ensuremath{\IfBooleanTF#1
             {\Estmc{\esperanza}\Parentesis*{#2}}
             {\Estmc{\esperanza}\parentesis {#2}}            }\xspace}
