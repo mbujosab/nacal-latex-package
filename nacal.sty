@@ -1782,9 +1782,9 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
                      {\CovCond*{#2}{#3}{\SVA{#4}}}
                      {\CovCond {#2}{#3}{\SVA{#4}}} }\xspace}
 \NewDocumentCommand\Estmc {m}{\ensuremath{ \widehat{#1}      }\xspace}
-\NewDocumentCommand\VEstmc{m}{\ensuremath{ \Vect{\Estmc{#1}} }\xspace}
+\NewDocumentCommand\VEstmc{O{}m}{\ensuremath{ \Estmc{\Vect[#1]{#2}} }\xspace}
 \NewDocumentCommand\Estmd {m}{\ensuremath{ \ColorA{\Estmc{#1}} }\xspace}
-\NewDocumentCommand\VEstmd{m}{\ensuremath{ \Vect{\Estmd{#1}}   }\xspace}
+\NewDocumentCommand\VEstmd{O{}m}{\ensuremath{ \Estmd{\Vect[#1]{#2}}   }\xspace}
 \NewDocumentCommand\MCO{mm}{\ensuremath{ \InvMTM*{#2}\MTV{#2}{#1} }\xspace}
 \NewDocumentCommand\MCOc{}{\ensuremath{ \MCO{y}{X} }\xspace}
 \NewDocumentCommand\MCOd{}{\ensuremath{ \MCO{\VVA{y}}{\MVA{X}} }\xspace}

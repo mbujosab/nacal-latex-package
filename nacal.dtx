@@ -6368,9 +6368,10 @@
 % El comando \cs{VEstmc}\marg{objeto} tiene 1
 % argumento y denota el ajuste MCO del \marg{vector} de \R[n]
 % \begin{center}
-%   |\VEstmc{\beta}|
+%   |\VEstmc{\beta} \VEstmc[k]{\beta}|
 %   \hspace{1.2cm}
 %   \fbox{$\VEstmc{\beta}$}
+%   \fbox{$\VEstmc[k]{\beta}$}
 % \end{center}
 % 
 % \DescribeMacro{\Estmd}
@@ -6385,9 +6386,10 @@
 % El comando \cs{VEstmd}\marg{vector} tiene 1
 % argumento y denota el estimador por MCO del \marg{vector} de \R[n]
 % \begin{center}
-%   |\VEstmd{\beta}|
+%   |\VEstmd{\beta} \VEstmd[k]{\beta}|
 %   \hspace{1.2cm}
 %   \fbox{$\VEstmd{\beta}$}
+%   \fbox{$\VEstmd[k]{\beta}$}
 % \end{center}
 % 
 % \DescribeMacro{\MLT}
@@ -11995,7 +11997,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % Ajuste por MCO
 %    \begin{macrocode}
 \NewDocumentCommand\Estmc {m}{\ensuremath{ \widehat{#1}      }\xspace}
-\NewDocumentCommand\VEstmc{m}{\ensuremath{ \Vect{\Estmc{#1}} }\xspace}
+\NewDocumentCommand\VEstmc{O{}m}{\ensuremath{ \Estmc{\Vect[#1]{#2}} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -12006,7 +12008,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % Estimador MCO
 %    \begin{macrocode}
 \NewDocumentCommand\Estmd {m}{\ensuremath{ \ColorA{\Estmc{#1}} }\xspace}
-\NewDocumentCommand\VEstmd{m}{\ensuremath{ \Vect{\Estmd{#1}}   }\xspace}
+\NewDocumentCommand\VEstmd{O{}m}{\ensuremath{ \Estmd{\Vect[#1]{#2}}   }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
