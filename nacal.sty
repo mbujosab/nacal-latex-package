@@ -252,7 +252,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- OPERADOR SELECTOR
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\NewDocumentCommand\getItem { }{\ensuremath{ \pmb{\mid}    }\xspace}
+\NewDocumentCommand\getItem { }{\ensuremath{ \boldsymbol{\mid} }\xspace}
 \NewDocumentCommand\getitemL{m}{\ensuremath{ {#1} \getItem }\xspace}
 \NewDocumentCommand\getitemR{m}{\ensuremath{ \getItem {#1} }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1462,6 +1462,7 @@
 %% --- Notación funcional
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\imagen}{imag}
 \NewDocumentCommand\mifun {smmm}{\ensuremath{\IfBooleanTF#1
         {#3\xrightarrow{#2}#4}
         {#2 \colon #3 \to  #4}        }\xspace}
@@ -1529,6 +1530,19 @@
     \put(0.1,0.2){\line(1,0){0.8}}
     \put(0.40,0.2){\line(0,1){0.8}}
     \put(0.60,0.2){\line(0,1){0.8}}
+    \end{picture}%
+  }} }
+\newcommand{\ndperp}{\mathbin{\mathpalette\nDperp@t\relax}}
+\newcommand{\nDperp@t}[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$\m@th#1-$}%
+    \setlength{\unitlength}{\wd\z@}%
+    \begin{picture}(1,1)
+    \roundcap
+    \put(0.1,0.2){\line(1,0){0.8}}
+    \put(0.40,0.2){\line(0,1){0.8}}
+    \put(0.60,0.2){\line(0,1){0.8}}
+    \put(0.2,-.05){\line(0.6,1.15){0.65}}
     \end{picture}%
   }} }
 \NewDocumentCommand\PSpan{sm}{\ensuremath{\,\IfBooleanTF#1

@@ -5439,6 +5439,15 @@
 %   \fbox{$\dom(f)$}
 % \end{center}
 % 
+% \DescribeMacro{\imagen}
+% El comando \cs{imagen} no  tiene
+% argumentos y denota la \emph{imagen} de una función
+% \begin{center}
+%   |\imagen(f)|
+%   \hspace{1.2cm}
+%   \fbox{$\imagen(f)$}
+% \end{center}
+% 
 % \DescribeMacro{\imrec}
 % El comando \cs{imrec} tiene 2 argumentos
 % ,\;\cs{imrec}\marg{funcion}\marg{valor},\;
@@ -5649,6 +5658,14 @@
 %   \fbox{$A \dperp B$}
 % \end{center}
 % 
+% El comando \cs{ndperp} niega la independencia probabilística\\
+% \DescribeMacro{\ndperp}
+% El comando \cs{ndperp} no tiene argumentos,\;\cs{ndperp}.
+% \begin{center}
+%   |A \ndperp B|
+%   \hspace{1.2cm}
+%   \fbox{$A \ndperp B$}
+% \end{center}
 % 
 % \DescribeMacro{\PSpan}
 % \DescribeMacro{\PSpan*}
@@ -7582,7 +7599,7 @@
 % \begin{macro}{\getItem}
 % Signo de operador selector
 %    \begin{macrocode}
-\NewDocumentCommand\getItem { }{\ensuremath{ \pmb{\mid}    }\xspace}
+\NewDocumentCommand\getItem { }{\ensuremath{ \boldsymbol{\mid} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -10956,6 +10973,14 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\imagen}
+% Imagen de una función
+%    \begin{macrocode}
+\DeclareMathOperator{\imagen}{imag}
+%    \end{macrocode}
+% \end{macro}
+%
+%
 % \begin{macro}{\mifun}
 % \begin{macro}{\mifun*}
 % Breve descripción de una función
@@ -11172,6 +11197,26 @@
     \put(0.1,0.2){\line(1,0){0.8}}
     \put(0.40,0.2){\line(0,1){0.8}}
     \put(0.60,0.2){\line(0,1){0.8}}
+    \end{picture}%
+  }} }
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ndperp}
+% Símbolo para negar la independencia probabilística 
+%    \begin{macrocode}
+\newcommand{\ndperp}{\mathbin{\mathpalette\nDperp@t\relax}}
+\newcommand{\nDperp@t}[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$\m@th#1-$}%
+    \setlength{\unitlength}{\wd\z@}%
+    \begin{picture}(1,1)
+    \roundcap
+    \put(0.1,0.2){\line(1,0){0.8}}
+    \put(0.40,0.2){\line(0,1){0.8}}
+    \put(0.60,0.2){\line(0,1){0.8}}
+    \put(0.2,-.05){\line(0.6,1.15){0.65}}
     \end{picture}%
   }} }
 %    \end{macrocode}
