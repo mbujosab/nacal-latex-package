@@ -4352,6 +4352,30 @@
 %   \fbox{$\determinante*{\Mat{A}}$}
 % \end{center}
 % 
+% \DescribeMacro{\detp}
+% \DescribeMacro{\detp*}
+% El comando \cs{detp} tiene 1
+% argumento,\;\cs{detp}\marg{objeto},\; y denota el determinante
+% del \marg{objeto} usando la abreviatura det y paréntesis
+% \begin{center}
+%   |\detp{\Mat{A}} \detp*{\Mat{A}}|
+%   \hspace{1.2cm}
+%   \fbox{$\detp {\Mat{A}}$}
+%   \fbox{$\detp*{\Mat{A}}$}
+% \end{center}
+% 
+% \DescribeMacro{\detP}
+% \DescribeMacro{\detP*}
+% El comando \cs{detP} tiene 1
+% argumento,\;\cs{detP}\marg{objeto},\; y denota el determinante
+% del \marg{objeto} usando la abreviatura det y Paréntesis
+% \begin{center}
+%   |\detP{\Mat{A}} \detP*{\Mat{A}}|
+%   \hspace{1.2cm}
+%   \fbox{$\detP {\Mat{A}}$}
+%   \fbox{$\detP*{\Mat{A}}$}
+% \end{center}
+% 
 % \DescribeMacro{\subMat}
 % El comando \cs{subMat} tiene 3
 % argumentos,\;\cs{subMat}\marg{nombre}\marg{indIzda}\marg{indDcha},\; y denota la submatriz resultante de quitar una o más filas y columnas de la matriz \marg{nombre}
@@ -5484,7 +5508,7 @@
 % 
 % \DescribeMacro{\sproy}
 % El comando \cs{sproy} no  tiene
-% argumentos y denota el \emph{operador proyecciçon ortogonal}
+% argumentos y denota el \emph{operador proyección ortogonal}
 % \begin{center}
 %   |\sproy|
 %   \hspace{1.2cm}
@@ -9916,6 +9940,30 @@
 % \end{macro}
 %
 %
+% \begin{macro}{\detp}
+% \begin{macro}{\detp*}
+% Determinante con la abreviatura det y paréntesis
+%    \begin{macrocode}
+\NewDocumentCommand\detp{sm}{\ensuremath{\IfBooleanTF#1
+            {\det\parentesis*{#2}}
+            {\det\parentesis {#2}}                     }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \begin{macro}{\detP}
+% \begin{macro}{\detP*}
+% Determinante con la abreviatura det y Paréntesis
+%    \begin{macrocode}
+\NewDocumentCommand\detP{sm}{\ensuremath{\IfBooleanTF#1
+            {\det\Parentesis*{#2}}
+            {\det\Parentesis {#2}}                     }\xspace}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
 % \begin{macro}{\subMat}
 % Determinante con barras
 %    \begin{macrocode}
@@ -11053,10 +11101,18 @@
 %    \end{macrocode}
 %
 %
-% \begin{macro}{\ind}
-% Función indicatriz
+% \begin{macro}{\Cero}
+% Función constante 0
 %    \begin{macrocode}
-\NewDocumentCommand\ind{m}{\ensuremath{{\mymathbb{1}}_{{#1}}}\xspace}
+\NewDocumentCommand\Cero{}{\ensuremath{\mymathbb{0}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Uno}
+% Función constante 1
+%    \begin{macrocode}
+\NewDocumentCommand\Uno{}{\ensuremath{\mymathbb{1}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -11064,7 +11120,15 @@
 % \begin{macro}{\indCero}
 % Función indicatriz nula
 %    \begin{macrocode}
-\NewDocumentCommand\indCero{}{\ensuremath{{\mymathbb{0}}}\xspace}
+\NewDocumentCommand\indCero{}{\ensuremath{\Cero}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\indUno}
+% Función indicatriz constante uno
+%    \begin{macrocode}
+\NewDocumentCommand\indUno{} {\ensuremath{\Uno}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -11072,15 +11136,15 @@
 % \begin{macro}{\Ind}
 % Función indicatriz constante uno
 %    \begin{macrocode}
-\NewDocumentCommand\indUno{} {\ensuremath{\ind{}}\xspace}
+\NewDocumentCommand\Ind{} {\ensuremath{\Uno}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
 %
-% \begin{macro}{\Ind}
-% Función indicatriz constante uno
+% \begin{macro}{\ind}
+% Función indicatriz de un suceso (argumento obligatorio)
 %    \begin{macrocode}
-\NewDocumentCommand\Ind{} {\ensuremath{\ind{}}\xspace}
+\NewDocumentCommand\ind{m}{\ensuremath{{\Uno}_{{#1}}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %

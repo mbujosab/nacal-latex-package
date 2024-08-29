@@ -1112,6 +1112,12 @@
 \NewDocumentCommand\determinante{sm}{\ensuremath{\IfBooleanTF#1
             {\modulus*{#2}}
             {\modulus {#2}}                     }\xspace}
+\NewDocumentCommand\detp{sm}{\ensuremath{\IfBooleanTF#1
+            {\det\parentesis*{#2}}
+            {\det\parentesis {#2}}                     }\xspace}
+\NewDocumentCommand\detP{sm}{\ensuremath{\IfBooleanTF#1
+            {\det\Parentesis*{#2}}
+            {\det\Parentesis {#2}}                     }\xspace}
 \NewDocumentCommand\subMat{mmm}{\ensuremath{
         \quitaLR{\Mat{#1}}{#2}{#3}             }\xspace}
 \NewDocumentCommand\Menor {mmm}{\ensuremath{
@@ -1486,10 +1492,12 @@
 %% --- Probabilidad
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \DeclareMathAlphabet{\mymathbb}{U}{BOONDOX-ds}{m}{n}
-\NewDocumentCommand\ind{m}{\ensuremath{{\mymathbb{1}}_{{#1}}}\xspace}
-\NewDocumentCommand\indCero{}{\ensuremath{{\mymathbb{0}}}\xspace}
-\NewDocumentCommand\indUno{} {\ensuremath{\ind{}}\xspace}
-\NewDocumentCommand\Ind{} {\ensuremath{\ind{}}\xspace}
+\NewDocumentCommand\Cero{}{\ensuremath{\mymathbb{0}}\xspace}
+\NewDocumentCommand\Uno{}{\ensuremath{\mymathbb{1}}\xspace}
+\NewDocumentCommand\indCero{}{\ensuremath{\Cero}\xspace}
+\NewDocumentCommand\indUno{} {\ensuremath{\Uno}\xspace}
+\NewDocumentCommand\Ind{} {\ensuremath{\Uno}\xspace}
+\NewDocumentCommand\ind{m}{\ensuremath{{\Uno}_{{#1}}}\xspace}
 \NewDocumentCommand\sspi{O{}O{}}{\ensuremath{\RidxE{\eta}{\scriptstyle{#1}}{#2}}\xspace}
 \NewDocumentCommand\SPI{sO{}O{}mm}{\ensuremath{\IfBooleanTF#1
     {\Ridx{\Angulos*{\left.#4 \right| #5}}{\!\sspi[#2][#3]}}
