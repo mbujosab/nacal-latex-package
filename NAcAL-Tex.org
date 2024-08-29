@@ -11768,18 +11768,18 @@ versión sin estrella uso con una notación compacta
 % \end{macro}
 %
 %
-% \begin{macro}{\Ind}
-% Función indicatriz constante uno
-%    \begin{macrocode}
-\NewDocumentCommand\Ind{} {\ensuremath{\Uno}\xspace}
-%    \end{macrocode}
-% \end{macro}
-%
-%
 % \begin{macro}{\ind}
 % Función indicatriz de un suceso (argumento obligatorio)
 %    \begin{macrocode}
 \NewDocumentCommand\ind{m}{\ensuremath{{\Uno}_{{#1}}}\xspace}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\Ind}
+% Función indicatriz constante uno
+%    \begin{macrocode}
+\NewDocumentCommand\Ind{} {\ensuremath{\Uno}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -13403,8 +13403,8 @@ cp -f nacal.pdf /home/marcos/texmf/tex/latex/nacal/
 
 ## otros
 makefile
-NAcAL-Tex.pdf
 NAcAL-Tex.tex
+NAcAL-Tex.pdf
 texput.log
 .projectile
 #+END_SRC
