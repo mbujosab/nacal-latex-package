@@ -1,0 +1,73 @@
+# Muestra del banco de pruebas de regresión de nacal.
+#
+# Una línea por documento. Campos separados por espacios:
+#   libro   <fichero principal sin .tex>
+#   transp  <Pxx> <tipo>                     (tipo: print-prof, screen, handoutENG...)
+#   examen  <fichero sin .tex> <idioma> <sol> <ref>
+#           idioma: spanish | english;  sol: 0 sin soluciones, 1 soluciones,
+#           2 soluciones de profesor;  ref: 0 | 1 (como en Evaluacion/GNUmakefile)
+#
+# Las líneas que empiezan por # se ignoran.
+
+# --- Libro ---------------------------------------------------------------
+libro   libro-P
+
+# --- Transparencias y ejercicios (MatematicasII-SRC/Version0) -------------
+transp  P00 print-prof
+transp  P01 print-prof
+transp  P02 print-prof
+transp  P03 print-prof
+transp  P04 print-prof
+transp  P05 print-prof
+transp  P06 print-prof
+transp  P07 print-prof
+transp  P01 screen
+transp  P04 screen
+transp  P02 handoutENG
+transp  P06 printENG
+
+# --- Exámenes: uno o dos por curso, de 2010 a 2024 -------------------------
+examen  2010-Quiz1-F        spanish 2 0
+# Final-2010-jun no compila ni en el original: falta preguntas/Finales/2010-jun.tex
+examen  Final-2011-jun      spanish 2 0
+examen  2012-Quiz2-E        spanish 2 0
+examen  Final-2013-may      spanish 2 0
+examen  2014-Quiz1-E        spanish 2 0
+examen  2016-Quiz2-H        spanish 2 0
+examen  Final-2016-jun      spanish 2 0
+examen  2018-Quiz1-E        spanish 2 0
+examen  Final-2019-jun      spanish 2 0
+examen  2020-Quiz1-B        spanish 2 0
+examen  2022-Quiz2-D        spanish 2 0
+examen  Final-2022-jul      spanish 2 0
+examen  2023-Quiz1-E        spanish 2 0
+examen  2024-Quiz2-C        spanish 2 0
+examen  Final-2024-may      spanish 2 0
+
+# --- Exámenes: 2025 y 2026 completos, en los dos idiomas -------------------
+examen  2025-Quiz1-C        spanish 2 0
+examen  2025-Quiz1-C        english 0 0
+examen  2025-Quiz1-E        spanish 2 0
+examen  2025-Quiz1-E        english 0 0
+examen  2025-Quiz1yMedio-A2-DG spanish 2 0
+examen  2025-Quiz1yMedio-C  spanish 2 0
+examen  2025-Quiz1yMedio-D2 spanish 2 0
+examen  2025-Quiz1yMedio-E  spanish 2 0
+examen  2025-Quiz2-C        spanish 2 0
+examen  2025-Quiz2-E        spanish 2 0
+examen  2025-Quiz2-E        english 0 0
+examen  Final-2025-may      spanish 2 0
+examen  Final-2025-jun      spanish 2 0
+examen  Final-2025-jun      english 0 0
+examen  2026-Quiz1-C        spanish 2 0
+examen  2026-Quiz1-C        english 0 0
+examen  2026-Quiz1-E        spanish 2 0
+examen  2026-Quiz1-E        spanish 1 1
+examen  2026-Quiz2-C        spanish 2 0
+examen  2026-Quiz2-E        spanish 2 0
+examen  2026-Quiz2-E        english 0 0
+examen  Final-2026-may      spanish 2 0
+examen  Final-2026-jun      spanish 2 0
+examen  Final-2026-jun      english 0 0
+examen  Final-2026-jun      spanish 1 1
+examen  Final-Review        spanish 2 0

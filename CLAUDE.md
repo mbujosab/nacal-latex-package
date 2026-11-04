@@ -30,7 +30,7 @@ cargan nacal, carpetas con más ficheros primero):
   y en `~/SynologyDrive/ReposGH/Investigacion/libroProbabilidad/notacion/`.
   Riesgo de divergencia.
 
-Todo esto está duplicado en `~/CloudStation` (espejo de SynologyDrive).
+`~/CloudStation` es un enlace simbólico a `~/SynologyDrive` (comprobado el 4/11/2026): no hay copias duplicadas.
 
 ## Estado del repositorio (10/10/2026)
 
@@ -170,3 +170,15 @@ diff nacal.sty ~/texmf/tex/latex/nacal/nacal.sty
 make ficheros            # regenera .sty y nacal.pdf desde .ins/.dtx
 grep -c NewDocumentCommand nacal.sty
 ```
+
+## Banco de pruebas (montado el 4/11/2026)
+
+`pruebas/banco.sh` y `pruebas/muestra.txt` (54 documentos: libro, transparencias
+P00-P07, exámenes 2010-2026). Trabaja en `~/temporal/nacal-banco/` sobre una
+instantánea de las fuentes; el .sty congelado está en
+`~/temporal/nacal-banco/sty/congelado/` y en `../nacal-congelado-v1.3-baseline/`.
+Flujo: `banco.sh candidato DIR` (DIR contiene el nacal.sty candidato) y
+`banco.sh comparar`; resultado en `~/temporal/nacal-banco/informe/`.
+Validado: dos compilaciones con el congelado dan PDF idénticos; 1mu añadido en
+`\Mat` se detecta en 53/54 documentos. Tras cambiar las fuentes de los
+repositorios: `instantanea`, `preparar`, `dorado`.
