@@ -166,16 +166,18 @@ El fichero principal es el fichero ~.dtx~:
 %
 % \GetFileInfo{<<package>>.sty}
 %
-% \DoNotIndex{\left,\right }
-% \DoNotIndex{\\!,\\\}
-% \DoNotIndex{\scriptscriptstyle,\times}
-% \DoNotIndex{\ensuremath}
-% \DoNotIndex{\IfBooleanTF}
-% \DoNotIndex{\IfNoValueTF}
-% \DoNotIndex{\NewDocumentCommand}
-% \DoNotIndex{\xspace}
 %
 #+END_SRC
+
+# % \DoNotIndex{\left,\right }
+# % \DoNotIndex{\\!,\\\}
+# % \DoNotIndex{\scriptscriptstyle,\times}
+# % \DoNotIndex{\ensuremath}
+# % \DoNotIndex{\IfBooleanTF}
+# % \DoNotIndex{\IfNoValueTF}
+# % \DoNotIndex{\NewDocumentCommand}
+# % \DoNotIndex{\xspace}
+
 
 #+CALL: make()
 
@@ -4917,7 +4919,7 @@ argumentos e indica la letra usada par las matrices de autovalores
 
 \DescribeMacro{\UMat}
 \DescribeMacro{\InvUMat}
-\cs{Umat} y \cs{InvUmat} tienen 1 argumento opcional
+\cs{UMat} y \cs{InvUMat} tienen 1 argumento opcional
 \begin{center}
   |\UMat{A} \UMat[k]{A}|
   \hspace{1.2cm}
@@ -12395,7 +12397,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\VAind}
 % Variable aleatoria
 %    \begin{macrocode}
-\NewDocumentCommand\VAind{m}{\ensuremath{ \VA{\ind{#1}} }\xspace}
+\NewDocumentCommand\VAind{m}{\ensuremath{ \VAn{\indUno}{#1} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -12403,7 +12405,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\VAindCero}
 % Variable aleatoria
 %    \begin{macrocode}
-\NewDocumentCommand\VAindCero{}{\ensuremath{ \VA{\indCero} }\xspace}
+\NewDocumentCommand\VAindCero{}{\ensuremath{\ColorA{\indCero} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -12411,7 +12413,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\VAindUno}
 % Variable aleatoria
 %    \begin{macrocode}
-\NewDocumentCommand\VAindUno{}{\ensuremath{ \VA{\indUno} }\xspace}
+\NewDocumentCommand\VAindUno{}{\ensuremath{\ColorA{\indUno} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %

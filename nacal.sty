@@ -1722,9 +1722,9 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\VAn{mm}{\ensuremath{ \ColorA{\MakeUppercase{#1}_{#2}} }\xspace}
 \NewDocumentCommand\VAi{O{}m}{\ensuremath{ \VAn{#2}{#1} }\xspace}
 \NewDocumentCommand\VA{O{}m}{\ensuremath{ \VAn{#2}{#1} }\xspace}
-\NewDocumentCommand\VAind{m}{\ensuremath{ \VA{\ind{#1}} }\xspace}
-\NewDocumentCommand\VAindCero{}{\ensuremath{ \VA{\indCero} }\xspace}
-\NewDocumentCommand\VAindUno{}{\ensuremath{ \VA{\indUno} }\xspace}
+\NewDocumentCommand\VAind{m}{\ensuremath{ \VAn{\indUno}{#1} }\xspace}
+\NewDocumentCommand\VAindCero{}{\ensuremath{\ColorA{\indCero} }\xspace}
+\NewDocumentCommand\VAindUno{}{\ensuremath{\ColorA{\indUno} }\xspace}
 \NewDocumentCommand\cteVA{m}{\ensuremath{ \VA{{\mathit{#1}}} }\xspace}
 \NewDocumentCommand\VVA{O{} m}{\ensuremath{ \Vect[\ColorA{#1}]{\VA{#2}} }\xspace}
 \NewDocumentCommand\MVA    {O{}m}{\ensuremath{ %

@@ -79,14 +79,6 @@
 %
 % \GetFileInfo{nacal.sty}
 %
-% \DoNotIndex{\left,\right }
-% \DoNotIndex{\\!,\\\}
-% \DoNotIndex{\scriptscriptstyle,\times}
-% \DoNotIndex{\ensuremath}
-% \DoNotIndex{\IfBooleanTF}
-% \DoNotIndex{\IfNoValueTF}
-% \DoNotIndex{\NewDocumentCommand}
-% \DoNotIndex{\xspace}
 %
 % 
 % \title{El paquete \textsf{nacal}\thanks{Este documento
@@ -11751,7 +11743,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\VAind}
 % Variable aleatoria
 %    \begin{macrocode}
-\NewDocumentCommand\VAind{m}{\ensuremath{ \VA{\ind{#1}} }\xspace}
+\NewDocumentCommand\VAind{m}{\ensuremath{ \VAn{\indUno}{#1} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -11759,7 +11751,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\VAindCero}
 % Variable aleatoria
 %    \begin{macrocode}
-\NewDocumentCommand\VAindCero{}{\ensuremath{ \VA{\indCero} }\xspace}
+\NewDocumentCommand\VAindCero{}{\ensuremath{\ColorA{\indCero} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -11767,7 +11759,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\VAindUno}
 % Variable aleatoria
 %    \begin{macrocode}
-\NewDocumentCommand\VAindUno{}{\ensuremath{ \VA{\indUno} }\xspace}
+\NewDocumentCommand\VAindUno{}{\ensuremath{\ColorA{\indUno} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
