@@ -22,7 +22,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
 \ProvidesPackage{nacal}
-    [2026/11/05 v1.3.1 Notacion Asociativa para un Curso de Algebra Lineal]
+    [2026/11/05 v1.4 Notacion Asociativa para un Curso de Algebra Lineal]
 \RequirePackage{amsmath,amssymb}
 \RequirePackage{xcolor}
 \RequirePackage{xparse}
@@ -290,7 +290,7 @@
       {\Parentesis*{\elemR{#2}{#3}}}
       {\Parentesis {\elemR{#2}{#3}}} }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\NewDocumentCommand\elemLR{mmm}{
+\NewDocumentCommand\elemLR{mmm}{%
     \ensuremath{ \LRidx{#1}{\getitemL{#2}}{\getitemR{#3}} }\xspace}
 
 \NewDocumentCommand\elemLRp {smmm}{\ensuremath{\IfBooleanTF#1
@@ -386,7 +386,7 @@
 \NewDocumentCommand\VectFpE{somm}{\ensuremath{\IfBooleanTF#1%
        {\elemLpE*{\IfNoValueTF{#2}
                   {\Mat      {#3}}
-                  {\MatP*[#2]{#3}}}{#4}}
+                  {\Matp*[#2]{#3}}}{#4}}
        {\elemLpE {\IfNoValueTF{#2}
                   {\Mat      {#3}}
                   {\Matp*[#2]{#3}}}{#4}} }\xspace}
@@ -413,7 +413,7 @@
 \NewDocumentCommand\VectTFpE{somm}{\ensuremath{\IfBooleanTF#1%
        {\elemLpE*{\IfNoValueTF{#2}
                   {\MatTpE*    {#3}}
-                  {\MatTPE*[#2]{#3}}}{#4}}
+                  {\MatTpE*[#2]{#3}}}{#4}}
        {\elemLpE {\IfNoValueTF{#2}
                   {\MatTpE*    {#3}}
                   {\MatTpE*[#2]{#3}}}{#4}} }\xspace}
@@ -441,7 +441,7 @@
 \NewDocumentCommand\VectCpE{somm}{\ensuremath{\IfBooleanTF#1%
        {\elemRpE*{\IfNoValueTF{#2}
                   {\Mat      {#3}}
-                  {\MatP*[#2]{#3}}}{#4}}
+                  {\Matp*[#2]{#3}}}{#4}}
        {\elemRpE {\IfNoValueTF{#2}
                   {\Mat      {#3}}
                   {\Matp*[#2]{#3}}}{#4}} }\xspace}
@@ -468,7 +468,7 @@
 \NewDocumentCommand\VectTCpE{somm}{\ensuremath{\IfBooleanTF#1%
        {\elemRpE*{\IfNoValueTF{#2}
                   {\MatTpE*    {#3}}
-                  {\MatTPE*[#2]{#3}}}{#4}}
+                  {\MatTpE*[#2]{#3}}}{#4}}
        {\elemRpE {\IfNoValueTF{#2}
                   {\MatTpE*    {#3}}
                   {\MatTpE*[#2]{#3}}}{#4}} }\xspace}
@@ -1468,7 +1468,7 @@
 \NewDocumentCommand\mifun {smmm}{\ensuremath{\IfBooleanTF#1
         {#3\xrightarrow{#2}#4}
         {#2 \colon #3 \to  #4}        }\xspace}
-\NewDocumentCommand\deffun {m m m m m}{
+\NewDocumentCommand\deffun {m m m m m}{%
   \ensuremath{
     \begingroup
     {\setlength{\arraycolsep}{0pt}
@@ -1501,7 +1501,7 @@
 \NewDocumentCommand\sesp{O{}}{\ensuremath{\Ridx{\mathbb{S}}{{#1\!}}}\xspace}
 \NewDocumentCommand\ESP{sO{}m}{\ensuremath{\IfBooleanTF#1
                         {\sesp[#2\!]\Parentesis*{#3}} {\sesp[#2]\parentesis{#3}}
-                          } \xspace}
+                          }\xspace}
 \NewDocumentCommand\domesp{m}{\ensuremath{\Ridx{L}{\scriptstyle#1}}\xspace}
 \NewDocumentCommand\spro{O{}}{\ensuremath{\Ridx{\mathbb{P}}{{\!#1}}}\xspace}
 \NewDocumentCommand\PRO{sO{}m}{\ensuremath{\IfBooleanTF#1
@@ -1738,23 +1738,23 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \DeclareMathOperator{\esperanza}{E}
 \NewDocumentCommand\E{sm}{\ensuremath{\IfBooleanTF#1
                         {\esperanza\Parentesis*{#2}} {\esperanza\parentesis{#2}}
-                          } \xspace}
+                          }\xspace}
 \DeclareMathOperator{\desviaciontipica}{Dt}
 \NewDocumentCommand\Dt{sm}{\ensuremath{\IfBooleanTF#1
                         {\desviaciontipica\Parentesis*{#2}} {\desviaciontipica\parentesis{#2}}
-                          } \xspace}
+                          }\xspace}
 \DeclareMathOperator{\varianza}{Var}
 \NewDocumentCommand\Var{sm}{\ensuremath{\IfBooleanTF#1
                         {\varianza\Parentesis*{#2}} {\varianza\parentesis{#2}}
-                          } \xspace}
+                          }\xspace}
 \DeclareMathOperator{\covarianza}{Cov}
 \NewDocumentCommand\Cov{smm}{\ensuremath{\IfBooleanTF#1
                         {\covarianza\Parentesis*{#2,#3}} {\covarianza\parentesis{#2,#3}}
-                          } \xspace}
+                          }\xspace}
 \DeclareMathOperator{\correlacion}{Corr}
 \NewDocumentCommand\Corr{smm}{\ensuremath{\IfBooleanTF#1
                         {\correlacion\Parentesis*{#2,#3}} {\correlacion\parentesis{#2,#3}}
-                          } \xspace}
+                          }\xspace}
 \NewDocumentCommand\ECond{smm}{\ensuremath{ \ColorA{\mathbb{E}} \IfBooleanTF#1
                      {\Parentesis*{\left.#2\,\right|#3}}
                      {\parentesis {#2 \mid   #3       }} }\xspace}
