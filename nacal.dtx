@@ -18,8 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
 %<package>\ProvidesPackage{nacal}
-%<package>    [2023/01/05 v1.0
-%<package>    [2023/09/22 v1.3 Notacion Asociativa para un Curso de Álgebra Lineal]
+%<package>    [2026/11/05 v1.3.1 Notacion Asociativa para un Curso de Algebra Lineal]
 %<package>\RequirePackage{amsmath,amssymb}
 %<package>\RequirePackage{xcolor}
 %<package>\RequirePackage{xparse}
@@ -27,7 +26,6 @@
 %<package>\RequirePackage{leftidx}
 %<package>\RequirePackage{pict2e}
 %<package>\RequirePackage{esvect} %\RequirePackage[b]{esvect} %\RequirePackage[e]{esvect}
-%<package>%\RequirePackage{stackengine} % para PSpanNew
 %<package>\providecommand{\eng}[2]{#1}
 %<package>\DeclareOption{esp}{\renewcommand{\eng}[2]{#1}}
 %<package>\DeclareOption{eng}{\renewcommand{\eng}[2]{#2}}
@@ -4556,7 +4554,7 @@
 % 
 % \DescribeMacro{\UMat}
 % \DescribeMacro{\InvUMat}
-% \cs{Umat} y \cs{InvUmat} tienen 1 argumento opcional
+% \cs{UMat} y \cs{InvUMat} tienen 1 argumento opcional
 % \begin{center}
 %   |\UMat{A} \UMat[k]{A}|
 %   \hspace{1.2cm}
@@ -8102,18 +8100,18 @@
                 {\elemLRP  {\Mat[#2]{#3}}{#4}{#5}} }\xspace}
 
 \NewDocumentCommand\eleMpE{sommm}{\ensuremath{\IfBooleanTF#1
-                {\parentesis*{\IfNoValueTF{#1}
+                {\parentesis*{\IfNoValueTF{#2}
                                 {\eleM    {#3}{#4}{#5}}
                                 {\eleM[#2]{#3}{#4}{#5}}    }}
-                {\parentesis {\IfNoValueTF{#1}
+                {\parentesis {\IfNoValueTF{#2}
                                 {\eleM    {#3}{#4}{#5}}
                                 {\eleM[#2]{#3}{#4}{#5}}    }}  }\xspace}
 
 \NewDocumentCommand\eleMPE{sommm}{\ensuremath{\IfBooleanTF#1
-                {\Parentesis*{\IfNoValueTF{#1}
+                {\Parentesis*{\IfNoValueTF{#2}
                                 {\eleM    {#3}{#4}{#5}}
                                 {\eleM[#2]{#3}{#4}{#5}}    }}
-                {\Parentesis {\IfNoValueTF{#1}
+                {\Parentesis {\IfNoValueTF{#2}
                                 {\eleM    {#3}{#4}{#5}}
                                 {\eleM[#2]{#3}{#4}{#5}}    }}  }\xspace}
 %    \end{macrocode}
@@ -8152,18 +8150,18 @@
                 {\elemLRP {\parentesis*{\Mat[#2]{#3}}^\T}{#4}{#5}}  }\xspace}
 
 \NewDocumentCommand\eleMTpE{sommm}{\ensuremath{\IfBooleanTF#1
-                {\parentesis*{\IfNoValueTF{#1}
+                {\parentesis*{\IfNoValueTF{#2}
                                 {\eleMT    {#3}{#4}{#5}}
                                 {\eleMT[#2]{#3}{#4}{#5}}    }}
-                {\parentesis {\IfNoValueTF{#1}
+                {\parentesis {\IfNoValueTF{#2}
                                 {\eleMT    {#3}{#4}{#5}}
                                 {\eleMT[#2]{#3}{#4}{#5}}    }}  }\xspace}
 
 \NewDocumentCommand\eleMTPE{sommm}{\ensuremath{\IfBooleanTF#1
-                {\Parentesis*{\IfNoValueTF{#1}
+                {\Parentesis*{\IfNoValueTF{#2}
                                 {\eleMT    {#3}{#4}{#5}}
                                 {\eleMT[#2]{#3}{#4}{#5}}    }}
-                {\Parentesis {\IfNoValueTF{#1}
+                {\Parentesis {\IfNoValueTF{#2}
                                 {\eleMT    {#3}{#4}{#5}}
                                 {\eleMT[#2]{#3}{#4}{#5}}    }}  }\xspace}
 %    \end{macrocode}
@@ -8699,18 +8697,19 @@
 % Sucesión de transformaciones elementales genéricas a izquierda y derecha
 %    \begin{macrocode}
 \NewDocumentCommand\SITEFCR{mmm}{\ensuremath{
-                            {\LRidx{#3}{\dSOEg{#1}{#2}}{\dSOEg{#1}{#2}}}   }\xspace}                   \NewDocumentCommand\SITEFCRp{smmm}{\ensuremath{\IfBooleanTF#1
-            {\SITEFC {#2}{#3}{\parentesis*{#4}}}
-            {\SITEFC {#2}{#3}{\parentesis {#4}}}                       }\xspace}
+                            {\LRidx{#3}{\dSOEg{#1}{#2}}{\dSOEg{#1}{#2}}}   }\xspace}
+\NewDocumentCommand\SITEFCRp{smmm}{\ensuremath{\IfBooleanTF#1
+            {\SITEFCR {#2}{#3}{\parentesis*{#4}}}
+            {\SITEFCR {#2}{#3}{\parentesis {#4}}}                       }\xspace}
 \NewDocumentCommand\SITEFCRP{smmm}{\ensuremath{\IfBooleanTF#1
-            {\SITEFC {#2}{#3}{\Parentesis*{#4}}}
-            {\SITEFC {#2}{#3}{\Parentesis {#4}}}                       }\xspace}
+            {\SITEFCR {#2}{#3}{\Parentesis*{#4}}}
+            {\SITEFCR {#2}{#3}{\Parentesis {#4}}}                       }\xspace}
 \NewDocumentCommand\SITEFCRpE{smmm}{\ensuremath{\IfBooleanTF#1
-            {\parentesis*{\SITEFC {#2}{#3}{#4}}}
-            {\parentesis {\SITEFC {#2}{#3}{#4}}}                      }\xspace}
+            {\parentesis*{\SITEFCR {#2}{#3}{#4}}}
+            {\parentesis {\SITEFCR {#2}{#3}{#4}}}                      }\xspace}
 \NewDocumentCommand\SITEFCRPE{smmm}{\ensuremath{\IfBooleanTF#1
-            {\Parentesis*{\SITEFC {#2}{#3}{#4}}}
-            {\Parentesis {\SITEFC {#2}{#3}{#4}}}                      }\xspace}
+            {\Parentesis*{\SITEFCR {#2}{#3}{#4}}}
+            {\Parentesis {\SITEFCR {#2}{#3}{#4}}}                      }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -10960,18 +10959,6 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\PSpanNew}
-% \begin{macro}{\PSpanNew*}
-% Espacio semi-euclídeo de probabilidad generado por un sistema
-%    \begin{macrocode}
-\NewDocumentCommand\PSpanNew{sm}{\ensuremath{\,\IfBooleanTF#1
-        {\topinset{\tiny\EV{P}}{\EV{L}}{2pt}{2pt}\Parentesis*{#2}}
-        {\topinset{\tiny\EV{P}}{\EV{L}}{2pt}{2pt}\parentesis {#2}} }\xspace}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-%
-%
 % \begin{macro}{\coord}
 % \begin{macro}{\coordP}
 % \begin{macro}{\coordP*}
@@ -11089,14 +11076,14 @@
 %
 %    \begin{macrocode}
 % % %\DeclareMathAlphabet{\mathbbmsl}{U}{bbm}{m}{sl}
-\DeclareMathAlphabet{\mymathbb}{U}{BOONDOX-ds}{m}{n}
+\DeclareMathAlphabet{\nacal@bb}{U}{BOONDOX-ds}{m}{n}
 %    \end{macrocode}
 %
 %
 % \begin{macro}{\Cero}
 % Función constante 0
 %    \begin{macrocode}
-\NewDocumentCommand\Cero{}{\ensuremath{\mymathbb{0}}\xspace}
+\NewDocumentCommand\Cero{}{\ensuremath{\nacal@bb{0}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -11104,7 +11091,7 @@
 % \begin{macro}{\Uno}
 % Función constante 1
 %    \begin{macrocode}
-\NewDocumentCommand\Uno{}{\ensuremath{\mymathbb{1}}\xspace}
+\NewDocumentCommand\Uno{}{\ensuremath{\nacal@bb{1}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -11304,7 +11291,6 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \DeclareMathDelimiter{\ldbrack} {4}{matha}{"76}{mathx}{"30}
 \DeclareMathDelimiter{\rdbrack} {5}{matha}{"77}{mathx}{"38}
 %
-\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
 \DeclareMathSymbol{\bigtimes}{\mathop}{mathx}{"91}
 %    \end{macrocode}
 %
@@ -11413,9 +11399,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\mediaP}
 % Valor medio
 %    \begin{macrocode}
-\NewDocumentCommand\media {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \Smedia       }
-     { {\Smedia}_{#1} } }\xspace}
+\NewDocumentCommand\media {m}{\ensuremath{ {\Smedia}_{#1} }\xspace}
 
 \NewDocumentCommand\mediap{sm}{\ensuremath{\IfBooleanTF#1
                      {\media{\parentesis*{#2}}}
@@ -11435,9 +11419,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\mediaMP}
 % Media muestral
 %    \begin{macrocode}
-\NewDocumentCommand\mediaM {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \SmediaM       }
-     { {\SmediaM}_{#1} } }\xspace}
+\NewDocumentCommand\mediaM {m}{\ensuremath{ {\SmediaM}_{#1} }\xspace}
 
 \NewDocumentCommand\mediaMp{sm}{\ensuremath{\IfBooleanTF#1
                      {\mediaM{\parentesis*{#2}}}
@@ -11457,9 +11439,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\dtP}
 % Desviación típica
 %    \begin{macrocode}
-\NewDocumentCommand\dt {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \Scov       }
-     { {\Scov_{#1}} } }\xspace}
+\NewDocumentCommand\dt {m}{\ensuremath{ {\Scov_{#1}} }\xspace}
 
 \NewDocumentCommand\dtp{sm}{\ensuremath{\IfBooleanTF#1
                      {\dt{\parentesis*{#2}}}
@@ -11479,9 +11459,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\dtMP}
 % Desviación típica muestral
 %    \begin{macrocode}
-\NewDocumentCommand\dtM {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \ScovM       }
-     { {\ScovM_{#1}} } }\xspace}
+\NewDocumentCommand\dtM {m}{\ensuremath{ {\ScovM_{#1}} }\xspace}
 
 \NewDocumentCommand\dtMp{sm}{\ensuremath{\IfBooleanTF#1
                      {\dtM{\parentesis*{#2}}}
@@ -11501,9 +11479,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\varP}
 % Varianza
 %    \begin{macrocode}
-\NewDocumentCommand\var {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \Svar       }
-     { {\Svar_{#1}} } }\xspace}
+\NewDocumentCommand\var {m}{\ensuremath{ {\Svar_{#1}} }\xspace}
 
 \NewDocumentCommand\varp{sm}{\ensuremath{\IfBooleanTF#1
                      {\var{\parentesis*{#2}}}
@@ -11523,9 +11499,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\varMP}
 % Varianza muestral
 %    \begin{macrocode}
-\NewDocumentCommand\varM {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \SvarM       }
-     { {\SvarM_{#1}} } }\xspace}
+\NewDocumentCommand\varM {m}{\ensuremath{ {\SvarM_{#1}} }\xspace}
 
 \NewDocumentCommand\varMp{sm}{\ensuremath{\IfBooleanTF#1
                      {\varM{\parentesis*{#2}}}
@@ -11545,9 +11519,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\cvarMP}
 % Cuasi-varianza muestral
 %    \begin{macrocode}
-\NewDocumentCommand\cvarM {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \ScvarM       }
-     { {\ScvarM_{#1}} } }\xspace}
+\NewDocumentCommand\cvarM {m}{\ensuremath{ {\ScvarM_{#1}} }\xspace}
 
 \NewDocumentCommand\cvarMp{sm}{\ensuremath{\IfBooleanTF#1
                      {\cvarM{\parentesis*{#2}}}
@@ -11567,9 +11539,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\covP}
 % Covarianza
 %    \begin{macrocode}
-\NewDocumentCommand\cov {mm}{\ensuremath{\IfNoValueTF{#1}%
-     {  \Scov       }
-     { {\Scov_{#1#2}} } }\xspace}
+\NewDocumentCommand\cov {mm}{\ensuremath{ {\Scov_{#1#2}} }\xspace}
 
 \NewDocumentCommand\covp{smm}{\ensuremath{\IfBooleanTF#1
                      {\cov{\parentesis*{#2#3}}}
@@ -11589,9 +11559,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\covMP}
 % Covarianza muestral
 %    \begin{macrocode}
-\NewDocumentCommand\covM {mm}{\ensuremath{\IfNoValueTF{#1}%
-     {  \ScovM       }
-     { {\ScovM_{#1#2}} } }\xspace}
+\NewDocumentCommand\covM {mm}{\ensuremath{ {\ScovM_{#1#2}} }\xspace}
 
 \NewDocumentCommand\covMp{smm}{\ensuremath{\IfBooleanTF#1
                      {\covM{\parentesis*{#2#3}}}
@@ -11611,9 +11579,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\corrP}
 % Correlación
 %    \begin{macrocode}
-\NewDocumentCommand\corr {mm}{\ensuremath{\IfNoValueTF{#1}%
-     {  \Scorr       }
-     { {\Scorr_{#1#2}} } }\xspace}
+\NewDocumentCommand\corr {mm}{\ensuremath{ {\Scorr_{#1#2}} }\xspace}
 
 \NewDocumentCommand\corrp{smm}{\ensuremath{\IfBooleanTF#1
                      {\corr{\parentesis*{#2#3}}}
@@ -11633,9 +11599,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\corrMP}
 % Correlación muestral
 %    \begin{macrocode}
-\NewDocumentCommand\corrM {mm}{\ensuremath{\IfNoValueTF{#1}%
-     {  \ScorrM       }
-     { {\ScorrM_{#1#2}} } }\xspace}
+\NewDocumentCommand\corrM {mm}{\ensuremath{ {\ScorrM_{#1#2}} }\xspace}
 
 \NewDocumentCommand\corrMp{smm}{\ensuremath{\IfBooleanTF#1
                      {\corrM{\parentesis*{#2#3}}}
@@ -12280,7 +12244,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\normal}
 % Símbolo de la distribución normal
 %    \begin{macrocode}
-\DeclareMathOperator{\normal}{\it N\/}
+\DeclareMathOperator{\normal}{\mathit{N}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -12288,7 +12252,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\tstudent}
 % Símbolo de la distribución t de student
 %    \begin{macrocode}
-\DeclareMathOperator{\tstudent}{\it t\/}
+\DeclareMathOperator{\tstudent}{\mathit{t}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -12296,7 +12260,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\fsnedecor}
 % Símbolo de la distribución F de Snedecor
 %    \begin{macrocode}
-\DeclareMathOperator{\fsnedecor}{\it F\/}
+\DeclareMathOperator{\fsnedecor}{\mathit{F}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -12336,7 +12300,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\ValorC}
 % Valor Critico
 %    \begin{macrocode}
-\NewDocumentCommand\ValorC{mmm}{\ensuremath{ {\it #1\/}_{_{#2}}^{\langle#3\rangle} }\xspace}
+\NewDocumentCommand\ValorC{mmm}{\ensuremath{ {\mathit{#1}}_{_{#2}}^{\langle#3\rangle} }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %

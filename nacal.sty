@@ -22,8 +22,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
 \ProvidesPackage{nacal}
-    [2023/01/05 v1.0
-    [2023/09/22 v1.3 Notacion Asociativa para un Curso de Álgebra Lineal]
+    [2026/11/05 v1.3.1 Notacion Asociativa para un Curso de Algebra Lineal]
 \RequirePackage{amsmath,amssymb}
 \RequirePackage{xcolor}
 \RequirePackage{xparse}
@@ -31,7 +30,6 @@
 \RequirePackage{leftidx}
 \RequirePackage{pict2e}
 \RequirePackage{esvect} %\RequirePackage[b]{esvect} %\RequirePackage[e]{esvect}
-%\RequirePackage{stackengine} % para PSpanNew
 \providecommand{\eng}[2]{#1}
 \DeclareOption{esp}{\renewcommand{\eng}[2]{#1}}
 \DeclareOption{eng}{\renewcommand{\eng}[2]{#2}}
@@ -496,18 +494,18 @@
                 {\elemLRP  {\Mat[#2]{#3}}{#4}{#5}} }\xspace}
 
 \NewDocumentCommand\eleMpE{sommm}{\ensuremath{\IfBooleanTF#1
-                {\parentesis*{\IfNoValueTF{#1}
+                {\parentesis*{\IfNoValueTF{#2}
                                 {\eleM    {#3}{#4}{#5}}
                                 {\eleM[#2]{#3}{#4}{#5}}    }}
-                {\parentesis {\IfNoValueTF{#1}
+                {\parentesis {\IfNoValueTF{#2}
                                 {\eleM    {#3}{#4}{#5}}
                                 {\eleM[#2]{#3}{#4}{#5}}    }}  }\xspace}
 
 \NewDocumentCommand\eleMPE{sommm}{\ensuremath{\IfBooleanTF#1
-                {\Parentesis*{\IfNoValueTF{#1}
+                {\Parentesis*{\IfNoValueTF{#2}
                                 {\eleM    {#3}{#4}{#5}}
                                 {\eleM[#2]{#3}{#4}{#5}}    }}
-                {\Parentesis {\IfNoValueTF{#1}
+                {\Parentesis {\IfNoValueTF{#2}
                                 {\eleM    {#3}{#4}{#5}}
                                 {\eleM[#2]{#3}{#4}{#5}}    }}  }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -522,18 +520,18 @@
                 {\elemLRP {\parentesis*{\Mat[#2]{#3}}^\T}{#4}{#5}}  }\xspace}
 
 \NewDocumentCommand\eleMTpE{sommm}{\ensuremath{\IfBooleanTF#1
-                {\parentesis*{\IfNoValueTF{#1}
+                {\parentesis*{\IfNoValueTF{#2}
                                 {\eleMT    {#3}{#4}{#5}}
                                 {\eleMT[#2]{#3}{#4}{#5}}    }}
-                {\parentesis {\IfNoValueTF{#1}
+                {\parentesis {\IfNoValueTF{#2}
                                 {\eleMT    {#3}{#4}{#5}}
                                 {\eleMT[#2]{#3}{#4}{#5}}    }}  }\xspace}
 
 \NewDocumentCommand\eleMTPE{sommm}{\ensuremath{\IfBooleanTF#1
-                {\Parentesis*{\IfNoValueTF{#1}
+                {\Parentesis*{\IfNoValueTF{#2}
                                 {\eleMT    {#3}{#4}{#5}}
                                 {\eleMT[#2]{#3}{#4}{#5}}    }}
-                {\Parentesis {\IfNoValueTF{#1}
+                {\Parentesis {\IfNoValueTF{#2}
                                 {\eleMT    {#3}{#4}{#5}}
                                 {\eleMT[#2]{#3}{#4}{#5}}    }}  }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -700,18 +698,19 @@
             {\Parentesis*{\SITEFC {#2}{#3}{#4}}}
             {\Parentesis {\SITEFC {#2}{#3}{#4}}}                      }\xspace}
 \NewDocumentCommand\SITEFCR{mmm}{\ensuremath{
-                            {\LRidx{#3}{\dSOEg{#1}{#2}}{\dSOEg{#1}{#2}}}   }\xspace}                   \NewDocumentCommand\SITEFCRp{smmm}{\ensuremath{\IfBooleanTF#1
-            {\SITEFC {#2}{#3}{\parentesis*{#4}}}
-            {\SITEFC {#2}{#3}{\parentesis {#4}}}                       }\xspace}
+                            {\LRidx{#3}{\dSOEg{#1}{#2}}{\dSOEg{#1}{#2}}}   }\xspace}
+\NewDocumentCommand\SITEFCRp{smmm}{\ensuremath{\IfBooleanTF#1
+            {\SITEFCR {#2}{#3}{\parentesis*{#4}}}
+            {\SITEFCR {#2}{#3}{\parentesis {#4}}}                       }\xspace}
 \NewDocumentCommand\SITEFCRP{smmm}{\ensuremath{\IfBooleanTF#1
-            {\SITEFC {#2}{#3}{\Parentesis*{#4}}}
-            {\SITEFC {#2}{#3}{\Parentesis {#4}}}                       }\xspace}
+            {\SITEFCR {#2}{#3}{\Parentesis*{#4}}}
+            {\SITEFCR {#2}{#3}{\Parentesis {#4}}}                       }\xspace}
 \NewDocumentCommand\SITEFCRpE{smmm}{\ensuremath{\IfBooleanTF#1
-            {\parentesis*{\SITEFC {#2}{#3}{#4}}}
-            {\parentesis {\SITEFC {#2}{#3}{#4}}}                      }\xspace}
+            {\parentesis*{\SITEFCR {#2}{#3}{#4}}}
+            {\parentesis {\SITEFCR {#2}{#3}{#4}}}                      }\xspace}
 \NewDocumentCommand\SITEFCRPE{smmm}{\ensuremath{\IfBooleanTF#1
-            {\Parentesis*{\SITEFC {#2}{#3}{#4}}}
-            {\Parentesis {\SITEFC {#2}{#3}{#4}}}                      }\xspace}
+            {\Parentesis*{\SITEFCR {#2}{#3}{#4}}}
+            {\Parentesis {\SITEFCR {#2}{#3}{#4}}}                      }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand\TrF  { O{\SOEg} m }{\ensuremath{ \Lidx{#2}{#1} }\xspace}
 
@@ -1451,9 +1450,6 @@
 \NewDocumentCommand\Span{sm}{\ensuremath{\IfBooleanTF#1
         {\EV{L}\Parentesis*{#2}}
         {\EV{L}\parentesis {#2}}             }\xspace}
-\NewDocumentCommand\PSpanNew{sm}{\ensuremath{\,\IfBooleanTF#1
-        {\topinset{\tiny\EV{P}}{\EV{L}}{2pt}{2pt}\Parentesis*{#2}}
-        {\topinset{\tiny\EV{P}}{\EV{L}}{2pt}{2pt}\parentesis {#2}} }\xspace}
 \NewDocumentCommand\coord  {m m}{\ensuremath{
         \Ridx{#1}{\!\Ridx{\mathbin{/}}{\!#2}} }\xspace}
 
@@ -1491,9 +1487,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Probabilidad
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\DeclareMathAlphabet{\mymathbb}{U}{BOONDOX-ds}{m}{n}
-\NewDocumentCommand\Cero{}{\ensuremath{\mymathbb{0}}\xspace}
-\NewDocumentCommand\Uno{}{\ensuremath{\mymathbb{1}}\xspace}
+\DeclareMathAlphabet{\nacal@bb}{U}{BOONDOX-ds}{m}{n}
+\NewDocumentCommand\Cero{}{\ensuremath{\nacal@bb{0}}\xspace}
+\NewDocumentCommand\Uno{}{\ensuremath{\nacal@bb{1}}\xspace}
 \NewDocumentCommand\indCero{}{\ensuremath{\Cero}\xspace}
 \NewDocumentCommand\indUno{} {\ensuremath{\Uno}\xspace}
 \NewDocumentCommand\ind{m}{\ensuremath{{\Uno}_{{#1}}}\xspace}
@@ -1566,7 +1562,6 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
 \DeclareMathDelimiter{\ldbrack} {4}{matha}{"76}{mathx}{"30}
 \DeclareMathDelimiter{\rdbrack} {5}{matha}{"77}{mathx}{"38}
-\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
 \DeclareMathSymbol{\bigtimes}{\mathop}{mathx}{"91}
 \NewDocumentCommand\Clase {m}{\ensuremath{ \ldbrack #1 \rdbrack }\xspace}
 \NewDocumentCommand\Media {m}{\ensuremath{ \widebar{#1} }\xspace}
@@ -1587,9 +1582,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\ScvarM  {}{\mathfrak{s}^2}
 \NewDocumentCommand\Scorr   {}{\rho}
 \NewDocumentCommand\ScorrM   {}{r}
-\NewDocumentCommand\media {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \Smedia       }
-     { {\Smedia}_{#1} } }\xspace}
+\NewDocumentCommand\media {m}{\ensuremath{ {\Smedia}_{#1} }\xspace}
 
 \NewDocumentCommand\mediap{sm}{\ensuremath{\IfBooleanTF#1
                      {\media{\parentesis*{#2}}}
@@ -1598,9 +1591,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\mediaP{sm}{\ensuremath{\IfBooleanTF#1
                      {\media{\Parentesis*{#2}}}
                      {\media{\Parentesis {#2}}} }\xspace}
-\NewDocumentCommand\mediaM {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \SmediaM       }
-     { {\SmediaM}_{#1} } }\xspace}
+\NewDocumentCommand\mediaM {m}{\ensuremath{ {\SmediaM}_{#1} }\xspace}
 
 \NewDocumentCommand\mediaMp{sm}{\ensuremath{\IfBooleanTF#1
                      {\mediaM{\parentesis*{#2}}}
@@ -1609,9 +1600,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\mediaMP{sm}{\ensuremath{\IfBooleanTF#1
                      {\mediaM{\Parentesis*{#2}}}
                      {\mediaM{\Parentesis {#2}}} }\xspace}
-\NewDocumentCommand\dt {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \Scov       }
-     { {\Scov_{#1}} } }\xspace}
+\NewDocumentCommand\dt {m}{\ensuremath{ {\Scov_{#1}} }\xspace}
 
 \NewDocumentCommand\dtp{sm}{\ensuremath{\IfBooleanTF#1
                      {\dt{\parentesis*{#2}}}
@@ -1620,9 +1609,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\dtP{sm}{\ensuremath{\IfBooleanTF#1
                      {\dt{\Parentesis*{#2}}}
                      {\dt{\Parentesis {#2}}} }\xspace}
-\NewDocumentCommand\dtM {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \ScovM       }
-     { {\ScovM_{#1}} } }\xspace}
+\NewDocumentCommand\dtM {m}{\ensuremath{ {\ScovM_{#1}} }\xspace}
 
 \NewDocumentCommand\dtMp{sm}{\ensuremath{\IfBooleanTF#1
                      {\dtM{\parentesis*{#2}}}
@@ -1631,9 +1618,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\dtMP{sm}{\ensuremath{\IfBooleanTF#1
                      {\dtM{\Parentesis*{#2}}}
                      {\dtM{\Parentesis {#2}}} }\xspace}
-\NewDocumentCommand\var {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \Svar       }
-     { {\Svar_{#1}} } }\xspace}
+\NewDocumentCommand\var {m}{\ensuremath{ {\Svar_{#1}} }\xspace}
 
 \NewDocumentCommand\varp{sm}{\ensuremath{\IfBooleanTF#1
                      {\var{\parentesis*{#2}}}
@@ -1642,9 +1627,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\varP{sm}{\ensuremath{\IfBooleanTF#1
                      {\var{\Parentesis*{#2}}}
                      {\var{\Parentesis {#2}}} }\xspace}
-\NewDocumentCommand\varM {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \SvarM       }
-     { {\SvarM_{#1}} } }\xspace}
+\NewDocumentCommand\varM {m}{\ensuremath{ {\SvarM_{#1}} }\xspace}
 
 \NewDocumentCommand\varMp{sm}{\ensuremath{\IfBooleanTF#1
                      {\varM{\parentesis*{#2}}}
@@ -1653,9 +1636,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\varMP{sm}{\ensuremath{\IfBooleanTF#1
                      {\varM{\Parentesis*{#2}}}
                      {\varM{\Parentesis {#2}}} }\xspace}
-\NewDocumentCommand\cvarM {m}{\ensuremath{\IfNoValueTF{#1}%
-     {  \ScvarM       }
-     { {\ScvarM_{#1}} } }\xspace}
+\NewDocumentCommand\cvarM {m}{\ensuremath{ {\ScvarM_{#1}} }\xspace}
 
 \NewDocumentCommand\cvarMp{sm}{\ensuremath{\IfBooleanTF#1
                      {\cvarM{\parentesis*{#2}}}
@@ -1664,9 +1645,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\cvarMP{sm}{\ensuremath{\IfBooleanTF#1
                      {\cvarM{\Parentesis*{#2}}}
                      {\cvarM{\Parentesis {#2}}} }\xspace}
-\NewDocumentCommand\cov {mm}{\ensuremath{\IfNoValueTF{#1}%
-     {  \Scov       }
-     { {\Scov_{#1#2}} } }\xspace}
+\NewDocumentCommand\cov {mm}{\ensuremath{ {\Scov_{#1#2}} }\xspace}
 
 \NewDocumentCommand\covp{smm}{\ensuremath{\IfBooleanTF#1
                      {\cov{\parentesis*{#2#3}}}
@@ -1675,9 +1654,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\covP{smm}{\ensuremath{\IfBooleanTF#1
                      {\cov{\Parentesis*{#2#3}}}
                      {\cov{\Parentesis {#2#3}}} }\xspace}
-\NewDocumentCommand\covM {mm}{\ensuremath{\IfNoValueTF{#1}%
-     {  \ScovM       }
-     { {\ScovM_{#1#2}} } }\xspace}
+\NewDocumentCommand\covM {mm}{\ensuremath{ {\ScovM_{#1#2}} }\xspace}
 
 \NewDocumentCommand\covMp{smm}{\ensuremath{\IfBooleanTF#1
                      {\covM{\parentesis*{#2#3}}}
@@ -1686,9 +1663,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\covMP{smm}{\ensuremath{\IfBooleanTF#1
                      {\covM{\Parentesis*{#2#3}}}
                      {\covM{\Parentesis {#2#3}}} }\xspace}
-\NewDocumentCommand\corr {mm}{\ensuremath{\IfNoValueTF{#1}%
-     {  \Scorr       }
-     { {\Scorr_{#1#2}} } }\xspace}
+\NewDocumentCommand\corr {mm}{\ensuremath{ {\Scorr_{#1#2}} }\xspace}
 
 \NewDocumentCommand\corrp{smm}{\ensuremath{\IfBooleanTF#1
                      {\corr{\parentesis*{#2#3}}}
@@ -1697,9 +1672,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\corrP{smm}{\ensuremath{\IfBooleanTF#1
                      {\corr{\Parentesis*{#2#3}}}
                      {\corr{\Parentesis {#2#3}}} }\xspace}
-\NewDocumentCommand\corrM {mm}{\ensuremath{\IfNoValueTF{#1}%
-     {  \ScorrM       }
-     { {\ScorrM_{#1#2}} } }\xspace}
+\NewDocumentCommand\corrM {mm}{\ensuremath{ {\ScorrM_{#1#2}} }\xspace}
 
 \NewDocumentCommand\corrMp{smm}{\ensuremath{\IfBooleanTF#1
                      {\corrM{\parentesis*{#2#3}}}
@@ -1831,14 +1804,14 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 \NewDocumentCommand\VCOV{mm}{\ensuremath{ {\pmb{\sigma}}_{\scriptscriptstyle\MV{#1}{#2}} }\xspace}
 \NewDocumentCommand\MVARM{m}{\ensuremath{ \Mat[_{\Mat{#1#1}}]{S} }\xspace}
 \NewDocumentCommand\VCOVM{mm}{\ensuremath{ \Vect[_{\MV{#1}{#2}}]{s} }\xspace}
-\DeclareMathOperator{\normal}{\it N\/}
-\DeclareMathOperator{\tstudent}{\it t\/}
-\DeclareMathOperator{\fsnedecor}{\it F\/}
+\DeclareMathOperator{\normal}{\mathit{N}}
+\DeclareMathOperator{\tstudent}{\mathit{t}}
+\DeclareMathOperator{\fsnedecor}{\mathit{F}}
 \NewDocumentCommand\Normal{mm}{\ensuremath{ \normal\left(#1,\,#2\right) }\xspace}
 \NewDocumentCommand\TStudent{m}{\ensuremath{ \tstudent_{#1} }\xspace}
 \NewDocumentCommand\FSnedecor{mm}{\ensuremath{ \fsnedecor_{\!{#1,#2}} }\xspace}
 \NewDocumentCommand\ChiCuadrado{m}{\ensuremath{ {\chi^2_{#1}} }\xspace}
-\NewDocumentCommand\ValorC{mmm}{\ensuremath{ {\it #1\/}_{_{#2}}^{\langle#3\rangle} }\xspace}
+\NewDocumentCommand\ValorC{mmm}{\ensuremath{ {\mathit{#1}}_{_{#2}}^{\langle#3\rangle} }\xspace}
 \NewDocumentCommand\EstmcE  {sm   }{\ensuremath{\IfBooleanTF#1
             {\Estmc{\esperanza}\Parentesis*{#2}}
             {\Estmc{\esperanza}\parentesis {#2}}            }\xspace}
