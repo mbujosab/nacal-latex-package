@@ -16,10 +16,10 @@ Econometría (C2) y probar C5. Hecho:
 - **v1.3.1** (commit `19936dc`, etiqueta `v1.3.1`): A1-A6, B4 (solo
   `\mymathbb`), B5 y B8, más `CHANGELOG.md`. Banco: 54/54 idénticos.
 - **v1.4**: C1 y C5. Ver `CHANGELOG.md`.
-- **C2**: hecho en el curso de Econometría (ver `INFORME-PROBABILIDAD.md`,
+- **C2**: hecho en el curso de Econometría (ver `~/SynologyDrive/ReposGH/AndresyMarcos/probabilidadCasoFinito/informe-notacion-nacal.org`,
   sección 4).
 - **Sección 4** (probabilidad): sin cambios. Inventario y propuestas en
-  `INFORME-PROBABILIDAD.md`, para decidir con Andrés.
+  `~/SynologyDrive/ReposGH/AndresyMarcos/probabilidadCasoFinito/informe-notacion-nacal.org`, para decidir con Andrés.
 - Correcciones a este informe, hechas en la implementación:
   - A4: los `\SITEFCRp…` sí se usan, porque `nacal-moodle` los redefine para
     HTML. Por eso se corrigen y no se quitan.
