@@ -163,9 +163,14 @@ mantiene. Dos matices:
   existe en esa carpeta. Así que ese fichero no compila tal como está (su PDF
   es de abril de 2025).
 - **Límite de familias matemáticas.** pdfLaTeX admite 16 familias de fuentes
-  matemáticas, y nacal ocupa tres (`matha`, `mathx` y el alfabeto
-  `\mymathbb`). Un documento con muchos paquetes de símbolos podría dar
-  "Too many math alphabets used". No ha pasado nunca; solo conviene saberlo.
+  matemáticas, y nacal ocupa tres de forma fija: `esvect` (flechas de `\vv`),
+  `matha` y `mathx`. *Sí ha pasado* (8/11/2026): en los apuntes de
+  Econometría, LaTeX daba «Too many math alphabets used in version bold» e
+  ignoraba algún `\mathsf`. Así, `\SVA{X}` salía en cursiva con remate en
+  las páginas 141 y 145. Se arregló en el curso, quitando `wasysym`, que no se
+  usaba. Si vuelve a pasar en otro documento, nacal podría bajar a dos
+  familias tomando el ⟦ ⟧ pequeño de `mathx` en vez de `matha`. Es un cambio
+  visible que habría que medir con el banco.
 
 **B4. Nombres sin prefijo.** El paquete define nombres internos que otro
 paquete podría usar: `\mymathbb`, `\MDaV`, `\perturbacion`. También define
