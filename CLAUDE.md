@@ -182,3 +182,13 @@ Flujo: `banco.sh candidato DIR` (DIR contiene el nacal.sty candidato) y
 Validado: dos compilaciones con el congelado dan PDF idénticos; 1mu añadido en
 `\Mat` se detecta en 53/54 documentos. Tras cambiar las fuentes de los
 repositorios: `instantanea`, `preparar`, `dorado`.
+
+## Versión instalada (8/11/2026)
+
+En `~/texmf/tex/latex/nacal/` está la **v1.4** (etiqueta `v1.4`): `.sty`,
+`.pdf`, `.dtx` e `.ins`. La v1.3 instalada antes está guardada en
+`~/temporal/nacal-instalada-v1.3/`. Pruebas antes de instalar: el banco (54
+documentos más `libro`), los 87 XML de `nacal-moodle` de `qbank-PEconometria`
+(idénticos), las 87 preguntas AMC del qbank y los exámenes AMC
+`PEctr-Test-2026-11-06` y `-10-30` (idénticos). Para probar una versión sin instalarla:
+`TEXINPUTS=<carpeta del .sty>: make …` (no copiar el `.sty` a los proyectos).

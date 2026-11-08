@@ -18,6 +18,10 @@ pruebas (`pruebas/`).
   sin asterisco (`\Matp*` / `\MatTpE*`), como en el resto de la familia.
   Ningún documento usa esa combinación.
 
+Instalada en `~/texmf` el 2026-11-08, tras comprobar que `nacal-moodle` (87
+XML de `qbank-PEconometria`) y AMC (87 preguntas del qbank y los exámenes
+`PEctr-Test-2026-11-06` y `-10-30`) salen idénticos que con la v1.3.
+
 Efecto medido: cambian 8 páginas del libro (70, 124, 157, 158, 167, 215, 264
 y 271; desaparece un espacio doble o un espacio antes de puntuación). No cambia
 ningún examen ni ninguna transparencia.
