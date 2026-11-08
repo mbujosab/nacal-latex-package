@@ -1,0 +1,185 @@
+#+title: Reparto de nacal en tres paquetes
+#+subtitle: Propuesta para revisar antes de tocar nada
+#+date: 8 de noviembre de 2026
+#+language: es
+#+options: toc:nil num:t ^:nil
+#+latex_header: \usepackage[spanish]{babel}
+#+latex_header: \usepackage[margin=2.5cm]{geometry}
+
+* Objetivo
+
+Que =nacal.sty= cubra solo la notación de álgebra lineal, que era el
+proyecto original. La notación de Econometría y la de probabilidad pasan a
+paquetes propios. El libro de probabilidad con Andrés tendrá además su propio
+paquete, con una notación nueva y sin la carga de la antigua.
+
+Condición: *ningún documento existente cambia ni deja de compilar*. Para
+eso, en una primera fase, =\usepackage{nacal}= sin opciones seguirá cargando
+todo, como hasta ahora.
+
+* Lo que dicen los datos
+
+Analizado el código de la v1.4 (=nacal.dtx=, sección «Implementación»). Hay
+693 definiciones:
+
+| parte                                       | definiciones |
+|---------------------------------------------+--------------|
+| álgebra lineal (todas las demás secciones)  |          499 |
+| Probabilidad (y Sucesiones)                 |           73 |
+| Econometría                                 |          121 |
+
+*La frontera es limpia*:
+- Ningún macro de álgebra lineal usa macros de probabilidad ni de
+  econometría.
+- Ningún macro de probabilidad usa macros de econometría.
+- Los de econometría solo usan dos de probabilidad: =\indUno= e =\indCero=
+  (en =\VAindUno=, =\VAindCero= y =\VAind=).
+
+Así que el reparto por secciones funciona casi tal cual. Las dependencias
+van en una sola dirección:
+
+#+begin_example
+nacal  <──  nacal-probabilidad  <──  nacal-econometria
+(álgebra)   (carga nacal)            (carga nacal-probabilidad)
+#+end_example
+
+* Estructura propuesta
+
+1. *Una sola fuente.* =NAcAL-Tex.org= sigue siendo la fuente de todo. Un
+   mismo =.dtx= puede producir varios =.sty=, marcando cada trozo con una
+   etiqueta de docstrip: =%<*probabilidad>= ... =%</probabilidad>=. Muchos
+   paquetes de CTAN se hacen así, y la documentación sigue siendo un solo
+   PDF.
+2. *Tres paquetes*:
+   - =nacal.sty=: álgebra lineal.
+   - =nacal-probabilidad.sty=: la sección Probabilidad y la de Sucesiones,
+     *congeladas* tal como están (es la notación que usan hoy el libro de
+     Álgebra Lineal, =libroProbabilidad= y =probabilidadCasoFinito=).
+   - =nacal-econometria.sty=: la sección Econometría, *congelada* (el curso
+     ya no se imparte).
+3. *Opción nueva* =\usepackage[soloAL]{nacal}= (el nombre se puede
+   cambiar): solo álgebra lineal. *Sin la opción, nacal carga también los
+   otros dos*, así que ningún documento nota nada. El banco lo comprueba: los
+   55 documentos deben salir idénticos.
+4. *El paquete del libro con Andrés* (nombre por decidir) cargará
+   =\usepackage[soloAL]{nacal}= y definirá su propia notación. Como no carga
+   =nacal-probabilidad=, puede reutilizar nombres (=\sspi=, =\ESP=...) con
+   otro significado sin chocar con nada.
+
+* Ventaja añadida: familias matemáticas
+
+Las fuentes de mathabx (=matha= y =mathx=) están en la sección
+Probabilidad: =\ldbrack=, =\rdbrack=, =\Clase= y =\bigtimes=. Con
+=[soloAL]=, nacal ocupará una sola de las 16 familias matemáticas de
+pdflatex (la de =esvect=) en vez de tres. Es el problema que tuvimos en los
+apuntes de Econometría. El alfabeto de =\Uno= y =\Cero= también se va a
+probabilidad.
+
+* Casos que tienes que decidir
+
+** D1. Macros de otras secciones que usa la parte de álgebra
+
+Fuera de los capítulos de probabilidad, el libro y Matemáticas II usan estos
+macros de las otras dos secciones:
+
+| macro           | sección      | dónde se usa                                 | usos |
+|-----------------+--------------+----------------------------------------------+------|
+| =\Estmc=        | Econometría  | libro Cap12, Cap17, Cap19; exámenes MatII     |   23 |
+| =\VEstmc=       | Econometría  | libro Cap12; transparencias MatII T04        |   90 |
+| =\Media=        | Probabilidad | libro Cap19; transparencias T07              |   80 |
+| =\media=        | Probabilidad | libro Cap19; transparencias T07              |   24 |
+| =\sspi=         | Probabilidad | libro Cap11                                  |   18 |
+| =\res=          | Econometría  | transparencias T07                           |    1 |
+
+Mientras =nacal= lo cargue todo por defecto, da igual dónde estén. Importa
+solo para los documentos con =[soloAL]=, empezando por el libro con
+Andrés.
+
+*Propuesta:*
+- Pasar =\Estmc=, =\VEstmc= y =\Media= a =nacal=. Son un sombrero y una
+  barra sobre vectores, y aparecen en mínimos cuadrados. No dependen de
+  nada de probabilidad (=\VEstmc= usa =\Vect=; =\Media= usa =\widebar=, que
+  ya es de álgebra).
+- Dejar =\media= (μ con subíndice) y =\res= en sus paquetes. Son
+  estadística, y el libro y las transparencias seguirán cargándolo todo.
+- Dejar =\sspi= en =nacal-probabilidad=. Es justo el macro cuyo
+  significado queréis cambiar en el libro nuevo; si pasa a =nacal=, el
+  paquete nuevo no podría redefinirlo limpiamente.
+
+** D2. Nombres
+
+- La opción: =soloAL=, =nucleo=, =basico=...
+- Los paquetes: =nacal-probabilidad= y =nacal-econometria= (sin tilde: los
+  nombres de fichero con acentos dan problemas).
+- El paquete del libro con Andrés: lo decidís vosotros. Mejor un nombre que
+  no empiece por =nacal-=, para que se vea que es otro proyecto con otras
+  reglas.
+
+** D3. ¿Hace falta algún día que =nacal= sin opciones cargue solo álgebra?
+
+No es necesario. Si se quisiera, habría que añadir antes una línea
+(=\usepackage{nacal-probabilidad}= o =nacal-econometria=) en estos
+documentos:
+
+| documentos                                   | necesitan                       |
+|----------------------------------------------+---------------------------------|
+| apuntes de Econometría, =qbank-econometria=  | econometría (y probabilidad)    |
+| libro =libro-P= y sus figuras (=figuras/tex=) | probabilidad (y 10 usos de econometría: =\Var=, =\Cov=...) |
+| libro =libro= (sin probabilidad)             | probabilidad (=\sspi=, =\media=), o nada si se acepta D1 y se cambia =\sspi= |
+| transparencias de MatII                      | probabilidad (=\media=) y econometría (=\res=) |
+| figuras de MatII (=Version0/figuras=)        | probabilidad                    |
+| =libroProbabilidad=, =probabilidadCasoFinito=| probabilidad                    |
+| vídeos                                       | probabilidad (1 uso de =\ndperp=) |
+| exámenes de MatII                            | nada si se acepta D1 (=\Estmc=)  |
+| =qbank-PEconometria=, exámenes AMC           | nada                            |
+
+Mi recomendación: no cambiar nunca el valor por defecto. =[soloAL]= basta
+para todo lo nuevo, y lo antiguo no se toca.
+
+* nacal-moodle
+
+- Redefine para HTML 524 macros: 381 de álgebra, 51 de probabilidad y 88 de
+  econometría. Usa =\html@def= del paquete =moodle=, que funciona aunque el
+  macro original no exista. Por tanto, *sigue funcionando con =[soloAL]=*
+  sin cambios. Repartirlo también en tres es opcional y puede esperar.
+- *Hallazgo, aparte del reparto:*
+  - La versión instalada en =~/texmf= (=nacal-moodle-latex-package/=) es la
+    *v1.0* (2023/01/08).
+  - El repositorio (=NAcAL-MoodleTex=) tiene la *v1.1*, con cambios sin
+    commit en =nacal-moodle.sty= y =.dtx=.
+  - =qbank-PEconometria= compila con la v1.0. Le faltan, por ejemplo, las
+    definiciones HTML de =\VEstmc=, =\Estmd= y =\MCO=, y las de =\N=, =\Z=,
+    =\R= y =\K=.
+  - Necesita su propia línea base, como hicimos con nacal: decidir qué son
+    los cambios sin commit, etiquetar e instalar.
+
+* Plan de trabajo
+
+1. *Ampliar el banco* con los apuntes de Econometría (=print=), =nota3= de
+   =probabilidadCasoFinito= y los XML de =nacal-moodle=. Así se mide también
+   la parte que se mueve.
+2. *Reorganizar =NAcAL-Tex.org=*:
+   - etiquetas de docstrip por sección;
+   - =nacal.ins= genera los tres =.sty=;
+   - =\ProvidesPackage= propio en cada uno;
+   - la opción =[soloAL]=;
+   - D1 si se aprueba.
+3. *Comprobar*:
+   - Con la opción por defecto, todo el banco sale idéntico.
+   - Con =[soloAL]=, un documento de prueba y algunos exámenes de MatII
+     compilan, y nacal ocupa una sola familia matemática.
+4. *Versión 1.5*, sin cambio visible. =CHANGELOG=, etiqueta e instalación de
+   los tres =.sty= en =~/texmf=.
+5. *El paquete del libro con Andrés*: proyecto aparte. Empieza cuando
+   decidáis la notación (=informe-notacion-nacal.org= en
+   =probabilidadCasoFinito=).
+
+Los pasos 1-4 llevarán una o dos sesiones.
+
+* Preguntas
+
+1. D1: ¿pasan =\Estmc=, =\VEstmc= y =\Media= a =nacal=? ¿Y =\sspi= se queda
+   en probabilidad?
+2. D2: ¿nombres de la opción y de los paquetes?
+3. D3: ¿de acuerdo con no cambiar nunca el valor por defecto?
+4. =nacal-moodle=: ¿hago su línea base antes, o después del reparto?
