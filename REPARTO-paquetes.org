@@ -39,7 +39,7 @@ Así que el reparto por secciones funciona casi tal cual. Las dependencias
 van en una sola dirección:
 
 #+begin_example
-nacal  <──  nacal-probabilidad  <──  nacal-econometria
+nacal  <--  nacal-probabilidad  <--  nacal-econometria
 (álgebra)   (carga nacal)            (carga nacal-probabilidad)
 #+end_example
 
@@ -100,7 +100,7 @@ Andrés.
   barra sobre vectores, y aparecen en mínimos cuadrados. No dependen de
   nada de probabilidad (=\VEstmc= usa =\Vect=; =\Media= usa =\widebar=, que
   ya es de álgebra).
-- Dejar =\media= (μ con subíndice) y =\res= en sus paquetes. Son
+- Dejar =\media= (\(\mu\) con subíndice) y =\res= en sus paquetes. Son
   estadística, y el libro y las transparencias seguirán cargándolo todo.
 - Dejar =\sspi= en =nacal-probabilidad=. Es justo el macro cuyo
   significado queréis cambiar en el libro nuevo; si pasa a =nacal=, el
