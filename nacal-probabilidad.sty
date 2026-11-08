@@ -1,0 +1,238 @@
+%%
+%% This is file `nacal-probabilidad.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% nacal.dtx  (with options: `probabilidad')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2023 by Marcos Bujosa <mbujosab@ucm.es>
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3 of this license or (at your option) any later
+%% version. The latest version of this license is in:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3 or later is part of all distributions of
+%% LaTeX version 2005/12/01 or later.
+%% 
+\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+\ProvidesPackage{nacal-probabilidad}
+    [2026/11/08 v1.5 Notacion de probabilidad de nacal]
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{nacal}}
+\ProcessOptions\relax%
+\@ifpackageloaded{nacal}{}{\RequirePackage[soloAL]{nacal}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Probabilidad
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DeclareMathAlphabet{\nacal@bb}{U}{BOONDOX-ds}{m}{n}
+\NewDocumentCommand\Cero{}{\ensuremath{\nacal@bb{0}}\xspace}
+\NewDocumentCommand\Uno{}{\ensuremath{\nacal@bb{1}}\xspace}
+\NewDocumentCommand\indCero{}{\ensuremath{\Cero}\xspace}
+\NewDocumentCommand\indUno{} {\ensuremath{\Uno}\xspace}
+\NewDocumentCommand\ind{m}{\ensuremath{{\Uno}_{{#1}}}\xspace}
+\NewDocumentCommand\Ind{} {\ensuremath{\Uno}\xspace}
+\NewDocumentCommand\sspi{O{}O{}}{\ensuremath{\RidxE{\eta}{\scriptstyle{#1}}{#2}}\xspace}
+\NewDocumentCommand\SPI{sO{}O{}mm}{\ensuremath{\IfBooleanTF#1
+    {\Ridx{\Angulos*{\left.#4 \right| #5}}{\!\sspi[#2][#3]}}
+    {\Ridx{\angulos {      #4   \big| #5}}{\!\sspi[#2][#3]}}     }\xspace}
+\NewDocumentCommand\sesp{O{}}{\ensuremath{\Ridx{\mathbb{S}}{{#1\!}}}\xspace}
+\NewDocumentCommand\ESP{sO{}m}{\ensuremath{\IfBooleanTF#1
+                        {\sesp[#2\!]\Parentesis*{#3}} {\sesp[#2]\parentesis{#3}}
+                          }\xspace}
+\NewDocumentCommand\domesp{m}{\ensuremath{\Ridx{L}{\scriptstyle#1}}\xspace}
+\NewDocumentCommand\spro{O{}}{\ensuremath{\Ridx{\mathbb{P}}{{\!#1}}}\xspace}
+\NewDocumentCommand\PRO{sO{}m}{\ensuremath{\IfBooleanTF#1
+                         {\spro[#2]\Parentesis*{#3}} {\spro[#2]\parentesis{#3}}
+                            }\xspace}
+\NewDocumentCommand\PRObh{smm}{\ensuremath{\IfBooleanTF#1
+                         {\spro[_{#3}\!]\Parentesis*{#2}} {\spro[_{#3}\!]\parentesis{#2}}
+                            }\xspace}
+\newcommand{\pindep}{\mathbin{\mathpalette\PindeP@t\relax}}
+\newcommand{\PindeP@t}[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$\m@th#1-$}%
+    \setlength{\unitlength}{\wd\z@}%
+    \begin{picture}(.7,1)
+    \roundcap
+    \put(0.1,0.2){\line(5,0){0.5}}
+    \put(0.4,0.6){\line(5,0){0.3}}
+    \put(0.1,0.2){\line(0,1){0.7}}
+    \put(0.4,0.6){\line(0,1){0.5}}
+    \put(0.1,0.2){\line(5,6.5){0.3}}
+    \end{picture}%
+  }} }
+\newcommand{\dperp}{\mathbin{\mathpalette\Dperp@t\relax}}
+\newcommand{\Dperp@t}[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$\m@th#1-$}%
+    \setlength{\unitlength}{\wd\z@}%
+    \begin{picture}(1,1)
+    \roundcap
+    \put(0.1,0.2){\line(1,0){0.8}}
+    \put(0.40,0.2){\line(0,1){0.8}}
+    \put(0.60,0.2){\line(0,1){0.8}}
+    \end{picture}%
+  }} }
+\newcommand{\ndperp}{\mathbin{\mathpalette\nDperp@t\relax}}
+\newcommand{\nDperp@t}[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$\m@th#1-$}%
+    \setlength{\unitlength}{\wd\z@}%
+    \begin{picture}(1,1)
+    \roundcap
+    \put(0.1,0.2){\line(1,0){0.8}}
+    \put(0.40,0.2){\line(0,1){0.8}}
+    \put(0.60,0.2){\line(0,1){0.8}}
+    \put(0.2,-.05){\line(0.6,1.15){0.65}}
+    \end{picture}%
+  }} }
+\NewDocumentCommand\PSpan{sm}{\ensuremath{\,\IfBooleanTF#1
+        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\Parentesis*{#2}}
+        {\EV{L{\!\!{\scriptstyle{{}^\mathbb{_P}}}}}\parentesis {#2}} }\xspace}
+\DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+\DeclareFontShape{U}{matha}{m}{n}{ <-6> matha5 <6-7> matha6 <7-8>
+matha7 <8-9> matha8 <9-10> matha9 <10-12> matha10 <12-> matha12 }{}
+\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{ <-6> mathx5 <6-7> mathx6 <7-8>
+mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareMathDelimiter{\ldbrack} {4}{matha}{"76}{mathx}{"30}
+\DeclareMathDelimiter{\rdbrack} {5}{matha}{"77}{mathx}{"38}
+\DeclareMathSymbol{\bigtimes}{\mathop}{mathx}{"91}
+\NewDocumentCommand\Clase {m}{\ensuremath{ \ldbrack #1 \rdbrack }\xspace}
+
+\NewDocumentCommand\Mediap{sm}{\ensuremath{\IfBooleanTF#1
+                             {\Media{\parentesis*{#2}}}
+                             {\Media{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\MediaP{sm}{\ensuremath{\IfBooleanTF#1
+                             {\Media{\Parentesis*{#2}}}
+                             {\Media{\Parentesis {#2}}} }\xspace}
+\NewDocumentCommand\Smedia {}{\mu}
+\NewDocumentCommand\SmediaM {}{m}
+\NewDocumentCommand\Scov   {}{\sigma}
+\NewDocumentCommand\ScovM  {}{s}
+\NewDocumentCommand\Svar   {}{\Scov^2}
+\NewDocumentCommand\SvarM  {}{\ScovM^2}
+\NewDocumentCommand\ScvarM  {}{\mathfrak{s}^2}
+\NewDocumentCommand\Scorr   {}{\rho}
+\NewDocumentCommand\ScorrM   {}{r}
+\NewDocumentCommand\media {m}{\ensuremath{ {\Smedia}_{#1} }\xspace}
+
+\NewDocumentCommand\mediap{sm}{\ensuremath{\IfBooleanTF#1
+                     {\media{\parentesis*{#2}}}
+                     {\media{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\mediaP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\media{\Parentesis*{#2}}}
+                     {\media{\Parentesis {#2}}} }\xspace}
+\NewDocumentCommand\mediaM {m}{\ensuremath{ {\SmediaM}_{#1} }\xspace}
+
+\NewDocumentCommand\mediaMp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\mediaM{\parentesis*{#2}}}
+                     {\mediaM{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\mediaMP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\mediaM{\Parentesis*{#2}}}
+                     {\mediaM{\Parentesis {#2}}} }\xspace}
+\NewDocumentCommand\dt {m}{\ensuremath{ {\Scov_{#1}} }\xspace}
+
+\NewDocumentCommand\dtp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\dt{\parentesis*{#2}}}
+                     {\dt{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\dtP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\dt{\Parentesis*{#2}}}
+                     {\dt{\Parentesis {#2}}} }\xspace}
+\NewDocumentCommand\dtM {m}{\ensuremath{ {\ScovM_{#1}} }\xspace}
+
+\NewDocumentCommand\dtMp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\dtM{\parentesis*{#2}}}
+                     {\dtM{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\dtMP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\dtM{\Parentesis*{#2}}}
+                     {\dtM{\Parentesis {#2}}} }\xspace}
+\NewDocumentCommand\var {m}{\ensuremath{ {\Svar_{#1}} }\xspace}
+
+\NewDocumentCommand\varp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\var{\parentesis*{#2}}}
+                     {\var{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\varP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\var{\Parentesis*{#2}}}
+                     {\var{\Parentesis {#2}}} }\xspace}
+\NewDocumentCommand\varM {m}{\ensuremath{ {\SvarM_{#1}} }\xspace}
+
+\NewDocumentCommand\varMp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\varM{\parentesis*{#2}}}
+                     {\varM{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\varMP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\varM{\Parentesis*{#2}}}
+                     {\varM{\Parentesis {#2}}} }\xspace}
+\NewDocumentCommand\cvarM {m}{\ensuremath{ {\ScvarM_{#1}} }\xspace}
+
+\NewDocumentCommand\cvarMp{sm}{\ensuremath{\IfBooleanTF#1
+                     {\cvarM{\parentesis*{#2}}}
+                     {\cvarM{\parentesis {#2}}} }\xspace}
+
+\NewDocumentCommand\cvarMP{sm}{\ensuremath{\IfBooleanTF#1
+                     {\cvarM{\Parentesis*{#2}}}
+                     {\cvarM{\Parentesis {#2}}} }\xspace}
+\NewDocumentCommand\cov {mm}{\ensuremath{ {\Scov_{#1#2}} }\xspace}
+
+\NewDocumentCommand\covp{smm}{\ensuremath{\IfBooleanTF#1
+                     {\cov{\parentesis*{#2#3}}}
+                     {\cov{\parentesis {#2#3}}} }\xspace}
+
+\NewDocumentCommand\covP{smm}{\ensuremath{\IfBooleanTF#1
+                     {\cov{\Parentesis*{#2#3}}}
+                     {\cov{\Parentesis {#2#3}}} }\xspace}
+\NewDocumentCommand\covM {mm}{\ensuremath{ {\ScovM_{#1#2}} }\xspace}
+
+\NewDocumentCommand\covMp{smm}{\ensuremath{\IfBooleanTF#1
+                     {\covM{\parentesis*{#2#3}}}
+                     {\covM{\parentesis {#2#3}}} }\xspace}
+
+\NewDocumentCommand\covMP{smm}{\ensuremath{\IfBooleanTF#1
+                     {\covM{\Parentesis*{#2#3}}}
+                     {\covM{\Parentesis {#2#3}}} }\xspace}
+\NewDocumentCommand\corr {mm}{\ensuremath{ {\Scorr_{#1#2}} }\xspace}
+
+\NewDocumentCommand\corrp{smm}{\ensuremath{\IfBooleanTF#1
+                     {\corr{\parentesis*{#2#3}}}
+                     {\corr{\parentesis {#2#3}}} }\xspace}
+
+\NewDocumentCommand\corrP{smm}{\ensuremath{\IfBooleanTF#1
+                     {\corr{\Parentesis*{#2#3}}}
+                     {\corr{\Parentesis {#2#3}}} }\xspace}
+\NewDocumentCommand\corrM {mm}{\ensuremath{ {\ScorrM_{#1#2}} }\xspace}
+
+\NewDocumentCommand\corrMp{smm}{\ensuremath{\IfBooleanTF#1
+                     {\corrM{\parentesis*{#2#3}}}
+                     {\corrM{\parentesis {#2#3}}} }\xspace}
+
+\NewDocumentCommand\corrMP{smm}{\ensuremath{\IfBooleanTF#1
+                     {\corrM{\Parentesis*{#2#3}}}
+                     {\corrM{\Parentesis {#2#3}}} }\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Sucesiones
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\NewDocumentCommand\suc {sO{n}O{\N}m }{\ensuremath{\IfBooleanTF#1
+                         {{\{\esuc*[#2]{#4}\}}_{#2\in#3}} {\boldsymbol{\ddot{#4}}}
+                           }\xspace}
+\NewDocumentCommand\esuc{sO{n}m      }{\ensuremath{\IfBooleanTF#1
+                         {{#3}_{#2}} {\elemR{\boldsymbol{\ddot{#3}}}{#2}}
+                           }\xspace}
+\endinput
+%%
+%% End of file `nacal-probabilidad.sty'.

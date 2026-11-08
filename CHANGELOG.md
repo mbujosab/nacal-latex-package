@@ -3,6 +3,33 @@
 Cada versión tiene una etiqueta git con el mismo nombre (`v1.3.1`, `v1.4`…).
 En `~/texmf` solo se instalan versiones etiquetadas.
 
+## v1.5 (2026-11-08) — sin instalar
+
+Sin cambio visible. Reparto aprobado por Marcos el 8/11/2026
+(`REPARTO-paquetes.org`, D1 y D3).
+
+- `nacal.dtx` genera tres paquetes: `nacal.sty` (álgebra lineal),
+  `nacal-probabilidad.sty` (secciones Probabilidad y Sucesiones) y
+  `nacal-econometria.sty` (Econometría). Cada uno carga el anterior.
+- `\usepackage{nacal}` sigue cargando los tres, en el mismo punto y en el
+  mismo orden que antes.
+- Opción nueva `soloAL`: `\usepackage[soloAL]{nacal}` carga solo álgebra
+  lineal (2 familias matemáticas menos).
+- `\Media`, `\Estmc` y `\VEstmc` pasan a `nacal.sty` (D1): están disponibles
+  también con `soloAL`.
+
+Comprobaciones:
+- Entre los tres `.sty` hay las mismas líneas de código que en la v1.4, salvo
+  las cabeceras.
+- Las 690 definiciones tienen el mismo `\meaning` (también el código interno
+  de xparse) y las familias `matha`/`mathx` tienen el mismo número.
+- Se han probado 12 combinaciones de carga: con `soloAL`, con
+  `nacal-probabilidad` antes o después de `nacal`, con `eng` y con
+  `nacal-moodle`.
+- Banco de pruebas (ampliado con los apuntes de Econometría y `nota3` de
+  `probabilidadCasoFinito`): los 57 documentos salen idénticos a la v1.4,
+  píxel a píxel.
+
 ## v1.4 (2026-11-05)
 
 Cambios visibles, aprobados por Marcos el 5/11/2026. Se miden con el banco de

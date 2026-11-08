@@ -6,6 +6,8 @@
 #   examen  <fichero sin .tex> <idioma> <sol> <ref>
 #           idioma: spanish | english;  sol: 0 sin soluciones, 1 soluciones,
 #           2 soluciones de profesor;  ref: 0 | 1 (como en Evaluacion/GNUmakefile)
+#   ectr    <tipo>                           apuntes de Econometría (print, print-prof, handout)
+#   nota    <fichero sin .tex>               probabilidadCasoFinito (el .tex exportado de org)
 #
 # Las líneas que empiezan por # se ignoran.
 
@@ -72,3 +74,7 @@ examen  Final-2026-jun      spanish 2 0
 examen  Final-2026-jun      english 0 0
 examen  Final-2026-jun      spanish 1 1
 examen  Final-Review        spanish 2 0
+
+# --- Econometría y probabilidad (añadidos el 8/11/2026) --------------------
+ectr    print
+nota    nota3

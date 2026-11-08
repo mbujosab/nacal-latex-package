@@ -52,7 +52,7 @@ mbujosab@ucm.es
 - =<<fecha y versión>>=
 #+NAME: fecha y versión
 #+BEGIN_SRC tex :results silent
-2026/11/05 v1.4
+2026/11/08 v1.5
 #+END_SRC
 
 - =<<breve descripción>>=
@@ -107,7 +107,9 @@ LaTeX version 2005/12/01 or later.
 
 \endpreamble
 
-\generate{\file{<<package>>.sty}{\from{<<package>>.dtx}{package}}}
+\generate{\file{<<package>>.sty}{\from{<<package>>.dtx}{package}}
+          \file{<<package>>-probabilidad.sty}{\from{<<package>>.dtx}{probabilidad}}
+          \file{<<package>>-econometria.sty}{\from{<<package>>.dtx}{econometria}}}
 
 \obeyspaces
 \Msg{****************************************************}
@@ -116,6 +118,8 @@ LaTeX version 2005/12/01 or later.
 \Msg{* following file into a directory searched by TeX: *}
 \Msg{*                                                  *}
 \Msg{*    <<package>>.sty                              *}
+\Msg{*    <<package>>-probabilidad.sty                 *}
+\Msg{*    <<package>>-econometria.sty                  *}
 \Msg{*                                                  *}
 \Msg{* To produce the documentation run the file        *}
 \Msg{* <<package>>.dtx through LaTeX.                  *}
@@ -162,6 +166,7 @@ El fichero principal es el fichero ~.dtx~:
 % \changes{v1.1}{2023/01/14}{Añadidos más comandos y reimplementación de los subíndices de matrices}
 % \changes{v1.2}{2023/01/14}{Inclusión opcional índices en matriz por vector y vector por matriz}
 % \changes{v1.3}{2023/09/22}{Inclusión de notación para Econometría}
+% \changes{v1.5}{2026/11/08}{Probabilidad y Econometría en paquetes aparte (nacal-probabilidad, nacal-econometria); opción soloAL}
 %
 % \GetFileInfo{<<package>>.sty}
 %
@@ -225,8 +230,22 @@ LaTeX version 2005/12/01 or later.
 %<package>\providecommand{\eng}[2]{#1}
 %<package>\DeclareOption{esp}{\renewcommand{\eng}[2]{#1}}
 %<package>\DeclareOption{eng}{\renewcommand{\eng}[2]{#2}}
+%<package>\newif\ifnacal@soloAL
+%<package>\DeclareOption{soloAL}{\nacal@soloALtrue}
 %<package>\DeclareOption*{\PackageWarning{<<package>>}{Unknown ‘\CurrentOption’}}
 %<package>\ProcessOptions\relax%
+%<probabilidad>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+%<probabilidad>\ProvidesPackage{<<package>>-probabilidad}
+%<probabilidad>    [<<fecha y versión>> Notacion de probabilidad de nacal]
+%<probabilidad>\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{<<package>>}}
+%<probabilidad>\ProcessOptions\relax%
+%<probabilidad>\@ifpackageloaded{<<package>>}{}{\RequirePackage[soloAL]{<<package>>}}
+%<econometria>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+%<econometria>\ProvidesPackage{<<package>>-econometria}
+%<econometria>    [<<fecha y versión>> Notacion de econometria de nacal]
+%<econometria>\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{<<package>>-probabilidad}}
+%<econometria>\ProcessOptions\relax%
+%<econometria>\RequirePackage{<<package>>-probabilidad}
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage[dvipsnames,svgnames]{xcolor}
@@ -311,6 +330,32 @@ Paquete que define los macros empleados al escribir el libro
 Para el Curso de Álgebra Lineal con Notación Asociativa he creado
 multitud de macros que definen la notación empleada en el material
 docente (libro, transparencias, ejercicios, ¿vídeos?).
+
+\subsection*{Paquetes y opciones}
+
+Desde la versión 1.5 la notación se reparte en tres paquetes, que se
+generan a partir del mismo fichero \texttt{nacal.dtx}:
+\begin{itemize}
+\item \texttt{nacal}: álgebra lineal (todas las secciones salvo las
+  tres siguientes), más \cs{Media}, \cs{Estmc} y \cs{VEstmc}.
+\item \texttt{nacal-probabilidad}: las secciones \emph{Probabilidad} y
+  \emph{Sucesiones}. Carga \texttt{nacal}.
+\item \texttt{nacal-econometria}: la sección \emph{Econometría}. Carga
+  \texttt{nacal-probabilidad}.
+\end{itemize}
+
+\verb|\usepackage{nacal}| carga los tres, como en las versiones
+anteriores, de modo que los documentos existentes no cambian. Con la
+opción \texttt{soloAL}, \verb|\usepackage[soloAL]{nacal}| carga solo la
+notación de álgebra lineal: no define los macros de probabilidad ni de
+econometría y no reserva las dos familias matemáticas de \texttt{mathabx}.
+Es la forma de cargar \texttt{nacal} desde un paquete que quiera definir
+su propia notación de probabilidad.
+
+Las opciones \texttt{esp} (por defecto) y \texttt{eng} eligen el idioma
+de algunos macros. Las mismas opciones dadas a
+\texttt{nacal-probabilidad} o a \texttt{nacal-econometria} se pasan a
+\texttt{nacal}.
 
 #+END_SRC
 
@@ -7432,6 +7477,9 @@ versión sin estrella uso con una notación compacta
 %
 % \section{Implementación}
 %
+% \iffalse
+%<*package>
+% \fi
 <<Conjuntos de números>>
 <<Paréntesis y otras llaves>>
 <<Subíndices a derecha e izquierda>>
@@ -7455,9 +7503,34 @@ versión sin estrella uso con una notación compacta
 <<Sistemas de ecuaciones>>
 <<Espacios vectoriales>>
 <<Notación funcional>>
+% \iffalse
+%</package>
+%<*probabilidad>
+% \fi
 <<Probabilidad>>
+% \iffalse
+%</probabilidad>
+%<*econometria>
+% \fi
 <<Econometría>>
+% \iffalse
+%</econometria>
+%<*probabilidad>
+% \fi
 <<Sucesiones>>
+% \iffalse
+%</probabilidad>
+% \fi
+%
+% \subsection{Carga de los otros paquetes}
+% Sin la opción \texttt{soloAL}, \texttt{nacal} carga también
+% \texttt{nacal-probabilidad} y \texttt{nacal-econometria}.
+%    \begin{macrocode}
+%<package>\ifnacal@soloAL\else
+%<package>  \RequirePackage{<<package>>-probabilidad}
+%<package>  \RequirePackage{<<package>>-econometria}
+%<package>\fi
+%    \end{macrocode}
 %
 % \Finale
 \endinput
@@ -11952,7 +12025,11 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\MediaP}
 % Media (proyección ortogonal sobre los vectores contantes)
 %    \begin{macrocode}
+%</probabilidad>
+%<*package>
 \NewDocumentCommand\Media {m}{\ensuremath{ \widebar{#1} }\xspace}
+%</package>
+%<*probabilidad>
 
 \NewDocumentCommand\Mediap{sm}{\ensuremath{\IfBooleanTF#1
                              {\Media{\parentesis*{#2}}}
@@ -12715,8 +12792,12 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\VEstmc}
 % Ajuste por MCO
 %    \begin{macrocode}
+%</econometria>
+%<*package>
 \NewDocumentCommand\Estmc {m}{\ensuremath{ \widehat{#1}      }\xspace}
 \NewDocumentCommand\VEstmc{O{}m}{\ensuremath{ \Estmc{\Vect[#1]{#2}} }\xspace}
+%</package>
+%<*econometria>
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -13293,7 +13374,7 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 
 #+NAME: Compilación
 #+BEGIN_SRC bash :noweb no-export :results silent :exports none
-rm -f <<package>>.sty
+rm -f <<package>>.sty <<package>>-probabilidad.sty <<package>>-econometria.sty
 latex <<package>>.ins
 pdflatex <<package>>.dtx
 makeindex -s gglo.ist -o <<package>>.gls <<package>>.glo
@@ -13314,9 +13395,9 @@ pdflatex  -interaction batchmode  <<package>>.dtx
 
 #+BEGIN_SRC makefile :noweb no-export :results silent :exports none :tangle makefile
 ficheros:
-	rm -f <<package>>.sty
+	rm -f <<package>>.sty <<package>>-probabilidad.sty <<package>>-econometria.sty
 	latex <<package>>.ins
-	pdflatex <<package>>.dtx
+	pdflatex -interaction nonstopmode <<package>>.dtx
 	makeindex -s gglo.ist -o <<package>>.gls <<package>>.glo
 	makeindex -s gind.ist -o <<package>>.ind <<package>>.idx
 	pdflatex  -interaction batchmode <<package>>.dtx
@@ -13344,6 +13425,8 @@ make ficheros
 #+BEGIN_SRC bash :results silent :exports none
 mkdir -p /home/marcos/texmf/tex/latex/nacal
 cp -f nacal.sty /home/marcos/texmf/tex/latex/nacal/
+cp -f nacal-probabilidad.sty /home/marcos/texmf/tex/latex/nacal/
+cp -f nacal-econometria.sty /home/marcos/texmf/tex/latex/nacal/
 cp -f nacal.ins /home/marcos/texmf/tex/latex/nacal/
 cp -f nacal.dtx /home/marcos/texmf/tex/latex/nacal/
 cp -f nacal.pdf /home/marcos/texmf/tex/latex/nacal/

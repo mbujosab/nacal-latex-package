@@ -17,6 +17,7 @@
 #   banco.sh candidato DIR        una pasada final con DIR/nacal.sty  -> $BANCO/candidato
 #   banco.sh comparar [A B]       compara $BANCO/A con $BANCO/B (por defecto dorado candidato)
 #   banco.sh lista                muestra los identificadores de la muestra
+#   banco.sh instantanea_prob     copia solo Econometría y probabilidadCasoFinito
 #
 # La pasada final reutiliza los auxiliares de "preparar" (los mismos para el
 # dorado y para el candidato), de modo que dos ejecuciones con el mismo .sty
@@ -29,6 +30,7 @@ AQUI=$(cd "$(dirname "$0")" && pwd)
 BANCO=${BANCO:-$HOME/temporal/nacal-banco}
 MUESTRA=${MUESTRA:-$AQUI/muestra.txt}
 DOCENCIA=${DOCENCIA:-$HOME/SynologyDrive/ReposGH/Docencia}
+CASOFINITO=${CASOFINITO:-$HOME/SynologyDrive/ReposGH/AndresyMarcos/probabilidadCasoFinito}
 CONGELADO=${CONGELADO:-$BANCO/sty/congelado}
 JOBS=${JOBS:-10}
 RES=${RES:-100}            # resolución (ppp) para la comparación de píxeles
@@ -51,6 +53,8 @@ muestra() {
             transp) echo "${a}_$b $tipo $a $b" ;;
             examen) local l=ES; [ "$b" = english ] && l=EN
                     echo "${a}_${l}_s${c}r${d} $tipo $a $b $c $d" ;;
+            ectr)   echo "ectr_$a $tipo $a" ;;
+            nota)   echo "nota_$a $tipo $a" ;;
             *) echo "muestra: tipo desconocido '$tipo'" >&2 ;;
         esac
     done
@@ -70,6 +74,7 @@ instantanea() {
           "$DOCENCIA/MatematicasII-SRC/Version0/" "$FUENTES/transp/"
     rsync -aL --delete --exclude '/*.pdf' --exclude '*.zip' --exclude 'ParaHaydeeYDavid' \
           "$DOCENCIA/MatematicasII-SRC/Evaluacion/" "$FUENTES/evaluacion/"
+    instantanea_prob
     {
         echo "Instantánea tomada el $(date '+%F %T')"
         for r in CursoDeAlgebraLineal-SRC MatematicasII-SRC; do
@@ -79,6 +84,15 @@ instantanea() {
         echo "nacal.sty congelado: $(sha256sum "$CONGELADO/nacal.sty" | cut -c1-16)"
     } > "$FUENTES/INSTANTANEA.txt"
     cat "$FUENTES/INSTANTANEA.txt"
+}
+
+# Econometría (no es git) y probabilidadCasoFinito (no es git). Se puede
+# tomar por separado, sin rehacer la del resto: banco.sh instantanea_prob
+instantanea_prob() {
+    mkdir -p "$FUENTES"
+    rsync -aL --delete --exclude '/*.pdf' "$DOCENCIA/Econometria-SRC/Version1/" "$FUENTES/ectr/"
+    rsync -a --delete --exclude '/*.pdf' --exclude '/*.log' "$CASOFINITO/" "$FUENTES/casofinito/"
+    echo "Econometría y casoFinito copiados el $(date '+%F %T')" >> "$FUENTES/INSTANTANEA.txt"
 }
 
 # ---------------------------------------------------------------------------
@@ -143,6 +157,37 @@ final_examen() {
     local dir=$1 f=$2 lang=$3 sol=$4 ref=$5
     local opt; opt=$(opt_examen "$lang" "$sol" "$ref")
     ( cd "$dir" && xelatex -interaction batchmode "$opt $f.tex" ) && cp "$dir/$f.pdf" "$dir/salida.pdf"
+}
+
+# Apuntes de Econometría (Econometria-SRC/makefile, objetivo «apuntes»)
+prep_ectr() {
+    local dir=$1 tipo=$2 F=$FUENTES/ectr
+    mkdir -p "$dir"
+    for x in DatosDocumento.tex Documento.tex temas referencias figuras; do ln -sfn "$F/$x" "$dir/$x"; done
+    ln -sfn "$F/apuntes.tex" "$dir/contenido.tex"
+    cat "$F/pre/$tipo.tex" "$F"/pre/{01preBeamer,01slides,01packages,01AMS,01colores}.tex \
+        "$F/DatosDocumento.tex" "$F/Documento.tex" > "$dir/Ectr-$tipo.tex"
+    ( cd "$dir"
+      xelatex -interaction batchmode -no-pdf "Ectr-$tipo.tex" </dev/null
+      pythontex --interpreter python:python3 "Ectr-$tipo.tex"
+      bibtex "Ectr-$tipo"
+      xelatex -interaction batchmode -no-pdf "Ectr-$tipo.tex"
+      pdflatex -interaction batchmode "Ectr-$tipo.tex" )
+}
+final_ectr() {
+    local dir=$1 tipo=$2
+    ( cd "$dir" && pdflatex -interaction batchmode "Ectr-$tipo.tex" ) && cp "$dir/Ectr-$tipo.pdf" "$dir/salida.pdf"
+}
+
+# Notas de probabilidadCasoFinito: se compila el .tex ya exportado desde org
+prep_nota() {
+    local dir=$1 f=$2
+    rsync -a "$FUENTES/casofinito/" "$dir/"
+    ( cd "$dir" && pdflatex -interaction batchmode "$f.tex" && pdflatex -interaction batchmode "$f.tex" )
+}
+final_nota() {
+    local dir=$1 f=$2
+    ( cd "$dir" && pdflatex -interaction batchmode "$f.tex" ) && cp "$dir/$f.pdf" "$dir/salida.pdf"
 }
 
 # ---------------------------------------------------------------------------
@@ -222,6 +267,7 @@ orden=${1:-ayuda}; shift || true
 case $orden in
     lista)       muestra ;;
     instantanea) instantanea ;;
+    instantanea_prob) instantanea_prob ;;
     preparar)    mkdir -p "$TRABAJO"; ids "$@" | xargs -P "$JOBS" -I{} "$0" _preparar {} ;;
     dorado)      generar "$CONGELADO" dorado ;;
     candidato)   generar "${1:?falta el directorio del nacal.sty candidato}" candidato ;;

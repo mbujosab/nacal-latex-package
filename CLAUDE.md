@@ -192,3 +192,18 @@ documentos más `libro`), los 87 XML de `nacal-moodle` de `qbank-PEconometria`
 (idénticos), las 87 preguntas AMC del qbank y los exámenes AMC
 `PEctr-Test-2026-11-06` y `-10-30` (idénticos). Para probar una versión sin instalarla:
 `TEXINPUTS=<carpeta del .sty>: make …` (no copiar el `.sty` a los proyectos).
+
+## v1.5: reparto en tres paquetes (9/11/2026, sin instalar)
+
+Etiqueta `v1.5`. `nacal.dtx` genera `nacal.sty`, `nacal-probabilidad.sty` y
+`nacal-econometria.sty` (guardas de docstrip `package`, `probabilidad` y
+`econometria` en el bloque «Implementación» del org). `\usepackage{nacal}`
+carga los tres; `[soloAL]` solo álgebra lineal. Propuesta y decisiones en
+`REPARTO-paquetes.org` (D1 y D3 aprobados; D2, nombres, sin respuesta: se
+usaron los de la propuesta). Banco (57 documentos, con `ectr print` y `nota3`):
+idéntico a la v1.4. Para probarla: `TEXINPUTS=~/temporal/nacal-banco/sty/v15:`.
+Al instalar, copiar los tres `.sty` a `~/texmf/tex/latex/nacal/`.
+Cuidado: `latex nacal.ins` pregunta antes de sobrescribir; borrar antes los
+`.sty` (como hace el makefile) y no lanzarlo sin `</dev/null`.
+Pendiente: línea base de `nacal-moodle` (instalada la v1.0; el repo tiene
+la v1.1 con cambios sin commit).

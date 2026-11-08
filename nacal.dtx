@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
 %<package>\ProvidesPackage{nacal}
-%<package>    [2026/11/05 v1.4 Notacion Asociativa para un Curso de Algebra Lineal]
+%<package>    [2026/11/08 v1.5 Notacion Asociativa para un Curso de Algebra Lineal]
 %<package>\RequirePackage{amsmath,amssymb}
 %<package>\RequirePackage{xcolor}
 %<package>\RequirePackage{xparse}
@@ -29,8 +29,22 @@
 %<package>\providecommand{\eng}[2]{#1}
 %<package>\DeclareOption{esp}{\renewcommand{\eng}[2]{#1}}
 %<package>\DeclareOption{eng}{\renewcommand{\eng}[2]{#2}}
+%<package>\newif\ifnacal@soloAL
+%<package>\DeclareOption{soloAL}{\nacal@soloALtrue}
 %<package>\DeclareOption*{\PackageWarning{nacal}{Unknown ‘\CurrentOption’}}
 %<package>\ProcessOptions\relax%
+%<probabilidad>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+%<probabilidad>\ProvidesPackage{nacal-probabilidad}
+%<probabilidad>    [2026/11/08 v1.5 Notacion de probabilidad de nacal]
+%<probabilidad>\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{nacal}}
+%<probabilidad>\ProcessOptions\relax%
+%<probabilidad>\@ifpackageloaded{nacal}{}{\RequirePackage[soloAL]{nacal}}
+%<econometria>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
+%<econometria>\ProvidesPackage{nacal-econometria}
+%<econometria>    [2026/11/08 v1.5 Notacion de econometria de nacal]
+%<econometria>\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{nacal-probabilidad}}
+%<econometria>\ProcessOptions\relax%
+%<econometria>\RequirePackage{nacal-probabilidad}
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage[dvipsnames,svgnames]{xcolor}
@@ -74,6 +88,7 @@
 % \changes{v1.1}{2023/01/14}{Añadidos más comandos y reimplementación de los subíndices de matrices}
 % \changes{v1.2}{2023/01/14}{Inclusión opcional índices en matriz por vector y vector por matriz}
 % \changes{v1.3}{2023/09/22}{Inclusión de notación para Econometría}
+% \changes{v1.5}{2026/11/08}{Probabilidad y Econometría en paquetes aparte (nacal-probabilidad, nacal-econometria); opción soloAL}
 %
 % \GetFileInfo{nacal.sty}
 %
@@ -99,6 +114,32 @@
 % Para el Curso de Álgebra Lineal con Notación Asociativa he creado
 % multitud de macros que definen la notación empleada en el material
 % docente (libro, transparencias, ejercicios, ¿vídeos?).
+% 
+% \subsection*{Paquetes y opciones}
+% 
+% Desde la versión 1.5 la notación se reparte en tres paquetes, que se
+% generan a partir del mismo fichero \texttt{nacal.dtx}:
+% \begin{itemize}
+% \item \texttt{nacal}: álgebra lineal (todas las secciones salvo las
+%   tres siguientes), más \cs{Media}, \cs{Estmc} y \cs{VEstmc}.
+% \item \texttt{nacal-probabilidad}: las secciones \emph{Probabilidad} y
+%   \emph{Sucesiones}. Carga \texttt{nacal}.
+% \item \texttt{nacal-econometria}: la sección \emph{Econometría}. Carga
+%   \texttt{nacal-probabilidad}.
+% \end{itemize}
+% 
+% \verb|\usepackage{nacal}| carga los tres, como en las versiones
+% anteriores, de modo que los documentos existentes no cambian. Con la
+% opción \texttt{soloAL}, \verb|\usepackage[soloAL]{nacal}| carga solo la
+% notación de álgebra lineal: no define los macros de probabilidad ni de
+% econometría y no reserva las dos familias matemáticas de \texttt{mathabx}.
+% Es la forma de cargar \texttt{nacal} desde un paquete que quiera definir
+% su propia notación de probabilidad.
+% 
+% Las opciones \texttt{esp} (por defecto) y \texttt{eng} eligen el idioma
+% de algunos macros. Las mismas opciones dadas a
+% \texttt{nacal-probabilidad} o a \texttt{nacal-econometria} se pasan a
+% \texttt{nacal}.
 % 
 % \section{Uso}
 % 
@@ -6989,6 +7030,9 @@
 %
 % \section{Implementación}
 %
+% \iffalse
+%<*package>
+% \fi
 %
 % \iffalse
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -11064,6 +11108,10 @@
 % \end{macro}
 % \end{macro}
 %
+% \iffalse
+%</package>
+%<*probabilidad>
+% \fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % \iffalse
@@ -11307,7 +11355,11 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\MediaP}
 % Media (proyección ortogonal sobre los vectores contantes)
 %    \begin{macrocode}
+%</probabilidad>
+%<*package>
 \NewDocumentCommand\Media {m}{\ensuremath{ \widebar{#1} }\xspace}
+%</package>
+%<*probabilidad>
 
 \NewDocumentCommand\Mediap{sm}{\ensuremath{\IfBooleanTF#1
                              {\Media{\parentesis*{#2}}}
@@ -11613,6 +11665,10 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \end{macro}
 % \end{macro}
 %
+% \iffalse
+%</probabilidad>
+%<*econometria>
+% \fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % \iffalse
@@ -12061,8 +12117,12 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \begin{macro}{\VEstmc}
 % Ajuste por MCO
 %    \begin{macrocode}
+%</econometria>
+%<*package>
 \NewDocumentCommand\Estmc {m}{\ensuremath{ \widehat{#1}      }\xspace}
 \NewDocumentCommand\VEstmc{O{}m}{\ensuremath{ \Estmc{\Vect[#1]{#2}} }\xspace}
+%</package>
+%<*econometria>
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -12590,6 +12650,10 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \end{macro}
 % \end{macro}
 %
+% \iffalse
+%</econometria>
+%<*probabilidad>
+% \fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % \iffalse
@@ -12625,6 +12689,19 @@ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
 % \end{macro}
 %
 %
+% \iffalse
+%</probabilidad>
+% \fi
+%
+% \subsection{Carga de los otros paquetes}
+% Sin la opción \texttt{soloAL}, \texttt{nacal} carga también
+% \texttt{nacal-probabilidad} y \texttt{nacal-econometria}.
+%    \begin{macrocode}
+%<package>\ifnacal@soloAL\else
+%<package>  \RequirePackage{nacal-probabilidad}
+%<package>  \RequirePackage{nacal-econometria}
+%<package>\fi
+%    \end{macrocode}
 %
 % \Finale
 \endinput
