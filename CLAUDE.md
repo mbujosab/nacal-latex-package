@@ -205,5 +205,17 @@ idéntico a la v1.4. Para probarla: `TEXINPUTS=~/temporal/nacal-banco/sty/v15:`.
 Al instalar, copiar los tres `.sty` a `~/texmf/tex/latex/nacal/`.
 Cuidado: `latex nacal.ins` pregunta antes de sobrescribir; borrar antes los
 `.sty` (como hace el makefile) y no lanzarlo sin `</dev/null`.
-Pendiente: línea base de `nacal-moodle` (instalada la v1.0; el repo tiene
-la v1.1 con cambios sin commit).
+
+## nacal-moodle (9/11/2026)
+
+Repo `../NAcAL-MoodleTex` (GitHub `nacal-moodle-latex-package`). Los «cambios
+sin commit» eran commits de 2023 ya subidos a `master` desde otra copia; la
+rama local se puso al día sin tocar ficheros. El fuente `NAcAL-MoodleTex.org`
+y el `makefile` estaban excluidos por `.gitignore`: ahora están en git
+(etiqueta `v1.1-baseline`). `main` (rama por defecto en GitHub) estaba en la
+v1.0: se fusionó `master` en `main`, sin forzar. `~/texmf/tex/latex/nacal-moodle-latex-package/`
+es un clon de `main`; actualizado con `git pull --ff-only`, ahora con la v1.1.
+Copias congeladas de v1.0 y v1.1 en `~/temporal/nacal-moodle-congelado/`.
+Prueba: los 87 XML de `qbank-PEconometria` salen idénticos con v1.0 y v1.1.
+Para instalar versiones futuras: commit en `master`, fusionar en `main`, y
+`git pull` en el clon de `~/texmf`.
