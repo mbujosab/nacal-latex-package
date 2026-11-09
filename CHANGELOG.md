@@ -3,7 +3,7 @@
 Cada versión tiene una etiqueta git con el mismo nombre (`v1.3.1`, `v1.4`…).
 En `~/texmf` solo se instalan versiones etiquetadas.
 
-## v1.6 (2026-11-09) — sin instalar
+## v1.6 (2026-11-09)
 
 Cambios visibles, aprobados por Marcos el 9/11/2026 (C3 y C4 de
 `AUDITORIA.md`).
@@ -28,6 +28,13 @@ pasa también a `\operatorname{esp}`: 23 apariciones en el libro (`Cap04`,
 Con eso, frente a la v1.5 cambian 9 páginas del libro (87, 88, 89, 104, 222,
 224, 229, 233 y 236) y 1 transparencia de `P06` (página 14 de `print-prof`).
 Antes y después, en `~/temporal/nacal-v16-cambios.pdf`.
+
+AMC (87 preguntas de `qbank-PEconometria` y los exámenes
+`PEctr-Test-2026-11-06` y `-10-30`): idénticos a la v1.5. Ninguno usa
+`\Media` ni «esp».
+
+Instalada en `~/texmf` el 2026-11-09. La v1.5 instalada está guardada en
+`~/temporal/nacal-instalada-v1.5/`.
 
 ## v1.5 (2026-11-08)
 

@@ -208,6 +208,13 @@ En instalaciones futuras, copiar siempre los tres `.sty`.
 Cuidado: `latex nacal.ins` pregunta antes de sobrescribir; borrar antes los
 `.sty` (como hace el makefile) y no lanzarlo sin `</dev/null`.
 
+## v1.6 (instalada el 9/11/2026)
+
+C3 y C4 de `AUDITORIA.md`: `\widebar` sin `\mathop` y «esp» con
+`\operatorname`. Cambio visible aprobado por Marcos. Los «esp» escritos a mano
+en el libro y en `T06.tex` de MatII también se corrigieron, sin commit en esos
+repositorios. La v1.5 instalada está en `~/temporal/nacal-instalada-v1.5/`.
+
 ## nacal-moodle (9/11/2026)
 
 Repo `../NAcAL-MoodleTex` (GitHub `nacal-moodle-latex-package`). Los «cambios
