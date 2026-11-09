@@ -29,6 +29,14 @@ Comprobaciones:
 - Banco de pruebas (ampliado con los apuntes de Econometría y `nota3` de
   `probabilidadCasoFinito`): los 57 documentos salen idénticos a la v1.4,
   píxel a píxel.
+- Flujos completos (9/11/2026), con la v1.5 frente a la v1.4, todo idéntico:
+  - los 57 documentos del banco compilados desde cero, como sus makefile
+    (pythontex, bibtex, bib2gls, makeindex, latexmk);
+  - 1008 fórmulas de manim (`media/Tex` de VideosMates2): DVI iguales byte a
+    byte;
+  - Moodle: 87 XML de `qbank-PEconometria` con `nacal-moodle` v1.1;
+  - AMC: 87 preguntas y los exámenes `PEctr-Test-2026-11-06` y `-10-30`;
+  - exportación desde org de `nota3.org` y `diccionario.org`.
 
 ## v1.4 (2026-11-05)
 
