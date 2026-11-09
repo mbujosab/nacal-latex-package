@@ -3,7 +3,7 @@
 Cada versión tiene una etiqueta git con el mismo nombre (`v1.3.1`, `v1.4`…).
 En `~/texmf` solo se instalan versiones etiquetadas.
 
-## v1.5 (2026-11-08) — sin instalar
+## v1.5 (2026-11-08)
 
 Sin cambio visible. Reparto aprobado por Marcos el 8/11/2026
 (`REPARTO-paquetes.org`, D1 y D3).
@@ -37,6 +37,9 @@ Comprobaciones:
   - Moodle: 87 XML de `qbank-PEconometria` con `nacal-moodle` v1.1;
   - AMC: 87 preguntas y los exámenes `PEctr-Test-2026-11-06` y `-10-30`;
   - exportación desde org de `nota3.org` y `diccionario.org`.
+
+Instalada en `~/texmf` el 2026-11-09 (los tres `.sty`, `.pdf`, `.dtx` e
+`.ins`). La v1.4 instalada está guardada en `~/temporal/nacal-instalada-v1.4/`.
 
 ## v1.4 (2026-11-05)
 
