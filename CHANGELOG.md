@@ -29,6 +29,11 @@ Con eso, frente a la v1.5 cambian 9 páginas del libro (87, 88, 89, 104, 222,
 224, 229, 233 y 236) y 1 transparencia de `P06` (página 14 de `print-prof`).
 Antes y después, en `~/temporal/nacal-v16-cambios.pdf`.
 
+Libro de probabilidad compartido con Andrés (`~/repos/SynologyDrive/libroProbabilidad`,
+`libro.tex`): cambian 9 de 97 páginas (36, 42, 50, 51, 57, 58, 59, 62 y 66),
+por `\conj` con una letra delante (`f\conj{g}` sale «fḡ» y no «f ḡ»).
+Medido después de instalar; Marcos lo aprobó el 9/11/2026.
+
 AMC (87 preguntas de `qbank-PEconometria` y los exámenes
 `PEctr-Test-2026-11-06` y `-10-30`): idénticos a la v1.5. Ninguno usa
 `\Media` ni «esp».

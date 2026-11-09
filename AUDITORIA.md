@@ -16,10 +16,10 @@ Econometría (C2) y probar C5. Hecho:
 - **v1.3.1** (commit `19936dc`, etiqueta `v1.3.1`): A1-A6, B4 (solo
   `\mymathbb`), B5 y B8, más `CHANGELOG.md`. Banco: 54/54 idénticos.
 - **v1.4**: C1 y C5. Ver `CHANGELOG.md`.
-- **C2**: hecho en el curso de Econometría (ver `~/SynologyDrive/ReposGH/AndresyMarcos/probabilidadCasoFinito/informe-notacion-nacal.org`,
+- **C2**: hecho en el curso de Econometría (ver `~/repos/SynologyDrive/libroProbabilidad/informe-notacion-nacal.org`,
   sección 4).
 - **Sección 4** (probabilidad): sin cambios. Inventario y propuestas en
-  `~/SynologyDrive/ReposGH/AndresyMarcos/probabilidadCasoFinito/informe-notacion-nacal.org`, para decidir con Andrés.
+  `~/repos/SynologyDrive/libroProbabilidad/informe-notacion-nacal.org`, para decidir con Andrés.
 - Correcciones a este informe, hechas en la implementación:
   - A4: los `\SITEFCRp…` sí se usan, porque `nacal-moodle` los redefine para
     HTML. Por eso se corrigen y no se quitan.
@@ -38,6 +38,11 @@ Econometría (C2) y probar C5. Hecho:
   `CHANGELOG.md`). También se corrigieron los «esp» escritos a mano en el
   libro y en `T06.tex` de MatII.
 - **C6**: se queda como está. La asignatura nunca se ha impartido en inglés.
+- La carpeta que Marcos comparte con Andrés es
+  `~/repos/SynologyDrive/libroProbabilidad` (sincronizada entre los dos NAS).
+  `~/SynologyDrive/ReposGH/AndresyMarcos/probabilidadCasoFinito` es una copia
+  antigua: lo que en este informe se atribuye a `probabilidadCasoFinito` se
+  midió ahí. El informe de notación vive en la carpeta compartida.
 
 ## Resumen
 

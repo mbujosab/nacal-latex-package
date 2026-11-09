@@ -7,7 +7,9 @@
 #           idioma: spanish | english;  sol: 0 sin soluciones, 1 soluciones,
 #           2 soluciones de profesor;  ref: 0 | 1 (como en Evaluacion/GNUmakefile)
 #   ectr    <tipo>                           apuntes de Econometría (print, print-prof, handout)
-#   nota    <fichero sin .tex>               probabilidadCasoFinito (el .tex exportado de org)
+#   nota    <fichero sin .tex>               libro de probabilidad compartido con Andrés
+#                                            (~/repos/SynologyDrive/libroProbabilidad; el .tex
+#                                            exportado de org; puede llevar subcarpeta)
 #
 # Las líneas que empiezan por # se ignoran.
 
@@ -77,4 +79,5 @@ examen  Final-Review        spanish 2 0
 
 # --- Econometría y probabilidad (añadidos el 8/11/2026) --------------------
 ectr    print
-nota    nota3
+nota    basura/nota3
+nota    libro

@@ -182,6 +182,14 @@ Flujo: `banco.sh candidato DIR` (DIR contiene el nacal.sty candidato) y
 Validado: dos compilaciones con el congelado dan PDF idénticos; 1mu añadido en
 `\Mat` se detecta en 53/54 documentos. Tras cambiar las fuentes de los
 repositorios: `instantanea`, `preparar`, `dorado`.
+Desde el 9/11/2026 el banco lee el libro de probabilidad de la carpeta que
+Marcos comparte con Andrés, `~/repos/SynologyDrive/libroProbabilidad`
+(sincronizada entre los dos NAS: **solo lectura**, nunca escribir ahí sin que
+Marcos lo pida). Documentos `nota basura/nota3` y `nota libro`. La carpeta
+`~/SynologyDrive/ReposGH/AndresyMarcos/probabilidadCasoFinito` es una copia
+antigua. Referencia completa con la v1.6 en `~/temporal/nacal-banco/ref-v16/`:
+para probar un candidato, `banco.sh candidato DIR` y
+`banco.sh comparar ref-v16 candidato`.
 
 ## Versión instalada (8/11/2026)
 

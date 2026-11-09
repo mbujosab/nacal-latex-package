@@ -30,7 +30,9 @@ AQUI=$(cd "$(dirname "$0")" && pwd)
 BANCO=${BANCO:-$HOME/temporal/nacal-banco}
 MUESTRA=${MUESTRA:-$AQUI/muestra.txt}
 DOCENCIA=${DOCENCIA:-$HOME/SynologyDrive/ReposGH/Docencia}
-CASOFINITO=${CASOFINITO:-$HOME/SynologyDrive/ReposGH/AndresyMarcos/probabilidadCasoFinito}
+# Libro de probabilidad compartido con Andrés (carpeta sincronizada entre los
+# dos NAS). Solo se lee: rsync hacia la instantánea, nunca al revés.
+CASOFINITO=${CASOFINITO:-$HOME/repos/SynologyDrive/libroProbabilidad}
 CONGELADO=${CONGELADO:-$BANCO/sty/congelado}
 JOBS=${JOBS:-10}
 RES=${RES:-100}            # resolución (ppp) para la comparación de píxeles
@@ -54,7 +56,7 @@ muestra() {
             examen) local l=ES; [ "$b" = english ] && l=EN
                     echo "${a}_${l}_s${c}r${d} $tipo $a $b $c $d" ;;
             ectr)   echo "ectr_$a $tipo $a" ;;
-            nota)   echo "nota_$a $tipo $a" ;;
+            nota)   echo "nota_${a//\//_} $tipo $a" ;;
             *) echo "muestra: tipo desconocido '$tipo'" >&2 ;;
         esac
     done
@@ -91,8 +93,9 @@ instantanea() {
 instantanea_prob() {
     mkdir -p "$FUENTES"
     rsync -aL --delete --exclude '/*.pdf' "$DOCENCIA/Econometria-SRC/Version1/" "$FUENTES/ectr/"
-    rsync -a --delete --exclude '/*.pdf' --exclude '/*.log' "$CASOFINITO/" "$FUENTES/casofinito/"
-    echo "Econometría y casoFinito copiados el $(date '+%F %T')" >> "$FUENTES/INSTANTANEA.txt"
+    rsync -a --delete --delete-excluded --exclude '*.pdf' --exclude '*.log' --exclude '*.zip' \
+          "$CASOFINITO/" "$FUENTES/casofinito/"
+    echo "Econometría y $CASOFINITO copiados el $(date '+%F %T')" >> "$FUENTES/INSTANTANEA.txt"
 }
 
 # ---------------------------------------------------------------------------
@@ -180,14 +183,16 @@ final_ectr() {
 }
 
 # Notas de probabilidadCasoFinito: se compila el .tex ya exportado desde org
+# f puede llevar subcarpeta (basura/nota3): se compila dentro de ella.
 prep_nota() {
     local dir=$1 f=$2
     rsync -a "$FUENTES/casofinito/" "$dir/"
-    ( cd "$dir" && pdflatex -interaction batchmode "$f.tex" && pdflatex -interaction batchmode "$f.tex" )
+    ( cd "$dir/$(dirname "$f")" && for k in 1 2 3; do pdflatex -interaction batchmode "$(basename "$f").tex"; done )
 }
 final_nota() {
     local dir=$1 f=$2
-    ( cd "$dir" && pdflatex -interaction batchmode "$f.tex" ) && cp "$dir/$f.pdf" "$dir/salida.pdf"
+    ( cd "$dir/$(dirname "$f")" && pdflatex -interaction batchmode "$(basename "$f").tex" ) \
+        && cp "$dir/$f.pdf" "$dir/salida.pdf"
 }
 
 # ---------------------------------------------------------------------------
@@ -210,7 +215,7 @@ _generar() {
     rm -f "$tmp/salida.pdf"
     TEXINPUTS="$stydir:" "final_$tipo" "$tmp" "$@" > "$salida/$id.generar.log" 2>&1
     # Comprobar que se cargó el nacal.sty que queríamos y no otro.
-    local usado; usado=$(cat "$tmp"/*.log 2>/dev/null | tr -d '\n' | grep -o "[^( ]*nacal\.sty" | sort -u | tr '\n' ' ')
+    local usado; usado=$(cat "$tmp"/*.log "$tmp"/*/*.log 2>/dev/null | tr -d '\n' | grep -o "[^( ]*nacal\.sty" | sort -u | tr '\n' ' ')
     if [ -f "$tmp/salida.pdf" ]; then
         cp "$tmp/salida.pdf" "$salida/$id.pdf"
         echo "$id  ok  [nacal: $usado]"
