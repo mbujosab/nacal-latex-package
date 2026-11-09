@@ -199,8 +199,8 @@ Etiqueta `v1.5`. `nacal.dtx` genera `nacal.sty`, `nacal-probabilidad.sty` y
 `nacal-econometria.sty` (guardas de docstrip `package`, `probabilidad` y
 `econometria` en el bloque «Implementación» del org). `\usepackage{nacal}`
 carga los tres; `[soloAL]` solo álgebra lineal. Propuesta y decisiones en
-`REPARTO-paquetes.org` (D1 y D3 aprobados; D2, nombres, sin respuesta: se
-usaron los de la propuesta). Banco (57 documentos, con `ectr print` y `nota3`):
+`REPARTO-paquetes.org` (D1, D2 y D3 aprobados; D2, los nombres, el 9/11, tal como
+estaban en la propuesta). Banco (57 documentos, con `ectr print` y `nota3`):
 idéntico a la v1.4. Para probarla: `TEXINPUTS=~/temporal/nacal-banco/sty/v15:`.
 Instalada el 9/11/2026 en `~/texmf/tex/latex/nacal/` (tres `.sty`, `.pdf`,
 `.dtx`, `.ins`); la v1.4 instalada está en `~/temporal/nacal-instalada-v1.4/`.
