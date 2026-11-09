@@ -3,6 +3,32 @@
 Cada versión tiene una etiqueta git con el mismo nombre (`v1.3.1`, `v1.4`…).
 En `~/texmf` solo se instalan versiones etiquetadas.
 
+## v1.6 (2026-11-09) — sin instalar
+
+Cambios visibles, aprobados por Marcos el 9/11/2026 (C3 y C4 de
+`AUDITORIA.md`).
+
+- `\widebar` deja de ser un operador (`\mathop`). Afecta a `\Media` y
+  `\conj`. Antes, en `a\Media{\Vect{x}}+b\Media{\Vect{y}}`, había un espacio
+  fino entre la `a` y la barra, y el `+` perdía su espacio («a x̄ +b ȳ»). En
+  fórmulas destacadas, `\Media{X}_n` ponía la n debajo de la barra; ningún
+  documento lo usaba.
+- «esp» (`\EOEsu`, `\EOEpr`, `\EOEg`, `\EInvOEg`, `\dEOEgE`, `\dEOEg` y
+  `\dEInvOEg`) se escribe como operador, `\operatorname{esp}`: recto, no en
+  cursiva. En `\EOEsu` y `\EOEpr`, `\Big(`…`\Big)` pasa a
+  `\Bigl(`…`\Bigr)`, para que no quede un espacio entre «esp» y el paréntesis.
+
+Efecto medido con el banco (frente a la v1.5): cambian 6 páginas del libro
+(87, 88, 89, 104, 222 y 233; en `libro-P`, 93, 94, 95, 110, 248 y 259) y 4 de
+los apuntes de Econometría (22, 23, 50 y 147). Ningún examen ni transparencia.
+
+En los documentos, «esp» escrito a mano (`esp(`, `esp\big(`, `esp\Invp*`)
+pasa también a `\operatorname{esp}`: 23 apariciones en el libro (`Cap04`,
+`Cap05`, `Cap16` y `Cap17`) y 3 en `MatematicasII-SRC/Version0/temas/T06.tex`.
+Con eso, frente a la v1.5 cambian 9 páginas del libro (87, 88, 89, 104, 222,
+224, 229, 233 y 236) y 1 transparencia de `P06` (página 14 de `print-prof`).
+Antes y después, en `~/temporal/nacal-v16-cambios.pdf`.
+
 ## v1.5 (2026-11-08)
 
 Sin cambio visible. Reparto aprobado por Marcos el 8/11/2026

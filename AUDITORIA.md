@@ -31,6 +31,14 @@ Econometría (C2) y probar C5. Hecho:
   - B2: `doc/nacal.sty` es un enlace simbólico a `../nacal.sty`; no puede
     desfasarse.
 
+## Estado a 9 de noviembre de 2026
+
+- **v1.5**: reparto en tres paquetes (`REPARTO-paquetes.org`). Instalada.
+- **C3** y **C4**: aprobados por Marcos; hechos en la v1.6 (ver
+  `CHANGELOG.md`). También se corrigieron los «esp» escritos a mano en el
+  libro y en `T06.tex` de MatII.
+- **C6**: se queda como está. La asignatura nunca se ha impartido en inglés.
+
 ## Resumen
 
 El paquete está bien construido y no necesita rehacerse. Está escrito con

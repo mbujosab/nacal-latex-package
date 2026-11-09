@@ -22,7 +22,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
 \ProvidesPackage{nacal}
-    [2026/11/08 v1.5 Notacion Asociativa para un Curso de Algebra Lineal]
+    [2026/11/09 v1.6 Notacion Asociativa para un Curso de Algebra Lineal]
 \RequirePackage{amsmath,amssymb}
 \RequirePackage{xcolor}
 \RequirePackage{xparse}
@@ -179,7 +179,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Conjugación y concatenación
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\NewDocumentCommand\widebar{m}{\mathop{\overline{#1}}}
+\NewDocumentCommand\widebar{m}{\overline{#1}}
 \NewDocumentCommand\conj   {m}{\ensuremath{\widebar{#1}}\xspace}
 \newcommand{\concat}{\mathbin{\mathpalette\conc@t\relax}}
 \newcommand{\conc@t}[2]{%
@@ -553,24 +553,24 @@
 \NewDocumentCommand\OEpr  {mm}{\ensuremath{ \OpE{ \pr{#1}{#2}     } }\xspace}
 \NewDocumentCommand\OEin  {mm}{\ensuremath{ \OpE{ \pe{#1}{#2}     } }\xspace}
 \NewDocumentCommand\OEper   {}{\ensuremath{ \OpE{ \perm           } }\xspace}
-\NewDocumentCommand\EOEsu{mmm}{\ensuremath{ esp\Big(\OEsu{#1}{#2}{#3}\Big)}\xspace}
-\NewDocumentCommand\EOEpr {mm}{\ensuremath{ esp\Big(\OEpr{#1}{#2}    \Big)}\xspace}
+\NewDocumentCommand\EOEsu{mmm}{\ensuremath{ \operatorname{esp}\Bigl(\OEsu{#1}{#2}{#3}\Bigr)}\xspace}
+\NewDocumentCommand\EOEpr {mm}{\ensuremath{ \operatorname{esp}\Bigl(\OEpr{#1}{#2}    \Bigr)}\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Operaciones elementales genéricas
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand  \OEg{O{}O{}}{\ensuremath{ \RidxE{\TrEl}{\!#1}{#2} }\xspace}
-\NewDocumentCommand \EOEg{O{}O{}}{\ensuremath{ esp( \OEg[#1][#2]      ) }\xspace}
+\NewDocumentCommand \EOEg{O{}O{}}{\ensuremath{ \operatorname{esp}( \OEg[#1][#2]      ) }\xspace}
 \NewDocumentCommand \InvOEg{O{} }{\ensuremath{      \OEg[#1][\minus1]   }\xspace}
-\NewDocumentCommand\EInvOEg{O{} }{\ensuremath{ esp( \InvOEg[#1]       ) }\xspace}
+\NewDocumentCommand\EInvOEg{O{} }{\ensuremath{ \operatorname{esp}( \InvOEg[#1]       ) }\xspace}
 \NewDocumentCommand\SOEg{O{1}O{k}O{}}{\ensuremath{%
                                        \OEg[#1][#3]\cdots\OEg[#2][#3]  }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand\dOEgE  {mm}{\ensuremath{ \RidxE{\TrEl}{\!#1}{#2}    }\xspace}
 \NewDocumentCommand\dOEg    {m}{\ensuremath{     \dOEgE{#1}{}           }\xspace}
-\NewDocumentCommand\dEOEgE {mm}{\ensuremath{ esp(\dOEgE{#1}{#2}     )   }\xspace}
-\NewDocumentCommand\dEOEg   {m}{\ensuremath{ esp(\dOEg {#1}         )   }\xspace}
+\NewDocumentCommand\dEOEgE {mm}{\ensuremath{ \operatorname{esp}(\dOEgE{#1}{#2}     )   }\xspace}
+\NewDocumentCommand\dEOEg   {m}{\ensuremath{ \operatorname{esp}(\dOEg {#1}         )   }\xspace}
 \NewDocumentCommand\dInvOEg {m}{\ensuremath{     \dOEgE{#1}{\minus1}    }\xspace}
-\NewDocumentCommand\dEInvOEg{m}{\ensuremath{ esp(\dInvOEg{#1} )         }\xspace}
+\NewDocumentCommand\dEInvOEg{m}{\ensuremath{ \operatorname{esp}(\dInvOEg{#1} )         }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Sucesión de operaciones elementales genéricas
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

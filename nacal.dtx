@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
 %<package>\ProvidesPackage{nacal}
-%<package>    [2026/11/08 v1.5 Notacion Asociativa para un Curso de Algebra Lineal]
+%<package>    [2026/11/09 v1.6 Notacion Asociativa para un Curso de Algebra Lineal]
 %<package>\RequirePackage{amsmath,amssymb}
 %<package>\RequirePackage{xcolor}
 %<package>\RequirePackage{xparse}
@@ -35,13 +35,13 @@
 %<package>\ProcessOptions\relax%
 %<probabilidad>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
 %<probabilidad>\ProvidesPackage{nacal-probabilidad}
-%<probabilidad>    [2026/11/08 v1.5 Notacion de probabilidad de nacal]
+%<probabilidad>    [2026/11/09 v1.6 Notacion de probabilidad de nacal]
 %<probabilidad>\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{nacal}}
 %<probabilidad>\ProcessOptions\relax%
 %<probabilidad>\@ifpackageloaded{nacal}{}{\RequirePackage[soloAL]{nacal}}
 %<econometria>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
 %<econometria>\ProvidesPackage{nacal-econometria}
-%<econometria>    [2026/11/08 v1.5 Notacion de econometria de nacal]
+%<econometria>    [2026/11/09 v1.6 Notacion de econometria de nacal]
 %<econometria>\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{nacal-probabilidad}}
 %<econometria>\ProcessOptions\relax%
 %<econometria>\RequirePackage{nacal-probabilidad}
@@ -89,6 +89,7 @@
 % \changes{v1.2}{2023/01/14}{Inclusión opcional índices en matriz por vector y vector por matriz}
 % \changes{v1.3}{2023/09/22}{Inclusión de notación para Econometría}
 % \changes{v1.5}{2026/11/08}{Probabilidad y Econometría en paquetes aparte (nacal-probabilidad, nacal-econometria); opción soloAL}
+% \changes{v1.6}{2026/11/09}{\cs{widebar} deja de ser un operador; «esp» se escribe como operador (\cs{operatorname})}
 %
 % \GetFileInfo{nacal.sty}
 %
@@ -558,7 +559,7 @@
 % \subsection{Operadores}
 % \subsubsection{Conjugación y concatenación}
 % 
-% Definimos un operador con una barra ancha.\\
+% Definimos una barra ancha.\\
 % \DescribeMacro{\widebar}
 % El comando \cs{widebar} tiene 1 argumento,\;\cs{widebar}\marg{objeto},\;
 % y pone una barra ancha sobre el \marg{objeto}.
@@ -7455,7 +7456,7 @@
 % \begin{macro}{\widebar}
 % Barra ancha para indicar media o conjugación
 %    \begin{macrocode}
-\NewDocumentCommand\widebar{m}{\mathop{\overline{#1}}}
+\NewDocumentCommand\widebar{m}{\overline{#1}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -8316,7 +8317,7 @@
 % \begin{macro}{\EOEsu}
 % Espejo de oper. elem. que suma un múltiplo de una componente a otra
 %    \begin{macrocode}
-\NewDocumentCommand\EOEsu{mmm}{\ensuremath{ esp\Big(\OEsu{#1}{#2}{#3}\Big)}\xspace}
+\NewDocumentCommand\EOEsu{mmm}{\ensuremath{ \operatorname{esp}\Bigl(\OEsu{#1}{#2}{#3}\Bigr)}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -8324,7 +8325,7 @@
 % \begin{macro}{\EOEpr}
 % Espejo de oper. elem. que multiplica una componente por un número
 %    \begin{macrocode}
-\NewDocumentCommand\EOEpr {mm}{\ensuremath{ esp\Big(\OEpr{#1}{#2}    \Big)}\xspace}
+\NewDocumentCommand\EOEpr {mm}{\ensuremath{ \operatorname{esp}\Bigl(\OEpr{#1}{#2}    \Bigr)}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -8348,7 +8349,7 @@
 % \begin{macro}{\EOEg}
 % Operación espejo de una operación elemental genérica
 %    \begin{macrocode}
-\NewDocumentCommand \EOEg{O{}O{}}{\ensuremath{ esp( \OEg[#1][#2]      ) }\xspace}
+\NewDocumentCommand \EOEg{O{}O{}}{\ensuremath{ \operatorname{esp}( \OEg[#1][#2]      ) }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -8364,7 +8365,7 @@
 % \begin{macro}{\EInvOEg}
 % Espejo de la inversa de una operación elemental genérica
 %    \begin{macrocode}
-\NewDocumentCommand\EInvOEg{O{} }{\ensuremath{ esp( \InvOEg[#1]       ) }\xspace}
+\NewDocumentCommand\EInvOEg{O{} }{\ensuremath{ \operatorname{esp}( \InvOEg[#1]       ) }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -8394,8 +8395,8 @@
 % \begin{macro}{\dEOEg}
 % Operación espejo de una elemental genérica con exponente y sin exponente
 %    \begin{macrocode}
-\NewDocumentCommand\dEOEgE {mm}{\ensuremath{ esp(\dOEgE{#1}{#2}     )   }\xspace}
-\NewDocumentCommand\dEOEg   {m}{\ensuremath{ esp(\dOEg {#1}         )   }\xspace}
+\NewDocumentCommand\dEOEgE {mm}{\ensuremath{ \operatorname{esp}(\dOEgE{#1}{#2}     )   }\xspace}
+\NewDocumentCommand\dEOEg   {m}{\ensuremath{ \operatorname{esp}(\dOEg {#1}         )   }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8412,7 +8413,7 @@
 % \begin{macro}{\dEInvOEg}
 % Operación espejo de la inversa de una elemental genérica
 %    \begin{macrocode}
-\NewDocumentCommand\dEInvOEg{m}{\ensuremath{ esp(\dInvOEg{#1} )         }\xspace}
+\NewDocumentCommand\dEInvOEg{m}{\ensuremath{ \operatorname{esp}(\dInvOEg{#1} )         }\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
