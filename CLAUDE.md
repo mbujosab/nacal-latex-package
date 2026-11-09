@@ -228,3 +228,7 @@ Copias congeladas de v1.0 y v1.1 en `~/temporal/nacal-moodle-congelado/`.
 Prueba: los 87 XML de `qbank-PEconometria` salen idénticos con v1.0 y v1.1.
 Para instalar versiones futuras: commit en `master`, fusionar en `main`, y
 `git pull` en el clon de `~/texmf`.
+v1.2 (9/11/2026, etiqueta `v1.2`, instalada): los mismos cambios que nacal
+v1.6 en las definiciones HTML, y `\EOEpr` llamaba a `\Oepr`, que no existe.
+Los 87 XML de `qbank-PEconometria` salen idénticos a la v1.1 (no usan esos
+macros). Copia congelada en `~/temporal/nacal-moodle-congelado/v1.2/`.
