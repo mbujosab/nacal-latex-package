@@ -240,3 +240,20 @@ v1.2 (9/11/2026, etiqueta `v1.2`, instalada): los mismos cambios que nacal
 v1.6 en las definiciones HTML, y `\EOEpr` llamaba a `\Oepr`, que no existe.
 Los 87 XML de `qbank-PEconometria` salen idénticos a la v1.1 (no usan esos
 macros). Copia congelada en `~/temporal/nacal-moodle-congelado/v1.2/`.
+
+## probnot: paquete de notación de probabilidad (borrador, 9/11/2026)
+
+Borrador `probnot.sty` (nombre aprobado; no existe en CTAN ni TeX Live) con la
+notación de los textos nuevos de probabilidad: preámbulo común + macros de
+nacal-probabilidad copiados + 5 de nota3/dimensionFinita/slides; carga
+`nacal[soloAL]`. Informe y borrador en la carpeta compartida
+`~/repos/SynologyDrive/libroProbabilidad/probnot/` (Marcos lo pidió; es la única
+subcarpeta compartida en la que se ha escrito) y en `~/temporal/probnot-borrador/`
+(con los guiones). v0.2: `\LP` con `\mathpalette` (aprobado: se reduce en
+subíndices, idéntico en texto). base y diccionario salen idénticos; nota3 cambia
+la pág. 40 (`\PSpan` en subíndice, corregido); dimensionFinita y slides además
+por D5 (`\SPI`) y D7 (`\PSpan` de nacal en slides). libro.org sigue con nacal (D1).
+dimensionFinita y slides (en `probabilidadEnRn.zip`) se exportaron con scimax;
+se reproducen con `emacs --batch -l exporta.el` (solo ejecuta bloques `latex`).
+Cuando la notación esté cerrada, irá a un repositorio propio.
+Pendiente: decisiones D1, D3-D5, D7, P1, P2, P4 y nota 5 (Marcos y Andrés).
