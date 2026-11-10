@@ -303,14 +303,22 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   macro de probabilidad ni econometría: no se migra, sirve de control.
 - **Fase 3 (hecha, 10/11/2026)**: censo en
   `~/temporal/estrategia-fable/censo.org` (datos en `censo/`, guion
-  `guiones/censo.py`). Dos proyectos activos fuera del plan fallarían con la
-  v2.0 y están **pendientes de decisión de Marcos**: `PEconometria` (14
-  figuras de `org-lessons/img/S05-Lecc04` y `S03-Lecc03`: `\media`, `\dt` y
-  un `\RenewDocumentCommand\sesp`) y `qbank` (ejemplos con `\ajusteMLG` y
-  `\res` vía `nacal-moodle`). Ambos son repositorios públicos y `ectrnot`
-  solo existe en esta máquina. Vídeos, exámenes AMC y Econometría Aplicada no
-  usan probabilidad. Lo demás son copias viejas (se resucitan con `[v1]`).
-  No instalar la v2.0 hasta resolver esos dos.
+  `guiones/censo.py`). Salieron dos proyectos activos fuera del plan, ya
+  resueltos con commits locales sin subir:
+  `PEconometria` (commit `cbaf0bb`): las figuras de `org-lessons/img/S05-Lecc04`
+  cargan `nacal[soloAL]` y definen `\media` y `\dt` en su preámbulo; en
+  `S03-Lecc03` se quitó un `\RenewDocumentCommand\sesp` sin uso; 17 figuras
+  idénticas (los `.tex` de `tex/`, fuera de git, llevan el mismo cambio).
+  `org-pract/CursoAntiguo` (2023) sigue usando probabilidad: `[v1]` o archivo.
+  `qbank` (commit `0e76f41`): los ejemplos cargan `ectrnot-moodle`; es
+  provisional, `NOTA-notacion-ejemplos.org` pide decidir cuando se retome.
+  Marcos aprobó publicar `ectrnot` en GitHub (lo sube él).
+  Vídeos, exámenes AMC y Econometría Aplicada no usan probabilidad. Lo demás
+  son copias viejas que se resucitan con `[v1]` (`POM-Econometria-SRC` es una
+  versión primitiva y abandonada de `qbank-econometria`). La copia viva de
+  probabilidadCasoFinito es `~/repos/SynologyDrive/libroProbabilidad/basura`;
+  `probnot` se desarrolla para los documentos de esa carpeta compartida.
+  Copias previas en `~/temporal/estrategia-fable/respaldo-fase2/`.
 - **Ojo**: `ref0` y las instantáneas del banco son anteriores a la migración;
   antes de probar la v2.0 hay que rehacer `instantanea`, `preparar` y la
   referencia con las fuentes ya migradas.
