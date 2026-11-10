@@ -257,3 +257,40 @@ dimensionFinita y slides (en `probabilidadEnRn.zip`) se exportaron con scimax;
 se reproducen con `emacs --batch -l exporta.el` (solo ejecuta bloques `latex`).
 Cuando la notación esté cerrada, irá a un repositorio propio.
 Pendiente: decisiones D1, D3-D5, D7, P1, P2, P4 y nota 5 (Marcos y Andrés).
+
+## Separación de la probabilidad: nacal solo álgebra lineal (desde el 10/11/2026)
+
+Objetivo de Marcos: `nacal` solo con álgebra lineal; cada proyecto aporta su
+notación de probabilidad/econometría en un paquete propio, **sin converger**.
+Plan por fases en `~/temporal/estrategia-fable/plan.org` (y `.pdf`).
+Decidido: paquetes en el repositorio de cada proyecto con enlace simbólico
+desde `~/texmf`; Matemáticas II usa el paquete del libro; `nacal-probabilidad`
+y `nacal-econometria` quedarán instalados y congelados tras una opción `[v1]`;
+`CursoAL-SRC` y `CursoDeAlgebraLineal-SRC.viejo` están abandonados.
+Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
+
+- **Fase 0 (hecha)**: `Econometria-SRC` bajo git (commit inicial, 10/11/2026).
+  Banco ampliado a 213 documentos (tipo `suelto`: 152 figuras/prácticas que
+  cargan `nacal`); referencia v1.6 en `~/temporal/nacal-banco/ref0/` (dos
+  pasadas idénticas; preparar con `CONGELADO=~/temporal/nacal-banco/sty/v16`).
+  `pruebas/banco-qbank.sh` para los bancos de preguntas (XML y PDF sobre una
+  copia); referencia de `qbank-econometria` en
+  `~/temporal/nacal-banco/qbank/qbank-econometria/ref-v16/` (dos generaciones
+  idénticas; cada una tarda unos 45 min). La referencia de control de
+  `qbank-PEconometria` quedó a medias (falta de memoria): relanzar solo cuando
+  Marcos lo diga. Lanzar a la vez el banco y un qbank agota los 15 GB.
+- **Fase 1 (hecha)**: `alprobnot.sty` (en `CursoDeAlgebraLineal-SRC/`),
+  `ectrnot.sty` y `ectrnot-moodle.sty` (repositorio `../ectrnot`, solo local,
+  etiqueta `v1.0`), enlazados desde `~/texmf/tex/latex/{alprobnot,ectrnot}/`.
+  Son `.sty` directos (sin org ni dtx), copia literal de la v1.6: los 187 macros
+  tienen `\meaning` idéntico salvo el alfabeto interno `\nacal@bb`, renombrado.
+  Generados con `~/temporal/estrategia-fable/guiones/crea_paquetes.py`.
+  No se pueden cargar junto a `\usepackage{nacal}` sin `soloAL` (dan error claro).
+  `\usepackage{ectrnot-moodle}` carga `nacal-moodle[soloAL]` (que avisa de
+  opción desconocida, inofensivo hasta la fase 4) y `ectrnot`.
+- **Fase 2 (pendiente)**: migrar, por este orden, `qbank-econometria` (tres
+  guiones), `Econometria-SRC`, el libro, `MatematicasII-SRC`. Cada uno con el
+  visto bueno de Marcos. `qbank-PEconometria` no usa ningún macro de `nacal`
+  (ni de álgebra): no se migra, solo sirve de control para la v2.0.
+- Los `pre/notacion.tex` de Matemáticas II y Econometría no los carga nadie.
+- `NAcAL-MoodleTex/nacal.sty` es un enlace a este repositorio, no una copia.
