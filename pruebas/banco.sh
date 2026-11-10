@@ -15,6 +15,7 @@
 #                                 con el .sty congelado; deja los auxiliares en $BANCO/trabajo
 #   banco.sh dorado               una pasada final con el .sty congelado -> $BANCO/dorado
 #   banco.sh candidato DIR        una pasada final con DIR/nacal.sty  -> $BANCO/candidato
+#   banco.sh generar DIR NOMBRE   lo mismo, pero deja el resultado en $BANCO/NOMBRE
 #   banco.sh comparar [A B]       compara $BANCO/A con $BANCO/B (por defecto dorado candidato)
 #   banco.sh lista                muestra los identificadores de la muestra
 #   banco.sh instantanea_prob     copia solo Econometría y probabilidadCasoFinito
@@ -55,7 +56,8 @@ muestra() {
             transp) echo "${a}_$b $tipo $a $b" ;;
             examen) local l=ES; [ "$b" = english ] && l=EN
                     echo "${a}_${l}_s${c}r${d} $tipo $a $b $c $d" ;;
-            ectr)   echo "ectr_$a $tipo $a" ;;
+            ectr)   echo "ectr_$a${b:+_$b} $tipo $a ${b:-apuntes}" ;;
+            suelto) local i=${a//\//_}; echo "s_${i//[^A-Za-z0-9_-]/-} $tipo $a" ;;
             nota)   echo "nota_${a//\//_} $tipo $a" ;;
             *) echo "muestra: tipo desconocido '$tipo'" >&2 ;;
         esac
@@ -93,6 +95,9 @@ instantanea() {
 instantanea_prob() {
     mkdir -p "$FUENTES"
     rsync -aL --delete --exclude '/*.pdf' "$DOCENCIA/Econometria-SRC/Version1/" "$FUENTES/ectr/"
+    # Econometría entera (figuras sueltas de Version0, Aclaraciones, Practicas).
+    # Sin -L: hay enlaces a ficheros que ya no existen.
+    rsync -a --delete --exclude .git --exclude '/*.pdf' "$DOCENCIA/Econometria-SRC/" "$FUENTES/ectr-todo/"
     rsync -a --delete --delete-excluded --exclude '*.pdf' --exclude '*.log' --exclude '*.zip' \
           "$CASOFINITO/" "$FUENTES/casofinito/"
     echo "Econometría y $CASOFINITO copiados el $(date '+%F %T')" >> "$FUENTES/INSTANTANEA.txt"
@@ -164,10 +169,10 @@ final_examen() {
 
 # Apuntes de Econometría (Econometria-SRC/makefile, objetivo «apuntes»)
 prep_ectr() {
-    local dir=$1 tipo=$2 F=$FUENTES/ectr
+    local dir=$1 tipo=$2 cont=${3:-apuntes} F=$FUENTES/ectr
     mkdir -p "$dir"
     for x in DatosDocumento.tex Documento.tex temas referencias figuras; do ln -sfn "$F/$x" "$dir/$x"; done
-    ln -sfn "$F/apuntes.tex" "$dir/contenido.tex"
+    ln -sfn "$F/$cont.tex" "$dir/contenido.tex"
     cat "$F/pre/$tipo.tex" "$F"/pre/{01preBeamer,01slides,01packages,01AMS,01colores}.tex \
         "$F/DatosDocumento.tex" "$F/Documento.tex" > "$dir/Ectr-$tipo.tex"
     ( cd "$dir"
@@ -193,6 +198,29 @@ final_nota() {
     local dir=$1 f=$2
     ( cd "$dir/$(dirname "$f")" && pdflatex -interaction batchmode "$(basename "$f").tex" ) \
         && cp "$dir/$f.pdf" "$dir/salida.pdf"
+}
+
+# Documentos sueltos (figuras standalone, prácticas...): f es la ruta del .tex
+# sin extensión, relativa a $FUENTES. Se compila con pdflatex dentro de una
+# réplica de su carpeta hecha con enlaces (y con los hermanos de la carpeta al
+# lado, para que funcionen las rutas ../algo).
+prep_suelto() {
+    local dir=$1 f=$2
+    local d; d=$(dirname "$FUENTES/$f"); local c; c=$(basename "$d"); local b; b=$(basename "$f")
+    mkdir -p "$dir/$c"
+    local x
+    for x in "$d"/../*; do [ "$(basename "$x")" = "$c" ] || ln -sfn "$(realpath -s "$x")" "$dir/$(basename "$x")"; done
+    for x in "$d"/*; do
+        case $(basename "$x") in "$b".pdf|"$b".aux|"$b".log|"$b".out|"$b".toc|"$b".nav|"$b".snm) ;;
+            *) ln -sfn "$x" "$dir/$c/$(basename "$x")" ;; esac
+    done
+    ( cd "$dir/$c" && for k in 1 2; do timeout 300 pdflatex -interaction batchmode "$b.tex" </dev/null; done )
+}
+final_suelto() {
+    local dir=$1 f=$2
+    local c; c=$(basename "$(dirname "$f")"); local b; b=$(basename "$f")
+    ( cd "$dir/$c" && rm -f "$b.pdf" && timeout 300 pdflatex -interaction batchmode "$b.tex" </dev/null )
+    [ -f "$dir/$c/$b.pdf" ] && cp "$dir/$c/$b.pdf" "$dir/salida.pdf"
 }
 
 # ---------------------------------------------------------------------------
@@ -276,6 +304,7 @@ case $orden in
     preparar)    mkdir -p "$TRABAJO"; ids "$@" | xargs -P "$JOBS" -I{} "$0" _preparar {} ;;
     dorado)      generar "$CONGELADO" dorado ;;
     candidato)   generar "${1:?falta el directorio del nacal.sty candidato}" candidato ;;
+    generar)     generar "${1:?falta el directorio del nacal.sty}" "${2:?falta el nombre de la salida}" ;;
     comparar)    A=${1:-dorado} B=${2:-candidato}; mkdir -p "$BANCO/informe"
                  ids | xargs -P "$JOBS" -I{} "$0" _comparar "$A" "$B" {} | sort | tee "$BANCO/informe/RESUMEN-$A-$B.txt" ;;
     _preparar|_generar|_comparar) "$orden" "$@" ;;
