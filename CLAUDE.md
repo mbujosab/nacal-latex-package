@@ -288,21 +288,29 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   No se pueden cargar junto a `\usepackage{nacal}` sin `soloAL` (dan error claro).
   `\usepackage{ectrnot-moodle}` carga `nacal-moodle[soloAL]` (que avisa de
   opción desconocida, inofensivo hasta la fase 4) y `ectrnot`.
-- **Fase 2 (en curso)**: `qbank-econometria` migrado el 10/11/2026 (commit
-  local sin subir: el `push` lo hace Marcos; hay un espejo en una organización
-  de GitHub solo para consulta). 39 XML y 114 PDF idénticos a la referencia.
-  `Econometria-SRC` migrado el 10/11/2026 (80 ficheros, commit `c5baf1a`;
-  67 documentos del banco idénticos). Para probar una migración: segunda raíz
+- **Fase 2 (hecha, 10/11/2026)**: `qbank-econometria` migrado a `ectrnot`
+  (commit local `d899745`; 39 XML y 114 PDF idénticos a la referencia; hay un
+  espejo en una organización de GitHub solo para consulta). `Econometria-SRC`
+  migrado (80 ficheros, commit `c5baf1a`; 67 documentos del banco idénticos).
+  El libro (commit `ff1d7a9`, 56 ficheros seguidos + 8 sin seguimiento) y
+  `MatematicasII-SRC` (commit `61a6ed9`, 6 seguidos + 35 sin seguimiento)
+  migrados a `alprobnot`; 144 documentos del banco idénticos. Copia previa de
+  los ficheros tocados (los no seguidos no tienen otra) en
+  `~/temporal/estrategia-fable/respaldo-fase2/`. Ningún commit subido a
+  GitHub: los `push` los hace Marcos. Para probar una migración: segunda raíz
   `BANCO=~/temporal/nacal-banco-migrado` con las fuentes parcheadas, `preparar`
-  y `_generar`, y comparar con `ref0`. El libro (commit `ff1d7a9`, 56 ficheros seguidos + 8 sin seguimiento)
-  y `MatematicasII-SRC` (commit `61a6ed9`, 6 seguidos + 35 sin seguimiento)
-  migrados a `alprobnot` el 10/11/2026; 144 documentos del banco idénticos.
-  Copia previa de todos los ficheros tocados (los no seguidos no tienen otra)
-  en `~/temporal/estrategia-fable/respaldo-fase2/`. Ningún commit subido a
-  GitHub. **Fase 2 terminada.** `qbank-PEconometria` no usa ningún macro de
-  `nacal` (ni de álgebra): no se migra, solo sirve de control para la v2.0.
-- **Fase 3 (pendiente)**: censo de lo que carga `nacal` sin `soloAL` y usa
-  probabilidad (carpeta compartida `libroProbabilidad`, copias abandonadas).
+  y `_generar`, y comparar con `ref0`. `qbank-PEconometria` no usa ningún
+  macro de probabilidad ni econometría: no se migra, sirve de control.
+- **Fase 3 (hecha, 10/11/2026)**: censo en
+  `~/temporal/estrategia-fable/censo.org` (datos en `censo/`, guion
+  `guiones/censo.py`). Dos proyectos activos fuera del plan fallarían con la
+  v2.0 y están **pendientes de decisión de Marcos**: `PEconometria` (14
+  figuras de `org-lessons/img/S05-Lecc04` y `S03-Lecc03`: `\media`, `\dt` y
+  un `\RenewDocumentCommand\sesp`) y `qbank` (ejemplos con `\ajusteMLG` y
+  `\res` vía `nacal-moodle`). Ambos son repositorios públicos y `ectrnot`
+  solo existe en esta máquina. Vídeos, exámenes AMC y Econometría Aplicada no
+  usan probabilidad. Lo demás son copias viejas (se resucitan con `[v1]`).
+  No instalar la v2.0 hasta resolver esos dos.
 - **Ojo**: `ref0` y las instantáneas del banco son anteriores a la migración;
   antes de probar la v2.0 hay que rehacer `instantanea`, `preparar` y la
   referencia con las fuentes ya migradas.
