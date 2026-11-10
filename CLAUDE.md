@@ -288,8 +288,11 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   No se pueden cargar junto a `\usepackage{nacal}` sin `soloAL` (dan error claro).
   `\usepackage{ectrnot-moodle}` carga `nacal-moodle[soloAL]` (que avisa de
   opción desconocida, inofensivo hasta la fase 4) y `ectrnot`.
-- **Fase 2 (pendiente)**: migrar, por este orden, `qbank-econometria` (tres
-  guiones), `Econometria-SRC`, el libro, `MatematicasII-SRC`. Cada uno con el
+- **Fase 2 (en curso)**: `qbank-econometria` migrado el 10/11/2026 (commit
+  local sin subir: el `push` lo hace Marcos; hay un espejo en una organización
+  de GitHub solo para consulta). 39 XML y 114 PDF idénticos a la referencia.
+  Quedan, por este orden, `Econometria-SRC`, el libro (avisar antes a Marcos:
+  lo edita en otra sesión) y `MatematicasII-SRC`. Cada uno con el
   visto bueno de Marcos. `qbank-PEconometria` no usa ningún macro de `nacal`
   (ni de álgebra): no se migra, solo sirve de control para la v2.0.
 - Los `pre/notacion.tex` de Matemáticas II y Econometría no los carga nadie.
