@@ -291,7 +291,10 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
 - **Fase 2 (en curso)**: `qbank-econometria` migrado el 10/11/2026 (commit
   local sin subir: el `push` lo hace Marcos; hay un espejo en una organización
   de GitHub solo para consulta). 39 XML y 114 PDF idénticos a la referencia.
-  Quedan, por este orden, `Econometria-SRC`, el libro (avisar antes a Marcos:
+  `Econometria-SRC` migrado el 10/11/2026 (80 ficheros, commit `c5baf1a`;
+  67 documentos del banco idénticos). Para probar una migración: segunda raíz
+  `BANCO=~/temporal/nacal-banco-migrado` con las fuentes parcheadas, `preparar`
+  y `_generar`, y comparar con `ref0`. Quedan, por este orden, el libro (avisar antes a Marcos:
   lo edita en otra sesión) y `MatematicasII-SRC`. Cada uno con el
   visto bueno de Marcos. `qbank-PEconometria` no usa ningún macro de `nacal`
   (ni de álgebra): no se migra, solo sirve de control para la v2.0.
