@@ -294,9 +294,17 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   `Econometria-SRC` migrado el 10/11/2026 (80 ficheros, commit `c5baf1a`;
   67 documentos del banco idénticos). Para probar una migración: segunda raíz
   `BANCO=~/temporal/nacal-banco-migrado` con las fuentes parcheadas, `preparar`
-  y `_generar`, y comparar con `ref0`. Quedan, por este orden, el libro (avisar antes a Marcos:
-  lo edita en otra sesión) y `MatematicasII-SRC`. Cada uno con el
-  visto bueno de Marcos. `qbank-PEconometria` no usa ningún macro de `nacal`
-  (ni de álgebra): no se migra, solo sirve de control para la v2.0.
+  y `_generar`, y comparar con `ref0`. El libro (commit `ff1d7a9`, 56 ficheros seguidos + 8 sin seguimiento)
+  y `MatematicasII-SRC` (commit `61a6ed9`, 6 seguidos + 35 sin seguimiento)
+  migrados a `alprobnot` el 10/11/2026; 144 documentos del banco idénticos.
+  Copia previa de todos los ficheros tocados (los no seguidos no tienen otra)
+  en `~/temporal/estrategia-fable/respaldo-fase2/`. Ningún commit subido a
+  GitHub. **Fase 2 terminada.** `qbank-PEconometria` no usa ningún macro de
+  `nacal` (ni de álgebra): no se migra, solo sirve de control para la v2.0.
+- **Fase 3 (pendiente)**: censo de lo que carga `nacal` sin `soloAL` y usa
+  probabilidad (carpeta compartida `libroProbabilidad`, copias abandonadas).
+- **Ojo**: `ref0` y las instantáneas del banco son anteriores a la migración;
+  antes de probar la v2.0 hay que rehacer `instantanea`, `preparar` y la
+  referencia con las fuentes ya migradas.
 - Los `pre/notacion.tex` de Matemáticas II y Econometría no los carga nadie.
 - `NAcAL-MoodleTex/nacal.sty` es un enlace a este repositorio, no una copia.
