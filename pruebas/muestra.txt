@@ -243,3 +243,22 @@ suelto  transp/figuras/tex/ProyeccionOrtogonal1
 suelto  transp/figuras/tex/SubespaciosYFuncionLineal
 suelto  transp/figuras/tex/Triangulo1
 suelto  transp/figuras/tex/Triangulo2
+
+# Figuras de PEconometria (lecciones 3 y 4)
+suelto pectr-img/S03-Lecc03/tex/CosenoCirculoRadioUnidad1
+suelto pectr-img/S03-Lecc03/tex/CosenoCirculoRadioUnidad2
+suelto pectr-img/S03-Lecc03/tex/CosenoCirculoRadioUnidad3
+suelto pectr-img/S03-Lecc03/tex/CosenoCirculoRadioUnidad4
+suelto pectr-img/S03-Lecc03/tex/CosenoCirculoRadioUnidad5
+suelto pectr-img/S03-Lecc03/tex/LongitudVectorR2
+suelto pectr-img/S03-Lecc03/tex/LongitudVectorR3
+suelto pectr-img/S03-Lecc03/tex/ProyeccionOrtogonal1
+suelto pectr-img/S03-Lecc03/tex/Triangulo1
+suelto pectr-img/S03-Lecc03/tex/Triangulo2
+suelto pectr-img/S05-Lecc04/tex/DesviacionTipica0
+suelto pectr-img/S05-Lecc04/tex/DesviacionTipica1
+suelto pectr-img/S05-Lecc04/tex/MediaAritmetica1
+suelto pectr-img/S05-Lecc04/tex/MediaAritmetica2
+suelto pectr-img/S05-Lecc04/tex/SumaCte
+suelto pectr-img/S05-Lecc04/tex/SumaMediaNula
+suelto pectr-img/S05-Lecc04/tex/mediaAritmetica

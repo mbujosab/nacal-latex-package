@@ -100,6 +100,9 @@ instantanea_prob() {
     rsync -a --delete --exclude .git --exclude '/*.pdf' "$DOCENCIA/Econometria-SRC/" "$FUENTES/ectr-todo/"
     rsync -a --delete --delete-excluded --exclude '*.pdf' --exclude '*.log' --exclude '*.zip' \
           "$CASOFINITO/" "$FUENTES/casofinito/"
+    # Figuras de PEconometria (lecciones 3 y 4): usaban \media, \dt y \sesp.
+    rsync -a --delete --include '*/' --include '*.tex' --include '*.csv' --exclude '*' \
+          "$DOCENCIA/PEconometria/org-lessons/img/" "$FUENTES/pectr-img/"
     echo "Econometría y $CASOFINITO copiados el $(date '+%F %T')" >> "$FUENTES/INSTANTANEA.txt"
 }
 
