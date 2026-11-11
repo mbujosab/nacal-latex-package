@@ -358,5 +358,11 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   de la carpeta compartida (`probnot/`) sigue en la v0.2 hasta que Marcos pida
   actualizarla. En la carpeta compartida hay un diccionario
   (`basura/diccionario.org`) útil para el inventario de conceptos.
+- **Inventario de probnot (11/11/2026)**: `~/temporal/probnot-inventario/`
+  (`inventario.org`/`.pdf`, guion `inventario.py`): 37 conceptos del
+  diccionario compuestos con el preámbulo real de libro, nota3, común,
+  dimensionFinita, slides y probnot v0.3, con las definiciones que difieren y
+  ocho cuestiones de notación abiertas. `preambulo-comun.org` (carpeta
+  compartida) sigue con `\SPI` con η por defecto: no tocado.
 - Los `pre/notacion.tex` de Matemáticas II y Econometría no los carga nadie.
 - `NAcAL-MoodleTex/nacal.sty` es un enlace a este repositorio, no una copia.
