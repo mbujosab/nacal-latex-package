@@ -330,7 +330,11 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   `CHANGELOG.md`; candidato y resultados en `~/temporal/nacal-v2/` y
   `~/temporal/nacal-banco/` (referencia `ref1`, 230 documentos, fuentes ya
   migradas). No se tocaron `PEctr-Test-2026-11-12` ni `-11-13`.
-  La rama `main` de `nacal` en GitHub (por defecto) sigue en enero de 2024.
+  La rama `main` de `nacal` en GitHub (por defecto) se puso al día el
+  11/11/2026 fusionando `master`, sin forzar; en versiones futuras, fusionar
+  `master` en `main` tras etiquetar. Nota para Andrés en
+  `~/temporal/estrategia-fable/para-andres.org`; Marcos avisa cuando Andrés
+  haya instalado la v2.0 y no esté editando, y entonces se pone `[v1]`.
   Pendiente: `[v1]` en los textos de la carpeta compartida con Andrés (42
   ficheros cargan `nacal` sin opciones) coordinado con él; `CursoAntiguo` de
   PEconometria; fase 5.
