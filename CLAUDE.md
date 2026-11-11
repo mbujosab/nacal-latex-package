@@ -319,6 +319,21 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   probabilidadCasoFinito es `~/repos/SynologyDrive/libroProbabilidad/basura`;
   `probnot` se desarrolla para los documentos de esa carpeta compartida.
   Copias previas en `~/temporal/estrategia-fable/respaldo-fase2/`.
+- **Fase 4 (hecha, 11/11/2026)**: `nacal` v2.0 y `nacal-moodle` v2.0, con
+  etiqueta `v2.0`, instalados y subidos (`master`; en `nacal-moodle` también
+  `main`). `\usepackage{nacal}` es solo álgebra; `[v1]` carga los dos `.sty`
+  de la v1.6, congelados en `v1/` (ficheros estáticos: ya no salen del dtx);
+  `soloAL` no tiene efecto. En `nacal-moodle`, `[v1]` carga el fichero
+  congelado `nacal-moodle-probabilidad.sty`. Instalación de `nacal`: copiar
+  `nacal.sty`, `.pdf`, `.dtx`, `.ins` y `v1/*.sty` a `~/texmf/tex/latex/nacal/`.
+  La v1.6 instalada está en `~/temporal/nacal-instalada-v1.6/`. Pruebas en
+  `CHANGELOG.md`; candidato y resultados en `~/temporal/nacal-v2/` y
+  `~/temporal/nacal-banco/` (referencia `ref1`, 230 documentos, fuentes ya
+  migradas). No se tocaron `PEctr-Test-2026-11-12` ni `-11-13`.
+  La rama `main` de `nacal` en GitHub (por defecto) sigue en enero de 2024.
+  Pendiente: `[v1]` en los textos de la carpeta compartida con Andrés (42
+  ficheros cargan `nacal` sin opciones) coordinado con él; `CursoAntiguo` de
+  PEconometria; fase 5.
 - **Ojo**: `ref0` y las instantáneas del banco son anteriores a la migración;
   antes de probar la v2.0 hay que rehacer `instantanea`, `preparar` y la
   referencia con las fuentes ya migradas.
