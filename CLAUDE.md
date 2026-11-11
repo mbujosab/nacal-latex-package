@@ -354,15 +354,17 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   (decisión de Marcos y Andrés) y vaciar `~/temporal` cuando Marcos haya
   probado su flujo real.
 - **probnot v0.3 (11/11/2026)**: `\SPI` sin opcional no lleva subíndice (D5
-  resuelta por Marcos). Corregido en `~/temporal/probnot-borrador/`; la copia
-  de la carpeta compartida (`probnot/`) sigue en la v0.2 hasta que Marcos pida
-  actualizarla. En la carpeta compartida hay un diccionario
+  resuelta por Marcos). Corregido en `~/temporal/probnot-borrador/`. En la carpeta compartida hay un diccionario
   (`basura/diccionario.org`) útil para el inventario de conceptos.
 - **Inventario de probnot (11/11/2026)**: `~/temporal/probnot-inventario/`
   (`inventario.org`/`.pdf`, guion `inventario.py`): 37 conceptos del
   diccionario compuestos con el preámbulo real de libro, nota3, común,
   dimensionFinita, slides y probnot v0.3, con las definiciones que difieren y
-  ocho cuestiones de notación abiertas. `preambulo-comun.org` (carpeta
-  compartida) sigue con `\SPI` con η por defecto: no tocado.
+  ocho cuestiones de notación abiertas. El 11/11, a petición de Marcos, se
+  llevó la decisión de `\SPI` a la carpeta compartida: `probnot/probnot.sty`
+  (v0.3) y `basura/preambulo-comun.org`, `base.tex` y `diccionario.tex`
+  (copia previa en `~/temporal/estrategia-fable/respaldo-fase4/spi/`). Sin
+  tocar: el informe de `probnot/` (aún dice D5 abierta), `nota3` (preámbulo
+  propio) y `basura/kalman/probnot.sty` (copia v0.2).
 - Los `pre/notacion.tex` de Matemáticas II y Econometría no los carga nadie.
 - `NAcAL-MoodleTex/nacal.sty` es un enlace a este repositorio, no una copia.
