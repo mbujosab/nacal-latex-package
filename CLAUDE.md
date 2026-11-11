@@ -335,6 +335,11 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   `master` en `main` tras etiquetar. Nota para Andrés en
   `~/temporal/estrategia-fable/para-andres.org`; Marcos avisa cuando Andrés
   haya instalado la v2.0 y no esté editando, y entonces se pone `[v1]`.
+  Hecho el 11/11/2026 a petición de Marcos: `\usepackage[v1]{nacal}` en 40
+  ficheros de la carpeta compartida (42 líneas; copia previa en
+  `~/temporal/estrategia-fable/respaldo-fase4/`); `libro` y `nota3` idénticos
+  a la referencia v1.6. Sin tocar: `probnot/`, los informes y
+  `basura/kalman/kalman4.org` (línea comentada).
   Pendiente: `[v1]` en los textos de la carpeta compartida con Andrés (42
   ficheros cargan `nacal` sin opciones) coordinado con él; `CursoAntiguo` de
   PEconometria; fase 5.
