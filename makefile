@@ -1,5 +1,5 @@
 ficheros:
-	rm -f nacal.sty nacal-probabilidad.sty nacal-econometria.sty
+	rm -f nacal.sty
 	latex nacal.ins
 	pdflatex -interaction nonstopmode nacal.dtx
 	makeindex -s gglo.ist -o nacal.gls nacal.glo

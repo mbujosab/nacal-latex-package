@@ -22,7 +22,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
 \ProvidesPackage{nacal}
-    [2026/11/09 v1.6 Notacion Asociativa para un Curso de Algebra Lineal]
+    [2026/11/10 v2.0 Notacion Asociativa para un Curso de Algebra Lineal]
 \RequirePackage{amsmath,amssymb}
 \RequirePackage{xcolor}
 \RequirePackage{xparse}
@@ -33,8 +33,9 @@
 \providecommand{\eng}[2]{#1}
 \DeclareOption{esp}{\renewcommand{\eng}[2]{#1}}
 \DeclareOption{eng}{\renewcommand{\eng}[2]{#2}}
-\newif\ifnacal@soloAL
-\DeclareOption{soloAL}{\nacal@soloALtrue}
+\newif\ifnacal@vuno
+\DeclareOption{soloAL}{}% sin efecto desde la v2.0
+\DeclareOption{v1}{\nacal@vunotrue}
 \DeclareOption*{\PackageWarning{nacal}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1485,10 +1486,13 @@
 \NewDocumentCommand\proy{sO{}m}{\ensuremath{\IfBooleanTF#1
                          {\Ridx{\sproy}{#2}\!\Parentesis*{#3}} {\Ridx{\sproy}{#2}\!\parentesis{#3}}
                             }\xspace}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Media y ajuste por mínimos cuadrados
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand\Media {m}{\ensuremath{ \widebar{#1} }\xspace}
 \NewDocumentCommand\Estmc {m}{\ensuremath{ \widehat{#1}      }\xspace}
 \NewDocumentCommand\VEstmc{O{}m}{\ensuremath{ \Estmc{\Vect[#1]{#2}} }\xspace}
-\ifnacal@soloAL\else
+\ifnacal@vuno
   \RequirePackage{nacal-probabilidad}
   \RequirePackage{nacal-econometria}
 \fi

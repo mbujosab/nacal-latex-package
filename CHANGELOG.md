@@ -3,6 +3,39 @@
 Cada versión tiene una etiqueta git con el mismo nombre (`v1.3.1`, `v1.4`…).
 En `~/texmf` solo se instalan versiones etiquetadas.
 
+## v2.0 (2026-11-11)
+
+`nacal` queda solo con álgebra lineal. Cambio incompatible para los
+documentos que usan la notación de probabilidad o de econometría.
+
+- `\usepackage{nacal}` ya no carga `nacal-probabilidad` ni
+  `nacal-econometria`. Equivale al `\usepackage[soloAL]{nacal}` de la v1.6:
+  los 501 macros tienen la misma definición (`\meaning` idéntico).
+- Opción nueva `v1`: `\usepackage[v1]{nacal}` carga además los dos paquetes
+  viejos y equivale al `\usepackage{nacal}` de la v1.6 (688 macros
+  idénticos). Sirve para compilar documentos antiguos sin tocarlos más.
+- `soloAL` se acepta y no tiene efecto.
+- `nacal-probabilidad.sty` y `nacal-econometria.sty` (v1.6) ya no se generan
+  de `nacal.dtx`: son ficheros congelados en `v1/`. Su fuente literario está
+  en git bajo la etiqueta `v1.6`. Hay que instalarlos junto a `nacal.sty`.
+- De `NAcAL-Tex.org` salen las secciones de probabilidad, econometría y
+  sucesiones (unas 3000 líneas). `\Media`, `\Estmc` y `\VEstmc`, que estaban
+  en esas secciones pero pertenecen a `nacal.sty`, pasan a una sección nueva,
+  «Media y ajuste».
+- Documentación: `nacal.pdf` pasa de 113 a 86 páginas. Se retira `\bigtimes`
+  de la documentación (es de `nacal-probabilidad`) y un ejemplo de `\proy`
+  que usaba `\indUno`.
+
+La notación de probabilidad y econometría vive ahora en paquetes de cada
+proyecto: `alprobnot` (libro de Álgebra Lineal y Matemáticas II) y `ectrnot`
+(Econometría; <https://github.com/mbujosab/ectrnot>).
+
+Pruebas (10 y 11/11/2026, antes de instalar): banco de 230 documentos, 228
+idénticos a la v1.6; los otros dos (`libro` y `nota3` del libro de
+probabilidad, que cargan `nacal` sin opciones) salen idénticos con `[v1]`.
+`qbank-econometria`: 39 XML y 114 PDF idénticos. `qbank-PEconometria`: 88 XML
+y 261 PDF idénticos.
+
 ## v1.6 (2026-11-09)
 
 Cambios visibles, aprobados por Marcos el 9/11/2026 (C3 y C4 de
