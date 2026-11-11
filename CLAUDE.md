@@ -343,8 +343,20 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   Pendiente: `[v1]` en los textos de la carpeta compartida con Andrés (42
   ficheros cargan `nacal` sin opciones) coordinado con él; `CursoAntiguo` de
   PEconometria; fase 5.
-- **Ojo**: `ref0` y las instantáneas del banco son anteriores a la migración;
-  antes de probar la v2.0 hay que rehacer `instantanea`, `preparar` y la
-  referencia con las fuentes ya migradas.
+- **Banco hoy**: la referencia vigente es `~/temporal/nacal-banco/ref1`
+  (v1.6, 230 documentos, fuentes ya migradas; idéntica a la v2.0 salvo los
+  dos documentos del libro de probabilidad, que desde el 11/11 llevan `[v1]`).
+  `ref0` es anterior a la migración. Tras cambiar fuentes: `instantanea`,
+  `preparar` y nueva referencia.
+- **Fase 5 (11/11/2026)**: notas de «documento histórico» en
+  `REPARTO-paquetes.org` y `AUDITORIA.md`; `Ejemplo` de `nacal-moodle`
+  regenerado. Pendiente: borrar `notacion/nacal.sty` de la carpeta compartida
+  (decisión de Marcos y Andrés) y vaciar `~/temporal` cuando Marcos haya
+  probado su flujo real.
+- **probnot v0.3 (11/11/2026)**: `\SPI` sin opcional no lleva subíndice (D5
+  resuelta por Marcos). Corregido en `~/temporal/probnot-borrador/`; la copia
+  de la carpeta compartida (`probnot/`) sigue en la v0.2 hasta que Marcos pida
+  actualizarla. En la carpeta compartida hay un diccionario
+  (`basura/diccionario.org`) útil para el inventario de conceptos.
 - Los `pre/notacion.tex` de Matemáticas II y Econometría no los carga nadie.
 - `NAcAL-MoodleTex/nacal.sty` es un enlace a este repositorio, no una copia.

@@ -8,6 +8,16 @@ que se mencionan como "medidas" se han probado en copias del `.sty` dentro del
 banco de pruebas (`~/temporal/nacal-banco/sty/candA` y `candB`), nunca en la
 copia instalada.
 
+## Estado a 11 de noviembre de 2026 (v2.0)
+
+Desde la v2.0 `nacal` contiene solo álgebra lineal. La sección 4 («La parte
+de probabilidad y econometría») y los problemas 7, 8 y 9 de `CLAUDE.md`
+(opcionales de `\sspi`/`\ESP`, `\PSpan` duplicado, `\Ind` e `\ind{}`) ya no
+son asunto de este paquete: esos macros están congelados en
+`v1/nacal-probabilidad.sty` y `v1/nacal-econometria.sty` (solo con
+`\usepackage[v1]{nacal}`) y cada proyecto los corrige, si quiere, en su
+propio paquete (`alprobnot`, `ectrnot`, `probnot`). Véase `CHANGELOG.md`.
+
 ## Estado a 5 de noviembre de 2026
 
 Marcos aprobó corregir la sección 1, corregir C1, arreglar `\Ind` en

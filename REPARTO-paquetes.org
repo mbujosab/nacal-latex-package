@@ -6,6 +6,14 @@
 #+latex_header: \usepackage[spanish]{babel}
 #+latex_header: \usepackage[margin=2.5cm]{geometry}
 
+* Nota del 11 de noviembre de 2026: documento histórico
+Esta propuesta describe el reparto de la v1.5 (tres paquetes generados de
+=nacal.dtx=). Desde la *v2.0*, =nacal= contiene solo álgebra lineal;
+=nacal-probabilidad.sty= y =nacal-econometria.sty= son ficheros congelados
+(v1.6) en =v1/=, que solo se cargan con =\usepackage[v1]{nacal}=, y la
+notación de probabilidad y econometría vive en paquetes de cada proyecto
+(=alprobnot=, =ectrnot=, =probnot=). Véase =CHANGELOG.md=.
+
 * Objetivo
 
 Que =nacal.sty= cubra solo la notación de álgebra lineal, que era el
