@@ -350,8 +350,7 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   `preparar` y nueva referencia.
 - **Fase 5 (11/11/2026)**: notas de «documento histórico» en
   `REPARTO-paquetes.org` y `AUDITORIA.md`; `Ejemplo` de `nacal-moodle`
-  regenerado. Pendiente: borrar `notacion/nacal.sty` de la carpeta compartida
-  (decisión de Marcos y Andrés) y vaciar `~/temporal` cuando Marcos haya
+  regenerado. Pendiente: vaciar `~/temporal` cuando Marcos haya
   probado su flujo real.
 - **probnot v0.3 (11/11/2026)**: `\SPI` sin opcional no lleva subíndice (D5
   resuelta por Marcos). Corregido en `~/temporal/probnot-borrador/`. En la carpeta compartida hay un diccionario
@@ -364,7 +363,9 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   llevó la decisión de `\SPI` a la carpeta compartida: `probnot/probnot.sty`
   (v0.3) y `basura/preambulo-comun.org`, `base.tex` y `diccionario.tex`
   (copia previa en `~/temporal/estrategia-fable/respaldo-fase4/spi/`). Sin
-  tocar: el informe de `probnot/` (aún dice D5 abierta), `nota3` (preámbulo
-  propio) y `basura/kalman/probnot.sty` (copia v0.2).
+  tocar: `nota3` (preámbulo propio) y `basura/kalman/probnot.sty` (la
+  actualiza Andrés). Después, también a petición de Marcos: informe de
+  `probnot/` al día y `notacion/nacal.sty` borrado (copia en
+  `respaldo-fase4/notacion/`; quedan `nacal.dtx`, `.ins`, `.pdf` y `celacanto.*`).
 - Los `pre/notacion.tex` de Matemáticas II y Econometría no los carga nadie.
 - `NAcAL-MoodleTex/nacal.sty` es un enlace a este repositorio, no una copia.
