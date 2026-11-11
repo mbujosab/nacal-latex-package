@@ -1,4 +1,4 @@
-** Paquete ~nacal~ para usar la notación del curso de Álgebra Lineal (y Econometría) en documentos escritos con de $\LaTeX{.}$
+** Paquete ~nacal~ para usar la notación del curso de Álgebra Lineal en documentos escritos con de $\LaTeX{.}$
 
 ~nacal~ es un paquete de $\LaTeX{}$ con las macros que diseñé al
 escribir el [[https://github.com/mbujosab/CursoDeAlgebraLineal/blob/master/libro.pdf][libro]] para el curso de Álgebra Lineal del [[https://www.ucm.es/estudios/grado-economia][Grado en
@@ -69,6 +69,23 @@ debe incluir ~\usepackage{nacal}~
 
 Para obtener el fichero ~nacal.sty~ debe ejecutar ~latex nacal.ins~ y
 para compilar la documentación ~pdflatex nacal.dtx~.
+
+**** Cambio en la versión 2.0: solo álgebra lineal
+
+Desde la versión 2.0 ~nacal~ contiene únicamente la notación de
+álgebra lineal. La notación de probabilidad y de econometría que
+incluían las versiones 1.x ya no se carga por defecto.
+
+Los documentos escritos para las versiones 1.x que usen esa notación
+siguen compilando igual si se carga el paquete con la opción ~v1~:
+
+: \usepackage[v1]{nacal}
+
+Para ello deben estar instalados también los ficheros
+~v1/nacal-probabilidad.sty~ y ~v1/nacal-econometria.sty~ de este
+repositorio (son la versión 1.6, congelada; no se van a modificar).
+La opción ~soloAL~ de las versiones 1.5 y 1.6 se sigue aceptando y no
+tiene efecto.
 
 
 **** Licencia del paquete nacal.sty

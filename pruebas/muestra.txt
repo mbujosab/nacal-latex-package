@@ -1,0 +1,264 @@
+# Muestra del banco de pruebas de regresión de nacal.
+#
+# Una línea por documento. Campos separados por espacios:
+#   libro   <fichero principal sin .tex>
+#   transp  <Pxx> <tipo>                     (tipo: print-prof, screen, handoutENG...)
+#   examen  <fichero sin .tex> <idioma> <sol> <ref>
+#           idioma: spanish | english;  sol: 0 sin soluciones, 1 soluciones,
+#           2 soluciones de profesor;  ref: 0 | 1 (como en Evaluacion/GNUmakefile)
+#   ectr    <tipo>                           apuntes de Econometría (print, print-prof, handout)
+#   nota    <fichero sin .tex>               libro de probabilidad compartido con Andrés
+#                                            (~/repos/SynologyDrive/libroProbabilidad; el .tex
+#                                            exportado de org; puede llevar subcarpeta)
+#
+# Las líneas que empiezan por # se ignoran.
+
+# --- Libro ---------------------------------------------------------------
+libro   libro-P
+libro   libro
+
+# --- Transparencias y ejercicios (MatematicasII-SRC/Version0) -------------
+transp  P00 print-prof
+transp  P01 print-prof
+transp  P02 print-prof
+transp  P03 print-prof
+transp  P04 print-prof
+transp  P05 print-prof
+transp  P06 print-prof
+transp  P07 print-prof
+transp  P01 screen
+transp  P04 screen
+transp  P02 handoutENG
+transp  P06 printENG
+
+# --- Exámenes: uno o dos por curso, de 2010 a 2024 -------------------------
+examen  2010-Quiz1-F        spanish 2 0
+# Final-2010-jun no compila ni en el original: falta preguntas/Finales/2010-jun.tex
+examen  Final-2011-jun      spanish 2 0
+examen  2012-Quiz2-E        spanish 2 0
+examen  Final-2013-may      spanish 2 0
+examen  2014-Quiz1-E        spanish 2 0
+examen  2016-Quiz2-H        spanish 2 0
+examen  Final-2016-jun      spanish 2 0
+examen  2018-Quiz1-E        spanish 2 0
+examen  Final-2019-jun      spanish 2 0
+examen  2020-Quiz1-B        spanish 2 0
+examen  2022-Quiz2-D        spanish 2 0
+examen  Final-2022-jul      spanish 2 0
+examen  2023-Quiz1-E        spanish 2 0
+examen  2024-Quiz2-C        spanish 2 0
+examen  Final-2024-may      spanish 2 0
+
+# --- Exámenes: 2025 y 2026 completos, en los dos idiomas -------------------
+examen  2025-Quiz1-C        spanish 2 0
+examen  2025-Quiz1-C        english 0 0
+examen  2025-Quiz1-E        spanish 2 0
+examen  2025-Quiz1-E        english 0 0
+examen  2025-Quiz1yMedio-A2-DG spanish 2 0
+examen  2025-Quiz1yMedio-C  spanish 2 0
+examen  2025-Quiz1yMedio-D2 spanish 2 0
+examen  2025-Quiz1yMedio-E  spanish 2 0
+examen  2025-Quiz2-C        spanish 2 0
+examen  2025-Quiz2-E        spanish 2 0
+examen  2025-Quiz2-E        english 0 0
+examen  Final-2025-may      spanish 2 0
+examen  Final-2025-jun      spanish 2 0
+examen  Final-2025-jun      english 0 0
+examen  2026-Quiz1-C        spanish 2 0
+examen  2026-Quiz1-C        english 0 0
+examen  2026-Quiz1-E        spanish 2 0
+examen  2026-Quiz1-E        spanish 1 1
+examen  2026-Quiz2-C        spanish 2 0
+examen  2026-Quiz2-E        spanish 2 0
+examen  2026-Quiz2-E        english 0 0
+examen  Final-2026-may      spanish 2 0
+examen  Final-2026-jun      spanish 2 0
+examen  Final-2026-jun      english 0 0
+examen  Final-2026-jun      spanish 1 1
+examen  Final-Review        spanish 2 0
+
+# --- Econometría y probabilidad (añadidos el 8/11/2026) --------------------
+ectr    print
+nota    basura/nota3
+nota    libro
+
+# Más variantes de los apuntes de Econometría (añadidas el 10/11/2026):
+#   ectr <tipo> [contenido]   contenido: apuntes (por defecto) | completo | Pxx
+ectr    print-prof
+ectr    handout
+ectr    screen completo
+
+# Documentos sueltos que cargan nacal (figuras standalone, prácticas, glosario).
+#   suelto <ruta del .tex sin extensión, relativa a la instantánea>
+# Lista generada el 10/11/2026; solo los que compilan con pdflatex.
+suelto  ectr-todo/Aclaraciones/figuras/contraste_t_cola_dcha
+suelto  ectr-todo/Aclaraciones/figuras/contraste_t_cola_dcha2
+suelto  ectr-todo/Aclaraciones/figuras/contraste_t_cola_izda
+suelto  ectr-todo/Aclaraciones/figuras/contraste_t_cola_izda2
+suelto  ectr-todo/Aclaraciones/figuras/contraste_t_dos_colas
+suelto  ectr-todo/Aclaraciones/SobreLaSolucionDeAlgunasPreguntas
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc01
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc02
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc03
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc05
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc06
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc07
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc08
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc09
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc10
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc11
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc12
+suelto  ectr-todo/Practicas/PracticasGretl/pub/Lecc13
+suelto  ectr-todo/Version0/figuras/pgf/1moneda
+suelto  ectr-todo/Version0/figuras/pgf/1monedaB
+suelto  ectr-todo/Version0/figuras/pgf/1monedaTrucada
+suelto  ectr-todo/Version0/figuras/pgf/2monedas
+suelto  ectr-todo/Version0/figuras/pgf/3espacios
+suelto  ectr-todo/Version0/figuras/pgf/descomposicionOrtVA
+suelto  ectr-todo/Version0/figuras/pgf/Dummies_test_cte_pendte
+suelto  ectr-todo/Version0/figuras/pgf/Dummies_test_ctes
+suelto  ectr-todo/Version0/figuras/pgf/Dummies_test_media
+suelto  ectr-todo/Version0/figuras/pgf/Dummies_test_pendte
+suelto  ectr-todo/Version0/figuras/pgf/GeometriaMomentosTeoricos
+suelto  ectr-todo/Version0/figuras/pgf/GeometriaMomentosTeoricos-A
+suelto  ectr-todo/Version0/figuras/pgf/GeometriaMomentosTeoricos-AVarCond
+suelto  ectr-todo/Version0/figuras/pgf/GeometriaMomentosTeoricos-B
+suelto  ectr-todo/Version0/figuras/pgf/GeometriaMomentosTeoricos-BVarCond
+suelto  ectr-todo/Version0/figuras/pgf/GeometriaMomentosTeoricos-F
+suelto  ectr-todo/Version0/figuras/pgf/MCRL-A
+suelto  ectr-todo/Version0/figuras/pgf/MCRL-B
+suelto  ectr-todo/Version0/figuras/pgf/ProyeccionIndicatrizA
+suelto  ectr-todo/Version0/figuras/pgf/RC-RB
+suelto  ectr-todo/Version1/figuras/pgf/1moneda
+suelto  ectr-todo/Version1/figuras/pgf/1monedaB
+suelto  ectr-todo/Version1/figuras/pgf/1monedaTrucada
+suelto  ectr-todo/Version1/figuras/pgf/2monedas
+suelto  ectr-todo/Version1/figuras/pgf/3espacios
+suelto  ectr-todo/Version1/figuras/pgf/contraste_F
+suelto  ectr-todo/Version1/figuras/pgf/contraste_t_cola_dcha
+suelto  ectr-todo/Version1/figuras/pgf/contraste_t_cola_izda
+suelto  ectr-todo/Version1/figuras/pgf/contraste_t_dos_colas
+suelto  ectr-todo/Version1/figuras/pgf/descomposicionOrtVA
+suelto  ectr-todo/Version1/figuras/pgf/Dummies_test_cte_pendte
+suelto  ectr-todo/Version1/figuras/pgf/Dummies_test_ctes
+suelto  ectr-todo/Version1/figuras/pgf/Dummies_test_media
+suelto  ectr-todo/Version1/figuras/pgf/Dummies_test_pendte
+suelto  ectr-todo/Version1/figuras/pgf/GeometriaMomentosTeoricos
+suelto  ectr-todo/Version1/figuras/pgf/GeometriaMomentosTeoricos-A
+suelto  ectr-todo/Version1/figuras/pgf/GeometriaMomentosTeoricos-AVarCond
+suelto  ectr-todo/Version1/figuras/pgf/GeometriaMomentosTeoricos-B
+suelto  ectr-todo/Version1/figuras/pgf/GeometriaMomentosTeoricos-BVarCond
+suelto  ectr-todo/Version1/figuras/pgf/GeometriaMomentosTeoricos-F
+suelto  ectr-todo/Version1/figuras/pgf/MCO2
+suelto  ectr-todo/Version1/figuras/pgf/MCRL-A
+suelto  ectr-todo/Version1/figuras/pgf/MCRL-B
+suelto  ectr-todo/Version1/figuras/pgf/ProyeccionIndicatrizA
+suelto  ectr-todo/Version1/figuras/pgf/RC-RB
+suelto  libro/figuras/Figuras
+suelto  libro/figuras/longVectR3
+suelto  libro/figuras/pgf/Correlacion
+suelto  libro/figuras/pgf/Correlacion2
+suelto  libro/figuras/pgf/DesviacionTipica
+suelto  libro/figuras/pgf/DesviacionTipica2
+suelto  libro/figuras/pgf/DesviacionTipica3
+suelto  libro/figuras/pgf/DesviacionTipica4
+suelto  libro/figuras/pgf/DesviacionTipica5
+suelto  libro/figuras/pgf/DesviacionTipicaYMedia
+suelto  libro/figuras/pgf/DesvTipica0
+suelto  libro/figuras/pgf/MCO
+suelto  libro/figuras/pgf/MCO0
+suelto  libro/figuras/pgf/MCO1
+suelto  libro/figuras/pgf/MediaAritmetica
+suelto  libro/figuras/pgf/MediaAritmetica2
+suelto  libro/figuras/pgf/MediaAritmetica3
+suelto  libro/figuras/pgf/MediaAritmeticaYdesvTipica
+suelto  libro/figuras/pgf/OLS-regresoresNoPerpA
+suelto  libro/figuras/pgf/OLS-regresoresNoPerpF
+suelto  libro/figuras/pgf/OLS-regresoresNoPerp-SC-cte-A
+suelto  libro/figuras/pgf/OLS-regresoresNoPerp-SC-cte-A2
+suelto  libro/figuras/pgf/OLS-regresoresNoPerp-SC-cte-B
+suelto  libro/figuras/pgf/OLS-regresoresNoPerp-SC-cte-B2
+suelto  libro/figuras/pgf/OLS-regresoresNoPerp-SC-cte-F
+suelto  libro/figuras/pgf/OLS-regresoresNoPerp-SC-cte-F2
+suelto  libro/figuras/tex/1moneda
+suelto  libro/figuras/tex/1monedaTrucada
+suelto  libro/figuras/tex/2EspaciosDependientes
+suelto  libro/figuras/tex/2EspaciosIndependientes
+suelto  libro/figuras/tex/2monedas
+suelto  libro/figuras/tex/ArcoCapaz
+suelto  libro/figuras/tex/Biyecciones1
+suelto  libro/figuras/tex/CosenoCirculoRadioUnidad
+suelto  libro/figuras/tex/CosenoCirculoRadioUnidad1
+suelto  libro/figuras/tex/CosenoCirculoRadioUnidad2
+suelto  libro/figuras/tex/CosenoCirculoRadioUnidad3
+suelto  libro/figuras/tex/CosenoCirculoRadioUnidad4
+suelto  libro/figuras/tex/CosenoCirculoRadioUnidad5
+suelto  libro/figuras/tex/EjemploEspyDtenR2
+suelto  libro/figuras/tex/ElGranEsquema1
+suelto  libro/figuras/tex/GeometriaCorrelacion
+suelto  libro/figuras/tex/GeometriaCorrelacionII
+suelto  libro/figuras/tex/GeometriaProbabilidad
+suelto  libro/figuras/tex/GeometriaProbabilidadCond
+suelto  libro/figuras/tex/GeometriaTmaBayes
+suelto  libro/figuras/tex/GeometriaVarianza
+suelto  libro/figuras/tex/LongitudVectorR2
+suelto  libro/figuras/tex/LongitudVectorR3
+suelto  libro/figuras/tex/moneda
+suelto  libro/figuras/tex/Parabola
+suelto  libro/figuras/tex/ParabolaRestringida
+suelto  libro/figuras/tex/ProyeccionOrtogonal1
+suelto  libro/figuras/tex/SubespaciosYFuncionLineal
+suelto  libro/figuras/tex/Triangulo1
+suelto  libro/figuras/tex/Triangulo2
+suelto  libro/glosario/glosarioAlgebraLineal
+suelto  transp/figuras/Figuras
+suelto  transp/figuras/tex/1moneda
+suelto  transp/figuras/tex/1monedaTrucada
+suelto  transp/figuras/tex/2EspaciosDependientes
+suelto  transp/figuras/tex/2EspaciosIndependientes
+suelto  transp/figuras/tex/2monedas
+suelto  transp/figuras/tex/ArcoCapaz
+suelto  transp/figuras/tex/Biyecciones1
+suelto  transp/figuras/tex/CosenoCirculoRadioUnidad1
+suelto  transp/figuras/tex/CosenoCirculoRadioUnidad2
+suelto  transp/figuras/tex/CosenoCirculoRadioUnidad3
+suelto  transp/figuras/tex/CosenoCirculoRadioUnidad4
+suelto  transp/figuras/tex/CosenoCirculoRadioUnidad5
+suelto  transp/figuras/tex/EjemploEspyDtenR2
+suelto  transp/figuras/tex/ElGranEsquema1
+suelto  transp/figuras/tex/ElGranEsquema2
+suelto  transp/figuras/tex/GeometriaCorrelacion
+suelto  transp/figuras/tex/GeometriaCorrelacionII
+suelto  transp/figuras/tex/GeometriaProbabilidad
+suelto  transp/figuras/tex/GeometriaProbabilidadCond
+suelto  transp/figuras/tex/GeometriaTmaBayes
+suelto  transp/figuras/tex/GeometriaVarianza
+suelto  transp/figuras/tex/LongitudVectorR2
+suelto  transp/figuras/tex/LongitudVectorR3
+suelto  transp/figuras/tex/moneda
+suelto  transp/figuras/tex/Parabola
+suelto  transp/figuras/tex/ParabolaRestringida
+suelto  transp/figuras/tex/Pitagoras
+suelto  transp/figuras/tex/ProyeccionOrtogonal1
+suelto  transp/figuras/tex/SubespaciosYFuncionLineal
+suelto  transp/figuras/tex/Triangulo1
+suelto  transp/figuras/tex/Triangulo2
+
+# Figuras de PEconometria (lecciones 3 y 4)
+suelto pectr-img/S03-Lecc03/tex/CosenoCirculoRadioUnidad1
+suelto pectr-img/S03-Lecc03/tex/CosenoCirculoRadioUnidad2
+suelto pectr-img/S03-Lecc03/tex/CosenoCirculoRadioUnidad3
+suelto pectr-img/S03-Lecc03/tex/CosenoCirculoRadioUnidad4
+suelto pectr-img/S03-Lecc03/tex/CosenoCirculoRadioUnidad5
+suelto pectr-img/S03-Lecc03/tex/LongitudVectorR2
+suelto pectr-img/S03-Lecc03/tex/LongitudVectorR3
+suelto pectr-img/S03-Lecc03/tex/ProyeccionOrtogonal1
+suelto pectr-img/S03-Lecc03/tex/Triangulo1
+suelto pectr-img/S03-Lecc03/tex/Triangulo2
+suelto pectr-img/S05-Lecc04/tex/DesviacionTipica0
+suelto pectr-img/S05-Lecc04/tex/DesviacionTipica1
+suelto pectr-img/S05-Lecc04/tex/MediaAritmetica1
+suelto pectr-img/S05-Lecc04/tex/MediaAritmetica2
+suelto pectr-img/S05-Lecc04/tex/SumaCte
+suelto pectr-img/S05-Lecc04/tex/SumaMediaNula
+suelto pectr-img/S05-Lecc04/tex/mediaAritmetica
