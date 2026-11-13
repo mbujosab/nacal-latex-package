@@ -369,3 +369,8 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   `respaldo-fase4/notacion/`; quedan `nacal.dtx`, `.ins`, `.pdf` y `celacanto.*`).
 - Los `pre/notacion.tex` de Matemáticas II y Econometría no los carga nadie.
 - `NAcAL-MoodleTex/nacal.sty` es un enlace a este repositorio, no una copia.
+- **probnot tiene repositorio propio (13/11/2026)**: `../probnot` (local, sin
+  remoto, etiqueta `v0.3`), con el `.sty`, el informe, el inventario, los
+  guiones y su `CLAUDE.md`. Las sesiones sobre `probnot` se abren allí; lo
+  de `~/temporal/probnot-borrador/` y `~/temporal/probnot-inventario/` queda
+  como copia antigua. Lo que este fichero dice de `probnot` es historia.
