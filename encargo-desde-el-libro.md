@@ -109,3 +109,6 @@ también sin confirmar.
 
 Detalle para el libro en
 `~/SynologyDrive/ReposGH/Docencia/CursoDeAlgebraLineal-SRC/respuesta-desde-nacaltex.md`.
+
+Actualización del mismo día: Marcos aprobó la v2.1; etiquetada, instalada en
+`~/texmf` y subida a GitHub.
