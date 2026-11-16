@@ -402,18 +402,17 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   de `~/temporal/probnot-borrador/` y `~/temporal/probnot-inventario/` queda
   como copia antigua. Lo que este fichero dice de `probnot` es historia.
 
-## v2.1: candidato sin instalar (16/11/2026)
+## v2.1 (instalada el 16/11/2026)
 
 Sale de `encargo-desde-el-libro.md` (tratado y respondido el 16/11; la
 respuesta al libro está en su raíz, `respuesta-desde-nacaltex.md`).
 Opción `avisacaja` (avisos en el `.log` cuando el argumento de `\Vect`,
 `\Mat`, etc. llega con la caja contraria a la que se imprime) y «Guía rápida»
 de sufijos en `nacal.pdf`. Sin cambio visible: banco idéntico a `ref1`
-(detalle en `CHANGELOG.md`). Confirmado en `master` **sin etiqueta, sin
-instalar y sin subir**: falta el visto bueno de Marcos; entonces etiquetar
-`v2.1`, instalar (copia previa de la v2.0), fusionar en `main` y subir.
-Candidato en `~/temporal/nacal-banco/sty/v21/`; para probarlo,
-`TEXINPUTS=~/temporal/nacal-banco/sty/v21:`.
+(detalle en `CHANGELOG.md`). Aprobada por Marcos el 16/11: etiqueta
+`v2.1`, instalada en `~/texmf/tex/latex/nacal/` (la v2.0 instalada está en
+`~/temporal/nacal-instalada-v2.0/`), `master` fusionada en `main` y subida.
+Los bancos de preguntas no se pasaron con la v2.1.
 La guía se genera con las filas escritas en el `.org`: si se añade una
 familia con sufijos, añadir su fila a mano.
 `\Matdim` en texto corrido (punto 3 del encargo): el «m×n» ensancha la caja y

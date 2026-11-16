@@ -3,7 +3,7 @@
 Cada versión tiene una etiqueta git con el mismo nombre (`v1.3.1`, `v1.4`…).
 En `~/texmf` solo se instalan versiones etiquetadas.
 
-## v2.1 (candidato del 2026-11-16; sin etiqueta y sin instalar)
+## v2.1 (2026-11-16)
 
 Sin cambio visible en ningún documento. Sale de un encargo de la sesión del
 libro (`encargo-desde-el-libro.md`).
@@ -27,9 +27,9 @@ libro (`encargo-desde-el-libro.md`).
 Pruebas (16/11/2026): banco de 230 documentos contra `ref1`, 228 idénticos;
 los otros dos (`libro` y `nota3` del libro de probabilidad) no compilan en
 la instantánea del banco porque es anterior a su `[v1]` (igual que con la
-v2.0); compilados aparte con `[v1]` salen idénticos a `ref1`. Candidato en
-`~/temporal/nacal-banco/sty/v21/`. Pendiente antes de etiquetar: visto bueno
-de Marcos, y los bancos de preguntas si se quiere (no usan la opción).
+v2.0); compilados aparte con `[v1]` salen idénticos a `ref1`. Los bancos de
+preguntas no se pasaron (no usan la opción). Aprobada por Marcos e instalada
+el 16/11/2026.
 
 ## v2.0 (2026-11-11)
 
