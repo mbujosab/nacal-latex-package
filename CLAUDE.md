@@ -6,6 +6,33 @@ Marcos sobre otro proyecto (probabilidad en el caso finito, carpeta
 una auditoría del paquete y que el tema se tratara en una conversación
 aparte, en esta carpeta. Léelo entero antes de tocar nada.
 
+## Encargos de otras sesiones (desde el 16/11/2026)
+
+Los encargos de otras sesiones (el libro, el material de clase, etc.) llegan
+a la raíz en ficheros `encargo-*.md` y `respuesta-*.md`. Un fichero de esos
+nuevo o con cambios sin confirmar en git es un encargo sin tratar.
+
+- Un hook (`.claude/settings.json`) lo comprueba cada vez que Marcos escribe
+  y avisa con una línea «ENCARGOS SIN TRATAR». Si el aviso no aparece al
+  empezar la sesión, haz la comprobación a mano:
+  `git status --short -- 'encargo-*.md' 'respuesta-*.md'`.
+- Si hay alguno, léelo, di en pantalla cuál es y de qué repositorio viene,
+  resume lo que pide en pocas líneas y pregunta a Marcos qué hacer. No
+  cambies nada hasta que responda. Si Marcos ha pedido otra cosa en ese
+  mensaje, atiéndela y da el aviso al final.
+- Cuando el encargo esté tratado, anota la respuesta al final del fichero y
+  confírmalo en git. Mientras no se confirme, el aviso seguirá saliendo.
+- Para pedir o responder algo a otro repositorio, escribe allí un fichero
+  con uno de esos nombres y no lo confirmes en git: lo confirma quien lo
+  recibe. Al libro: `encargo-desde-nacaltex.md` o
+  `respuesta-desde-nacaltex.md` en
+  `~/SynologyDrive/ReposGH/Docencia/CursoDeAlgebraLineal-SRC/`.
+- Las reglas de coordinación entre el libro, el módulo de Python, el
+  material de clase, los vídeos y los Notebooks están en
+  `coordinacion-entre-repositorios.md` de ese repositorio: el libro manda en
+  qué notación se usa y este paquete en cómo se compone. Las cautelas de
+  este fichero (banco de pruebas, versiones etiquetadas) siguen mandando aquí.
+
 ## Qué es nacal
 
 Paquete de LaTeX escrito por Marcos Bujosa (UCM) con la notación de su libro
