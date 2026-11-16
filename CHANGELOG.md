@@ -3,6 +3,34 @@
 Cada versión tiene una etiqueta git con el mismo nombre (`v1.3.1`, `v1.4`…).
 En `~/texmf` solo se instalan versiones etiquetadas.
 
+## v2.1 (candidato del 2026-11-16; sin etiqueta y sin instalar)
+
+Sin cambio visible en ningún documento. Sale de un encargo de la sesión del
+libro (`encargo-desde-el-libro.md`).
+
+- Opción nueva `avisacaja`: `\usepackage[avisacaja]{nacal}` escribe un aviso
+  en el `.log` cada vez que un argumento llega con la caja contraria a la que
+  se imprime (`\Vect{A}` imprime **a**; `\Mat{b}` imprime **B**). Sirve para
+  limpiar los fuentes. No cambia nada de lo que se compone: un documento de
+  prueba sale idéntico píxel a píxel con la opción y sin ella. Un aviso por
+  fichero, línea, comando y argumento. Solo mira letras sin acento.
+- Para ello `\vect`, `\Vect`, `\Mat`, `\SV`, `\eleVV` y `\eleMM` cambian la
+  caja con dos comandos internos, `\nacal@min` y `\nacal@may`, que sin la
+  opción equivalen a `\MakeLowercase` y `\MakeUppercase`. Los otros 496
+  macros tienen la misma definición que en la v2.0 (`\meaning` idéntico).
+- Documentación: «Guía rápida» de los sufijos `p`, `P`, `pE`, `PE` y la
+  estrella en la introducción de `nacal.pdf`, con una fila por cada una de
+  las 83 familias y el resultado de cada variante; nota del convenio de
+  mayúsculas y minúsculas junto a `\Vect` y `\Mat`. `nacal.pdf` pasa de 86 a
+  90 páginas.
+
+Pruebas (16/11/2026): banco de 230 documentos contra `ref1`, 228 idénticos;
+los otros dos (`libro` y `nota3` del libro de probabilidad) no compilan en
+la instantánea del banco porque es anterior a su `[v1]` (igual que con la
+v2.0); compilados aparte con `[v1]` salen idénticos a `ref1`. Candidato en
+`~/temporal/nacal-banco/sty/v21/`. Pendiente antes de etiquetar: visto bueno
+de Marcos, y los bancos de preguntas si se quiere (no usan la opción).
+
 ## v2.0 (2026-11-11)
 
 `nacal` queda solo con álgebra lineal. Cambio incompatible para los

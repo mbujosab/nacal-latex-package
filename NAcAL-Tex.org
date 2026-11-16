@@ -52,7 +52,7 @@ mbujosab@ucm.es
 - =<<fecha y versión>>=
 #+NAME: fecha y versión
 #+BEGIN_SRC tex :results silent
-2026/11/10 v2.0
+2026/11/16 v2.1
 #+END_SRC
 
 - =<<breve descripción>>=
@@ -165,6 +165,7 @@ El fichero principal es el fichero ~.dtx~:
 % \changes{v1.5}{2026/11/08}{Probabilidad y Econometría en paquetes aparte (nacal-probabilidad, nacal-econometria); opción soloAL}
 % \changes{v1.6}{2026/11/09}{\cs{widebar} deja de ser un operador; «esp» se escribe como operador (\cs{operatorname})}
 % \changes{v2.0}{2026/11/10}{Solo álgebra lineal: la probabilidad y la econometría salen del paquete (opción v1 para los documentos antiguos)}
+% \changes{v2.1}{2026/11/16}{Opción avisacaja; guía rápida de sufijos en la documentación}
 %
 % \GetFileInfo{<<package>>.sty}
 %
@@ -231,12 +232,15 @@ LaTeX version 2005/12/01 or later.
 %<package>\newif\ifnacal@vuno
 %<package>\DeclareOption{soloAL}{}% sin efecto desde la v2.0
 %<package>\DeclareOption{v1}{\nacal@vunotrue}
+%<package>\newif\ifnacal@avisacaja
+%<package>\DeclareOption{avisacaja}{\nacal@avisacajatrue}
 %<package>\DeclareOption*{\PackageWarning{<<package>>}{Unknown ‘\CurrentOption’}}
 %<package>\ProcessOptions\relax%
 %<*driver>
 \documentclass{ltxdoc}
 \usepackage[dvipsnames,svgnames]{xcolor}
 \usepackage{<<package>>}
+\usepackage{longtable}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
@@ -338,7 +342,150 @@ Opciones:
   paquetes ya no se modifican; su documentación es la de la versión 1.6.
 \item \texttt{soloAL}: se conserva sin efecto, para que los documentos
   que ya cargaban \verb|\usepackage[soloAL]{nacal}| sigan compilando.
+\item \texttt{avisacaja}: no cambia nada de lo que se imprime; solo
+  escribe avisos en el \texttt{.log}. Los comandos de vectores
+  (\cs{vect}, \cs{Vect}, \cs{eleVV}, \cs{eleMM} y todos los que se
+  construyen con ellos) imprimen su argumento en minúsculas, y los de
+  matrices y sistemas (\cs{Mat}, \cs{SV} y los que se construyen con
+  ellos, como \cs{VectC} o \cs{MV}) en mayúsculas, se escriba como se
+  escriba en el fuente: \verb|\Vect{A}| imprime $\Vect{A}$ y
+  \verb|\Mat{b}| imprime $\Mat{b}$. Quien lee el fuente puede tomarlo
+  por una errata. Con \verb|\usepackage[avisacaja]{nacal}| cada
+  argumento escrito con la caja contraria a la que se imprime produce
+  un aviso como
+  \begin{quote}\footnotesize
+    \verb|Package nacal Warning: \Vect: el argumento 'A' lleva mayúsculas|\\
+    \verb|(nacal)                pero se imprime en minúsculas on input line 12.|
+  \end{quote}
+  de modo que se pueden localizar (buscando \texttt{nacal Warning} en
+  el \texttt{.log}) y corregir en el fuente. Solo se miran las letras
+  sin acento del argumento.
 \end{itemize}
+
+\subsection*{Guía rápida: sufijos \texttt{p}, \texttt{P}, \texttt{pE}, \texttt{PE} y la estrella}
+
+Muchos comandos tienen variantes que añaden paréntesis. El sufijo dice
+\emph{dónde} va el paréntesis y su tamaño; la estrella (que se escribe
+justo detrás del nombre, antes de los argumentos) solo cambia el
+tamaño. Los argumentos son los mismos que los del comando sin sufijo.
+
+\begin{center}
+\begin{tabular}{llll}
+  sufijo & el paréntesis rodea & sin estrella & con estrella \\ \hline
+  \texttt{p}  & el objeto sobre el que se opera & mediano (\cs{big}) & pequeño (normal) \\
+  \texttt{P}  & el objeto sobre el que se opera & grande (\cs{Big})  & ajustado (\cs{left}, \cs{right}) \\
+  \texttt{pE} & la expresión entera             & mediano (\cs{big}) & pequeño (normal) \\
+  \texttt{PE} & la expresión entera             & grande (\cs{Big})  & ajustado (\cs{left}, \cs{right}) \\
+\end{tabular}
+\end{center}
+
+Por ejemplo, con \cs{elemR} (selección por la derecha):
+\begin{center}
+  \begin{tabular}{lc@{\qquad\qquad}lc}
+    \verb|\elemRp{\Mat{A}}{i}|  & $\elemRp{\Mat{A}}{i}$ &
+    \verb|\elemRPE{\Mat{A}}{i}|  & $\elemRPE{\Mat{A}}{i}$ \\[6pt]
+    \verb|\elemRp*{\Mat{A}}{i}| & $\elemRp*{\Mat{A}}{i}$ &
+    \verb|\elemRPE*{\Mat{A}}{i}| & $\elemRPE*{\Mat{A}}{i}$
+  \end{tabular}
+\end{center}
+
+La tabla siguiente tiene una fila por cada familia de comandos, con el
+resultado de cada variante \emph{sin estrella}. Una casilla vacía
+quiere decir que esa variante no existe. En unas pocas familias el
+sufijo no sigue la regla al pie de la letra (por ejemplo, en los
+productos con una transpuesta, como \cs{MTVp}, el paréntesis rodea solo
+al factor transpuesto, y en \cs{MatTpE} e \cs{InvMatpE} la estrella no
+cambia nada): la tabla muestra lo que realmente se imprime.
+
+{\small\renewcommand{\arraystretch}{1.6}\setlength{\tabcolsep}{2pt}
+\begin{longtable}{@{}lccccc@{}}
+  familia & sin sufijo & \texttt{p} & \texttt{P} & \texttt{pE} & \texttt{PE} \\ \hline
+  \endhead
+\cs{LRidxE} & $\LRidxE{\Mat{A}}{1}{7}{'}$ & $\LRidxEp{\Mat{A}}{1}{7}{'}$ & $\LRidxEP{\Mat{A}}{1}{7}{'}$ & $\LRidxEpE{\Mat{A}}{1}{7}{'}$ & $\LRidxEPE{\Mat{A}}{1}{7}{'}$ \\
+\cs{LidxE} & $\LidxE{\Mat{A}}{1}{'}$ & $\LidxEp{\Mat{A}}{1}{'}$ & $\LidxEP{\Mat{A}}{1}{'}$ & $\LidxEpE{\Mat{A}}{1}{'}$ & $\LidxEPE{\Mat{A}}{1}{'}$ \\
+\cs{RidxE} & $\RidxE{\Mat{A}}{7}{'}$ & $\RidxEp{\Mat{A}}{7}{'}$ & $\RidxEP{\Mat{A}}{7}{'}$ & $\RidxEpE{\Mat{A}}{7}{'}$ & $\RidxEPE{\Mat{A}}{7}{'}$ \\
+\cs{LRidx} & $\LRidx{\Mat{A}}{1}{7}$ & $\LRidxp{\Mat{A}}{1}{7}$ & $\LRidxP{\Mat{A}}{1}{7}$ & $\LRidxpE{\Mat{A}}{1}{7}$ & $\LRidxPE{\Mat{A}}{1}{7}$ \\
+\cs{Lidx} & $\Lidx{\Mat{A}}{1}$ & $\Lidxp{\Mat{A}}{1}$ & $\LidxP{\Mat{A}}{1}$ & $\LidxpE{\Mat{A}}{1}$ & $\LidxPE{\Mat{A}}{1}$ \\
+\cs{Ridx} & $\Ridx{\Mat{A}}{7}$ & $\Ridxp{\Mat{A}}{7}$ & $\RidxP{\Mat{A}}{7}$ & $\RidxpE{\Mat{A}}{7}$ & $\RidxPE{\Mat{A}}{7}$ \\
+\cs{Trans} & $\Trans{\Mat{A}}$ & $\Transp{\Mat{A}}$ & $\TransP{\Mat{A}}$ & $\TranspE{\Mat{A}}$ & $\TransPE{\Mat{A}}$ \\
+\cs{Inv} & $\Inv{\Mat{A}}$ & $\Invp{\Mat{A}}$ & $\InvP{\Mat{A}}$ & $\InvpE{\Mat{A}}$ & $\InvPE{\Mat{A}}$ \\
+\cs{elemL} & $\elemL{\Mat{A}}{i}$ & $\elemLp{\Mat{A}}{i}$ & $\elemLP{\Mat{A}}{i}$ & $\elemLpE{\Mat{A}}{i}$ & $\elemLPE{\Mat{A}}{i}$ \\
+\cs{elemR} & $\elemR{\Mat{A}}{i}$ & $\elemRp{\Mat{A}}{i}$ & $\elemRP{\Mat{A}}{i}$ & $\elemRpE{\Mat{A}}{i}$ & $\elemRPE{\Mat{A}}{i}$ \\
+\cs{elemLR} & $\elemLR{\Mat{A}}{i}{j}$ & $\elemLRp{\Mat{A}}{i}{j}$ & $\elemLRP{\Mat{A}}{i}{j}$ & $\elemLRpE{\Mat{A}}{i}{j}$ & $\elemLRPE{\Mat{A}}{i}{j}$ \\
+\cs{eleVL} & $\eleVL{a}{i}$ & $\eleVLp{a}{i}$ & $\eleVLP{a}{i}$ & $\eleVLpE{a}{i}$ & $\eleVLPE{a}{i}$ \\
+\cs{eleVR} & $\eleVR{a}{i}$ & $\eleVRp{a}{i}$ & $\eleVRP{a}{i}$ & $\eleVRpE{a}{i}$ & $\eleVRPE{a}{i}$ \\
+\cs{VectF} & $\VectF{A}{i}$ & $\VectFp{A}{i}$ & $\VectFP{A}{i}$ & $\VectFpE{A}{i}$ & $\VectFPE{A}{i}$ \\
+\cs{VectTF} & $\VectTF{A}{i}$ & $\VectTFp{A}{i}$ & $\VectTFP{A}{i}$ & $\VectTFpE{A}{i}$ & $\VectTFPE{A}{i}$ \\
+\cs{VectC} & $\VectC{A}{i}$ & $\VectCp{A}{i}$ & $\VectCP{A}{i}$ & $\VectCpE{A}{i}$ & $\VectCPE{A}{i}$ \\
+\cs{VectTC} & $\VectTC{A}{i}$ & $\VectTCp{A}{i}$ & $\VectTCP{A}{i}$ & $\VectTCpE{A}{i}$ & $\VectTCPE{A}{i}$ \\
+\cs{eleM} & $\eleM{A}{i}{j}$ & $\eleMp{A}{i}{j}$ & $\eleMP{A}{i}{j}$ & $\eleMpE{A}{i}{j}$ & $\eleMPE{A}{i}{j}$ \\
+\cs{eleMT} & $\eleMT{A}{i}{j}$ & $\eleMTp{A}{i}{j}$ & $\eleMTP{A}{i}{j}$ & $\eleMTpE{A}{i}{j}$ & $\eleMTPE{A}{i}{j}$ \\
+\cs{TESF} & $\TESF{a}{i}{j}{\Mat{A}}$ & $\TESFp{a}{i}{j}{\Mat{A}}$ & $\TESFP{a}{i}{j}{\Mat{A}}$ & $\TESFpE{a}{i}{j}{\Mat{A}}$ & $\TESFPE{a}{i}{j}{\Mat{A}}$ \\
+\cs{TESC} & $\TESC{a}{i}{j}{\Mat{A}}$ & $\TESCp{a}{i}{j}{\Mat{A}}$ & $\TESCP{a}{i}{j}{\Mat{A}}$ & $\TESCpE{a}{i}{j}{\Mat{A}}$ & $\TESCPE{a}{i}{j}{\Mat{A}}$ \\
+\cs{TEPF} & $\TEPF{a}{i}{\Mat{A}}$ & $\TEPFp{a}{i}{\Mat{A}}$ & $\TEPFP{a}{i}{\Mat{A}}$ & $\TEPFpE{a}{i}{\Mat{A}}$ & $\TEPFPE{a}{i}{\Mat{A}}$ \\
+\cs{TEPC} & $\TEPC{a}{j}{\Mat{A}}$ & $\TEPCp{a}{j}{\Mat{A}}$ & $\TEPCP{a}{j}{\Mat{A}}$ & $\TEPCpE{a}{j}{\Mat{A}}$ & $\TEPCPE{a}{j}{\Mat{A}}$ \\
+\cs{TEIF} & $\TEIF{k}{j}{\Mat{A}}$ & $\TEIFp{k}{j}{\Mat{A}}$ & $\TEIFP{k}{j}{\Mat{A}}$ & $\TEIFpE{k}{j}{\Mat{A}}$ & $\TEIFPE{k}{j}{\Mat{A}}$ \\
+\cs{TEIC} & $\TEIC{k}{j}{\Mat{A}}$ & $\TEICp{k}{j}{\Mat{A}}$ & $\TEICP{k}{j}{\Mat{A}}$ & $\TEICpE{k}{j}{\Mat{A}}$ & $\TEICPE{k}{j}{\Mat{A}}$ \\
+\cs{SITEF} & $\SITEF{j}{k}{\Mat{A}}$ & $\SITEFp{j}{k}{\Mat{A}}$ & $\SITEFP{j}{k}{\Mat{A}}$ & $\SITEFpE{j}{k}{\Mat{A}}$ & $\SITEFPE{j}{k}{\Mat{A}}$ \\
+\cs{SITEC} & $\SITEC{j}{k}{\Mat{A}}$ & $\SITECp{j}{k}{\Mat{A}}$ & $\SITECP{j}{k}{\Mat{A}}$ & $\SITECpE{j}{k}{\Mat{A}}$ & $\SITECPE{j}{k}{\Mat{A}}$ \\
+\cs{SITEFC} & $\SITEFC{j}{k}{\Mat{A}}$ & $\SITEFCp{j}{k}{\Mat{A}}$ & $\SITEFCP{j}{k}{\Mat{A}}$ & $\SITEFCpE{j}{k}{\Mat{A}}$ & $\SITEFCPE{j}{k}{\Mat{A}}$ \\
+\cs{SITEFCR} & $\SITEFCR{j}{k}{\Mat{A}}$ & $\SITEFCRp{j}{k}{\Mat{A}}$ & $\SITEFCRP{j}{k}{\Mat{A}}$ & $\SITEFCRpE{j}{k}{\Mat{A}}$ & $\SITEFCRPE{j}{k}{\Mat{A}}$ \\
+\cs{TrF} & $\TrF{\Mat{A}}$ & $\TrFp{\Mat{A}}$ & $\TrFP{\Mat{A}}$ & $\TrFpE{\Mat{A}}$ & $\TrFPE{\Mat{A}}$ \\
+\cs{TrC} & $\TrC{\Mat{A}}$ & $\TrCp{\Mat{A}}$ & $\TrCP{\Mat{A}}$ & $\TrCpE{\Mat{A}}$ & $\TrCPE{\Mat{A}}$ \\
+\cs{TrFC} & $\TrFC{\Mat{A}}$ & $\TrFCp{\Mat{A}}$ & $\TrFCP{\Mat{A}}$ & $\TrFCpE{\Mat{A}}$ & $\TrFCPE{\Mat{A}}$ \\
+\cs{TEF} & $\TEF{\Mat{A}}$ & $\TEFp{\Mat{A}}$ & $\TEFP{\Mat{A}}$ & $\TEFpE{\Mat{A}}$ & $\TEFPE{\Mat{A}}$ \\
+\cs{TEC} & $\TEC{\Mat{A}}$ & $\TECp{\Mat{A}}$ & $\TECP{\Mat{A}}$ & $\TECpE{\Mat{A}}$ & $\TECPE{\Mat{A}}$ \\
+\cs{ETEF} & $\ETEF{\Mat{A}}$ & $\ETEFp{\Mat{A}}$ & $\ETEFP{\Mat{A}}$ & $\ETEFpE{\Mat{A}}$ & $\ETEFPE{\Mat{A}}$ \\
+\cs{ETEC} & $\ETEC{\Mat{A}}$ & $\ETECp{\Mat{A}}$ & $\ETECP{\Mat{A}}$ & $\ETECpE{\Mat{A}}$ & $\ETECPE{\Mat{A}}$ \\
+\cs{InvTEF} & $\InvTEF{\Mat{A}}$ & $\InvTEFp{\Mat{A}}$ & $\InvTEFP{\Mat{A}}$ & $\InvTEFpE{\Mat{A}}$ & $\InvTEFPE{\Mat{A}}$ \\
+\cs{InvTEC} & $\InvTEC{\Mat{A}}$ & $\InvTECp{\Mat{A}}$ & $\InvTECP{\Mat{A}}$ & $\InvTECpE{\Mat{A}}$ & $\InvTECPE{\Mat{A}}$ \\
+\cs{EInvTEF} & $\EInvTEF{\Mat{A}}$ & $\EInvTEFp{\Mat{A}}$ & $\EInvTEFP{\Mat{A}}$ & $\EInvTEFpE{\Mat{A}}$ & $\EInvTEFPE{\Mat{A}}$ \\
+\cs{EInvTEC} & $\EInvTEC{\Mat{A}}$ & $\EInvTECp{\Mat{A}}$ & $\EInvTECP{\Mat{A}}$ & $\EInvTECpE{\Mat{A}}$ & $\EInvTECPE{\Mat{A}}$ \\
+\cs{dTEEF} & $\dTEEF{\tau_1}{\tau_k}{\Mat{A}}$ & $\dTEEFp{\tau_1}{\tau_k}{\Mat{A}}$ & $\dTEEFP{\tau_1}{\tau_k}{\Mat{A}}$ & $\dTEEFpE{\tau_1}{\tau_k}{\Mat{A}}$ & $\dTEEFPE{\tau_1}{\tau_k}{\Mat{A}}$ \\
+\cs{dTEF} & $\dTEF{k}{\Mat{A}}$ & $\dTEFp{k}{\Mat{A}}$ & $\dTEFP{k}{\Mat{A}}$ & $\dTEFpE{k}{\Mat{A}}$ & $\dTEFPE{k}{\Mat{A}}$ \\
+\cs{dETEF} & $\dETEF{k}{\Mat{A}}$ & $\dETEFp{k}{\Mat{A}}$ & $\dETEFP{k}{\Mat{A}}$ & $\dETEFpE{k}{\Mat{A}}$ & $\dETEFPE{k}{\Mat{A}}$ \\
+\cs{dInvTEF} & $\dInvTEF{k}{\Mat{A}}$ & $\dInvTEFp{k}{\Mat{A}}$ & $\dInvTEFP{k}{\Mat{A}}$ & $\dInvTEFpE{k}{\Mat{A}}$ & $\dInvTEFPE{k}{\Mat{A}}$ \\
+\cs{dEInvTEF} & $\dEInvTEF{k}{\Mat{A}}$ & $\dEInvTEFp{k}{\Mat{A}}$ & $\dEInvTEFP{k}{\Mat{A}}$ & $\dEInvTEFpE{k}{\Mat{A}}$ & $\dEInvTEFPE{k}{\Mat{A}}$ \\
+\cs{dTEEC} & $\dTEEC{\tau_1}{\tau_k}{\Mat{A}}$ & $\dTEECp{\tau_1}{\tau_k}{\Mat{A}}$ & $\dTEECP{\tau_1}{\tau_k}{\Mat{A}}$ & $\dTEECpE{\tau_1}{\tau_k}{\Mat{A}}$ & $\dTEECPE{\tau_1}{\tau_k}{\Mat{A}}$ \\
+\cs{dTEC} & $\dTEC{k}{\Mat{A}}$ & $\dTECp{k}{\Mat{A}}$ & $\dTECP{k}{\Mat{A}}$ & $\dTECpE{k}{\Mat{A}}$ & $\dTECPE{k}{\Mat{A}}$ \\
+\cs{dETEC} & $\dETEC{k}{\Mat{A}}$ & $\dETECp{k}{\Mat{A}}$ & $\dETECP{k}{\Mat{A}}$ & $\dETECpE{k}{\Mat{A}}$ & $\dETECPE{k}{\Mat{A}}$ \\
+\cs{dInvTEC} & $\dInvTEC{k}{\Mat{A}}$ & $\dInvTECp{k}{\Mat{A}}$ & $\dInvTECP{k}{\Mat{A}}$ & $\dInvTECpE{k}{\Mat{A}}$ & $\dInvTECPE{k}{\Mat{A}}$ \\
+\cs{dEInvTEC} & $\dEInvTEC{k}{\Mat{A}}$ & $\dEInvTECp{k}{\Mat{A}}$ & $\dEInvTECP{k}{\Mat{A}}$ & $\dEInvTECpE{k}{\Mat{A}}$ & $\dEInvTECPE{k}{\Mat{A}}$ \\
+\cs{dTrF} & $\dTrF{\tau_1\cdots\tau_k}{\Mat{A}}$ & $\dTrFp{\tau_1\cdots\tau_k}{\Mat{A}}$ & $\dTrFP{\tau_1\cdots\tau_k}{\Mat{A}}$ & $\dTrFpE{\tau_1\cdots\tau_k}{\Mat{A}}$ & $\dTrFPE{\tau_1\cdots\tau_k}{\Mat{A}}$ \\
+\cs{dTrC} & $\dTrC{\tau_1\cdots\tau_k}{\Mat{A}}$ & $\dTrCp{\tau_1\cdots\tau_k}{\Mat{A}}$ & $\dTrCP{\tau_1\cdots\tau_k}{\Mat{A}}$ & $\dTrCpE{\tau_1\cdots\tau_k}{\Mat{A}}$ & $\dTrCPE{\tau_1\cdots\tau_k}{\Mat{A}}$ \\
+\cs{dTrFC} & $\dTrFC{\tau_1}{\tau_2}{\Mat{A}}$ & $\dTrFCp{\tau_1}{\tau_2}{\Mat{A}}$ & $\dTrFCP{\tau_1}{\tau_2}{\Mat{A}}$ & $\dTrFCpE{\tau_1}{\tau_2}{\Mat{A}}$ & $\dTrFCPE{\tau_1}{\tau_2}{\Mat{A}}$ \\
+\cs{vect} & $\vect{a}$ & $\vectp{a}$ & $\vectP{a}$ &  &  \\
+\cs{Vect} & $\Vect{a}$ & $\Vectp{a}$ & $\VectP{a}$ &  &  \\
+\cs{Mat} & $\Mat{A}$ & $\Matp{A}$ & $\MatP{A}$ &  &  \\
+\cs{MatT} & $\MatT{A}$ & $\MatTp{A}$ & $\MatTP{A}$ & $\MatTpE{A}$ & $\MatTPE{A}$ \\
+\cs{MatTT} & $\MatTT{A}$ &  &  &  & $\MatTTPE{A}$ \\
+\cs{Dim} & $\Dim{\Mat{A}}{m}{n}$ & $\Dimp{\Mat{A}}{m}{n}$ & $\DimP{\Mat{A}}{m}{n}$ & $\DimpE{\Mat{A}}{m}{n}$ & $\DimPE{\Mat{A}}{m}{n}$ \\
+\cs{Matdim} & $\Matdim{A}{m}{n}$ & $\Matdimp{A}{m}{n}$ & $\MatdimP{A}{m}{n}$ & $\MatdimpE{A}{m}{n}$ & $\MatdimPE{A}{m}{n}$ \\
+\cs{MatTdim} & $\MatTdim{A}{m}{n}$ & $\MatTdimp{A}{m}{n}$ & $\MatTdimP{A}{m}{n}$ & $\MatTdimpE{A}{m}{n}$ & $\MatTdimPE{A}{m}{n}$ \\
+\cs{dotProd} & $\dotProd{\Vect{a}}{\Vect{b}}$ & $\dotProdp{\Vect{a}}{\Vect{b}}$ & $\dotProdP{\Vect{a}}{\Vect{b}}$ &  &  \\
+\cs{dotprod} & $\dotprod{a}{b}$ & $\dotprodp{a}{b}$ & $\dotprodP{a}{b}$ &  &  \\
+\cs{prodH} & $\prodH{\Vect{a}}{\Vect{b}}$ & $\prodHp{\Vect{a}}{\Vect{b}}$ & $\prodHP{\Vect{a}}{\Vect{b}}$ &  &  \\
+\cs{prodh} & $\prodh{a}{b}$ & $\prodhp{a}{b}$ & $\prodhP{a}{b}$ &  &  \\
+\cs{MV} & $\MV{A}{b}$ &  &  & $\MVpE{A}{b}$ & $\MVPE{A}{b}$ \\
+\cs{VM} & $\VM{a}{B}$ &  &  & $\VMpE{a}{B}$ & $\VMPE{a}{B}$ \\
+\cs{MTV} & $\MTV{A}{b}$ & $\MTVp{A}{b}$ & $\MTVP{A}{b}$ &  &  \\
+\cs{VMT} & $\VMT{a}{B}$ & $\VMTp{a}{B}$ & $\VMTP{a}{B}$ &  &  \\
+\cs{MTN} & $\MTN{A}{B}$ & $\MTNp{A}{B}$ & $\MTNP{A}{B}$ &  &  \\
+\cs{MNT} & $\MNT{A}{B}$ & $\MNTp{A}{B}$ & $\MNTP{A}{B}$ &  &  \\
+\cs{MTM} & $\MTM{A}$ & $\MTMp{A}$ & $\MTMP{A}$ &  &  \\
+\cs{MMT} & $\MMT{A}$ & $\MMTp{A}$ & $\MMTP{A}$ &  &  \\
+\cs{MNMT} & $\MNMT{A}{B}$ & $\MNMTp{A}{B}$ & $\MNMTP{A}{B}$ &  &  \\
+\cs{MTNM} & $\MTNM{A}{B}$ & $\MTNMp{A}{B}$ & $\MTNMP{A}{B}$ &  &  \\
+\cs{InvMat} & $\InvMat{A}$ & $\InvMatp{A}$ & $\InvMatP{A}$ & $\InvMatpE{A}$ & $\InvMatPE{A}$ \\
+\cs{InvMatT} & $\InvMatT{A}$ &  &  & $\InvMatTpE{A}$ & $\InvMatTPE{A}$ \\
+\cs{TInvMat} & $\TInvMat{A}$ &  &  & $\TInvMatpE{A}$ & $\TInvMatPE{A}$ \\
+\cs{MTMV} & $\MTMV{A}{b}$ & $\MTMVp{A}{b}$ & $\MTMVP{A}{b}$ &  &  \\
+\cs{VMTW} & $\VMTW{a}{B}{c}$ & $\VMTWp{a}{B}{c}$ & $\VMTWP{a}{B}{c}$ &  &  \\
+\cs{VMTV} & $\VMTV{a}{B}$ & $\VMTVp{a}{B}$ & $\VMTVP{a}{B}$ &  &  \\
+\cs{SELT} & $\SELT{A}{x}{b}$ &  & $\SELTP{A}{x}{b}$ &  &  \\
+\cs{coord} & $\coord{\Vect{x}}{\SV{B}}$ &  & $\coordP{\Vect{x}}{\SV{B}}$ &  & $\coordPE{\Vect{x}}{\SV{B}}$ \\
+\end{longtable}}
+
 
 #+END_SRC
 
@@ -4187,7 +4334,9 @@ genérico.
 \DescribeMacro{\VectP}
 \DescribeMacro{\VectP*}
 tiene 3 argumentos,\;|Vect<X*>|\oarg{subíndice}\oarg{superíndice}\marg{nombre},\; y denota un vector de
-$\R[n]$
+$\R[n]$. El nombre se imprime siempre en minúsculas, aunque se escriba
+en mayúsculas (|\Vect{A}| imprime $\Vect{A}$); la opción
+\texttt{avisacaja} del paquete avisa de esos casos.
 \begin{center}
   |\Vect{a} \Vect[h]{a}  \Vect[h][2]{a}|
   \hspace{1.2cm}
@@ -4237,7 +4386,10 @@ tiene 3 argumentos,\;|irvec|\oarg{subíndiceInic}\oarg{subíndiceFin}\marg{nombr
 \subsubsection{Matrices}
 
 \DescribeMacro{\Mat}
-tiene 2 argumentos,\;|Mat<X*>|\oarg{subíndice}\marg{nombre},\; y denota una matriz
+tiene 2 argumentos,\;|Mat<X*>|\oarg{subíndice}\marg{nombre},\; y denota una matriz.
+El nombre se imprime siempre en mayúsculas, aunque se escriba en
+minúsculas (|\Mat{a}| imprime $\Mat{a}$); la opción \texttt{avisacaja}
+del paquete avisa de esos casos.
 \begin{center}
   |\Mat{A} \Mat[h]{A} \Mat[h]{A}^2|
   \hspace{1.2cm}
@@ -5999,6 +6151,7 @@ argumento y denota el ajuste MCO del \marg{vector} de \R[n]
 % \iffalse
 %<*package>
 % \fi
+<<Caja de los argumentos>>
 <<Conjuntos de números>>
 <<Paréntesis y otras llaves>>
 <<Subíndices a derecha e izquierda>>
@@ -6040,6 +6193,79 @@ argumento y denota el ajuste MCO del \marg{vector} de \R[n]
 %
 % \Finale
 \endinput
+#+END_SRC
+
+#+CALL: Compilación()
+
+*** Caja de los argumentos
+#+NAME: Caja de los argumentos
+#+BEGIN_SRC tex :noweb no-export :results silent :export code
+%
+% \iffalse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Caja (mayúsculas o minúsculas) de los argumentos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \fi
+%
+% \subsection{Caja de los argumentos}
+%
+% \begin{macro}{\nacal@min}
+% \begin{macro}{\nacal@may}
+% Los comandos que escriben vectores pasan su argumento a minúsculas y
+% los que escriben matrices o sistemas lo pasan a mayúsculas. Lo hacen
+% con estos dos comandos internos. El primer argumento es el nombre del
+% comando que los llama (solo se usa en el aviso) y el segundo el texto.
+%    \begin{macrocode}
+\newcommand\nacal@min[2]{\MakeLowercase{#2}}
+\newcommand\nacal@may[2]{\MakeUppercase{#2}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\nacal@avisacaja}
+% Escribe un aviso en el \texttt{.log} si el texto (argumento 5) cambia
+% al aplicarle \cs{lowercase} o \cs{uppercase} (argumento 1). Solo mira
+% las letras del texto, no los nombres de los comandos que contenga, y
+% solo las letras sin acento (por eso anula los códigos de caja de los
+% caracteres 128 a 255). No compone nada. Cada aviso se da una sola vez
+% por fichero, línea, comando y argumento, porque \TeX{} puede componer
+% varias veces la misma fórmula.
+%    \begin{macrocode}
+\protected\def\nacal@avisacaja#1#2#3#4#5{%
+  \begingroup
+    \count@=128
+    \loop
+      \lccode\count@=\z@ \uccode\count@=\z@
+      \advance\count@\@ne
+    \ifnum\count@<256 \repeat
+    \edef\nacal@tmpa{\unexpanded{#5}}%
+    #1{\edef\nacal@tmpb{\unexpanded{#5}}}%
+    \ifx\nacal@tmpa\nacal@tmpb\else
+      \edef\nacal@tmpa{nacal@caja@\ifdefined\CurrentFile\CurrentFile\fi
+        @\the\inputlineno @\string#2@\detokenize{#5}}%
+      \expandafter\ifx\csname\nacal@tmpa\endcsname\relax
+        \global\expandafter\let\csname\nacal@tmpa\endcsname\@empty
+        \PackageWarning{nacal}{\string#2: el argumento '\detokenize{#5}'
+          lleva #3\MessageBreak pero se imprime en #4}%
+      \fi
+    \fi
+  \endgroup}
+%    \end{macrocode}
+% \end{macro}
+%
+% Con la opción \texttt{avisacaja} los dos comandos internos dan el
+% aviso antes de cambiar la caja. Sin ella no se toca nada.
+%    \begin{macrocode}
+\ifnacal@avisacaja
+  \renewcommand\nacal@min[2]{%
+    \nacal@avisacaja\lowercase{#1}{mayúsculas}{minúsculas}{#2}%
+    \MakeLowercase{#2}}
+  \renewcommand\nacal@may[2]{%
+    \nacal@avisacaja\uppercase{#1}{minúsculas}{mayúsculas}{#2}%
+    \MakeUppercase{#2}}
+\fi
+%    \end{macrocode}
+%
 #+END_SRC
 
 #+CALL: Compilación()
@@ -8691,7 +8917,7 @@ argumento y denota el ajuste MCO del \marg{vector} de \R[n]
 % Selección de un elemento de un vector
 %    \begin{macrocode}
 \NewDocumentCommand\eleVVV {mm}{\ensuremath{\textrm{elem}_{#2}{\VectP*  {#1}}}\xspace}
-\NewDocumentCommand\eleVV  {mm}{\ensuremath{\MakeLowercase{#1}_{{#2}}        }\xspace}
+\NewDocumentCommand\eleVV  {mm}{\ensuremath{\nacal@min{\eleVV}{#1}_{{#2}}        }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8704,7 +8930,7 @@ argumento y denota el ajuste MCO del \marg{vector} de \R[n]
 %    \begin{macrocode}
 \NewDocumentCommand\eleMMM {mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatP*  {#1}}}\xspace}
 \NewDocumentCommand\eleMMMT{mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatTPE*{#1}}}\xspace}
-\NewDocumentCommand\eleMM  {mmm}{\ensuremath{\MakeLowercase{#1}_{{#2}{#3}}     }\xspace}
+\NewDocumentCommand\eleMM  {mmm}{\ensuremath{\nacal@min{\eleMM}{#1}_{{#2}{#3}}     }\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8733,7 +8959,7 @@ argumento y denota el ajuste MCO del \marg{vector} de \R[n]
 % \begin{macro}{\SV}
 % Sistema de Vectores
 %    \begin{macrocode}
-\NewDocumentCommand\SV{O{}m}{\ensuremath{\mathsf{\MakeUppercase{#2}}_{#1}}\xspace}
+\NewDocumentCommand\SV{O{}m}{\ensuremath{\mathsf{\nacal@may{\SV}{#2}}_{#1}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -8770,8 +8996,8 @@ argumento y denota el ajuste MCO del \marg{vector} de \R[n]
 % Vector genérico
 %    \begin{macrocode}
 \NewDocumentCommand\vect     {om}{\ensuremath{\IfNoValueTF{#1}
-           { \vv {\MakeLowercase{#2}}       }
-           { \vv*{\MakeLowercase{#2}}{\!#1} }                   }\xspace}
+           { \vv {\nacal@min{\vect}{#2}}       }
+           { \vv*{\nacal@min{\vect}{#2}}{\!#1} }                   }\xspace}
 
 \NewDocumentCommand\vectp {som}{\ensuremath{\IfBooleanTF#1
     {\parentesis*{\IfNoValueTF{#2}{\vect{#3}}{\vect[#2]{#3}}}}
@@ -8795,7 +9021,7 @@ argumento y denota el ajuste MCO del \marg{vector} de \R[n]
 % Vector de $\mathbb{R}^n$
 %    \begin{macrocode}
 \NewDocumentCommand\Vect   {O{}O{}m}{\ensuremath{%
-                       \RidxE{\boldsymbol{\MakeLowercase{#3}}}{#1}{\boldsymbol{#2}}   }\xspace}
+                       \RidxE{\boldsymbol{\nacal@min{\Vect}{#3}}}{#1}{\boldsymbol{#2}}   }\xspace}
 
 \NewDocumentCommand\Vectp {sO{}O{}m}{\ensuremath{\IfBooleanTF#1
     {\parentesis*{\Vect[#2][#3]{#4}}}
@@ -8843,7 +9069,7 @@ argumento y denota el ajuste MCO del \marg{vector} de \R[n]
 % Matriz
 %    \begin{macrocode}
 \NewDocumentCommand\Mat    {O{}m}{\ensuremath{%
-                       \Ridx{\boldsymbol{\mathsf{\MakeUppercase{#2}}}}{#1}   }\xspace}
+                       \Ridx{\boldsymbol{\mathsf{\nacal@may{\Mat}{#2}}}}{#1}   }\xspace}
 
 \NewDocumentCommand\Matp  {som}{\ensuremath{\IfBooleanTF#1
     {\parentesis*{\IfNoValueTF{#2}{\Mat{#3}}{\Mat[#2]{#3}}}}

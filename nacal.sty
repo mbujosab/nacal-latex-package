@@ -22,7 +22,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
 \ProvidesPackage{nacal}
-    [2026/11/10 v2.0 Notacion Asociativa para un Curso de Algebra Lineal]
+    [2026/11/16 v2.1 Notacion Asociativa para un Curso de Algebra Lineal]
 \RequirePackage{amsmath,amssymb}
 \RequirePackage{xcolor}
 \RequirePackage{xparse}
@@ -36,8 +36,42 @@
 \newif\ifnacal@vuno
 \DeclareOption{soloAL}{}% sin efecto desde la v2.0
 \DeclareOption{v1}{\nacal@vunotrue}
+\newif\ifnacal@avisacaja
+\DeclareOption{avisacaja}{\nacal@avisacajatrue}
 \DeclareOption*{\PackageWarning{nacal}{Unknown ‘\CurrentOption’}}
 \ProcessOptions\relax%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Caja (mayúsculas o minúsculas) de los argumentos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\nacal@min[2]{\MakeLowercase{#2}}
+\newcommand\nacal@may[2]{\MakeUppercase{#2}}
+\protected\def\nacal@avisacaja#1#2#3#4#5{%
+  \begingroup
+    \count@=128
+    \loop
+      \lccode\count@=\z@ \uccode\count@=\z@
+      \advance\count@\@ne
+    \ifnum\count@<256 \repeat
+    \edef\nacal@tmpa{\unexpanded{#5}}%
+    #1{\edef\nacal@tmpb{\unexpanded{#5}}}%
+    \ifx\nacal@tmpa\nacal@tmpb\else
+      \edef\nacal@tmpa{nacal@caja@\ifdefined\CurrentFile\CurrentFile\fi
+        @\the\inputlineno @\string#2@\detokenize{#5}}%
+      \expandafter\ifx\csname\nacal@tmpa\endcsname\relax
+        \global\expandafter\let\csname\nacal@tmpa\endcsname\@empty
+        \PackageWarning{nacal}{\string#2: el argumento '\detokenize{#5}'
+          lleva #3\MessageBreak pero se imprime en #4}%
+      \fi
+    \fi
+  \endgroup}
+\ifnacal@avisacaja
+  \renewcommand\nacal@min[2]{%
+    \nacal@avisacaja\lowercase{#1}{mayúsculas}{minúsculas}{#2}%
+    \MakeLowercase{#2}}
+  \renewcommand\nacal@may[2]{%
+    \nacal@avisacaja\uppercase{#1}{minúsculas}{mayúsculas}{#2}%
+    \MakeUppercase{#2}}
+\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Conjuntos de números
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -995,22 +1029,22 @@
 \NewDocumentCommand\VectFFF {mm}{\ensuremath{\textrm{\eng{fila}{row}}_{#2}\MatP*  {#1}}\xspace}
 \NewDocumentCommand\VectFFFT{mm}{\ensuremath{\textrm{\eng{fila}{row}}_{#2}\MatTPE*{#1}}\xspace}
 \NewDocumentCommand\eleVVV {mm}{\ensuremath{\textrm{elem}_{#2}{\VectP*  {#1}}}\xspace}
-\NewDocumentCommand\eleVV  {mm}{\ensuremath{\MakeLowercase{#1}_{{#2}}        }\xspace}
+\NewDocumentCommand\eleVV  {mm}{\ensuremath{\nacal@min{\eleVV}{#1}_{{#2}}        }\xspace}
 \NewDocumentCommand\eleMMM {mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatP*  {#1}}}\xspace}
 \NewDocumentCommand\eleMMMT{mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatTPE*{#1}}}\xspace}
-\NewDocumentCommand\eleMM  {mmm}{\ensuremath{\MakeLowercase{#1}_{{#2}{#3}}     }\xspace}
+\NewDocumentCommand\eleMM  {mmm}{\ensuremath{\nacal@min{\eleMM}{#1}_{{#2}{#3}}     }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Sistemas genéricos
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\NewDocumentCommand\SV{O{}m}{\ensuremath{\mathsf{\MakeUppercase{#2}}_{#1}}\xspace}
+\NewDocumentCommand\SV{O{}m}{\ensuremath{\mathsf{\nacal@may{\SV}{#2}}_{#1}}\xspace}
 \NewDocumentCommand\concatSV{mm}{\ensuremath{{#1}\concat{#2}}\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Notación matricial
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand\vect     {om}{\ensuremath{\IfNoValueTF{#1}
-           { \vv {\MakeLowercase{#2}}       }
-           { \vv*{\MakeLowercase{#2}}{\!#1} }                   }\xspace}
+           { \vv {\nacal@min{\vect}{#2}}       }
+           { \vv*{\nacal@min{\vect}{#2}}{\!#1} }                   }\xspace}
 
 \NewDocumentCommand\vectp {som}{\ensuremath{\IfBooleanTF#1
     {\parentesis*{\IfNoValueTF{#2}{\vect{#3}}{\vect[#2]{#3}}}}
@@ -1021,7 +1055,7 @@
     {\Parentesis {\IfNoValueTF{#2}{\vect{#3}}{\vect[#2]{#3}}}}  }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand\Vect   {O{}O{}m}{\ensuremath{%
-                       \RidxE{\boldsymbol{\MakeLowercase{#3}}}{#1}{\boldsymbol{#2}}   }\xspace}
+                       \RidxE{\boldsymbol{\nacal@min{\Vect}{#3}}}{#1}{\boldsymbol{#2}}   }\xspace}
 
 \NewDocumentCommand\Vectp {sO{}O{}m}{\ensuremath{\IfBooleanTF#1
     {\parentesis*{\Vect[#2][#3]{#4}}}
@@ -1042,7 +1076,7 @@
 \NewDocumentCommand\irvecC{O{1}O{n}m}{\ensuremath{\VectC{#3}{#1},\ldots,\VectC{#3}{#2} }\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \NewDocumentCommand\Mat    {O{}m}{\ensuremath{%
-                       \Ridx{\boldsymbol{\mathsf{\MakeUppercase{#2}}}}{#1}   }\xspace}
+                       \Ridx{\boldsymbol{\mathsf{\nacal@may{\Mat}{#2}}}}{#1}   }\xspace}
 
 \NewDocumentCommand\Matp  {som}{\ensuremath{\IfBooleanTF#1
     {\parentesis*{\IfNoValueTF{#2}{\Mat{#3}}{\Mat[#2]{#3}}}}
