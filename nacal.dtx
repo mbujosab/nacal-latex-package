@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}[2005/12/01]
 %<package>\ProvidesPackage{nacal}
-%<package>    [2026/11/16 v2.1 Notacion Asociativa para un Curso de Algebra Lineal]
+%<package>    [2026/11/19 v2.2 Notacion Asociativa para un Curso de Algebra Lineal]
 %<package>\RequirePackage{amsmath,amssymb}
 %<package>\RequirePackage{xcolor}
 %<package>\RequirePackage{xparse}
@@ -84,6 +84,7 @@
 % \changes{v1.6}{2026/11/09}{\cs{widebar} deja de ser un operador; «esp» se escribe como operador (\cs{operatorname})}
 % \changes{v2.0}{2026/11/10}{Solo álgebra lineal: la probabilidad y la econometría salen del paquete (opción v1 para los documentos antiguos)}
 % \changes{v2.1}{2026/11/16}{Opción avisacaja; guía rápida de sufijos en la documentación}
+% \changes{v2.2}{2026/11/19}{Compilación más rápida: el cambio de caja se calcula una vez por argumento y \cs{RidxE} no repite el objeto cinco veces. Con avisacaja, \cs{eleVV} y \cs{eleMM} ya no avisan}
 %
 % \GetFileInfo{nacal.sty}
 %
@@ -132,7 +133,7 @@
 %   que ya cargaban \verb|\usepackage[soloAL]{nacal}| sigan compilando.
 % \item \texttt{avisacaja}: no cambia nada de lo que se imprime; solo
 %   escribe avisos en el \texttt{.log}. Los comandos de vectores
-%   (\cs{vect}, \cs{Vect}, \cs{eleVV}, \cs{eleMM} y todos los que se
+%   (\cs{vect}, \cs{Vect} y todos los que se
 %   construyen con ellos) imprimen su argumento en minúsculas, y los de
 %   matrices y sistemas (\cs{Mat}, \cs{SV} y los que se construyen con
 %   ellos, como \cs{VectC} o \cs{MV}) en mayúsculas, se escriba como se
@@ -147,7 +148,9 @@
 %   \end{quote}
 %   de modo que se pueden localizar (buscando \texttt{nacal Warning} en
 %   el \texttt{.log}) y corregir en el fuente. Solo se miran las letras
-%   sin acento del argumento.
+%   sin acento del argumento. \cs{eleVV} y \cs{eleMM} también imprimen en
+%   minúsculas, pero no avisan: su uso normal es darles el nombre de la
+%   matriz en mayúsculas (\verb|\eleMM{A}{i}{j}| imprime $\eleMM{A}{i}{j}$).
 % \end{itemize}
 % 
 % \subsection*{Guía rápida: sufijos \texttt{p}, \texttt{P}, \texttt{pE}, \texttt{PE} y la estrella}
@@ -5741,8 +5744,52 @@
 % con estos dos comandos internos. El primer argumento es el nombre del
 % comando que los llama (solo se usa en el aviso) y el segundo el texto.
 %    \begin{macrocode}
-\newcommand\nacal@min[2]{\MakeLowercase{#2}}
-\newcommand\nacal@may[2]{\MakeUppercase{#2}}
+\newcommand\nacal@min[2]{\nacal@caja\lowercase\MakeLowercase{m}{#2}}
+\newcommand\nacal@may[2]{\nacal@caja\uppercase\MakeUppercase{M}{#2}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\nacal@caja}
+% \begin{macro}{\nacal@caja@nueva}
+% \cs{MakeUppercase} y \cs{MakeLowercase} son lentos (consultan el
+% idioma cada vez), y \TeX{} compone muchas veces cada argumento:
+% \cs{boldsymbol} y \cs{leftidx} lo repiten cinco veces cada uno, y esos
+% factores se multiplican al anidar comandos. Por eso el resultado del
+% cambio de caja se calcula una sola vez por cada argumento distinto y
+% se guarda en un comando \cs{nacal@m@}\meta{argumento} (minúsculas) o
+% \cs{nacal@M@}\meta{argumento} (mayúsculas). \cs{nacal@caja} usa el
+% guardado y, si no existe, lo crea con \cs{nacal@caja@nueva}.
+%
+% Si el argumento solo tiene letras sin acento, cifras y símbolos
+% matemáticos definidos con \cs{mathchardef} (como \cs{beta}), el
+% resultado se obtiene con las primitivas \cs{lowercase} o
+% \cs{uppercase}, que dan lo mismo que \cs{MakeLowercase} y
+% \cs{MakeUppercase} en esos casos. En cualquier otro caso se guarda la
+% llamada a \cs{MakeLowercase} o \cs{MakeUppercase} tal cual, es decir,
+% se hace lo mismo que antes de la versión 2.2.
+%    \begin{macrocode}
+\def\nacal@caja#1#2#3#4{%
+  \ifcsname nacal@#3@\detokenize{#4}\endcsname\else
+    \nacal@caja@nueva#1#2{#3}{#4}%
+  \fi
+  \csname nacal@#3@\detokenize{#4}\endcsname}
+\ExplSyntaxOn
+\protected\def\nacal@caja@nueva#1#2#3#4{
+  \group_begin:
+  \bool_set_true:N \l_tmpa_bool
+  \regex_match:nnTF { \A (?: \cL[A-Za-z] | \cO[0-9] | \c{[A-Za-z]+} )* \Z } {#4}
+    { \tl_map_inline:nn {#4}
+        { \token_if_cs:NT ##1
+            { \token_if_mathchardef:NF ##1 { \bool_set_false:N \l_tmpa_bool } } } }
+    { \bool_set_false:N \l_tmpa_bool }
+  \edef\nacal@tmpa{\exp_not:c { nacal@#3@\detokenize{#4} } }
+  \bool_if:NTF \l_tmpa_bool
+    { #1 { \exp_after:wN \xdef \nacal@tmpa { \exp_not:n {#4} } } }
+    { \exp_after:wN \xdef \nacal@tmpa { \exp_not:n { #2 {#4} } } }
+  \group_end:
+}
+\ExplSyntaxOff
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -5779,15 +5826,15 @@
 % \end{macro}
 %
 % Con la opción \texttt{avisacaja} los dos comandos internos dan el
-% aviso antes de cambiar la caja. Sin ella no se toca nada.
+% aviso antes de cambiar la caja.
 %    \begin{macrocode}
 \ifnacal@avisacaja
   \renewcommand\nacal@min[2]{%
     \nacal@avisacaja\lowercase{#1}{mayúsculas}{minúsculas}{#2}%
-    \MakeLowercase{#2}}
+    \nacal@caja\lowercase\MakeLowercase{m}{#2}}
   \renewcommand\nacal@may[2]{%
     \nacal@avisacaja\uppercase{#1}{minúsculas}{mayúsculas}{#2}%
-    \MakeUppercase{#2}}
+    \nacal@caja\uppercase\MakeUppercase{M}{#2}}
 \fi
 %    \end{macrocode}
 %
@@ -6016,9 +6063,22 @@
 % \begin{macro}{\RidxEpE*}
 % \begin{macro}{\RidxEPE}
 % \begin{macro}{\RidxEPE*}
-% Comandos para escribir índices a la derecha de un objeto (con exponente)
+% Comandos para escribir índices a la derecha de un objeto (con exponente).
+%
+% Hasta la versión 2.1 \cs{RidxE} usaba \cs{leftidx} con el índice
+% izquierdo vacío. \cs{leftidx} pone delante un \cs{vphantom} del objeto,
+% que aquí no hace falta (no hay índice izquierdo que alinear) y que
+% obliga a \TeX{} a componer el objeto cuatro veces más. Como los
+% comandos se anidan, ese factor cinco se multiplicaba en cada nivel.
+% Ahora el objeto se compone una vez en una caja que se descarta y otra
+% de verdad. La caja descartada no cambia nada de lo que se imprime,
+% pero no se puede quitar: en documentos que agotan las 16 familias de
+% fuentes matemáticas, \LaTeX{} asigna los alfabetos (\cs{mathsf}…) en
+% cada fórmula, el primer uso dentro de la fórmula puede fallar, y esa
+% primera composición es la que lo absorbe (antes lo hacía el
+% \cs{vphantom}).
 %    \begin{macrocode}
-\NewDocumentCommand\RidxE  { mmm}{\ensuremath{{\leftidx{        }{{#1}}{_{#2}^{#3}}}}\xspace}
+\NewDocumentCommand\RidxE  { mmm}{\ensuremath{{\setbox\z@\hbox{$\m@th{#1}$}{{#1}}_{#2}^{#3}}}\xspace}
 
 \NewDocumentCommand\RidxEp {smmm}{\ensuremath{\IfBooleanTF#1
                 {\RidxE{\parentesis*{#2}}{#3}{#4}}
@@ -8365,10 +8425,13 @@
 %
 % \begin{macro}{\eleVVV}
 % \begin{macro}{\eleVV}
-% Selección de un elemento de un vector
+% Selección de un elemento de un vector. \cs{eleVV} y \cs{eleMM}
+% cambian la caja sin pasar por \cs{nacal@min}: se les da el nombre del
+% vector o de la matriz y escriben la componente en minúscula, así que
+% con la opción \texttt{avisacaja} no deben avisar.
 %    \begin{macrocode}
 \NewDocumentCommand\eleVVV {mm}{\ensuremath{\textrm{elem}_{#2}{\VectP*  {#1}}}\xspace}
-\NewDocumentCommand\eleVV  {mm}{\ensuremath{\nacal@min{\eleVV}{#1}_{{#2}}        }\xspace}
+\NewDocumentCommand\eleVV  {mm}{\ensuremath{\nacal@caja\lowercase\MakeLowercase{m}{#1}_{{#2}}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8381,7 +8444,7 @@
 %    \begin{macrocode}
 \NewDocumentCommand\eleMMM {mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatP*  {#1}}}\xspace}
 \NewDocumentCommand\eleMMMT{mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatTPE*{#1}}}\xspace}
-\NewDocumentCommand\eleMM  {mmm}{\ensuremath{\nacal@min{\eleMM}{#1}_{{#2}{#3}}     }\xspace}
+\NewDocumentCommand\eleMM  {mmm}{\ensuremath{\nacal@caja\lowercase\MakeLowercase{m}{#1}_{{#2}{#3}}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}

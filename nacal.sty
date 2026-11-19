@@ -22,7 +22,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
 \ProvidesPackage{nacal}
-    [2026/11/16 v2.1 Notacion Asociativa para un Curso de Algebra Lineal]
+    [2026/11/19 v2.2 Notacion Asociativa para un Curso de Algebra Lineal]
 \RequirePackage{amsmath,amssymb}
 \RequirePackage{xcolor}
 \RequirePackage{xparse}
@@ -43,8 +43,29 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Caja (mayúsculas o minúsculas) de los argumentos
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand\nacal@min[2]{\MakeLowercase{#2}}
-\newcommand\nacal@may[2]{\MakeUppercase{#2}}
+\newcommand\nacal@min[2]{\nacal@caja\lowercase\MakeLowercase{m}{#2}}
+\newcommand\nacal@may[2]{\nacal@caja\uppercase\MakeUppercase{M}{#2}}
+\def\nacal@caja#1#2#3#4{%
+  \ifcsname nacal@#3@\detokenize{#4}\endcsname\else
+    \nacal@caja@nueva#1#2{#3}{#4}%
+  \fi
+  \csname nacal@#3@\detokenize{#4}\endcsname}
+\ExplSyntaxOn
+\protected\def\nacal@caja@nueva#1#2#3#4{
+  \group_begin:
+  \bool_set_true:N \l_tmpa_bool
+  \regex_match:nnTF { \A (?: \cL[A-Za-z] | \cO[0-9] | \c{[A-Za-z]+} )* \Z } {#4}
+    { \tl_map_inline:nn {#4}
+        { \token_if_cs:NT ##1
+            { \token_if_mathchardef:NF ##1 { \bool_set_false:N \l_tmpa_bool } } } }
+    { \bool_set_false:N \l_tmpa_bool }
+  \edef\nacal@tmpa{\exp_not:c { nacal@#3@\detokenize{#4} } }
+  \bool_if:NTF \l_tmpa_bool
+    { #1 { \exp_after:wN \xdef \nacal@tmpa { \exp_not:n {#4} } } }
+    { \exp_after:wN \xdef \nacal@tmpa { \exp_not:n { #2 {#4} } } }
+  \group_end:
+}
+\ExplSyntaxOff
 \protected\def\nacal@avisacaja#1#2#3#4#5{%
   \begingroup
     \count@=128
@@ -67,10 +88,10 @@
 \ifnacal@avisacaja
   \renewcommand\nacal@min[2]{%
     \nacal@avisacaja\lowercase{#1}{mayúsculas}{minúsculas}{#2}%
-    \MakeLowercase{#2}}
+    \nacal@caja\lowercase\MakeLowercase{m}{#2}}
   \renewcommand\nacal@may[2]{%
     \nacal@avisacaja\uppercase{#1}{minúsculas}{mayúsculas}{#2}%
-    \MakeUppercase{#2}}
+    \nacal@caja\uppercase\MakeUppercase{M}{#2}}
 \fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Conjuntos de números
@@ -143,7 +164,7 @@
 \NewDocumentCommand\LidxEPE {smmm}{\ensuremath{\IfBooleanTF#1
                 {\Parentesis*{\LidxE{#2}{#3}{#4}}}
                 {\Parentesis {\LidxE{#2}{#3}{#4}}}     }\xspace}
-\NewDocumentCommand\RidxE  { mmm}{\ensuremath{{\leftidx{        }{{#1}}{_{#2}^{#3}}}}\xspace}
+\NewDocumentCommand\RidxE  { mmm}{\ensuremath{{\setbox\z@\hbox{$\m@th{#1}$}{{#1}}_{#2}^{#3}}}\xspace}
 
 \NewDocumentCommand\RidxEp {smmm}{\ensuremath{\IfBooleanTF#1
                 {\RidxE{\parentesis*{#2}}{#3}{#4}}
@@ -1029,10 +1050,10 @@
 \NewDocumentCommand\VectFFF {mm}{\ensuremath{\textrm{\eng{fila}{row}}_{#2}\MatP*  {#1}}\xspace}
 \NewDocumentCommand\VectFFFT{mm}{\ensuremath{\textrm{\eng{fila}{row}}_{#2}\MatTPE*{#1}}\xspace}
 \NewDocumentCommand\eleVVV {mm}{\ensuremath{\textrm{elem}_{#2}{\VectP*  {#1}}}\xspace}
-\NewDocumentCommand\eleVV  {mm}{\ensuremath{\nacal@min{\eleVV}{#1}_{{#2}}        }\xspace}
+\NewDocumentCommand\eleVV  {mm}{\ensuremath{\nacal@caja\lowercase\MakeLowercase{m}{#1}_{{#2}}}\xspace}
 \NewDocumentCommand\eleMMM {mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatP*  {#1}}}\xspace}
 \NewDocumentCommand\eleMMMT{mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatTPE*{#1}}}\xspace}
-\NewDocumentCommand\eleMM  {mmm}{\ensuremath{\nacal@min{\eleMM}{#1}_{{#2}{#3}}     }\xspace}
+\NewDocumentCommand\eleMM  {mmm}{\ensuremath{\nacal@caja\lowercase\MakeLowercase{m}{#1}_{{#2}{#3}}}\xspace}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% --- Sistemas genéricos
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
