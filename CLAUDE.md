@@ -440,8 +440,13 @@ Tres exámenes AMC recientes idénticos a la v2.1; los `qbank` no se pasaron.
   `comparar ref1 …`.
 - `ref1` ya no reproduce `2026-Quiz2-C` (cambió la salida de Python, no el
   paquete): conviene rehacer la referencia con la versión que se instale.
-- Sin hacer, por si se quiere más: subíndices izquierdos (`\LidxE`,
-  `\LRidxE`, donde el `\vphantom` sí hace falta) y `\boldsymbol`.
+- Más velocidad, medido el 19/11 (libro, una pasada, sin turbo; v2.2: 38 s).
+  Techos con variantes que quitan toda repetición (PDF incorrecto): subíndices
+  izquierdos (`\LidxE`, `\LRidxE`) 35 s, un 8 %: no compensa, y ahí el
+  `\vphantom` hace falta. `\boldsymbol` 27 s, un 30 %: solo alcanzable
+  guardando cajas ya compuestas, con riesgo en documentos que agotan las
+  familias; quitar solo su medida previa ganaría unos 2 s. Recomendado a
+  Marcos dejarlo aquí; no decidió. Los ~25 s restantes no son de nacal.
 - Econometría sigue en el límite de familias (1,8 millones de mensajes
   «frozen version» en el log con la v2.1, 177 000 con la v2.2). Alternativa
   sin adoptar, en `AUDITORIA.md`: tomar el ⟦ ⟧ pequeño de `mathx` en vez de
