@@ -418,7 +418,7 @@ familia con sufijos, añadir su fila a mano.
 `\Matdim` en texto corrido (punto 3 del encargo): el «m×n» ensancha la caja y
 baja la línea siguiente; no tiene arreglo sin cambio visible. Sin decidir.
 
-## v2.2: candidato sin instalar (19/11/2026). Velocidad
+## v2.2 (instalada el 19/11/2026). Velocidad
 
 Marcos preguntó por la lentitud de compilar: es **prioritario** para él.
 Causa: `\leftidx` y `\boldsymbol` componen su contenido cinco veces cada uno
@@ -428,8 +428,10 @@ y el factor se multiplica al anidar comandos; además cada copia llamaba a
 en caja, necesaria en documentos que agotan las 16 familias matemáticas).
 Libro: de 410 s a 38 s por pasada; Econometría: de 866 s a 128 s (sin turbo).
 Banco, ciclo completo con pythontex: idéntico a `ref1` (detalle en
-`CHANGELOG.md`). Confirmado en `master` **sin etiqueta, sin instalar y sin
-subir**; candidato en `~/temporal/nacal-banco/sty/v22/`.
+`CHANGELOG.md`). Aprobada por Marcos el 19/11: etiqueta `v2.2`,
+instalada en `~/texmf/tex/latex/nacal/` (la v2.1 instalada está en
+`~/temporal/nacal-instalada-v2.1/`), `master` fusionada en `main` y subida.
+Tres exámenes AMC recientes idénticos a la v2.1; los `qbank` no se pasaron.
 - Tras instalarla, los documentos con `\py{…}` dentro de comandos de nacal
   necesitan un ciclo completo con pythontex (cambia el número de
   evaluaciones). Para probar cambios de este tipo en el banco no basta
@@ -446,7 +448,7 @@ subir**; candidato en `~/temporal/nacal-banco/sty/v22/`.
   `matha` (ahora en `ectrnot` y `alprobnot`); es cambio visible.
 - El banco calienta el portátil: lanzarlo con `JOBS=6` como mucho. Marcos
   desactiva el turbo con `echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo`.
-- Pendiente de respuesta de Marcos: `respuesta-desde-el-libro.md` (sin
-  confirmar en git a propósito): si se quita el aviso de `avisacaja` en
-  `\eleMM`/`\eleVV` y en `\SV`.
+- `respuesta-desde-el-libro.md` tratado en la v2.2: `\eleVV` y `\eleMM` ya
+  no avisan con `avisacaja`; `\SV` sí. Aviso de pythontex enviado al libro
+  en `encargo-desde-nacaltex.md`.
 

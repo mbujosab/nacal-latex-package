@@ -84,7 +84,7 @@
 % \changes{v1.6}{2026/11/09}{\cs{widebar} deja de ser un operador; «esp» se escribe como operador (\cs{operatorname})}
 % \changes{v2.0}{2026/11/10}{Solo álgebra lineal: la probabilidad y la econometría salen del paquete (opción v1 para los documentos antiguos)}
 % \changes{v2.1}{2026/11/16}{Opción avisacaja; guía rápida de sufijos en la documentación}
-% \changes{v2.2}{2026/11/19}{Compilación más rápida: el cambio de caja se calcula una vez por argumento y \cs{RidxE} no repite el objeto cinco veces}
+% \changes{v2.2}{2026/11/19}{Compilación más rápida: el cambio de caja se calcula una vez por argumento y \cs{RidxE} no repite el objeto cinco veces. Con avisacaja, \cs{eleVV} y \cs{eleMM} ya no avisan}
 %
 % \GetFileInfo{nacal.sty}
 %
@@ -133,7 +133,7 @@
 %   que ya cargaban \verb|\usepackage[soloAL]{nacal}| sigan compilando.
 % \item \texttt{avisacaja}: no cambia nada de lo que se imprime; solo
 %   escribe avisos en el \texttt{.log}. Los comandos de vectores
-%   (\cs{vect}, \cs{Vect}, \cs{eleVV}, \cs{eleMM} y todos los que se
+%   (\cs{vect}, \cs{Vect} y todos los que se
 %   construyen con ellos) imprimen su argumento en minúsculas, y los de
 %   matrices y sistemas (\cs{Mat}, \cs{SV} y los que se construyen con
 %   ellos, como \cs{VectC} o \cs{MV}) en mayúsculas, se escriba como se
@@ -148,7 +148,9 @@
 %   \end{quote}
 %   de modo que se pueden localizar (buscando \texttt{nacal Warning} en
 %   el \texttt{.log}) y corregir en el fuente. Solo se miran las letras
-%   sin acento del argumento.
+%   sin acento del argumento. \cs{eleVV} y \cs{eleMM} también imprimen en
+%   minúsculas, pero no avisan: su uso normal es darles el nombre de la
+%   matriz en mayúsculas (\verb|\eleMM{A}{i}{j}| imprime $\eleMM{A}{i}{j}$).
 % \end{itemize}
 % 
 % \subsection*{Guía rápida: sufijos \texttt{p}, \texttt{P}, \texttt{pE}, \texttt{PE} y la estrella}
@@ -8423,10 +8425,13 @@
 %
 % \begin{macro}{\eleVVV}
 % \begin{macro}{\eleVV}
-% Selección de un elemento de un vector
+% Selección de un elemento de un vector. \cs{eleVV} y \cs{eleMM}
+% cambian la caja sin pasar por \cs{nacal@min}: se les da el nombre del
+% vector o de la matriz y escriben la componente en minúscula, así que
+% con la opción \texttt{avisacaja} no deben avisar.
 %    \begin{macrocode}
 \NewDocumentCommand\eleVVV {mm}{\ensuremath{\textrm{elem}_{#2}{\VectP*  {#1}}}\xspace}
-\NewDocumentCommand\eleVV  {mm}{\ensuremath{\nacal@min{\eleVV}{#1}_{{#2}}        }\xspace}
+\NewDocumentCommand\eleVV  {mm}{\ensuremath{\nacal@caja\lowercase\MakeLowercase{m}{#1}_{{#2}}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -8439,7 +8444,7 @@
 %    \begin{macrocode}
 \NewDocumentCommand\eleMMM {mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatP*  {#1}}}\xspace}
 \NewDocumentCommand\eleMMMT{mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatTPE*{#1}}}\xspace}
-\NewDocumentCommand\eleMM  {mmm}{\ensuremath{\nacal@min{\eleMM}{#1}_{{#2}{#3}}     }\xspace}
+\NewDocumentCommand\eleMM  {mmm}{\ensuremath{\nacal@caja\lowercase\MakeLowercase{m}{#1}_{{#2}{#3}}}\xspace}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}

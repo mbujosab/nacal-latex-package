@@ -3,7 +3,7 @@
 Cada versión tiene una etiqueta git con el mismo nombre (`v1.3.1`, `v1.4`…).
 En `~/texmf` solo se instalan versiones etiquetadas.
 
-## v2.2 (candidato del 2026-11-19; sin etiqueta y sin instalar)
+## v2.2 (2026-11-19)
 
 Compilación mucho más rápida, sin cambio visible. Sale de una pregunta de
 Marcos sobre la lentitud de los documentos que usan `nacal`.
@@ -25,6 +25,9 @@ veces; `\VectC{A}{j}`, 125). Además, cada repetición llamaba a
   fuentes matemáticas (los apuntes de Econometría), sin ella se perdía la
   negrita de una `\Mat{R}`.
 - Los subíndices izquierdos (`\LidxE`, `\LRidxE`) no se han tocado.
+- Con `avisacaja`, `\eleVV` y `\eleMM` ya no avisan: su uso normal es
+  darles el nombre de la matriz en mayúsculas (pedido por la sesión del
+  libro en `respuesta-desde-el-libro.md`). `\SV` sigue avisando.
 
 Tiempos de una pasada de `pdflatex` (misma máquina, sin turbo): el libro,
 de 410 s a 38 s; los apuntes de Econometría (`ectr_print`), de 866 s a 128 s.
@@ -42,9 +45,10 @@ instantánea es anterior a su `[v1]`, como en la v2.0 y la v2.1); 1 distinto,
 byte a byte: cambió la salida de Python, 1/2 donde la referencia tiene 0.5).
 La caché sola, sin tocar `\RidxE`: 228 idénticos con solo la pasada final.
 `avisacaja`: mismos avisos y mismos píxeles que en la v2.1. Respecto a la
-v2.1 solo cambian `\RidxE`, `\nacal@min` y `\nacal@may`. Candidato en
-`~/temporal/nacal-banco/sty/v22/`. Pendiente: visto bueno de Marcos; los
-bancos de preguntas no se han pasado.
+v2.1 solo cambian `\RidxE`, `\nacal@min` y `\nacal@may`. Exámenes AMC
+`PEctr-Test-2026-11-13`, `-11-12` y `-11-06`, compilados con `lualatex` sobre
+copias: idénticos a la v2.1 (píxeles y texto). Los bancos de preguntas no se
+han pasado. Aprobada por Marcos e instalada el 19/11/2026.
 
 ## v2.1 (2026-11-16)
 
