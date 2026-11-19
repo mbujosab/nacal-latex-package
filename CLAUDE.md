@@ -417,3 +417,36 @@ La guía se genera con las filas escritas en el `.org`: si se añade una
 familia con sufijos, añadir su fila a mano.
 `\Matdim` en texto corrido (punto 3 del encargo): el «m×n» ensancha la caja y
 baja la línea siguiente; no tiene arreglo sin cambio visible. Sin decidir.
+
+## v2.2: candidato sin instalar (19/11/2026). Velocidad
+
+Marcos preguntó por la lentitud de compilar: es **prioritario** para él.
+Causa: `\leftidx` y `\boldsymbol` componen su contenido cinco veces cada uno
+y el factor se multiplica al anidar comandos; además cada copia llamaba a
+`\MakeUppercase`. La v2.2 guarda el cambio de caja por argumento
+(`\nacal@caja`) y quita `\leftidx` de `\RidxE` (deja una composición previa
+en caja, necesaria en documentos que agotan las 16 familias matemáticas).
+Libro: de 410 s a 38 s por pasada; Econometría: de 866 s a 128 s (sin turbo).
+Banco, ciclo completo con pythontex: idéntico a `ref1` (detalle en
+`CHANGELOG.md`). Confirmado en `master` **sin etiqueta, sin instalar y sin
+subir**; candidato en `~/temporal/nacal-banco/sty/v22/`.
+- Tras instalarla, los documentos con `\py{…}` dentro de comandos de nacal
+  necesitan un ciclo completo con pythontex (cambia el número de
+  evaluaciones). Para probar cambios de este tipo en el banco no basta
+  `generar`: segunda raíz (`BANCO=~/temporal/nacal-banco-B`, con enlaces a
+  `fuentes` y `ref1`), `CONGELADO=<sty candidato>`, `preparar`, `generar`,
+  `comparar ref1 …`.
+- `ref1` ya no reproduce `2026-Quiz2-C` (cambió la salida de Python, no el
+  paquete): conviene rehacer la referencia con la versión que se instale.
+- Sin hacer, por si se quiere más: subíndices izquierdos (`\LidxE`,
+  `\LRidxE`, donde el `\vphantom` sí hace falta) y `\boldsymbol`.
+- Econometría sigue en el límite de familias (1,8 millones de mensajes
+  «frozen version» en el log con la v2.1, 177 000 con la v2.2). Alternativa
+  sin adoptar, en `AUDITORIA.md`: tomar el ⟦ ⟧ pequeño de `mathx` en vez de
+  `matha` (ahora en `ectrnot` y `alprobnot`); es cambio visible.
+- El banco calienta el portátil: lanzarlo con `JOBS=6` como mucho. Marcos
+  desactiva el turbo con `echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo`.
+- Pendiente de respuesta de Marcos: `respuesta-desde-el-libro.md` (sin
+  confirmar en git a propósito): si se quita el aviso de `avisacaja` en
+  `\eleMM`/`\eleVV` y en `\SV`.
+

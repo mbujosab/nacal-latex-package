@@ -3,6 +3,49 @@
 Cada versión tiene una etiqueta git con el mismo nombre (`v1.3.1`, `v1.4`…).
 En `~/texmf` solo se instalan versiones etiquetadas.
 
+## v2.2 (candidato del 2026-11-19; sin etiqueta y sin instalar)
+
+Compilación mucho más rápida, sin cambio visible. Sale de una pregunta de
+Marcos sobre la lentitud de los documentos que usan `nacal`.
+
+Causa: `\leftidx` (base de todos los subíndices) y `\boldsymbol` (negrita de
+`\Mat` y `\Vect`) componen su contenido cinco veces cada uno, y al anidarse
+los comandos esos factores se multiplican (`\Mat{A}` componía la «A» 25
+veces; `\VectC{A}{j}`, 125). Además, cada repetición llamaba a
+`\MakeUppercase` o `\MakeLowercase`, que son lentos.
+
+- El cambio de caja se calcula una sola vez por argumento distinto y se
+  guarda (`\nacal@caja`). Solo para argumentos hechos de letras sin acento,
+  cifras y símbolos como `\beta`; en los demás casos se llama a
+  `\MakeUppercase`/`\MakeLowercase` como antes.
+- `\RidxE` (subíndice derecho, del que dependen `\Ridx`, `\elemR`, `\Mat`,
+  `\Vect`, `\VectC`…) ya no usa `\leftidx`: compone el objeto una vez en una
+  caja que se descarta y otra de verdad (dos veces en lugar de cinco). La
+  caja descartada es necesaria: en documentos que agotan las 16 familias de
+  fuentes matemáticas (los apuntes de Econometría), sin ella se perdía la
+  negrita de una `\Mat{R}`.
+- Los subíndices izquierdos (`\LidxE`, `\LRidxE`) no se han tocado.
+
+Tiempos de una pasada de `pdflatex` (misma máquina, sin turbo): el libro,
+de 410 s a 38 s; los apuntes de Econometría (`ectr_print`), de 866 s a 128 s.
+
+**Aviso para documentos con pythontex dentro de comandos de nacal** (por
+ejemplo `\TrC[\py{…}]{…}`): pythontex numera cada evaluación y ahora hay
+menos, así que la primera compilación tras instalar la v2.2 necesita el
+ciclo completo (`pdflatex`, `pythontex`, `pdflatex`). Con solo `pdflatex`
+esas fórmulas salen con resultados descolocados.
+
+Pruebas (19/11/2026): banco de 230 documentos, ciclo completo con pythontex,
+contra `ref1`: 227 idénticos; 2 sin PDF (los del libro de probabilidad, cuya
+instantánea es anterior a su `[v1]`, como en la v2.0 y la v2.1); 1 distinto,
+`2026-Quiz2-C`, que no depende del paquete (con la v2.1 de hoy sale igual
+byte a byte: cambió la salida de Python, 1/2 donde la referencia tiene 0.5).
+La caché sola, sin tocar `\RidxE`: 228 idénticos con solo la pasada final.
+`avisacaja`: mismos avisos y mismos píxeles que en la v2.1. Respecto a la
+v2.1 solo cambian `\RidxE`, `\nacal@min` y `\nacal@may`. Candidato en
+`~/temporal/nacal-banco/sty/v22/`. Pendiente: visto bueno de Marcos; los
+bancos de preguntas no se han pasado.
+
 ## v2.1 (2026-11-16)
 
 Sin cambio visible en ningún documento. Sale de un encargo de la sesión del
