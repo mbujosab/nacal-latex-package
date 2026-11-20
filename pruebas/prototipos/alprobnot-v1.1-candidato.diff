@@ -1,0 +1,59 @@
+--- alprobnot.sty (v1.0)
++++ alprobnot.sty (v1.1, candidato)
+@@ -16,7 +16,7 @@
+ %%
+ \NeedsTeXFormat{LaTeX2e}[2005/12/01]
+ \ProvidesPackage{alprobnot}
+-    [2026/11/10 v1.0 Notacion de probabilidad del libro de Algebra Lineal]
++    [2026/11/20 v1.1 Notacion de probabilidad del libro de Algebra Lineal]
+ %% Las opciones (esp, eng...) se pasan a nacal.
+ \DeclareOption*{\PassOptionsToPackage{\CurrentOption}{nacal}}
+ \ProcessOptions\relax
+@@ -35,12 +35,20 @@
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %% --- Probabilidad
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-\DeclareMathAlphabet{\alprobnot@bb}{U}{BOONDOX-ds}{m}{n}
++%% Glifos sueltos compuestos como texto: no ocupan familia matematica.
++%% \alprobnot@glifo<clase>{familia U}{codigo}: el glifo al cuerpo del estilo en
++%% curso. El atomo va dentro de \mathchoice para que los indices que sigan
++%% se coloquen como tras un caracter y no como tras una caja.
++\newcommand\alprobnot@glifo[3]{\mathchoice
++  {#1{\alprobnot@glifo@\tf@size{#2}{#3}}}{#1{\alprobnot@glifo@\tf@size{#2}{#3}}}%
++  {#1{\alprobnot@glifo@\sf@size{#2}{#3}}}{#1{\alprobnot@glifo@\ssf@size{#2}{#3}}}}
++\newcommand\alprobnot@glifo@[3]{\hbox{\fontsize{#1}{\z@}\usefont{U}{#2}{m}{n}\char#3}}
++\newcommand\alprobnot@bb[1]{\alprobnot@glifo\mathord{BOONDOX-ds}{`#1}}
+ \NewDocumentCommand\Cero{}{\ensuremath{\alprobnot@bb{0}}\xspace}
+ \NewDocumentCommand\Uno{}{\ensuremath{\alprobnot@bb{1}}\xspace}
+ \NewDocumentCommand\indCero{}{\ensuremath{\Cero}\xspace}
+ \NewDocumentCommand\indUno{} {\ensuremath{\Uno}\xspace}
+-\NewDocumentCommand\ind{m}{\ensuremath{{\Uno}_{{#1}}}\xspace}
++\NewDocumentCommand\ind{m}{\ensuremath{\Uno_{{#1}}}\xspace}
+ \NewDocumentCommand\Ind{} {\ensuremath{\Uno}\xspace}
+ \NewDocumentCommand\sspi{O{}O{}}{\ensuremath{\RidxE{\eta}{\scriptstyle{#1}}{#2}}\xspace}
+ \NewDocumentCommand\SPI{sO{}O{}mm}{\ensuremath{\IfBooleanTF#1
+@@ -103,14 +111,19 @@
+ \DeclareFontFamily{U}{matha}{\hyphenchar\font45}
+ \DeclareFontShape{U}{matha}{m}{n}{ <-6> matha5 <6-7> matha6 <7-8>
+ matha7 <8-9> matha8 <9-10> matha9 <10-12> matha10 <12-> matha12 }{}
+-\DeclareSymbolFont{matha}{U}{matha}{m}{n}
+ \DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+ \DeclareFontShape{U}{mathx}{m}{n}{ <-6> mathx5 <6-7> mathx6 <7-8>
+ mathx7 <8-9> mathx8 <9-10> mathx9 <10-12> mathx10 <12-> mathx12 }{}
+-\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+-\DeclareMathDelimiter{\ldbrack} {4}{matha}{"76}{mathx}{"30}
+-\DeclareMathDelimiter{\rdbrack} {5}{matha}{"77}{mathx}{"38}
+-\DeclareMathSymbol{\bigtimes}{\mathop}{mathx}{"91}
++\newcommand\ldbrack{\alprobnot@glifo\mathopen{matha}{"76}}
++\newcommand\rdbrack{\alprobnot@glifo\mathclose{matha}{"77}}
++%% Operador grande: centrado en el eje con la misma cuenta que hace TeX.
++\newcommand\alprobnot@op[3]{\hbox{\setbox\z@\alprobnot@glifo@{#1}{mathx}{#2}%
++  \dimen@\ht\z@ \advance\dimen@-\dp\z@
++  \ifodd\dimen@ \advance\dimen@ 1sp \fi \divide\dimen@\tw@
++  \advance\dimen@-\fontdimen22#3\tw@ \lower\dimen@\box\z@}}
++\newcommand\bigtimes{\mathop{\mathchoice
++  {\alprobnot@op\tf@size{"A1}\textfont}{\alprobnot@op\tf@size{"91}\textfont}%
++  {\alprobnot@op\sf@size{"91}\scriptfont}{\alprobnot@op\ssf@size{"91}\scriptscriptfont}}}
+ \NewDocumentCommand\Clase {m}{\ensuremath{ \ldbrack #1 \rdbrack }\xspace}
+ 
+ \NewDocumentCommand\Mediap{sm}{\ensuremath{\IfBooleanTF#1

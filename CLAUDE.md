@@ -526,3 +526,15 @@ aprendido, las dos trampas encontradas y el prototipo están en
 `pruebas/prototipos/cajas-boldsymbol.org` y `.diff`: leerlos antes de volver
 a tocar `\boldsymbol`. La parte de Econometría habría que estudiarla en
 `ectrnot`.
+
+## `alprobnot` v1.1: encargo enviado al libro (20/11/2026)
+
+`libro-P` ocupa 13 de las 16 familias matemáticas (el umbral es 14); `libro`
+y Matemáticas II, 11 o 12. Marcos pidió adelantarse: candidato de
+`alprobnot` con el mismo cambio que `ectrnot` v1.1, en
+`pruebas/prototipos/alprobnot-v1.1-candidato.sty` (y `.diff`). Banco contra
+`ref2`: 230 idénticos; baja a 10 familias. `alprobnot.sty` es del
+repositorio del libro: no se ha tocado; el encargo está al final de su
+`encargo-desde-nacaltex.md`, sin confirmar, a la espera de esa sesión.
+Para medir las familias de un documento:
+`pdflatex -jobname X '\AtEndDocument{\typeout{\expandafter\the\csname c@mv@normal\endcsname}}\input{X.tex}'`.
