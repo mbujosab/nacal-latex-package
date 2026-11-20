@@ -3,6 +3,45 @@
 Cada versión tiene una etiqueta git con el mismo nombre (`v1.3.1`, `v1.4`…).
 En `~/texmf` solo se instalan versiones etiquetadas.
 
+## v2.3 (2026-11-20). Candidata: sin etiqueta ni instalar
+
+Compilación más rápida, sin cambio visible. Sale de una pregunta de Marcos:
+si convenía quitar `\MakeUppercase` y `\MakeLowercase` y corregir los fuentes.
+
+Medida en el libro: de 289 271 llamadas al cambio de caja, 8 408 escapaban
+al guardado de la v2.2 y llamaban cada vez a `\MakeUppercase` o
+`\MakeLowercase` (unos 0,7 ms cada una). Eran argumentos con comandos
+dentro: `\Vect{\boldsymbol{\gamma}}`, `\Mat{\MatT{A}}`, `\Vect{Q^*}`,
+`\Mat{C'}`…
+
+- El resultado guardado admite ahora cualquier argumento hecho de caracteres
+  ASCII corrientes (letras sin acento, cifras, signos, llaves, `^`, `_`) y
+  de comandos que el cambio de caja deja como están: símbolos `\mathchardef`
+  (como `\beta`), comandos protegidos (todos los de `\NewDocumentCommand`) y
+  robustos (como `\boldsymbol`), salvo los que `\MakeUppercase` trata aparte
+  (`\ref`, `\label`, `\ensuremath`…). Lo decide `\nacal@caja@fija:NF`.
+- Siguen por el camino de antes los argumentos con acentos, caracteres
+  activos, `$` o comandos corrientes (`\widehat`, `\,`, `\_`, los del
+  usuario), porque un comando corriente puede cambiar de definición entre
+  dos usos. En el libro quedan 356 llamadas así.
+- No se quita el cambio de caja: una variante sin él tarda lo mismo que esta
+  (13,4 s frente a 13,7 s en el libro).
+
+Tiempos de una pasada de `pdflatex` (misma máquina, con turbo; por eso no
+son comparables con los de la v2.2 de abajo): el libro, de 18,9 s a 13,7 s;
+los apuntes de Econometría (`ectr_print`), de 66,5 s a 50,6 s.
+
+Pruebas (20/11/2026): banco de 230 documentos, pasada final sobre los
+auxiliares de la v2.2 (el número de composiciones no cambia, así que no
+hace falta el ciclo de pythontex): 228 idénticos a la salida de la v2.2;
+los otros dos (`libro` y `nota3` del libro de probabilidad) no compilan en
+la instantánea del banco, y compilados aparte sobre una copia de la carpeta
+compartida salen idénticos byte a byte. Documento de prueba con 45 fórmulas
+(acentos, `\ref`, un comando del usuario redefinido entre dos usos, cambio
+de idioma, `avisacaja`): mismas medidas, mismos 41 avisos y 0 píxeles
+distintos. El banco se pasó con `ectrnot` v1.1. Sin pasar: los bancos de
+preguntas y los exámenes AMC.
+
 ## v2.2 (2026-11-19)
 
 Compilación mucho más rápida, sin cambio visible. Sale de una pregunta de
