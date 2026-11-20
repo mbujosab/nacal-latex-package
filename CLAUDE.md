@@ -485,3 +485,29 @@ Tres exámenes AMC recientes idénticos a la v2.1; los `qbank` no se pasaron.
   fuentes: medido, no compensa (0,3 s más sobre la v2.3) y se pierde la red
   de seguridad.
 - `\Matdim` en texto corrido: Marcos decidió dejarlo tal cual (20/11).
+
+## Referencia del banco: `ref2` (20/11/2026)
+
+- **La referencia vigente es `~/temporal/nacal-banco/ref2`** (sustituye a
+  `ref1`): 230 documentos, `nacal` v2.3, `ectrnot` v1.1 y `alprobnot` v1.0,
+  fuentes copiadas el 20/11/2026; dos pasadas finales idénticas (`ref2` y
+  `ref2b`). Auxiliares en `~/temporal/nacal-banco/trabajo`; los de `ref1`
+  quedan en `trabajo-ref1-v16`. El `.sty` de la referencia está en
+  `~/temporal/nacal-banco/sty/v23/`. Para probar un candidato:
+  `JOBS=6 banco.sh generar DIR NOMBRE` y `banco.sh comparar ref2 NOMBRE`.
+- `libro` y `nota3` del libro de probabilidad ya compilan dentro del banco,
+  y `2026-Quiz2-C` vuelve a reproducirse.
+- `MatematicasII-SRC` se reorganizó: `Version0/` ya no existe, el material
+  está en `clases/` (`partes/`, `lecciones/`, `problemas/`). `banco.sh` lee
+  `clases/` y compone las transparencias con la receta del makefile nuevo.
+  Si `instantanea` da un error de `rsync`, es que algún repositorio ha
+  cambiado de estructura: el banco seguiría con la copia vieja sin avisar
+  más que en esa línea.
+- El ciclo completo (instantánea, `preparar`, dos pasadas y comparar) tarda
+  unos 12 minutos con `JOBS=6` y el turbo activo.
+- **Vídeos**: `pruebas/banco-manim.sh` (`instantanea`, `generar DIR NOMBRE`,
+  `comparar A B`) compila con `latex` las 2 155 fórmulas que manim guardó en
+  `media/Tex` de `VideosMates2` y `videoMath2` y compara los DVI. Referencia
+  en `~/temporal/nacal-banco/manim/ref2` (dos generaciones idénticas).
+- `~/temporal/nacal-banco-B` queda obsoleto: enlaza a las fuentes del banco,
+  que han cambiado.

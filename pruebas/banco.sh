@@ -74,8 +74,9 @@ instantanea() {
     [ -f "$CONGELADO/nacal.sty" ] || cp "$AQUI/../../nacal-congelado-v1.3-baseline/nacal.sty" "$CONGELADO/"
     rsync -a --delete --exclude .git \
           "$DOCENCIA/CursoDeAlgebraLineal-SRC/" "$FUENTES/libro/"
+    # Desde noviembre de 2026 el material de clase está en clases/ (antes Version0/).
     rsync -aL --delete \
-          "$DOCENCIA/MatematicasII-SRC/Version0/" "$FUENTES/transp/"
+          "$DOCENCIA/MatematicasII-SRC/clases/" "$FUENTES/transp/"
     rsync -aL --delete --exclude '/*.pdf' --exclude '*.zip' --exclude 'ParaHaydeeYDavid' \
           "$DOCENCIA/MatematicasII-SRC/Evaluacion/" "$FUENTES/evaluacion/"
     instantanea_prob
@@ -128,12 +129,13 @@ final_libro() {
 prep_transp() {
     local dir=$1 p=$2 tipo=$3 F=$FUENTES/transp
     mkdir -p "$dir"
-    for x in DatosDocumento.tex texto.tex ref.bib Documento.tex temas bank data referencias figuras; do
+    # Misma receta que el makefile de MatematicasII-SRC (objetivo «compila»).
+    for x in partes temas lecciones problemas figuras data referencias; do
         ln -sfn "$F/$x" "$dir/$x"
     done
-    ln -sfn "$F/$p.tex" "$dir/contenido.tex"
-    cat "$F/pre/$tipo.tex" "$F"/pre/{01preBeamer,01slides,01packages,01AMS,01colores}.tex \
-        "$F/DatosDocumento.tex" "$F/Documento.tex" > "$dir/MatematicasII-$tipo.tex"
+    { echo "\\def\\contenido{partes/$p.tex}"
+      cat "$F/pre/$tipo.tex" "$F"/pre/{01preBeamer,01slides,01packages,01AMS,01colores}.tex \
+          "$F/DatosDocumento.tex" "$F/Documento.tex"; } > "$dir/MatematicasII-$tipo.tex"
     ( cd "$dir"
       xelatex -interaction batchmode -no-pdf "MatematicasII-$tipo.tex"
       pythontex --interpreter python:python3 "MatematicasII-$tipo.tex"
