@@ -457,3 +457,26 @@ Tres exámenes AMC recientes idénticos a la v2.1; los `qbank` no se pasaron.
   no avisan con `avisacaja`; `\SV` sí. Aviso de pythontex enviado al libro
   en `encargo-desde-nacaltex.md`.
 
+
+## ectrnot v1.1 y nacal v2.3 candidata (20/11/2026)
+
+- **`ectrnot` v1.1** (commit y etiqueta locales en `../ectrnot`, sin subir;
+  instalada por el enlace de `~/texmf`): ⟦ ⟧ de `\Clase`, `\bigtimes`,
+  `\Cero` y `\Uno` se componen como texto y no ocupan familias matemáticas.
+  Los apuntes de Econometría ya no agotan las 16 familias (0 mensajes
+  «frozen version»). 85 documentos del banco y `qbank-econometria` entero,
+  idénticos. Cambia `{\Uno}^2` (entre llaves, 0,45 pt) y `\left\ldbrack` da
+  error; nadie los usa. La v1.0 está en `~/temporal/ectrnot-instalada-v1.0/`.
+  `alprobnot` (el libro) no se ha tocado: allí se usan `\ldbrack` y
+  `\bigtimes` directamente y no consta que esté en el límite.
+- **`nacal` v2.3, candidata** (commit `Candidato v2.3`, sin etiqueta ni
+  instalar; pendiente de que Marcos la apruebe): el cambio de caja guardado
+  admite argumentos con comandos protegidos o robustos. Libro, de 18,9 s a
+  13,7 s; Econometría, de 66,5 s a 50,6 s (con turbo). Banco idéntico a la
+  v2.2 (detalle en `CHANGELOG.md`). Candidato en
+  `~/temporal/nacal-banco-B/sty/v23/`; la salida de la v2.2 con la que se
+  compara es `~/temporal/nacal-banco-B/cand-v22`.
+- Marcos preguntó si quitar `\MakeUppercase`/`\MakeLowercase` y limpiar los
+  fuentes: medido, no compensa (0,3 s más sobre la v2.3) y se pierde la red
+  de seguridad.
+- `\Matdim` en texto corrido: Marcos decidió dejarlo tal cual (20/11).
