@@ -3,7 +3,7 @@
 Cada versión tiene una etiqueta git con el mismo nombre (`v1.3.1`, `v1.4`…).
 En `~/texmf` solo se instalan versiones etiquetadas.
 
-## v2.3 (2026-11-20). Candidata: sin etiqueta ni instalar
+## v2.3 (2026-11-20)
 
 Compilación más rápida, sin cambio visible. Sale de una pregunta de Marcos:
 si convenía quitar `\MakeUppercase` y `\MakeLowercase` y corregir los fuentes.
@@ -39,8 +39,20 @@ la instantánea del banco, y compilados aparte sobre una copia de la carpeta
 compartida salen idénticos byte a byte. Documento de prueba con 45 fórmulas
 (acentos, `\ref`, un comando del usuario redefinido entre dos usos, cambio
 de idioma, `avisacaja`): mismas medidas, mismos 41 avisos y 0 píxeles
-distintos. El banco se pasó con `ectrnot` v1.1. Sin pasar: los bancos de
-preguntas y los exámenes AMC.
+distintos. El banco se pasó con `ectrnot` v1.1.
+
+Comprobaciones añadidas antes de instalar, todas sobre copias y comparando
+la v2.2 con la v2.3:
+- Exámenes AMC con `lualatex`: `PEctr-Test-2026-11-20`, `-11-19`, `-11-13`,
+  `-11-12`, `-11-06` y `-10-30`, idénticos (texto y píxeles, sin errores).
+- Vídeos: los 2 155 ficheros `.tex` que manim generó en `VideosMates2` y
+  `videoMath2` (`media/Tex`) y que cargan `nacal` dan el mismo DVI byte a
+  byte (857 usan `\Vect`, `\Mat` y parientes). El banco no cubría los vídeos.
+- `qbank-econometria`: 309 ficheros (39 XML, 114 PDF, 156 `.tex`) idénticos.
+
+Sin pasar: `qbank-PEconometria` entero (sus preguntas entran en los
+exámenes AMC probados) y otras versiones de LaTeX que no sean la de esta
+máquina (TeX Live 2022). Aprobada por Marcos e instalada el 20/11/2026.
 
 ## v2.2 (2026-11-19)
 
