@@ -538,3 +538,10 @@ repositorio del libro: no se ha tocado; el encargo está al final de su
 `encargo-desde-nacaltex.md`, sin confirmar, a la espera de esa sesión.
 Para medir las familias de un documento:
 `pdflatex -jobname X '\AtEndDocument{\typeout{\expandafter\the\csname c@mv@normal\endcsname}}\input{X.tex}'`.
+Avisos informativos (20/11/2026), en `encargo-desde-nacaltex.md` sin
+confirmar: `MatematicasII-SRC` (le llegará `alprobnot` v1.1 por el enlace
+cuando el libro lo aplique), `qbank-econometria` y `qbank` (`ectrnot` v1.1
+ya instalada). `Econometria-SRC` no tiene sesión: lo lleva Marcos. Andrés
+no usa ni `alprobnot` ni `ectrnot`: no hay que avisarle. Los qbank y
+Econometría no tienen el aviso automático de encargos: decírselo a Marcos
+al abrir sesión allí.
