@@ -336,7 +336,9 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   cargan `nacal[soloAL]` y definen `\media` y `\dt` en su preámbulo; en
   `S03-Lecc03` se quitó un `\RenewDocumentCommand\sesp` sin uso; 17 figuras
   idénticas (los `.tex` de `tex/`, fuera de git, llevan el mismo cambio).
-  `org-pract/CursoAntiguo` (2023) sigue usando probabilidad: `[v1]` o archivo.
+  `org-pract/CursoAntiguo` (2023) usa probabilidad: resuelto el 11/11/2026
+  con `\usepackage[v1]{nacal}` en sus 21 ficheros (commit de PEconometria
+  de esa fecha; visto el 20/11, sin compilarlos).
   `qbank` (commit `0e76f41`): los ejemplos cargan `ectrnot-moodle`; es
   provisional, `NOTA-notacion-ejemplos.org` pide decidir cuando se retome.
   Marcos aprobó publicar `ectrnot` en GitHub (lo sube él).
@@ -367,10 +369,10 @@ Todo se compila en esta máquina; Andrés baja `nacal` de GitHub a su `~/texmf`.
   `~/temporal/estrategia-fable/respaldo-fase4/`); `libro` y `nota3` idénticos
   a la referencia v1.6. Sin tocar: `probnot/`, los informes y
   `basura/kalman/kalman4.org` (línea comentada).
-  Pendiente: `[v1]` en los textos de la carpeta compartida con Andrés (42
-  ficheros cargan `nacal` sin opciones) coordinado con él; `CursoAntiguo` de
-  PEconometria; fase 5.
-- **Banco hoy**: la referencia vigente es `~/temporal/nacal-banco/ref1`
+  Lo que aquí quedó anotado como pendiente está hecho: `[v1]` en la carpeta
+  compartida (11/11), `CursoAntiguo` de PEconometria (11/11) y la fase 5.
+- **Banco (superado el 20/11/2026 por `ref2`, ver más abajo)**: la
+  referencia era `~/temporal/nacal-banco/ref1`
   (v1.6, 230 documentos, fuentes ya migradas; idéntica a la v2.0 salvo los
   dos documentos del libro de probabilidad, que desde el 11/11 llevan `[v1]`).
   `ref0` es anterior a la migración. Tras cambiar fuentes: `instantanea`,
