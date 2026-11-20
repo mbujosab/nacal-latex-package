@@ -30,6 +30,15 @@ transp  P01 screen
 transp  P04 screen
 transp  P02 handoutENG
 transp  P06 printENG
+# Las ocho partes en inglés (añadidas el 20/11/2026 al probar alprobnot v1.1)
+transp  P00 print-profENG
+transp  P01 print-profENG
+transp  P02 print-profENG
+transp  P03 print-profENG
+transp  P04 print-profENG
+transp  P05 print-profENG
+transp  P06 print-profENG
+transp  P07 print-profENG
 
 # --- Exámenes: uno o dos por curso, de 2010 a 2024 -------------------------
 examen  2010-Quiz1-F        spanish 2 0

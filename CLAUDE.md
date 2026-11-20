@@ -527,15 +527,22 @@ aprendido, las dos trampas encontradas y el prototipo están en
 a tocar `\boldsymbol`. La parte de Econometría habría que estudiarla en
 `ectrnot`.
 
-## `alprobnot` v1.1: encargo enviado al libro (20/11/2026)
+## `alprobnot` v1.1 (instalada el 20/11/2026 por la sesión del libro)
 
-`libro-P` ocupa 13 de las 16 familias matemáticas (el umbral es 14); `libro`
-y Matemáticas II, 11 o 12. Marcos pidió adelantarse: candidato de
-`alprobnot` con el mismo cambio que `ectrnot` v1.1, en
-`pruebas/prototipos/alprobnot-v1.1-candidato.sty` (y `.diff`). Banco contra
-`ref2`: 230 idénticos; baja a 10 familias. `alprobnot.sty` es del
-repositorio del libro: no se ha tocado; el encargo está al final de su
-`encargo-desde-nacaltex.md`, sin confirmar, a la espera de esa sesión.
+`libro-P` ocupaba 13 de las 16 familias matemáticas (el umbral es 14);
+`libro` y Matemáticas II, 11 o 12. Marcos pidió adelantarse: `alprobnot`
+v1.1 lleva el mismo cambio que `ectrnot` v1.1 y baja todos a 10. El libro
+la aplicó y la confirmó en su git el mismo día (respuesta en
+`respuesta-desde-el-libro.md`); por el enlace de `~/texmf` es la que usa
+también Matemáticas II. Copia del candidato en
+`pruebas/prototipos/alprobnot-v1.1-candidato.sty` (y `.diff`).
+Pruebas: banco contra `ref2`, 230 idénticos; `libro-P` con `P-Cap03` y
+`P-Cap04` activados (están comentados en `libro-P.tex`, y ahí están 11 de
+los 12 `\bigtimes`), idéntico; las ocho partes de Matemáticas II en inglés,
+idénticas. Desde entonces la muestra tiene 238 documentos (`P00` a `P07` en
+print-profENG, añadidos a `ref2`).
+Lección: contar apariciones en los fuentes no dice qué se compila; mirar
+qué ficheros incluye el documento principal.
 Para medir las familias de un documento:
 `pdflatex -jobname X '\AtEndDocument{\typeout{\expandafter\the\csname c@mv@normal\endcsname}}\input{X.tex}'`.
 Avisos informativos (20/11/2026), en `encargo-desde-nacaltex.md` sin

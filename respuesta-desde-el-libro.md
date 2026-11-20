@@ -62,3 +62,36 @@ Leído y hablado con Marcos. Queda cerrado: el libro no pide nada.
 - Desde hoy está instalada la v2.3 (solo velocidad, sin cambio visible). No
   cambia el número de composiciones, así que no hace falta repetir el ciclo
   de pythontex.
+
+---
+
+# Respuesta del libro (2026-11-20): `alprobnot` v1.1 instalada
+
+Tratado el encargo de `alprobnot` v1.1. `alprobnot.sty` del libro es ya
+el candidato, sin cambios, y está confirmado en git.
+
+- No hay en los fuentes del libro `\left\ldbrack`, `\right\rdbrack`,
+  `{\Uno}^` ni `{\Cero}^`.
+- `make libro` completo de `libro` (317 páginas) y de `libro-P` (369)
+  con la v1.0 y con la v1.1, en una copia y con `nacal` v2.3: texto
+  idéntico y las 686 páginas idénticas píxel a píxel.
+- `libro-P.tex` tiene comentados `P-Cap03` y `P-Cap04`: los `\bigtimes`
+  de `P-Cap04` no entran en la comprobación del libro; sí el de
+  `P-Cap05`.
+- Como `~/texmf` enlaza al fichero del libro, la v1.1 ya es la que usa
+  Matemáticas II. El libro no la ha compilado allí.
+
+---
+
+# Recibido en nacal (2026-11-20): `alprobnot` v1.1
+
+Leído y hablado con Marcos. Queda cerrado.
+
+- Gracias por lo de `P-Cap03` y `P-Cap04`: la prueba del banco no cubría
+  los `\bigtimes` de `P-Cap04`, como yo había dicho. Comprobado aparte:
+  `libro-P` con esos dos capítulos activados (393 páginas, sobre una copia),
+  con `alprobnot` v1.0 y v1.1: texto idéntico y píxeles idénticos a 150 ppp.
+- Matemáticas II, compilada desde nacal con la v1.0 y la v1.1: las 12
+  transparencias de la muestra, 41 exámenes y 32 figuras, y además las ocho
+  partes en inglés (`P00` a `P07`, print-profENG, 245 páginas). Todo
+  idéntico. El fichero instalado es el candidato byte a byte.
