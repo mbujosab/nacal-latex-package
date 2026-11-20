@@ -591,3 +591,21 @@ lo carga por su cuenta. Decisiones de Marcos:
   `\RequirePackage{xcolor}` (sin efecto visible). No sacar versiones solo
   para esto. Anotado en el `README.org` de `ectrnot`; para `alprobnot`,
   incluirlo en el siguiente encargo al libro que toque ese fichero.
+
+## Las cuatro pruebas de regresión (desde el 21/11/2026)
+
+Todas en `pruebas/`, todas sobre copias en `~/temporal/nacal-banco/` y con
+la misma forma (`instantanea`, `generar DIR NOMBRE`, `comparar A B`):
+
+| Guion | Qué compila | Referencia |
+|---|---|---|
+| `banco.sh` | 238 documentos: libro, Matemáticas II, exámenes, Econometría, figuras (`pdflatex`, `xelatex`) | `ref2` |
+| `banco-manim.sh` | 2 155 fórmulas de los vídeos (`latex`, DVI) | `manim/ref2` |
+| `banco-amc.sh` | los seis exámenes AMC más recientes (`lualatex`) | `amc/ref2` |
+| `banco-qbank.sh` | un banco de preguntas entero, XML y PDF (lento: 45 a 90 min) | la generación anterior |
+
+Antes de instalar una versión de `nacal`: las tres primeras (unos 5 minutos
+en total con `JOBS=6`); la cuarta, si el cambio puede afectar a Moodle o si
+Marcos lo pide. `banco-amc.sh` solo copia las fuentes de los exámenes:
+nunca escaneos, notas ni datos de alumnos. Sustituye al guion suelto de
+`~/temporal/nacal-guiones-v23/`.
