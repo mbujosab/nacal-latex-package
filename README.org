@@ -53,12 +53,29 @@ paquetes:
 - [[https://www.ctan.org/pkg/leftidx][leftidx]]: para escribir subíndices por la izquierda
 - [[https://www.ctan.org/pkg/pict2e][pict2e]]: que permite hacer algunos pequeños dibujos (lo usaré para
   dibujar el símbolo de concatenación).
-- [[https://www.ctan.org/pkg/stackengine][stackengine]]: permite sobreimponer un caracter sobre otro (para el
-  span probabilístico).
+- [[https://www.ctan.org/pkg/xcolor][xcolor]]: el paquete ya no lo usa. Se sigue cargando porque lo
+  necesita ~\ColorA~, de la notación de econometría (opción ~v1~ y
+  paquetes derivados), que cuenta con que ~nacal~ lo carga.
 - [[https://www.ctan.org/pkg/xparse][xparse]]: para definir comandos robustos
 - [[https://www.ctan.org/pkg/xspace][xspace]]: para que LaTeX{} decida correctamente si intercalar un
   espacio en blanco o no después de un comando al terminar las
   definiciones de los símbolos matemáticos con ~\xspace~.
+
+*** Opciones del paquete
+
+- ~esp~ (por defecto) y ~eng~: idioma de los pocos textos que escribe
+  el paquete.
+- ~avisacaja~ (desde la versión 2.1): escribe un aviso en el ~.log~
+  cada vez que el argumento de ~\Vect~, ~\Mat~, etc. llega con la caja
+  contraria a la que se imprime (~\Vect{A}~ imprime una «a»;
+  ~\Mat{b}~, una «B»). Sirve para limpiar los fuentes; no cambia nada
+  de lo que se compone.
+- ~v1~: carga además la notación de probabilidad y econometría de las
+  versiones 1.x (véase más abajo).
+
+La documentación (~nacal.pdf~) empieza con una «Guía rápida» de los
+sufijos ~p~, ~P~, ~pE~, ~PE~ y la estrella. Los cambios de cada versión
+están en ~CHANGELOG.md~.
 
 *** Instalación
 

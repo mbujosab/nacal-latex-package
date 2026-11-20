@@ -552,3 +552,30 @@ ya instalada). `Econometria-SRC` no tiene sesión: lo lleva Marcos. Andrés
 no usa ni `alprobnot` ni `ectrnot`: no hay que avisarle. Los qbank y
 Econometría no tienen el aviso automático de encargos: decírselo a Marcos
 al abrir sesión allí.
+
+## Limpieza de `~/temporal` (20/11/2026)
+
+Hecha a petición de Marcos: de 8,7 GB a unos 2,2 GB. **Casi todas las rutas
+de `~/temporal` que cita este fichero más arriba ya no existen** (raíces
+`nacal-banco-B`, `-C`, `-migrado`, `-v1`; `nacal-flujo`; `nacal-v2`; las
+`nacal-instalada-v1.3` a `v2.1`; pruebas de `nacal-moodle` y de AMC;
+`probnot-borrador` e `-inventario`; referencias `ref0`, `ref1`, etc.).
+Sus resultados están en `CHANGELOG.md` y en este fichero. Queda:
+
+- `~/temporal/nacal-banco/`: `fuentes`, `trabajo`, `ref2`, `sty/v23`,
+  `manim/{fuentes,ref2}` y `qbank/` (copia `src-20261120` y las últimas
+  generaciones).
+- `nacal-instalada-v2.2` y `ectrnot-instalada-v1.0` (para volver atrás),
+  `estrategia-fable` (plan y copias previas de ficheros que no estaban en
+  git), `Econometria-copia-2026-11-05`, `nacal-moodle-congelado`,
+  `nacal-guiones-v23`.
+- No son de esta sesión y no se tocan: `MatematicasII-SRC`, `CloudStation`
+  y `SynologyDrive` (carpetas de compilación de los makefiles, con uso
+  reciente), `MatematicasII-referencia`/`-nacal030`/`-nacal041`,
+  `matII-tex-acumulados`, `nacal-banco-python`, `nacal-muestra-fracciones`,
+  `revision-fable`, `init-prueba`.
+
+`banco.sh` usa ahora por defecto el `nacal.sty` instalado como «congelado»
+(antes, una copia de la v1.3 en `sty/congelado`, ya borrada). Para borrar en
+`~/temporal` hay que dar rutas literales: el `rm -rf` con variables lo
+bloquea una comprobación de seguridad.

@@ -34,7 +34,9 @@ DOCENCIA=${DOCENCIA:-$HOME/SynologyDrive/ReposGH/Docencia}
 # Libro de probabilidad compartido con Andrés (carpeta sincronizada entre los
 # dos NAS). Solo se lee: rsync hacia la instantánea, nunca al revés.
 CASOFINITO=${CASOFINITO:-$HOME/repos/SynologyDrive/libroProbabilidad}
-CONGELADO=${CONGELADO:-$BANCO/sty/congelado}
+# Por defecto, el nacal.sty instalado (hasta el 20/11/2026 era la copia
+# congelada de la v1.3 en $BANCO/sty/congelado).
+CONGELADO=${CONGELADO:-$HOME/texmf/tex/latex/nacal}
 JOBS=${JOBS:-10}
 RES=${RES:-100}            # resolución (ppp) para la comparación de píxeles
 
@@ -71,7 +73,7 @@ linea_de() { muestra | awk -v id="$1" '$1==id'; }
 
 instantanea() {
     mkdir -p "$FUENTES" "$CONGELADO"
-    [ -f "$CONGELADO/nacal.sty" ] || cp "$AQUI/../../nacal-congelado-v1.3-baseline/nacal.sty" "$CONGELADO/"
+    [ -f "$CONGELADO/nacal.sty" ] || { echo "No hay nacal.sty en $CONGELADO" >&2; exit 1; }
     rsync -a --delete --exclude .git \
           "$DOCENCIA/CursoDeAlgebraLineal-SRC/" "$FUENTES/libro/"
     # Desde noviembre de 2026 el material de clase está en clases/ (antes Version0/).
