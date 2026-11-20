@@ -579,3 +579,15 @@ Sus resultados están en `CHANGELOG.md` y en este fichero. Queda:
 (antes, una copia de la v1.3 en `sty/congelado`, ya borrada). Para borrar en
 `~/temporal` hay que dar rutas literales: el `rm -rf` con variables lo
 bloquea una comprobación de seguridad.
+
+## `xcolor` (decidido el 20/11/2026)
+
+`nacal.sty` carga `xcolor` pero ya no lo usa: lo necesitaba `\ColorA`, que
+hoy está en `v1/nacal-econometria.sty`, `ectrnot` y `alprobnot`, y ninguno
+lo carga por su cuenta. Decisiones de Marcos:
+- **No quitar `xcolor` de `nacal`**: rompería los documentos que usan
+  `\color` sin cargarlo, y no se gana nada.
+- En la **próxima versión real** de `ectrnot` y de `alprobnot`, añadirles
+  `\RequirePackage{xcolor}` (sin efecto visible). No sacar versiones solo
+  para esto. Anotado en el `README.org` de `ectrnot`; para `alprobnot`,
+  incluirlo en el siguiente encargo al libro que toque ese fichero.
