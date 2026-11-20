@@ -1,0 +1,119 @@
+#+TITLE: Negrita matemática guardada en cajas: exploración del 20/11/2026
+#+AUTHOR: Marcos Bujosa (con Claude)
+#+LANGUAGE: es
+#+OPTIONS: toc:nil num:nil
+#+LATEX_HEADER: \usepackage[spanish]{babel}
+#+LATEX_HEADER: \usepackage[margin=2.5cm]{geometry}
+
+* Estado
+Exploración cerrada sin adoptar. Marcos decidió el 20/11/2026 dejarlo así;
+este fichero guarda lo aprendido por si se retoma. Nada de esto está en
+=nacal.sty= ni instalado.
+
+- Prototipo: =cajas-boldsymbol.diff= (en esta carpeta), parche sobre el
+  =nacal.sty= de la v2.3. Se aplica con
+  =patch nacal.sty < pruebas/prototipos/cajas-boldsymbol.diff= sobre una
+  copia; para adoptarlo hay que llevarlo a =NAcAL-Tex.org=.
+
+* El problema
+Tras la v2.3, lo que queda de =nacal= en el tiempo de compilación es
+=\boldsymbol= (la negrita de =\Mat= y =\Vect=). Cada llamada:
+
+- compone su argumento cinco veces: una de prueba, para saber si es un
+  operador o una relación, y una por cada estilo (fórmula destacada, en
+  línea, subíndice, sub-subíndice); TeX se queda con una;
+- en cada una cambia todas las fuentes matemáticas a la versión negrita
+  (=\mathversion{bold}=) y luego las restaura. Eso es lo caro, y más cuantas
+  más familias de fuentes tenga el documento.
+
+Techo medido (variante en la que =\boldsymbol= no cuesta nada; el PDF sale
+mal): el libro, de 14,6 s a 9,8 s; los apuntes de Econometría, de 53 s a
+15,6 s; =P04_print-prof=, de 2,8 s a 2,0 s. Una pasada de =pdflatex=, con
+turbo.
+
+* La idea
+Cuando TeX compone algo, el resultado es una «caja»: los glifos ya elegidos
+y colocados. Una caja se puede guardar en un registro y copiar tantas veces
+como se quiera sin volver a componerla.
+
+La primera vez que aparece =\Mat{A}= se componen las cuatro cajas (una por
+estilo) igual que lo hace =\boldsymbol=, y se guardan. Después, cada
+=\Mat{A}= es un =\mathchoice= con cuatro =\copy=. La clave del guardado es
+el argumento, la versión matemática (=\math@version=) y el cuerpo
+(=\f@size=).
+
+* Resultados
+Una pasada, con turbo, frente a la v2.3:
+
+| Documento                         | v2.3   | cajas (prudente) | cajas (amplia) |
+|-----------------------------------+--------+------------------+----------------|
+| Libro                             | 14,5 s | 10,5 s           | 10,1 s         |
+| Apuntes de Econometría            | 51,5 s | 48,5 s           | 33,6 s         |
+| Mat. II, parte 3 (print-prof)     | 3,3 s  | 2,5 s            |                |
+| Mat. II, parte 4 (screen)         | 26,3 s | 11,4 s           |                |
+
+- *Variante prudente* (la del parche): solo guarda argumentos hechos de
+  letras sin acento, cifras y símbolos =\mathchardef= (=\Mat{A}=,
+  =\Vect{x}=, =\Vect{\beta}=, el índice vacío de =\Vect=). Banco contra
+  =ref2=: 230 de 230 idénticos. Fórmulas de manim: 496 de 2 155 DVI
+  cambian, pero solo en el número interno de una fuente; el SVG de
+  =dvisvgm= sale idéntico (comprobado con una versión anterior del
+  prototipo, sin las guardas: habría que repetirlo).
+- *Variante amplia*: guarda también argumentos con comandos protegidos o
+  robustos (el mismo criterio que el cambio de caja de la v2.3). Cambia 13
+  documentos del banco. Descartada: un comando protegido se ejecuta una
+  sola vez y su resultado puede depender del contexto.
+
+* Las dos trampas encontradas
+Una caja guardada solo es correcta si el contexto en que se usa es el mismo
+en que se creó. El banco cazó dos casos en que no lo es; el prototipo los
+detecta y llama a =\boldsymbol= como siempre.
+
+1. *Cambio de cuerpo dentro de una fórmula* (=\large= en modo matemático; lo
+   hace =\oculto= en las versiones del profesor de Matemáticas II, y los
+   exámenes con soluciones). =\boldsymbol= recarga ahí las fuentes
+   matemáticas y eso cambia el tamaño del resto de la fórmula (el «=»
+   anterior sale más grande). Sin la guarda cambiaban 14 documentos.
+   Guarda: =\ifx\glb@currsize\f@size=.
+2. *Acentos de amsmath* (=\ddot{\Mat{x}}= en el libro de probabilidad,
+   =libro.tex=, pág. 40). El acento hace una composición de prueba con los
+   alfabetos matemáticos desactivados (=\use@mathgroup= y =\select@group=
+   anulados, =\frozen@everymath= vacío). Si la caja se crea ahí, queda una
+   «X» cursiva sin negrita para todo el documento. Guarda: comparar
+   =\select@group= y =\use@mathgroup= con su significado en
+   =\begin{document}=.
+
+Otros detalles del prototipo:
+- Solo actúa si =\boldsymbol= es exactamente el de =amsbsy= (se compara su
+  definición en =\begin{document}=); con =bm= o =unicode-math= no hace nada.
+- Con =avisacaja= no actúa: cada uso debe pasar por el aviso.
+- La composición de prueba (=\binrel@=) se hace ya en negrita y antes de
+  crear las cajas, como en =\boldsymbol=.
+- Tope de 1000 argumentos guardados (4000 registros de caja).
+
+* Riesgo
+Puede haber un tercer contexto que el banco no contenga. Si falla, falla en
+silencio (una letra sin negrita o de otro tamaño), cosa que no pasa con el
+cambio de caja guardado de la v2.3, donde el comando se sigue ejecutando
+cada vez.
+
+* Si se retoma
+1. Llevarlo a =NAcAL-Tex.org= detrás de una opción (=[cajas]=, nombre
+   provisional), apagada por defecto.
+2. Activarla en el libro y en Matemáticas II durante unas semanas.
+3. Hacerla comportamiento por defecto solo si no aparece nada raro.
+4. Repetir con el prototipo definitivo la comparación de SVG de manim y
+   pasar exámenes AMC con =lualatex=.
+
+Econometría es otro problema: allí el tiempo se va en =\boldsymbol= con
+argumentos que llevan comandos de =ectrnot= (=\Vect{\Serror}=, =\MVA{X}=,
+=\VA{Y}=), que la variante prudente no guarda, y en los =\boldsymbol= que
+=ectrnot= llama por su cuenta. Habría que estudiarlo en =ectrnot=: por
+ejemplo, que ese paquete declare qué comandos suyos son notación fija.
+
+* Cómo se midió
+- Tiempos: copia de =~/temporal/nacal-banco/trabajo/ID=, una pasada de
+  =pdflatex= con =TEXINPUTS= apuntando a la variante.
+- Banco: =JOBS=6 banco.sh generar DIR NOMBRE= y =banco.sh comparar ref2 NOMBRE=.
+- Vídeos: =banco-manim.sh generar DIR NOMBRE= y =comparar ref2 NOMBRE=; para
+  los DVI distintos, comparar =dvisvgm --no-fonts --stdout=.

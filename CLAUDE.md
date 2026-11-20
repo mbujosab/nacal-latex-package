@@ -511,3 +511,16 @@ Tres exámenes AMC recientes idénticos a la v2.1; los `qbank` no se pasaron.
   en `~/temporal/nacal-banco/manim/ref2` (dos generaciones idénticas).
 - `~/temporal/nacal-banco-B` queda obsoleto: enlaza a las fuentes del banco,
   que han cambiado.
+
+## Exploración cerrada: negrita guardada en cajas (20/11/2026)
+
+Lo que queda de `nacal` en el tiempo de compilación es `\boldsymbol`. Se
+exploró guardar en cajas la negrita ya compuesta: el libro baja de 14,5 s a
+10,5 s y las transparencias `P04_screen` de 26,3 s a 11,4 s; Econometría
+apenas (de 51,5 s a 48,5 s). Banco idéntico a `ref2` con la variante
+prudente, pero tiene un riesgo que la v2.3 no tiene (falla en silencio si el
+contexto cambia). **Marcos decidió no adoptarlo por ahora.** Todo lo
+aprendido, las dos trampas encontradas y el prototipo están en
+`pruebas/prototipos/cajas-boldsymbol.org` y `.diff`: leerlos antes de volver
+a tocar `\boldsymbol`. La parte de Econometría habría que estudiarla en
+`ectrnot`.

@@ -1,0 +1,143 @@
+--- nacal.sty (v2.3)
++++ nacal.sty (prototipo de cajas)
+@@ -327,7 +327,7 @@
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %% --- OPERADOR SELECTOR
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-\NewDocumentCommand\getItem { }{\ensuremath{ \boldsymbol{\mid} }\xspace}
++\NewDocumentCommand\getItem { }{\ensuremath{ \nacal@bs{\mid} }\xspace}
+ \NewDocumentCommand\getitemL{m}{\ensuremath{ {#1} \getItem }\xspace}
+ \NewDocumentCommand\getitemR{m}{\ensuremath{ \getItem {#1} }\xspace}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@@ -614,13 +614,13 @@
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %% --- Operaciones elementales y permutaciones
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-\DeclareMathOperator{\TrEl}{\boldsymbol{\tau}}
++\DeclareMathOperator{\TrEl}{\nacal@bs{\tau}}
+ \NewDocumentCommand\su{mmm}{\ensuremath{%
+-                      \left(#1\right){\boldsymbol{#2}}+{\boldsymbol{#3}}   }\xspace}
++                      \left(#1\right){\nacal@bs{#2}}+{\nacal@bs{#3}}   }\xspace}
+ \NewDocumentCommand\pr{mm }{\ensuremath{%
+-                      \left(#1\right){\boldsymbol{#2}}                     }\xspace}
++                      \left(#1\right){\nacal@bs{#2}}                     }\xspace}
+ \NewDocumentCommand\pe{mm }{\ensuremath{%
+-                     \boldsymbol{#1} \rightleftharpoons \boldsymbol{#2}    }\xspace}
++                     \nacal@bs{#1} \rightleftharpoons \nacal@bs{#2}    }\xspace}
+ \NewDocumentCommand\perm{}{\ensuremath{ \mathfrak{S}                       }\xspace}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \NewDocumentCommand\OpE{m}{\ensuremath{\underset{\left[{#1}\right]}{\TrEl}}\xspace}
+@@ -1074,6 +1074,95 @@
+ \NewDocumentCommand\eleMMMT{mmm}{\ensuremath{\textrm{elem}_{#2#3}{\MatTPE*{#1}}}\xspace}
+ \NewDocumentCommand\eleMM  {mmm}{\ensuremath{\nacal@caja\lowercase\MakeLowercase{m}{#1}_{{#2}{#3}}}\xspace}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
++%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
++%% --- Negrita matemática guardada en cajas
++%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
++\newif\ifnacal@bs@cajas \nacal@bs@cajastrue
++\newcount\nacal@bs@n
++\newcommand\nacal@bs[1]{\nacal@bs@{b}{#1}{#1}}
++\newcommand\nacal@bs@min[2]{\nacal@bs@{m}{#2}{\nacal@min{#1}{#2}}}
++\newcommand\nacal@bs@may[2]{\nacal@bs@{M}{#2}{\mathsf{\nacal@may{#1}{#2}}}}
++%% Si el cuerpo ha cambiado dentro de la formula (\large en modo
++%% matematico), \boldsymbol recarga las fuentes matematicas y eso altera el
++%% resto de la formula: ahi se llama a \boldsymbol como siempre.
++%% Tampoco se usan las cajas en las composiciones de prueba de los acentos
++%% de amsmath (\ddot{\Mat{x}}), que desactivan los alfabetos matematicos:
++%% se reconocen porque \select@group o \use@mathgroup estan cambiados.
++\def\nacal@bs@#1#2#3{%
++  \ifnum0\ifx\glb@currsize\f@size\else1\fi
++         \ifx\select@group\nacal@select@group\else1\fi
++         \ifx\use@mathgroup\nacal@use@mathgroup\else1\fi=\z@
++    \ifcsname nacal@bs@#1@\math@version @\f@size @\detokenize{#2}\endcsname\else
++      \nacal@bs@nueva{#1}{#2}{#3}%
++    \fi
++    \csname nacal@bs@#1@\math@version @\f@size @\detokenize{#2}\endcsname
++  \else
++    \boldsymbol{#3}%
++  \fi}
++\ExplSyntaxOn
++\protected\def\nacal@bs@nueva#1#2#3{
++  \group_begin:
++  \bool_set_false:N \l_tmpa_bool
++  \ifnacal@bs@cajas
++    \int_compare:nNnT \nacal@bs@n < { 1000 }
++      {
++        \regex_match:nnT { \A (?: \cL[A-Za-z] | \cO[0-9] | \cC. )* \Z } {#2}
++          {
++            \bool_set_true:N \l_tmpa_bool
++            \tl_map_inline:nn {#2}
++              { \token_if_cs:NT ##1
++                  { \token_if_mathchardef:NF ##1 { \bool_set_false:N \l_tmpa_bool } } }
++          }
++      }
++  \fi
++  \edef\nacal@tmpa{\exp_not:c { nacal@bs@#1@\math@version @\f@size @\detokenize{#2} } }
++  \bool_if:NTF \l_tmpa_bool
++    { \nacal@bs@crea {#3} }
++    { \exp_after:wN \xdef \nacal@tmpa { \exp_not:n { \boldsymbol {#3} } } }
++  \group_end:
++}
++\ExplSyntaxOff
++%% Las cuatro cajas (una por estilo) se componen igual que en \boldsymbol
++%% de amsbsy, una sola vez; despues se copian.
++\def\nacal@bs@crea#1{%
++  \global\advance\nacal@bs@n\@ne
++  \expandafter\newbox\csname nacal@bx@\the\nacal@bs@n @D\endcsname
++  \expandafter\newbox\csname nacal@bx@\the\nacal@bs@n @T\endcsname
++  \expandafter\newbox\csname nacal@bx@\the\nacal@bs@n @S\endcsname
++  \expandafter\newbox\csname nacal@bx@\the\nacal@bs@n @s\endcsname
++  \begingroup
++    \let\@nomath\@gobble \mathversion{bold}%
++    %% Como en \boldsymbol: primero la composicion de prueba de \binrel@
++    %% (ya en negrita), que ademas hace que LaTeX asigne los alfabetos
++    %% antes de componer las cajas que se guardan.
++    \binrel@{#1}%
++    \global\setbox\csname nacal@bx@\the\nacal@bs@n @D\endcsname\hbox{$\m@th\displaystyle#1$}%
++    \global\setbox\csname nacal@bx@\the\nacal@bs@n @T\endcsname\hbox{$\m@th\textstyle#1$}%
++    \global\setbox\csname nacal@bx@\the\nacal@bs@n @S\endcsname\hbox{$\m@th\scriptstyle#1$}%
++    \global\setbox\csname nacal@bx@\the\nacal@bs@n @s\endcsname\hbox{$\m@th\scriptscriptstyle#1$}%
++    \expandafter\xdef\nacal@tmpa{%
++      \ifx\binrel@@\mathbin \noexpand\mathbin \else
++        \ifx\binrel@@\mathrel \noexpand\mathrel \else \relax \fi\fi
++      {\noexpand\mathchoice
++        {\copy\csname nacal@bx@\the\nacal@bs@n @D\endcsname}%
++        {\copy\csname nacal@bx@\the\nacal@bs@n @T\endcsname}%
++        {\copy\csname nacal@bx@\the\nacal@bs@n @S\endcsname}%
++        {\copy\csname nacal@bx@\the\nacal@bs@n @s\endcsname}}}%
++  \endgroup}
++%% Solo si \boldsymbol es el de amsbsy; con avisacaja, tampoco (cada uso
++%% debe pasar por el aviso).
++\AtBeginDocument{%
++  \begingroup
++    \long\def\nacal@tmpb#1{\begingroup \let\@nomath\@gobble \mathversion{bold}%
++      \math@atom{#1}{\mathchoice
++        {\hbox{$\m@th\displaystyle#1$}}{\hbox{$\m@th\textstyle#1$}}%
++        {\hbox{$\m@th\scriptstyle#1$}}{\hbox{$\m@th\scriptscriptstyle#1$}}}\endgroup}%
++    \expandafter\ifx\csname boldsymbol \endcsname\nacal@tmpb\else
++      \global\nacal@bs@cajasfalse \fi
++  \endgroup
++  \ifnacal@avisacaja \global\nacal@bs@cajasfalse \fi
++  \global\let\nacal@select@group\select@group
++  \global\let\nacal@use@mathgroup\use@mathgroup}
+ %% --- Sistemas genéricos
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+@@ -1095,7 +1184,7 @@
+     {\Parentesis {\IfNoValueTF{#2}{\vect{#3}}{\vect[#2]{#3}}}}  }\xspace}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \NewDocumentCommand\Vect   {O{}O{}m}{\ensuremath{%
+-                       \RidxE{\boldsymbol{\nacal@min{\Vect}{#3}}}{#1}{\boldsymbol{#2}}   }\xspace}
++                       \RidxE{\nacal@bs@min{\Vect}{#3}}{#1}{\nacal@bs{#2}}   }\xspace}
+ 
+ \NewDocumentCommand\Vectp {sO{}O{}m}{\ensuremath{\IfBooleanTF#1
+     {\parentesis*{\Vect[#2][#3]{#4}}}
+@@ -1116,7 +1205,7 @@
+ \NewDocumentCommand\irvecC{O{1}O{n}m}{\ensuremath{\VectC{#3}{#1},\ldots,\VectC{#3}{#2} }\xspace}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \NewDocumentCommand\Mat    {O{}m}{\ensuremath{%
+-                       \Ridx{\boldsymbol{\mathsf{\nacal@may{\Mat}{#2}}}}{#1}   }\xspace}
++                       \Ridx{\nacal@bs@may{\Mat}{#2}}{#1}   }\xspace}
+ 
+ \NewDocumentCommand\Matp  {som}{\ensuremath{\IfBooleanTF#1
+     {\parentesis*{\IfNoValueTF{#2}{\Mat{#3}}{\Mat[#2]{#3}}}}
