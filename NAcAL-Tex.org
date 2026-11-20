@@ -52,7 +52,7 @@ mbujosab@ucm.es
 - =<<fecha y versión>>=
 #+NAME: fecha y versión
 #+BEGIN_SRC tex :results silent
-2026/11/19 v2.2
+2026/11/20 v2.3
 #+END_SRC
 
 - =<<breve descripción>>=
@@ -167,6 +167,7 @@ El fichero principal es el fichero ~.dtx~:
 % \changes{v2.0}{2026/11/10}{Solo álgebra lineal: la probabilidad y la econometría salen del paquete (opción v1 para los documentos antiguos)}
 % \changes{v2.1}{2026/11/16}{Opción avisacaja; guía rápida de sufijos en la documentación}
 % \changes{v2.2}{2026/11/19}{Compilación más rápida: el cambio de caja se calcula una vez por argumento y \cs{RidxE} no repite el objeto cinco veces. Con avisacaja, \cs{eleVV} y \cs{eleMM} ya no avisan}
+% \changes{v2.3}{2026/11/20}{Más rápido: el cambio de caja guardado admite también argumentos con comandos protegidos o robustos}
 %
 % \GetFileInfo{<<package>>.sty}
 %
@@ -6236,13 +6237,24 @@ argumento y denota el ajuste MCO del \marg{vector} de \R[n]
 % \cs{nacal@M@}\meta{argumento} (mayúsculas). \cs{nacal@caja} usa el
 % guardado y, si no existe, lo crea con \cs{nacal@caja@nueva}.
 %
-% Si el argumento solo tiene letras sin acento, cifras y símbolos
-% matemáticos definidos con \cs{mathchardef} (como \cs{beta}), el
-% resultado se obtiene con las primitivas \cs{lowercase} o
-% \cs{uppercase}, que dan lo mismo que \cs{MakeLowercase} y
-% \cs{MakeUppercase} en esos casos. En cualquier otro caso se guarda la
-% llamada a \cs{MakeLowercase} o \cs{MakeUppercase} tal cual, es decir,
-% se hace lo mismo que antes de la versión 2.2.
+% Si el argumento solo tiene caracteres ASCII corrientes (letras sin
+% acento, cifras, signos, llaves, |^| y |_|) y comandos que el cambio de
+% caja deja como están, el resultado se obtiene con las primitivas
+% \cs{lowercase} o \cs{uppercase}, que dan lo mismo que
+% \cs{MakeLowercase} y \cs{MakeUppercase} en esos casos. En cualquier
+% otro caso (acentos, caracteres activos, |$|, otros comandos) se guarda
+% la llamada a \cs{MakeLowercase} o \cs{MakeUppercase} tal cual, es
+% decir, se hace lo mismo que antes de la versión 2.2.
+%
+% \cs{nacal@caja@fija:NF} decide qué comandos deja como están el cambio
+% de caja: los símbolos definidos con \cs{mathchardef} (como \cs{beta}),
+% los comandos protegidos (todos los de \cs{NewDocumentCommand}, y por
+% tanto los de este paquete) y los robustos (como \cs{boldsymbol}),
+% salvo los que \cs{MakeUppercase} trata de forma especial (\cs{ref},
+% \cs{label}, \cs{ensuremath}\ldots). Un comando corriente, como
+% \cs{widehat} o uno del usuario, podría cambiar de definición entre dos
+% usos, así que con él no se guarda el resultado. Desde la versión 2.3;
+% la 2.2 solo admitía letras, cifras y símbolos \cs{mathchardef}.
 %    \begin{macrocode}
 \def\nacal@caja#1#2#3#4{%
   \ifcsname nacal@#3@\detokenize{#4}\endcsname\else
@@ -6253,10 +6265,12 @@ argumento y denota el ajuste MCO del \marg{vector} de \R[n]
 \protected\def\nacal@caja@nueva#1#2#3#4{
   \group_begin:
   \bool_set_true:N \l_tmpa_bool
-  \regex_match:nnTF { \A (?: \cL[A-Za-z] | \cO[0-9] | \c{[A-Za-z]+} )* \Z } {#4}
-    { \tl_map_inline:nn {#4}
-        { \token_if_cs:NT ##1
-            { \token_if_mathchardef:NF ##1 { \bool_set_false:N \l_tmpa_bool } } } }
+  \regex_match:nnTF
+    { \A (?: \cL[A-Za-z] | \cO[\x{21}-\x{7E}] | \cS. | \cB. | \cE.
+           | \cU. | \cD. | \cC. )* \Z } {#4}
+    { \regex_extract_all:nnN { \cC. } {#4} \l_tmpa_seq
+      \seq_map_inline:Nn \l_tmpa_seq
+        { \nacal@caja@fija:NF ##1 { \bool_set_false:N \l_tmpa_bool } } }
     { \bool_set_false:N \l_tmpa_bool }
   \edef\nacal@tmpa{\exp_not:c { nacal@#3@\detokenize{#4} } }
   \bool_if:NTF \l_tmpa_bool
@@ -6264,6 +6278,23 @@ argumento y denota el ajuste MCO del \marg{vector} de \R[n]
     { \exp_after:wN \xdef \nacal@tmpa { \exp_not:n { #2 {#4} } } }
   \group_end:
 }
+\cs_new_protected:Npn \nacal@caja@fija:NF #1#2
+  {
+    \bool_lazy_any:nTF
+      {
+        { \token_if_mathchardef_p:N #1 }
+        { \token_if_protected_macro_p:N #1 }
+        { \token_if_protected_long_macro_p:N #1 }
+        { \str_if_eq_p:ee { \cs_meaning:N #1 }
+            { macro:-> \token_to_str:N \protect \c_space_tl
+              \token_to_str:N #1 \c_space_tl \c_space_tl } }
+      }
+      { \bool_set_true:N \l_tmpb_bool } { \bool_set_false:N \l_tmpb_bool }
+    \tl_if_in:NnT \l_text_case_exclude_arg_tl {#1} { \bool_set_false:N \l_tmpb_bool }
+    \tl_if_in:NnT \l_text_math_arg_tl {#1} { \bool_set_false:N \l_tmpb_bool }
+    \tl_if_in:NnT \l_text_expand_exclude_tl {#1} { \bool_set_false:N \l_tmpb_bool }
+    \bool_if:NF \l_tmpb_bool {#2}
+  }
 \ExplSyntaxOff
 %    \end{macrocode}
 % \end{macro}

@@ -22,7 +22,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[2005/12/01]
 \ProvidesPackage{nacal}
-    [2026/11/19 v2.2 Notacion Asociativa para un Curso de Algebra Lineal]
+    [2026/11/20 v2.3 Notacion Asociativa para un Curso de Algebra Lineal]
 \RequirePackage{amsmath,amssymb}
 \RequirePackage{xcolor}
 \RequirePackage{xparse}
@@ -54,10 +54,12 @@
 \protected\def\nacal@caja@nueva#1#2#3#4{
   \group_begin:
   \bool_set_true:N \l_tmpa_bool
-  \regex_match:nnTF { \A (?: \cL[A-Za-z] | \cO[0-9] | \c{[A-Za-z]+} )* \Z } {#4}
-    { \tl_map_inline:nn {#4}
-        { \token_if_cs:NT ##1
-            { \token_if_mathchardef:NF ##1 { \bool_set_false:N \l_tmpa_bool } } } }
+  \regex_match:nnTF
+    { \A (?: \cL[A-Za-z] | \cO[\x{21}-\x{7E}] | \cS. | \cB. | \cE.
+           | \cU. | \cD. | \cC. )* \Z } {#4}
+    { \regex_extract_all:nnN { \cC. } {#4} \l_tmpa_seq
+      \seq_map_inline:Nn \l_tmpa_seq
+        { \nacal@caja@fija:NF ##1 { \bool_set_false:N \l_tmpa_bool } } }
     { \bool_set_false:N \l_tmpa_bool }
   \edef\nacal@tmpa{\exp_not:c { nacal@#3@\detokenize{#4} } }
   \bool_if:NTF \l_tmpa_bool
@@ -65,6 +67,23 @@
     { \exp_after:wN \xdef \nacal@tmpa { \exp_not:n { #2 {#4} } } }
   \group_end:
 }
+\cs_new_protected:Npn \nacal@caja@fija:NF #1#2
+  {
+    \bool_lazy_any:nTF
+      {
+        { \token_if_mathchardef_p:N #1 }
+        { \token_if_protected_macro_p:N #1 }
+        { \token_if_protected_long_macro_p:N #1 }
+        { \str_if_eq_p:ee { \cs_meaning:N #1 }
+            { macro:-> \token_to_str:N \protect \c_space_tl
+              \token_to_str:N #1 \c_space_tl \c_space_tl } }
+      }
+      { \bool_set_true:N \l_tmpb_bool } { \bool_set_false:N \l_tmpb_bool }
+    \tl_if_in:NnT \l_text_case_exclude_arg_tl {#1} { \bool_set_false:N \l_tmpb_bool }
+    \tl_if_in:NnT \l_text_math_arg_tl {#1} { \bool_set_false:N \l_tmpb_bool }
+    \tl_if_in:NnT \l_text_expand_exclude_tl {#1} { \bool_set_false:N \l_tmpb_bool }
+    \bool_if:NF \l_tmpb_bool {#2}
+  }
 \ExplSyntaxOff
 \protected\def\nacal@avisacaja#1#2#3#4#5{%
   \begingroup
