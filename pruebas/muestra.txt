@@ -17,7 +17,7 @@
 libro   libro-P
 libro   libro
 
-# --- Transparencias y ejercicios (MatematicasII-SRC/Version0) -------------
+# --- Transparencias y ejercicios (MatematicasII-SRC/clases) ---------------
 transp  P00 print-prof
 transp  P01 print-prof
 transp  P02 print-prof

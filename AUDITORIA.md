@@ -8,6 +8,27 @@ que se mencionan como "medidas" se han probado en copias del `.sty` dentro del
 banco de pruebas (`~/temporal/nacal-banco/sty/candA` y `candB`), nunca en la
 copia instalada.
 
+## Estado a 20 de noviembre de 2026 (v2.3): auditoría cerrada
+
+No queda ningún hallazgo abierto. Lo que faltaba por decidir:
+
+- **B3** (fuentes de `mathabx` declaradas a mano, límite de familias): ya no
+  es de `nacal`, que desde la v2.0 no declara `matha` ni `mathx`. En
+  `ectrnot` v1.1 y `alprobnot` v1.1 esos símbolos se componen como texto y
+  no ocupan familias. La alternativa del ⟦ ⟧ de `mathx` queda descartada.
+- **B7** (`\MakeLowercase` y `\MakeUppercase`): se quedan. Marcos preguntó
+  el 20/11 si convenía quitarlos y limpiar los fuentes; medido, no compensa
+  (v2.2 y v2.3 guardan el resultado; quitarlos ganaría 0,3 s en el libro).
+  Para limpiar fuentes está la opción `avisacaja` (v2.1).
+- **B4** (nombres sin prefijo): `\mymathbb` se renombró en la v1.3.1. Siguen
+  sin prefijo `\MDaV` (en `nacal`) y `\perturbacion` (ahora en `ectrnot`);
+  ningún choque conocido, no se tocan.
+- **A7**, **C6** y **C7**: se quedan como están (decidido).
+- **B6** (`\xspace`): no se cambia nada.
+
+Lo posterior a la auditoría (velocidad, `avisacaja`, reparto en paquetes)
+está en `CHANGELOG.md`.
+
 ## Estado a 11 de noviembre de 2026 (v2.0)
 
 Desde la v2.0 `nacal` contiene solo álgebra lineal. La sección 4 («La parte
