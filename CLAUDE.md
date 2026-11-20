@@ -609,3 +609,8 @@ en total con `JOBS=6`); la cuarta, si el cambio puede afectar a Moodle o si
 Marcos lo pide. `banco-amc.sh` solo copia las fuentes de los exámenes:
 nunca escaneos, notas ni datos de alumnos. Sustituye al guion suelto de
 `~/temporal/nacal-guiones-v23/`.
+
+`qbank-PEconometria` entero (21/11/2026): generado con la v2.2 y la v2.3
+sobre una copia congelada, 733 ficheros idénticos. Cada generación tarda
+unos 90 minutos. Con esto, la v2.3 está probada contra todo lo que se ha
+podido compilar aquí; falta el flujo real de Marcos y otra versión de LaTeX.

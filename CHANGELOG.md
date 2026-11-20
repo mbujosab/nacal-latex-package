@@ -50,9 +50,16 @@ la v2.2 con la v2.3:
   byte (857 usan `\Vect`, `\Mat` y parientes). El banco no cubría los vídeos.
 - `qbank-econometria`: 309 ficheros (39 XML, 114 PDF, 156 `.tex`) idénticos.
 
-Sin pasar: `qbank-PEconometria` entero (sus preguntas entran en los
-exámenes AMC probados) y otras versiones de LaTeX que no sean la de esta
-máquina (TeX Live 2022). Aprobada por Marcos e instalada el 20/11/2026.
+Sin pasar: otras versiones de LaTeX que no sean la de esta máquina (TeX
+Live 2022). Aprobada por Marcos e instalada el 20/11/2026.
+
+Después de instalar (20 y 21/11/2026), también sobre copias:
+- `qbank-PEconometria` entero, generado con la v2.2 y con la v2.3 sobre la
+  misma copia de las fuentes: 733 ficheros (368 `.tex`, 92 XML, 273 PDF),
+  todos idénticos.
+- El ejemplo de `qbank` (multicolinealidad, con `ectrnot-moodle`): XML y
+  PDF idénticos. La documentación de la librería de Python
+  (`nacal_src.tex`, 140 páginas): idéntica.
 
 ## v2.2 (2026-11-19)
 
